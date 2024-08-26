@@ -1,0 +1,503 @@
+@import url("//fonts.googleapis.com/css?family=Open+Sans+Condensed");
+@import url("https://fonts.googleapis.com/css?family=Inria+Sans");
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
+
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    background-color: #B8D4E7;
+    justify-content: center;
+    align-content: center;
+}
+}
+
+body {
+    font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 35px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+
+main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    max-width: 1024px;
+    height: 720px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+
+.inner-box {
+    position: absolute;
+    width: calc(100% - 4.1rem);
+    height: calc(100% - 4.1rem);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.forms-wrap {
+    position: absolute;
+    height: 100%;
+    width: 70%; /* Adjusted to 75% */
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: 0.8s ease-in-out;
+}
+
+form {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 20px;
+    height: 100%;  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+form.sign-up-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 27px;
+    margin-right: 0.3rem;
+}
+
+.logo h4 {
+    font-size: 1.1rem;
+    margin-top: -9px;
+    letter-spacing: -0.5px;
+    color: #151111;
+}
+
+.heading h2 {
+    font-weight: 900;
+    color: #133e6d;
+}
+
+.heading h5 {
+    padding-top: 20px;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+
+
+.logo {
+    justify-content: center;
+    color: #205374;
+    text-decoration: dotted;
+    font-family: 'Alumni Sans';
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-tabs a {
+    color: black;
+    text-decoration: none;
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+.nav-tabs a:hover {
+    color: #b96e50;
+    text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: black;
+    font-family: "Open Sans Condensed";
+    padding: 0;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    color: #000;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover {
+    color: #164e8a;
+    text-decoration: underline;
+}
+
+
+
+.toggle h5 {
+    color: #007BFF;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.toggle h5:hover {
+    color: #164e8a;
+    text-decoration: underline;
+}
+
+.input-wrap {
+    position: relative;
+    height: 37px;
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #151111;
+    transition: 0.4s;
+}
+
+label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.input-field.active {
+    border-bottom-color: #164e8a;
+}
+
+.input-field.active+label {
+    font-size: 0.75rem;
+    top: -2px;
+}
+
+
+.remember-me-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.remember-me-checkbox {
+    margin-right: 10px; /* Space between checkbox and label */
+    width: 20px; /* Adjust size of checkbox */
+    height: 20px; /* Adjust size of checkbox */
+    position: relative;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.remember-me-checkbox:checked {
+    background-color: #fff; /* Background color remains white */
+    border-color: #007BFF; /* Border color when checked */
+}
+
+.remember-me-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 16px;
+    border: solid black; /* Checkmark color */
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg) translate(-50%, -50%);
+    animation: bounce 0.6s ease forwards;
+}
+
+.remember-me-checkbox::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 16px;
+    border: solid transparent;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg) translate(-50%, -50%);
+
+}
+
+@keyframes bounce {
+    0% {
+        transform: rotate(45deg) translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: rotate(45deg) translate(-50%, -60%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(45deg) translate(-50%, -50%) scale(1);
+    }
+}
+
+
+
+.sign-btn {
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #164e8a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.sign-btn:hover {
+    background-color: #007BFF;
+}
+
+.bold-text {
+    font-weight: 40px;
+}
+
+.text {
+    color: #bbb;
+    font-size: 0.7rem;
+}
+
+.text a {
+    color: #bbb;
+    transition: 0.3s;
+}
+
+.text a:hover {
+    color: #007BFF;
+}
+
+main.sign-up-mode form.sign-in-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+main.sign-up-mode .forms-wrap {
+    left: 25%;
+}
+
+main.sign-up-mode .carousel {
+    left: 0%
+}
+
+.carousel {
+    position: absolute;
+    height: 100%;
+    width: 25%; /* Adjusted to 25% */
+    left: 75%; /* Adjusted to match the width of forms */
+    top: 0;
+    background-color: #B8D4E7;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    overflow: hidden;
+    transition: 0.8s ease-in-out;
+    justify-content: flex-end;
+}
+
+
+.carousel .images-wrapper {
+    grid-row: 2;
+    height: auto;
+    width: 100%;
+}
+
+.img {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 850px) {
+    main {
+        height: 98vh;
+        overflow: hidden;
+        align-content: center;
+        justify-content: center;
+    }
+
+
+.box {
+    align-content: center;
+    height: auto;
+    max-width: 550px;
+    overflow: hidden;
+}
+
+.inner-box {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+    padding: 1rem 2rem;
+}
+
+.forms-wrap {
+    position: revert;
+    width: 100%;
+    height: auto;
+}
+
+form {
+    margin: 1rem 0;
+    max-width: revert;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+}
+
+.heading {
+    margin: 2rem 0;
+}
+
+form.sign-up-form {
+    transform: translateX(100%);
+}
+
+main.sign-up-mode form.sign-in-form {
+    transform: translateX(-100%);
+}
+
+main.sign-up-mode form.sign-up-form {
+    transform: translateX(0%);
+}
+
+.carousel {
+    margin-top: 1.5rem;
+    position: revert;
+    height: auto;
+    width: 100%;
+    display: flex;
+    padding: 1rem 0;
+}
+
+.images-wrapper {
+    display: none; 
+}
+
+.text-slider {
+    width: 100%;
+}
+}
+
+@media (max-width: 530px) {
+    main {
+        padding: 1rem;
+    }
+
+    .box {
+        padding-bottom: 2rem;
+        border-radius: 2rem;
+    }
+
+    .inner-box {
+        padding: 1rem;
+    }
+
+    .carousel {
+       margin-top: 2.5rem;
+       position: revert;
+       height: auto;
+       width: 100%;
+       display: flex;
+       padding: 1rem 0;
+       border-radius: 1.6rem;
+        
+    }
+
+    
+    .text-wrap {
+        margin-bottom: 1rem;
+    }
+
+    .text-group h2 {
+        font-size: 1.2rem;
+    }
+
+    form {
+        padding-top: 2rem;
+        height: 100%;
+    }
+
+
+}
