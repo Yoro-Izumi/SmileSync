@@ -19,9 +19,10 @@
  
   <section class="home-section">
 
-
+  <?php include "appointment-table.php"; ?>
 
   </section>
+  
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
 </body>

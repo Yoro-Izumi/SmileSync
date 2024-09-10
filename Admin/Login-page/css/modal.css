@@ -15,17 +15,45 @@
     z-index: 9999; /* Ensures modal is above all other content */
 }
 
+.message-container {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.reset-password {
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+/* Center image in its own block */
+.image-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.image {
+    width: 100px;
+    height: auto;
+}
+
 .modal.show {
     opacity: 1;
     visibility: visible;
 }
+
 
 /* Popup animation */
 .modal-content {
     position: relative;
     border-radius: 25px;
     background-color: #fff;
-    width: 40vw;
+    width: 30vw;
     max-width: 600px;
     padding: 20px;
     text-align: center;
@@ -35,6 +63,8 @@
     animation: popup 0.3s ease forwards;
     overflow: auto; /* Ensure that content overflow is handled */
 }
+
+
 
 @keyframes popup {
     0% {
@@ -47,31 +77,129 @@
     }
 }
 
-/* Common modal elements */
 .modal-title {
-    font-size: 2rem;
+    font-size: 3rem;
     font-family: 'Open Sans Condensed', sans-serif;
     color: #001434;
     margin-bottom: 20px;
 }
 
+
+/* Specific Colors for Different Modal Titles */
+.normal-title {
+    color: #001434  ; 
+}
+
+.warning-title {
+    color: #964A4A; 
+}
+
+.success-title {
+    color: #28a745; 
+}
+
+/* Specific Colors for Different Modal Button */
+.normal{
+    background-color: #001434  ; 
+}
+
+.warning{
+    background-color: #964A4A;
+}
+
+.success{
+    background-color: #28a745; 
+}
+
+/* Specific Colors for Different Modal Titles */
+.modal-button.normal:hover{
+    background-color: #02245a  ; 
+}
+
+.modal-button.warning:hover{
+    background-color: #c26161; 
+}
+
+.modal-button.success:hover{
+    background-color: #31d357; 
+}
+
+
 .modal-description {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #333;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
+.input-wrap {
+    position: relative;
+    height: 37px;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.modal-input {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding-left: 10;
+    font-size: 1.5rem;
+    color: #151111;
+    transition: 0.4s;
+}
+
+.modal-input:focus {
+    padding-left: 2px;
+    border: 2px solid #164e8a;
+    border-radius: 5px;
+}
+
+.modal-input:focus + label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+    top: -5px;
+    left: 10px;
+    background-color: #fff;
+}
+
+label {
+    position: absolute;
+    left: 5px;
+    top: 45%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.modal-input.error {
+    border: 2px solid red;
+}
+
+.indicator {
+    color: #ff3333;
+    font-weight: bold;
+}
+
+/* Button Styles */
 .modal-button {
     border-radius: 25px;
-    background-color: #30ce88;
     color: #fff;
     border: none;
     padding: 14px 32px;
     font-size: 1rem;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 40px;
+    margin-bottom: 10px;
     width: 100%;
     max-width: 200px;
+
 }
 
 .modal-button.secondary-button {
@@ -79,67 +207,17 @@
 }
 
 .modal-button:hover {
-    background-color: #28a745;
+    background-color: #0000;
 }
 
 .modal-button.secondary-button:hover {
     background-color: #999;
 }
 
-/* Input field design */
-.input-wrap {
-    position: relative;
-    height: auto; /* Allow height to adjust based on content */
-    margin-bottom: 2rem;
-}
-
-.modal-field {
-    width: 100%;
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #bbb;
-    padding: 0;
-    font-size: 0.95rem;
-    color: #151111;
-    transition: 0.4s;
-}
-
-label {
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.95rem;
-    color: #bbb;
-    pointer-events: none;
-    transition: 0.4s;
-}
-
-.modal-field.active {
-    padding-left: 2px;
-    border: 2px solid #164e8a;
-    border-radius: 5px;
-}
-
-.modal-field.active + label {
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: #000;
-    top: 0;
-    left: 10px;
-    background-color: #fff;
-}
-
-.modal-field.error input {
-    border: 2px solid red;
-}
-
 /* Media queries for smaller screens */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 90vw;
-        padding: 20px;
+@media (max-width: 910px) {
+    .reset-password {
+        font-size: 1rem;
     }
 
     .modal-title {
@@ -147,19 +225,33 @@ label {
     }
 
     .modal-description {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
-    .modal-button {
-        font-size: 0.9rem;
-        padding: 10px 20px;
+    .modal-input {
+        font-size: 1rem;
     }
+
+    .modal-input:focus + label {
+        font-size: 01rem;
+    }
+
+
+    .modal-content {
+        width: 40vw;
+    }
+
+
+    label {
+        font-size: 1rem;
+    }
+
+
 }
 
 @media (max-width: 480px) {
-    .modal-content {
-        width: 95vw;
-        padding: 15px;
+    .reset-password {
+        font-size: 0.9rem;
     }
 
     .modal-title {
@@ -167,11 +259,26 @@ label {
     }
 
     .modal-description {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
-    .modal-button {
-        font-size: 0.8rem;
-        padding: 8px 16px;
+    .modal-input {
+        font-size: 0.9rem;
     }
+
+
+    .modal-input:focus + label {
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        width: 50vw;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
 }
+
+

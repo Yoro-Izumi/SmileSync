@@ -145,7 +145,7 @@
 
                 <div class="remember-me-wrap">
                     <input type="checkbox" id="rememberMe" class="remember-me-checkbox">
-                    <h5 for="rememberMe">Remember Me</h5>
+                    <p for="rememberMe">Remember Me</p>
                 </div>
 
                 <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>

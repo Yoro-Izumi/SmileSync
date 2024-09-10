@@ -11,17 +11,6 @@
 </head>
 <body>
     
-   <header>
-        <div class="logo">smileSync
-            <img src="img/login.png" alt="Logo">
-        </div>
-        <nav class="nav-tabs">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
 
     <main>
       <div class="box">

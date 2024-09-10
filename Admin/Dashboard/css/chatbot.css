@@ -28,7 +28,7 @@ body {
     background: #03253A;
     right: 20px;
     top: 20px;
-    z-index: 99999px;
+    z-index: 99;
     flex-direction: column;
     opacity: 0; /* Hidden before animation */
     transform: translateX(-100%); /* Start offscreen */
