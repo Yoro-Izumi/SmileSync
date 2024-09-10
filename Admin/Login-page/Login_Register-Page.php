@@ -7,23 +7,16 @@
     <title>SmileSync-ADMIN</title>
 
     <!--style.css-->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
 </head>
+
+
 <body>
-    
-   <!-- <header>
-        <div class="logo">smileSync
-            <img src="img/login.png" alt="Logo">
-        </div>
-        <nav class="nav-tabs">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>-->
+ 
 
     <main>
+       <?php include "modal.php"; ?>
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
@@ -42,13 +35,13 @@
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
-                    type="text"
+                    type="text""
                     minlength="4"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Name</label>
+                  <label>Name<indicator>*</indicator></label>
                 </div>
 
                 <div class="input-wrap">
@@ -58,7 +51,7 @@
                     autocomplete="off"
                     required
                   />
-                  <label>Email</label>
+                  <label>Email<indicator>*</indicator></label>
                 </div>
 
                 <div class="input-wrap">
@@ -69,14 +62,14 @@
                     autocomplete="off"
                     required
                   />
-                  <label>Password</label>
+                  <label>Password<indicator>*</indicator></label>
                 </div>
 
                 <div class="input-wrap">
             <input type="password" class="input-field"
                 autocomplete="off"
                 required></>
-            <label>Confirm Password</label>
+            <label>Confirm Password<indicator>*</indicator></label>
         </div>
 
                 <input type="submit" value="Sign Up" class="sign-btn" />
@@ -114,7 +107,7 @@
                     autocomplete="off"
                     required
                   />
-                  <label>Name</label>
+                  <label>Email<indicator>*</indicator></label>
                 </div>
 
                 <div class="input-wrap">
@@ -122,22 +115,43 @@
                     type="password"
                     minlength="4"
                     class="input-field"
+                    id="signup-password"
                     autocomplete="off"
                     required
                   />
-                  <label>Password</label>
+                  <label>Password<indicator>*</indicator></label>
+                  <div class="fa fa-eye icon" id="signup-show-password"></div>
+                  
                 </div>
+
+
+<!--password example-->
+              <div class="input-wrap">
+                <input 
+                      type="password" 
+                      name="password"
+                      class="input-field" 
+                      id="floatingPassword"
+                      autocomplete="off" 
+                      required oninput="validatePassword(event)"
+                />
+              <label for="floatingPassword">Password<indicator>*</indicator></label>
+              <button class="btn btn-secondary toggle-password position-absolute end-0 top-50 translate-middle-y " type="button">
+                <i class="fa fa-eye icon"></i>
+              </button>
+                </div>
+
+
 
                 <div class="remember-me-wrap">
                     <input type="checkbox" id="rememberMe" class="remember-me-checkbox">
                     <h5 for="rememberMe">Remember Me</h5>
                 </div>
 
-                <input type="submit" value="Sign In" class="sign-btn" />
+                <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
 
                 <p class="text">
-                  Forgotten your password or you login datails?
-                  <a href="#">Get help</a> signing in
+                  <a href="#"> Forgotten your password?</a>
                 </p>
               </div>
             </form>
@@ -154,6 +168,10 @@
     </main>
 
     <!-- Javascript file -->
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/eye-toggle.js"></script>
+  
+   
+
 </body>
 </html>

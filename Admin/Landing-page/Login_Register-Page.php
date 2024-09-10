@@ -8,10 +8,11 @@
 
     <!--style.css-->
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/modal.css" />
 </head>
 <body>
     
-   <header>
+   <!-- <header>
         <div class="logo">smileSync
             <img src="img/login.png" alt="Logo">
         </div>
@@ -21,13 +22,76 @@
             <a href="#">Services</a>
             <a href="#">Contact</a>
         </nav>
-    </header>
+    </header>-->
 
     <main>
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-  
+           <form action="Login_Register-Page.php" autocomplete="off" class="sign-up-form">
+           <div class="logo">
+                <img src="img/login.png" alt="SmileSync" />
+                <h4>SmileSync-ADMIN</h4>
+              </div>   
+           <div class="heading">
+                <h2>To get started,</h2>
+                <h2>Please signup.</h2>
+                <h5>Already have an account?
+                <a href="#" class="toggle">Log In</a></h5>
+              </div>
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                    type="text""
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Name<indicator>*</indicator></label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="email"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Email<indicator>*</indicator></label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Password<indicator>*</indicator></label>
+                </div>
+
+                <div class="input-wrap">
+            <input type="password" class="input-field"
+                autocomplete="off"
+                required></>
+            <label>Confirm Password<indicator>*</indicator></label>
+        </div>
+
+                <input type="submit" value="Sign Up" class="sign-btn" />
+
+                <p class="text">
+                  By signing up, I agree to the
+                  <a href="#">Terms of Services</a> and
+                  <a href="#">Privacy Policy</a>
+                </p>
+              </div>
+
+
+            </form>
+
             
           <form action="Login_Register-Page.php" autocomplete="off" class="sign-in-form">
           <div class="logo">
@@ -92,11 +156,10 @@
                     <h5 for="rememberMe">Remember Me</h5>
                 </div>
 
-                <input type="submit" value="Sign In" class="sign-btn" />
+                <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
 
                 <p class="text">
-                  Forgotten your password or you login datails?
-                  <a href="#">Get help</a> signing in
+                  <a href="#"> Forgotten your password?</a>
                 </p>
               </div>
             </form>
@@ -114,7 +177,8 @@
 
     <!-- Javascript file -->
     <script src="js/app.js"></script>
-    <script src="js/password-toggle.js"></script>
+    <script src="js/modal.js"></script>
+   
 
 </body>
 </html>
