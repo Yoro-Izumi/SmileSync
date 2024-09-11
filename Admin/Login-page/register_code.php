@@ -24,7 +24,7 @@ if (isset($_POST['adminRegister'])) {
     $password = sanitize_input($_POST['password'],$connect_db);
     $confirmPassword = sanitize_input($_POST['confirmPassword'],$connect_db);
     $dateOfCreation = date('Y-m-d');
-    $accountStatus = 'pending';
+    $accountStatus = 'Pending';
 
     if($password !== $confirmPassword){
       echo '<script language="javascript">';
