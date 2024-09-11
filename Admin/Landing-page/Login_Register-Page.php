@@ -8,15 +8,23 @@
 
     <!--style.css-->
     <link rel="stylesheet" href="css/style.css" />
-
+    <link rel="stylesheet" href="css/modal.css" />
 </head>
-
-
 <body>
- 
+    
+   <!-- <header>
+        <div class="logo">smileSync
+            <img src="img/login.png" alt="Logo">
+        </div>
+        <nav class="nav-tabs">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>-->
 
     <main>
-       <?php include "modal.php"; ?>
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
@@ -145,7 +153,7 @@
 
                 <div class="remember-me-wrap">
                     <input type="checkbox" id="rememberMe" class="remember-me-checkbox">
-                    <p for="rememberMe">Remember Me</p>
+                    <h5 for="rememberMe">Remember Me</h5>
                 </div>
 
                 <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
@@ -169,8 +177,7 @@
 
     <!-- Javascript file -->
     <script src="js/app.js"></script>
-    <script src="js/eye-toggle.js"></script>
-  
+    <script src="js/modal.js"></script>
    
 
 </body>

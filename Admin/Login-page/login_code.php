@@ -136,8 +136,10 @@ function increment_attempts($db_connection, $user_id, $user_type) {
         mysqli_stmt_bind_param($stmtUpdate, 'i', $user_id);
         mysqli_stmt_execute($stmtUpdate);
     } else {
+
         if ($user_type === 'admin') {
             $stmtInsert = mysqli_prepare($db_connection, "INSERT INTO admin_login_attempts (admin_id, attempts, first_attempt_time, last_attempt_time) VALUES (?, 1, NOW(), NOW())");
+
         } else {
             $stmtInsert = mysqli_prepare($db_connection, "INSERT INTO super_admin_login_attempts (super_admin_id, attempts, first_attempt_time, last_attempt_time) VALUES (?, 1, NOW(), NOW())");
         }
