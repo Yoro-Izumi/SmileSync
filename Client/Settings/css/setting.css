@@ -1,0 +1,263 @@
+.container {
+    width: 80vh;
+    margin: 40px 0;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin: 20px auto;
+}
+
+form {
+    padding: 20px;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+.wrap-2rows{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px;
+}
+
+.wrap-3rows{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px;
+}
+
+
+.footer-note {
+    font-size: 1.1rem;
+    color: #777;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 600ppx;
+  }
+  
+  .input-group {
+    flex: 1;
+    min-width: 180px;
+  }
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: black;
+    font-family: "Open Sans Condensed";
+    padding: 0;
+}
+
+p {
+    font-family: "Open Sans Condensed";
+    color: #000000;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+a {
+    font-family: "Open Sans Condensed";
+    color: #007BFF;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #164e8a;
+    text-decoration: underline;
+}
+
+indicator{
+    color: #ff3333;
+    font-weight: bold;
+}
+
+.toggle h5 {
+    color: #007BFF;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.toggle h5:hover {
+    color: #164e8a;
+    text-decoration: underline;
+}
+
+.input-wrap {
+    position: relative;
+    height: 37px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border: 2px solid #c5c5c5;
+    padding-left: 5px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #151111;
+    transition: 0.4s;
+}
+
+label {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.input-field.active {
+    padding-left: 2px;
+    border: 2px solid #164e8a;
+    border-radius: 5px;
+}
+
+.input-field+label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+}
+
+.input-field.active+label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #000;
+    top: 0;
+    left: 10px;
+    background-color: #fff;
+}
+
+.input-field.error input {
+    border: 2px solid red;
+}
+
+/* Additional styling for select element */
+select.input-field {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+input[type="date"] {
+    background-color: #fff;
+    cursor: pointer;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+
+.btn {
+    display: block;
+    width: 50%;
+    padding: 20px;
+    margin: 2rem auto;
+    background-color: #00283e;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #001f32;
+}
+
+  
+
+@keyframes bounce {
+    0% {
+        transform: rotate(45deg) translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: rotate(45deg) translate(-50%, -60%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(45deg) translate(-50%, -50%) scale(1);
+    }
+}
+
+.text-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+
+.wrap-2rows{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px;
+}
+
+.wrap-3rows{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px;
+}
+
+.save-btn {
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #1659a1;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.save-btn:hover {
+    background-color: #164e8a;
+}
+
+.bold-text {
+    font-weight: 40px;
+}
+
+.text {
+    color: #bbb;
+    font-size: 1rem;
+}
+
+
+
+
+
+.img {
+    max-width: 100%; /* Ensure the image scales properly */
+    max-height: 100%; /* Ensure the image scales properly */
+    object-fit: fill; /* Cover the entire area without distorting the image */
+}
+

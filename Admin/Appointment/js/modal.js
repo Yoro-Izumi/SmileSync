@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const newAccountModal = document.getElementById('newAccountModal');
     const successModal = document.getElementById('successModal');
     const deleteProgressModal = document.getElementById('deleteProgressModal');
+    const appointmentDoneModal = document.getElementById('appointmentDoneModal');
     
+
+    const status = document.getElementById('status');
+    const closeDone = document.getElementById('closeDone');
+
     const newAccountBtn = document.getElementById('newAccount');
     const cancelBtnn = document.getElementById('cancelBtnn');
 
@@ -16,6 +21,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const deleteProgressBtn = document.getElementById('deleteProgressBtn');
     const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+
+       // Show the new Account modal
+       status.addEventListener('click', function() {
+        appointmentDoneModal.classList.add('show');
+    });
+
+    // Close the new Account modal
+    closeDone.addEventListener('click', function() {
+        appointmentDoneModal.classList.remove('show');
+    });
+
 
     // Show the new Account modal
     newAccountBtn.addEventListener('click', function() {

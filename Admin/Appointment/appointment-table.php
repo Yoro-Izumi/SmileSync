@@ -64,7 +64,7 @@
             <td data-label="CLIENT NAME">Valera, Arwen Grace C.</td>
             <td data-label="APPROVER">Dr. OLI, Jonas</td>
             <td data-label="APPOINTMENT">08-10-2024</td>
-            <td data-label="STATUS" class="status">NEW</td>
+            <td data-label="STATUS" class="status">Ongoing</td>
             <td data-label="ACTIONS">
               <div class="actions">
                 <div class="dropdown">
@@ -72,6 +72,7 @@
                   <div class="dropdown-content">
                     <a href="appointment-details.php" >View Details</a>
                     <a href="#">Download</a>
+                    <a href="#" id="Status">Done Appointment</a>
                   </div>
                 </div>
               </div>
@@ -83,7 +84,7 @@
             <td data-label="CLIENT NAME">Dimaculangan, Chorlyn L.</td>
             <td data-label="APPROVER">Dr. OLI, Jonas</td>
             <td data-label="APPOINTMENT">08-10-2024</td>
-            <td data-label="STATUS" class="status">Rescheduled</td>
+           <td data-label="STATUS" class="status">Ongoing</td>
             <td data-label="ACTIONS">
               <div class="actions">
                 <div class="dropdown">
@@ -91,6 +92,7 @@
                   <div class="dropdown-content">
                     <a href="appointment-details.php">View Details</a>
                     <a href="#">Download</a>
+                    <a href="#" id="Status">Done Appointment</a>
                   </div>
                 </div>
               </div>

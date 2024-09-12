@@ -23,7 +23,7 @@
       <div class="notification-item">
         <img src="img/login.png"  alt="User Profile">
         <div class="notification-content">
-          <p><strong>You</strong> uploaded a patient file.</p>
+          <p><strong>You</strong> uploaded a file.</p>
           <p class="notification-time">2 minutes ago</p>
         </div>
       </div>

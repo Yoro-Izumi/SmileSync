@@ -46,7 +46,6 @@ body {
     width: calc(100% - 78px);
     padding: 20px;
     transition: all 0.5s ease;
-    text-align: center;
 }
 
 /* Home section when the sidebar is open */

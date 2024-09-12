@@ -1,6 +1,6 @@
 .container {
-    width: 80vh;
-    margin: 40px 0;
+    width: 100%;
+    margin: 40px auto;
     background-color: white;
     padding: 2rem;
     border-radius: 15px;

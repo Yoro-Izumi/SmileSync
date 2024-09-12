@@ -1,5 +1,4 @@
-
-    // For password toggle
+// For password toggle
     document.addEventListener("DOMContentLoaded", function() {
         const togglePassword = document.querySelector(".toggle-password");
         const passwordInput = document.querySelector("#floatingPassword");

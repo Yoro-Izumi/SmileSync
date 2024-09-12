@@ -9,6 +9,12 @@
 <body>
 
 
+<div class="modal" id="appointmentDoneModal">
+    <div class="modal-content">
+       <?php include "appointmentDone.php"; ?></div>
+</div>
+
+
 <div class="modal" id="existingAccountModal">
     <div class="modal-content">
         <div class="modal-title normal-title">Add Existing Account</div>
@@ -32,24 +38,6 @@
     </div>
 </div>
 
-
-
-<!-- Success Modal -->
-<div class="modal" id="successModal">
-    <div class="modal-content">
-    <div class="image-container">
-            <img class="image" src="img/check.png" alt="security">
-        </div>
-
-        <div class="modal-title success-title"">Success!</div>
-        <div class="message-container">
-        <div class="modal-description">
-            We have sent a link to your email.
-            Please click on the link to reset your password.
-        </div></div>
-        <button id="closeSuccessModalBtn" class="modal-button success">OK</button>
-    </div>
-</div>
 
 
 

@@ -4,39 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SmileSync-ADMIN</title>
-
+    <title>SmileSync</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!--style.css-->
     <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-    
 
-    <main>
+</head>
+
+
+<body>
+<?php include "modal.php"; ?>
+
+    <main> 
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-  
             
-          <form action="Login_Register-Page.php" autocomplete="off" class="sign-in-form">
+          <form name="login_form" id="login_form" action="Login_Register-Page.php" autocomplete="off" class="sign-in-form">
           <div class="logo">
-                <img src="img/login.png" alt="SmileSync" />
-                <h4>SmileSync-ADMIN</h4>
+                <img src="img/logo.png" alt="SmileSync" />
+                SmileSync
               </div>
     
           <div class="heading">
-                <h2>Welcome Admin,</h2>
+                <h2>Welcome,</h2>
                 <h2>Log in to your account.</h2>
-                <h5>Don't have an account?
-                <a href="#" class="toggle">Sign up</a></h5>
+                <h4>Don't have an account?
+                <a href="../Register/Register-Page.php">Sign up</a></h4>
               </div>
 
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
                     type="text"
-                    minlength="4"
+                    minlength="24"
                     class="input-field"
+                    name="email"
                     autocomplete="off"
                     required
                   />
@@ -46,9 +49,10 @@
                 <div class="input-wrap">
                   <input
                     type="password"
-                    minlength="4"
+                    minlength="24"
                     class="input-field"
                     id="signup-password"
+                    name="password"
                     autocomplete="off"
                     required
                   />
@@ -58,43 +62,30 @@
                 </div>
 
 
-<!--password example-->
-              <div class="input-wrap">
-                <input 
-                      type="password" 
-                      name="password"
-                      class="input-field" 
-                      id="floatingPassword"
-                      autocomplete="off" 
-                      required oninput="validatePassword(event)"
-                />
-              <label for="floatingPassword">Password<indicator>*</indicator></label>
-              <button class="btn btn-secondary toggle-password position-absolute end-0 top-50 translate-middle-y " type="button">
-                <i class="fa fa-eye icon"></i>
-              </button>
-                </div>
-
-
-
+             <div class="text-wrap">
                 <div class="remember-me-wrap">
                     <input type="checkbox" id="rememberMe" class="remember-me-checkbox">
-                    <h5 for="rememberMe">Remember Me</h5>
+                    <p for="rememberMe">Remember Me</p>
                 </div>
 
-                <input type="submit" value="Sign In" class="sign-btn" />
-
-                <p class="text">
-                  Forgotten your password or you login datails?
-                  <a href="#">Get help</a> signing in
+                  <p class="text">
+                  <a href="#" id="forgotLink"> Forgotten your password?</a>
                 </p>
+                </div >
+
+                <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
+
+                
               </div>
             </form>
+
+
           </div>
 
           <div class="carousel">
             <div class="images-wrapper">
-              <img src="img/login.png" alt="image">
-          </div></div>
+              <img src="img/signup.png" alt="image">
+          </div></div
 
         </div>
       </div>
@@ -103,7 +94,29 @@
 
     <!-- Javascript file -->
     <script src="js/app.js"></script>
-    <script src="js/password-toggle.js"></script>
+    <script src="js/eye-toggle.js"></script>
+
+
+   
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Flatpickr JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+
+$('.icon').click(function () {
+  if ($('#password').attr('type') == 'text') {
+    $('#password').attr('type', 'password');
+    $('#show-password').removeClass('fa-eye-slash').addClass('fa-eye');
+  } else {
+    $('#password').attr('type', 'text');
+    $('#show-password').removeClass('fa-eye').addClass('fa-eye-slash');
+  }
+});
+
+
+</script>
 
 </body>
 </html>
