@@ -20,7 +20,7 @@
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-           <form action="Login_Register-Page.php" autocomplete="off" class="sign-up-form">
+           <form id="register_form" name="register_form" action="Login_Register-Page.php" autocomplete="off" class="sign-up-form">
            <div class="logo">
                 <img src="img/logo.png" alt="SmileSync" />
                 SmileSync
@@ -41,6 +41,7 @@
                     minlength="24"
                     class="input-field"
                     autocomplete="off"
+                    name="firstName"
                     required
                   />
                   <label>First Name<indicator>*</indicator></label>
@@ -53,6 +54,7 @@
                     maxlength="24"
                     class="input-field"
                     autocomplete="off"
+                    name="lastName"
                     required
                   />
                   <label>Last Name<indicator>*</indicator></label>
@@ -69,6 +71,7 @@
                     maxlength="24"
                     class="input-field"
                     autocomplete="off"
+                    name="middleName"
                   />
                   <label>Middle Name</label>
                 </div>
@@ -79,6 +82,7 @@
                     minlength="5"
                     maxlength="5"
                     class="input-field"
+                    name="suffix"
                     autocomplete="off"
                   />
                   <label>Suffix</label>
@@ -101,6 +105,7 @@
                     type="text"
                     id="birthdate-picker"
                     class="input-field"
+                    name="birthdate"
                     autocomplete="off"
                     required
                   />
@@ -115,6 +120,7 @@
                     type="text"
                     minlength="11"
                     class="input-field"
+                    name="phoneNumber"
                     autocomplete="off"
                     required
                   />
@@ -127,6 +133,7 @@
                     minlength="5"
                     maxlength="24"
                     class="input-field"
+                    name="email"
                     autocomplete="off"
                     required
                   />
@@ -139,6 +146,7 @@
                     minlength="5"
                     maxlength="24"
                     class="input-field"
+                    name="password"
                     autocomplete="off"
                     required
                   />
@@ -146,13 +154,15 @@
                 </div>
 
                 <div class="input-wrap">
-            <input type="password" class="input-field"
-                autocomplete="off"
+                <input type="password" 
+                  class="input-field"
+                  name="confirmPassword"
+                  autocomplete="off"
                 required></diuv>
             <label>Confirm Password<indicator>*</indicator></label>
         </div>
 
-                <input type="submit" value="Sign Up" class="sign-btn" id="registerBtn"/>
+                <input type="submit" value="Sign Up" class="sign-btn" id="registerBtn" name="registerBtn"/>
          <!-- #region -->
 
          <div class="text-wrap">
@@ -167,7 +177,7 @@
             </form>
 
             
-          <form action="Login_Register-Page.php" autocomplete="off" class="sign-in-form">
+          <form name="login_form" id="login_form" action="Login_Register-Page.php" autocomplete="off" class="sign-in-form">
           <div class="logo">
                 <img src="img/logo.png" alt="SmileSync" />
                 SmileSync
@@ -186,6 +196,7 @@
                     type="text"
                     minlength="24"
                     class="input-field"
+                    name="email"
                     autocomplete="off"
                     required
                   />
@@ -198,29 +209,13 @@
                     minlength="24"
                     class="input-field"
                     id="signup-password"
+                    name="password"
                     autocomplete="off"
                     required
                   />
                   <label>Password<indicator>*</indicator></label>
                   <div class="fa fa-eye icon" id="signup-show-password"></div>
                   
-                </div>
-
-
-              <div class="input-wrap">
-                <input 
-                      type="password" 
-                      minlength="24"
-                      name="password"
-                      class="input-field" 
-                      id="floatingPassword"
-                      autocomplete="off" 
-                      required oninput="validatePassword(event)"
-                />
-              <label for="floatingPassword">Confirm Password<indicator>*</indicator></label>
-              <button class="btn btn-secondary toggle-password position-absolute end-0 top-50 translate-middle-y " type="button">
-                <i class="fa fa-eye icon"></i>
-              </button>
                 </div>
 
 
@@ -274,6 +269,66 @@
 
 <!-- Flatpickr JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <script> //ajax code for form submission
+          //add admin
+      $(document).ready(function () {
+        $("#registerBtn").click(function (e) {
+          e.preventDefault();
+
+          var formData = new FormData($("#register_form")[0]);
+
+                  // Disable the button to prevent multiple clicks
+                  $(this).prop("disabled", true);
+          $.ajax({
+            type: "POST",
+            url: "register_code.php", // Replace 'process_form.php' with the URL of your PHP script
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+              // Handle success response here
+              //alert(response); // For demonstration purposes, you can display an alert with the response
+              window.location.href = "Login_Register-Page.php";
+            },
+            error: function (xhr, status, error) {
+              // Handle error
+              console.error(xhr.responseText);
+            },
+          });
+        });
+      });
+
+    //add admin
+    $(document).ready(function () {
+      $("#loginBtn").click(function (e) {
+        e.preventDefault();
+
+        var formData = new FormData($("#login_form")[0]);
+
+                // Disable the button to prevent multiple clicks
+                $(this).prop("disabled", true);
+        $.ajax({
+          type: "POST",
+          url: "login_code.php", // Replace 'process_form.php' with the URL of your PHP script
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            // Handle success response here
+            //alert(response); // For demonstration purposes, you can display an alert with the response
+            window.location.href = "Login_Register-Page.php";
+          },
+          error: function (xhr, status, error) {
+            // Handle error
+            console.error(xhr.responseText);
+          },
+        });
+      });
+    });
+      
+    
+  </script>
 
 
 </body>
