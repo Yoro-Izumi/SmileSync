@@ -1,3 +1,17 @@
+<?php
+// Start session and set timezone
+session_start();
+date_default_timezone_set('Asia/Manila');
+// Check if user is already logged in
+if (isset($_SESSION['userSuperAdminID'])) {
+    header('location:superadmin_Dashboard.php');
+    die();
+}
+if (isset($_SESSION['userAdminID'])) {
+    header('location:Dashboard.php');
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,7 +119,7 @@
                     type="text"
                     id="birthdate-picker"
                     class="input-field"
-                    name="birthdate"
+                    name="birthday"
                     autocomplete="off"
                     required
                   />
