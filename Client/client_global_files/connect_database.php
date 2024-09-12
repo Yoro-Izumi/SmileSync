@@ -21,6 +21,7 @@ function connectToDatabase($servername, $username, $password, $dbname) {
     }
 }
 
+
 // Functions to connect to specific databases
 function connect_appointment($servername, $username, $password) {
     $dbname = "smilesync_appointments";
@@ -39,6 +40,11 @@ function connect_patient($servername, $username, $password) {
 
 function connect_accounts($servername, $username, $password) {
     $dbname = "smilesync_accounts";
+    return connectToDatabase($servername, $username, $password, $dbname);
+}
+
+function connect_chatbot($servername, $username, $password) {
+    $dbname = "smilesync_chatbot";
     return connectToDatabase($servername, $username, $password, $dbname);
 }
 ?>
