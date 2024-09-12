@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmileSync-ADMIN</title>
-
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!--style.css-->
     <link rel="stylesheet" href="css/style.css" />
 
@@ -22,42 +22,122 @@
           <div class="forms-wrap">
            <form action="Login_Register-Page.php" autocomplete="off" class="sign-up-form">
            <div class="logo">
-                <img src="img/login.png" alt="SmileSync" />
-                <h4>SmileSync-ADMIN</h4>
+                <img src="img/logo.png" alt="SmileSync" />
+                SmileSync
               </div>   
            <div class="heading">
-                <h2>To get started,</h2>
-                <h2>Please signup.</h2>
-                <h5>Already have an account?
-                <a href="#" class="toggle">Log In</a></h5>
+                <h2>To get started, please register.</h2>
+                <h4>Already have an account?
+                <a href="#" class="toggle">Log In</a></h4>
               </div>
 
               <div class="actual-form">
-                <div class="input-wrap">
+
+            <div class="wrap-2rows">
+
+              <div class="input-wrap">
                   <input
-                    type="text""
-                    minlength="4"
+                    type="text"
+                    minlength="24"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Name<indicator>*</indicator></label>
+                  <label>First Name<indicator>*</indicator></label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="5"
+                    maxlength="24"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Last Name<indicator>*</indicator></label>
+                </div>
+              </div>
+
+
+              <div class="wrap-3rows">
+
+              <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="5"
+                    maxlength="24"
+                    class="input-field"
+                    autocomplete="off"
+                  />
+                  <label>Middle Name</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="5"
+                    maxlength="5"
+                    class="input-field"
+                    autocomplete="off"
+                  />
+                  <label>Suffix</label>
+                </div>
+
+                <!--<div class="input-wrap">
+                <select class="input-field">
+                <option value="" disabled selected>Brithdate</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+                </div>-->
+                
+
+                <!--<input type="text" class="input-field" placeholder="Field 4">-->
+       
+                <div class="input-wrap">
+                <input
+                    type="text"
+                    id="birthdate-picker"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Select Birthdate<indicator>*</indicator></label>
+                </div>
+
+              </div>
+
+
+                <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="11"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Phone Number<indicator>*</indicator></label>
                 </div>
 
                 <div class="input-wrap">
                   <input
                     type="email"
+                    minlength="5"
+                    maxlength="24"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Email<indicator>*</indicator></label>
+                  <label>Email Address<indicator>*</indicator></label>
                 </div>
 
                 <div class="input-wrap">
                   <input
                     type="password"
-                    minlength="4"
+                    minlength="5"
+                    maxlength="24"
                     class="input-field"
                     autocomplete="off"
                     required
@@ -68,41 +148,43 @@
                 <div class="input-wrap">
             <input type="password" class="input-field"
                 autocomplete="off"
-                required></>
+                required></diuv>
             <label>Confirm Password<indicator>*</indicator></label>
         </div>
 
-                <input type="submit" value="Sign Up" class="sign-btn" />
+                <input type="submit" value="Sign Up" class="sign-btn" id="registerBtn"/>
+         <!-- #region -->
 
+         <div class="text-wrap">
                 <p class="text">
                   By signing up, I agree to the
-                  <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a>
+                  <a href="#" id="termServices">Terms of Services</a> and
+                  <a href="#" id="privacyPolicy">Privacy Policy</a>
                 </p>
               </div>
-
+            </div>
 
             </form>
 
             
           <form action="Login_Register-Page.php" autocomplete="off" class="sign-in-form">
           <div class="logo">
-                <img src="img/login.png" alt="SmileSync" />
-                <h4>SmileSync-ADMIN</h4>
+                <img src="img/logo.png" alt="SmileSync" />
+                SmileSync
               </div>
     
           <div class="heading">
-                <h2>Welcome Admin,</h2>
+                <h2>Welcome,</h2>
                 <h2>Log in to your account.</h2>
-                <h5>Don't have an account?
-                <a href="#" class="toggle">Sign up</a></h5>
+                <h4>Don't have an account?
+                <a href="#" class="toggle">Sign up</a></h4>
               </div>
 
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
                     type="text"
-                    minlength="4"
+                    minlength="24"
                     class="input-field"
                     autocomplete="off"
                     required
@@ -113,7 +195,7 @@
                 <div class="input-wrap">
                   <input
                     type="password"
-                    minlength="4"
+                    minlength="24"
                     class="input-field"
                     id="signup-password"
                     autocomplete="off"
@@ -125,41 +207,44 @@
                 </div>
 
 
-<!--password example-->
               <div class="input-wrap">
                 <input 
                       type="password" 
+                      minlength="24"
                       name="password"
                       class="input-field" 
                       id="floatingPassword"
                       autocomplete="off" 
                       required oninput="validatePassword(event)"
                 />
-              <label for="floatingPassword">Password<indicator>*</indicator></label>
+              <label for="floatingPassword">Confirm Password<indicator>*</indicator></label>
               <button class="btn btn-secondary toggle-password position-absolute end-0 top-50 translate-middle-y " type="button">
                 <i class="fa fa-eye icon"></i>
               </button>
                 </div>
 
 
-
+             <div class="text-wrap">
                 <div class="remember-me-wrap">
                     <input type="checkbox" id="rememberMe" class="remember-me-checkbox">
                     <p for="rememberMe">Remember Me</p>
                 </div>
 
+                  <p class="text">
+                  <a href="#" id="forgotLink"> Forgotten your password?</a>
+                </p>
+                </div >
+
                 <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
 
-                <p class="text">
-                  <a href="#"> Forgotten your password?</a>
-                </p>
+                
               </div>
             </form>
           </div>
 
           <div class="carousel">
             <div class="images-wrapper">
-              <img src="img/login.png" alt="image">
+              <img src="img/it.png" alt="image">
           </div></div>
 
         </div>
@@ -170,8 +255,26 @@
     <!-- Javascript file -->
     <script src="js/app.js"></script>
     <script src="js/eye-toggle.js"></script>
-  
+
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+    flatpickr("#birthdate-picker", {
+        minDate: "1975-01-01",
+        maxDate: "2015-12-31",
+        dateFormat: "Y-m-d", // Format as Year-Month-Day
+    });
+});
+
+    </script>
    
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<!-- Flatpickr JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 
 </body>
 </html>

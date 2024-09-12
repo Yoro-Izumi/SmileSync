@@ -1,0 +1,70 @@
+.appointment-details {
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+}
+
+.toggle-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  border-bottom: 2px solid #d2e3ee;
+  flex-wrap: wrap;
+}
+
+.tab {
+  text-align: center;
+  cursor: pointer;
+  color: #0d3047;
+  transition: color 0.3s ease;
+  flex-basis: 100%; /* Ensures full-width on small screens */
+}
+
+.tab p {
+  
+  font-weight: bold;
+}
+
+.tab.active {
+  color: #007bff;
+  border-bottom: 4px solid #007bff;
+  padding: 0 20px;
+}
+
+.icon {
+  font-size: 1.5rem;
+  display: block;
+}
+
+.tab:hover {
+  color: #007bff;
+}
+
+.content-area {
+  margin-top: 20px;
+}
+
+.content {
+  display: none;
+}
+
+.content.active {
+  display: block;
+}
+
+/* Responsive Styles */
+@media screen and (min-width: 768px) {
+
+  .toggle-tabs {
+    font-size: 1rem;
+    justify-content: space-between; /* Adjust spacing for larger screens */
+  }
+
+  .tab {
+    flex-basis: auto; /* Allows tabs to take their natural width */
+  }
+
+  .content-area {
+    margin-top: 30px;
+  }
+}
