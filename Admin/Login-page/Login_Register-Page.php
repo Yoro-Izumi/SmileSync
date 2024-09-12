@@ -119,7 +119,7 @@ if (isset($_SESSION['userAdminID'])) {
                     type="text"
                     id="birthdate-picker"
                     class="input-field"
-                    name="birthdate"
+                    name="birthday"
                     autocomplete="off"
                     required
                   />

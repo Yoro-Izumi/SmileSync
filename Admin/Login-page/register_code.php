@@ -14,7 +14,7 @@ $key = "TheGreatestNumberIs73";
 // Connect to the accounts database
 $connect_db = connect_accounts($servername, $username, $password);
 
-if (isset($_POST['adminRegister'])) {
+if (isset($_POST['registerBtn'])) {
     // format of input sanitization = sanitize_input($_POST['username'], $connect_db);
     $firstName = encryptData(sanitize_input($_POST['firstName'],$connect_db),$key);
     $lastName = encryptData(sanitize_input($_POST['lastName'],$connect_db),$key);
@@ -25,6 +25,8 @@ if (isset($_POST['adminRegister'])) {
     $confirmPassword = sanitize_input($_POST['confirmPassword'],$connect_db);
     $dateOfCreation = date('Y-m-d');
     $accountStatus = 'pending';
+    $birthday = encryptData(sanitize_input($_POST['birthday'],$connect_db),$key);
+    $phoneNumber = encryptData(sanitize_input($_POST['phoneNumber'],$connect_db),$key);
 
     if($password !== $confirmPassword){
       echo '<script language="javascript">';
@@ -42,9 +44,9 @@ if (isset($_POST['adminRegister'])) {
     $password = password_hash($password, PASSWORD_ARGON2I, $options);
 
     // here is where information of admin is inserted
-    $qryInsertAdminAccount = "INSERT INTO `smilesync_admin_accounts`(`admin_account_id`, ` admin_first_name`, `admin_last_name`, `admin_middle_name`, `admin_suffix`, `admin_email`, `admin_password`,`date_of_creation`,`account_status`) VALUES (NULL,?,?,?,?,?,?,?,?)";
+    $qryInsertAdminAccount = "INSERT INTO `smilesync_admin_accounts`(`admin_account_id`, ` admin_first_name`, `admin_last_name`, `admin_middle_name`, `admin_suffix`, `admin_email`, `admin_password`,`date_of_creation`,`account_status`,`admin_birthdate`,`admin_phone`) VALUES (NULL,?,?,?,?,?,?,?,?,?,?)";
     $conInsertAdminAccount = mysqli_prepare($connect_db,$qryInsertAdminAccount);
-    mysqli_stmt_bind_param($conInsertAdminAccount, 'ssssssss',$firstName,$lastName,$middleName,$suffix,$email,$password,$dateOfCreation,$status);
+    mysqli_stmt_bind_param($conInsertAdminAccount, 'ssssssssss',$firstName,$lastName,$middleName,$suffix,$email,$password,$dateOfCreation,$status, $birthday, $phoneNumber);
     mysqli_stmt_execute($conInsertAdminAccount);
 
     unset($_POST['adminRegister']);
