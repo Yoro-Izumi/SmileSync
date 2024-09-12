@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Show the login failed modal
     showLoginFailedBtn.addEventListener('click', function() {
+        event.preventDefault();
         loginFailedModal.classList.add('show');
     });
 
     // Close the login failed modal
     closeLoginFailedBtn.addEventListener('click', function() {
+        event.preventDefault();
         loginFailedModal.classList.remove('show');
     });
 
@@ -29,17 +31,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close the reset password modal (Cancel button)
     closeResetPasswordBtn.addEventListener('click', function() {
+        event.preventDefault();
         resetPasswordModal.classList.remove('show');
     });
 
     // Handle submit action
     submitResetPasswordBtn.addEventListener('click', function() {
+        event.preventDefault();
         resetPasswordModal.classList.remove('show');
         successModal.classList.add('show'); // Show success modal after submitting
     });
 
     // Close the success modal
     closeSuccessModalBtn.addEventListener('click', function() {
+        event.preventDefault();
         successModal.classList.remove('show');
     });
 });

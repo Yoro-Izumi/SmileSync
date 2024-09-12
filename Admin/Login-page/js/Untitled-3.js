@@ -1,4 +1,4 @@
- <script>
+
     // For password toggle
     document.addEventListener("DOMContentLoaded", function() {
         const togglePassword = document.querySelector(".toggle-password");
