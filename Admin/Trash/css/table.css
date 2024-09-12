@@ -13,7 +13,7 @@ checkbox{
     width: 100%;
     margin: 40px 0;
     background-color: white;
-    padding: 20px;
+    padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }

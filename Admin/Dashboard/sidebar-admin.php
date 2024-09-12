@@ -32,14 +32,14 @@
         <span class="tooltip">Inventory</span>
       </li>
       <li>
-        <a href="#">
+        <a href="../Reports/ReportAndAnalytics-page.php">
           <i class='bx bx-pie-chart-alt-2' ></i>
           <span class="links_name">Reports and Analytics</span>
         </a>
         <span class="tooltip">Reports and Analytics</span>
       </li>
       <li>
-        <a href="#">
+        <a href="../Settings/Settings-page.php">
           <i class='bx bxs-cog' ></i>
           <span class="links_name">Settings</span>
         </a>
