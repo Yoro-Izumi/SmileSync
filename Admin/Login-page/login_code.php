@@ -16,11 +16,11 @@ $connect_db = connect_accounts($servername, $username, $password);
 
 // Check if user is already logged in
 if (isset($_SESSION['userSuperAdminID'])) {
-    header('location:dashboard.php');
+    header('location:superadmin_Dashboard.php');
     die();
 }
 if (isset($_SESSION['userAdminID'])) {
-    header('location:admin_dashboard.php');
+    header('location:Dashboard.php');
     die();
 }
 

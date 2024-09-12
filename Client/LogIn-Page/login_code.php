@@ -18,7 +18,7 @@ $connect_db = connect_accounts($servername, $username, $password);
 
 // Check if user is already logged in
 if (isset($_SESSION['userID'])) {
-    header('location:user_dashboard.php');
+    header('location:client_dashboard.php');
     die();
 }
 
