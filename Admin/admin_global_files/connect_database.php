@@ -7,8 +7,10 @@ $password = "";
 // Secure connection using PDO
 function connectToDatabase($servername, $username, $password, $dbname) {
     $dsn = "mysql:host=$servername;dbname=$dbname";
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    return $conn;
 
-    try {
+   /* try {
         // Create a new PDO instance
         $conn = new PDO($dsn, $username, $password);
         // Set PDO to throw exceptions on error
@@ -18,7 +20,7 @@ function connectToDatabase($servername, $username, $password, $dbname) {
         // Handle errors gracefully
         echo "Connection failed: " . $e->getMessage();
         return null;
-    }
+    }*/
 }
 
 // Functions to connect to specific databases

@@ -1,6 +1,4 @@
 <?php
-// log in code for user/patient
-<?php
 // Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
@@ -106,5 +104,4 @@ function increment_attempts($db_connection, $user_id) {
         mysqli_stmt_execute($stmtInsert);
     }
 }
-?>
 ?>

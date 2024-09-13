@@ -430,7 +430,7 @@
                         </div>
                     `);
                 } else {
-                    $(.selected-item-box[data-product="${productName}"]).remove();
+                    $('.selected-item-box[data-product="${productName}"]').remove();
                 }
                 updateHiddenField();
             });
@@ -439,7 +439,7 @@
                 const productName = $(this).siblings('input[type="checkbox"]').data('name');
                 const newQuantity = $(this).val();
 
-                $(.selected-item-box[data-product="${productName}"]).html(`
+                $('.selected-item-box[data-product="${productName}"]').html(`
                     <button class="remove-item" onclick="removeItem('${productName}')">X</button>
                     ${productName} (Quantity: ${newQuantity})
                 `);
@@ -447,8 +447,8 @@
             });
 
             function removeItem(productName) {
-                $(input[data-name="${productName}"]).prop('checked', false);
-                $(.selected-item-box[data-product="${productName}"]).remove();
+                $('input[data-name="${productName}"]').prop('checked', false);
+                $('.selected-item-box[data-product="${productName}"]').remove();
                 updateHiddenField();
             }
 
