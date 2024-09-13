@@ -1,246 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Form with Page Indicator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
     <style>
-        /* Input field styles */
-        .input-wrap {
-            position: relative;
-            height: 37px;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
         }
 
-        .input-field {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: none;
-            border: none;
-            outline: none;
-            border-bottom: 1px solid #bbb;
-            padding: 0;
-            font-size: 0.7rem;
-            color: #151111;
-            transition: 0.4s;
+        body {
+          font-family: Arial, sans-serif;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #f4f4f4;
         }
 
-        label {
-            position: absolute;
-            left: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.7rem;
-            color: #bbb;
-            pointer-events: none;
-            transition: 0.4s;
+        .form-container {
+          background-color: white;
+          border-radius: 8px;
+          padding: 20px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          width: 400px;
+          text-align: center;
         }
 
-        .input-field.active {
-            padding-left: 2px;
-            border: 2px solid #164e8a;
-            border-radius: 5px;
+        .page-indicator {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
         }
 
-        .input-field+label {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: #000;
-            background-color: #fff;
+        .toggle {
+          width: 15px;
+          height: 15px;
+          margin: 0 5px;
+          border-radius: 50%;
+          background-color: #ddd;
+          transition: background-color 0.3s ease;
         }
 
-        .input-field.active+label {
-            font-size: 0.7rem;
-            font-weight: bold;
-            color: #000;
-            top: 0;
-            left: 10px;
-            background-color: #fff;
+        .toggle.active {
+          background-color: #007bff;
         }
 
-        /* Button styles */
-        #multi-step-form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 10px auto;
-            font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        button.prev-btn {
-            background-color: #6c757d;
-        }
-
-        button.prev-btn:hover {
-            background-color: #5a6268;
-        }
-
-        /* Form Step Container */
         .form-step {
-            display: none;
-            width: 100%;
-            max-width: 400px;
-            text-align: left;
+          display: none;
         }
 
         .form-step.active {
-            display: block;
+          display: block;
         }
 
-        /* Center form elements */
-        .form-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        input {
+          display: block;
+          width: 100%;
+          padding: 10px;
+          margin: 10px 0;
+          border: 1px solid #ddd;
+          border-radius: 5px;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 50vw;
-            height:auto;
+        button {
+          padding: 10px 20px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
         }
 
-        /* Toggle navigation */
-        .toggle {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
+        button:disabled {
+          background-color: #ccc;
         }
 
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            color: #000;
-            font-weight: bold;
+        button.next-btn {
+          margin-top: 20px;
         }
 
-        .tab.active {
-            color: #007bff;
-            border-bottom: 2px solid #007bff;
+        button.prev-btn {
+          margin-right: 10px;
         }
 
-        /* Center the form */
-        #multi-step-form {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-    </style>
-</head>
+        </style>
 <body>
-
-    <div id="multi-step-form">
-        <!-- Toggle navigation for steps -->
-        <div class="toggle">
-            <span class="tab active" data-step="step-1">Step 1</span>
-            <span class="tab" data-step="step-2">Step 2</span>
-            <span class="tab" data-step="step-3">Step 3</span>
-        </div>
-
-        <!-- Form Steps -->
-        <form>
-            <!-- Step 1 -->
-            <div class="form-step active" id="step-1">
-                <div class="input-wrap">
-                    <input type="text" class="input-field" id="name" required>
-                    <label for="name">Name</label>
-                </div>
-                <div class="input-wrap">
-                    <input type="email" class="input-field" id="email" required>
-                    <label for="email">Email</label>
-                </div>
-                <button type="button" class="next-btn" data-next="step-2">Next</button>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="form-step" id="step-2">
-                <div class="input-wrap">
-                    <input type="password" class="input-field" id="password" required>
-                    <label for="password">Password</label>
-                </div>
-                <button type="button" class="prev-btn" data-prev="step-1">Previous</button>
-                <button type="button" class="next-btn" data-next="step-3">Next</button>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="form-step" id="step-3">
-                <div class="input-wrap">
-                    <input type="date" class="input-field" id="dob" required>
-                    <label for="dob">Date of Birth</label>
-                </div>
-                <button type="button" class="prev-btn" data-prev="step-2">Previous</button>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
+  <div class="form-container">
+    <div class="page-indicator">
+      <div class="toggle" id="toggle1"></div>
+      <div class="toggle" id="toggle2"></div>
+      <div class="toggle" id="toggle3"></div>
     </div>
+    
+    <form id="multiForm">
+      <div class="form-step active" id="step1">
+        <h2>Step 1</h2>
+        <input type="text" placeholder="First Name" />
+        <input type="text" placeholder="Last Name" />
+        <button type="button" class="next-btn" onclick="nextStep()">Next</button>
+      </div>
+      <div class="form-step" id="step2">
+        <h2>Step 2</h2>
+        <input type="email" placeholder="Email" />
+        <input type="tel" placeholder="Phone" />
+        <button type="button" class="prev-btn" onclick="prevStep()">Previous</button>
+        <button type="button" class="next-btn" onclick="nextStep()">Next</button>
+      </div>
+      <div class="form-step" id="step3">
+        <h2>Step 3</h2>
+        <input type="password" placeholder="Password" />
+        <input type="password" placeholder="Confirm Password" />
+        <button type="button" class="prev-btn" onclick="prevStep()">Previous</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+  
+  <script>
+        let currentStep = 1;
+        const totalSteps = 3;
 
-    <script>
-        document.querySelectorAll('.next-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const nextStep = this.getAttribute('data-next');
-
-                // Move to the next tab and form step
-                document.querySelector('.tab.active').classList.remove('active');
-                document.querySelector(`.tab[data-step="${nextStep}"]`).classList.add('active');
-
-                // Show the next form step
-                document.querySelector('.form-step.active').classList.remove('active');
-                document.getElementById(nextStep).classList.add('active');
-            });
-        });
-
-        document.querySelectorAll('.prev-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const prevStep = this.getAttribute('data-prev');
-
-                // Move to the previous tab and form step
-                document.querySelector('.tab.active').classList.remove('active');
-                document.querySelector(`.tab[data-step="${prevStep}"]`).classList.add('active');
-
-                // Show the previous form step
-                document.querySelector('.form-step.active').classList.remove('active');
-                document.getElementById(prevStep).classList.add('active');
-            });
-        });
-
-        // JavaScript for input field animation
-        const inputs = document.querySelectorAll(".input-field");
-
-        inputs.forEach((inp) => {
-          inp.addEventListener("focus", () => {
-            inp.classList.add("active");
+        function updateFormStep() {
+          document.querySelectorAll(".form-step").forEach((step, index) => {
+            step.classList.remove("active");
+            if (index === currentStep - 1) {
+              step.classList.add("active");
+            }
           });
-          inp.addEventListener("blur", () => {
-            if (inp.value != "") return;
-            inp.classList.remove("active");
-          });
-        });
-    </script>
 
+          document.querySelectorAll(".toggle").forEach((toggle, index) => {
+            toggle.classList.remove("active");
+            if (index === currentStep - 1) {
+              toggle.classList.add("active");
+            }
+          });
+        }
+
+        function nextStep() {
+          if (currentStep < totalSteps) {
+            currentStep++;
+            updateFormStep();
+          }
+        }
+
+        function prevStep() {
+          if (currentStep > 1) {
+            currentStep--;
+            updateFormStep();
+          }
+        }
+
+        updateFormStep(); // Initialize
+
+  </script>
 </body>
 </html>

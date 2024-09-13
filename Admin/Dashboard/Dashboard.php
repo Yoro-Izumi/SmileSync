@@ -20,7 +20,9 @@
 <?php include "chatbot.php"; ?>
  
   <section class="home-section">
-  <h2>Dashboard</h2>
+  <h1>Welcome back!</h1>
+
+  <?php include "smartChart.php"; ?>
   </section>
   
 

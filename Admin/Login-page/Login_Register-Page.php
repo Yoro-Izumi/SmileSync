@@ -12,6 +12,7 @@ if (isset($_SESSION['userAdminID'])) {
     die();
 }
 
+//include "login.php";
 
 ?>
 
@@ -327,13 +328,14 @@ $(document).ready(function () {
     
     $.ajax({
       type: "POST",
-      url: "login_code.php",
+      url: "login.php",
       data: formData,
       processData: false,
       contentType: false,
       success: function (response) {
-        console.log(response); // Handle success response
+        //console.log(response); // Handle success response
         // Redirect or show success message
+        window.location.href = "Dashboard.php";
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);
