@@ -12,7 +12,9 @@ include '../admin_global_files/input_sanitizing.php';
 $key = "TheGreatestNumberIs73";
 
 // Connect to the accounts database
-$connect_db = mysqli_connect('localhost', 'root', '', "smilesync_accounts");
+$connect_db = connect_accounts($servername,$username,$password);
+
+$message = "default";//for modal
 
 if (isset($_POST['email'])) {
     // Format of input sanitization
@@ -55,8 +57,18 @@ if (isset($_POST['email'])) {
         echo 'Error: ' . mysqli_stmt_error($conInsertAdminAccount);
     }
 
+    unset($conInsertAdminAccount);
+    unset($_POST['firstName']);
+    unset($_POST['lastName']);
+    unset($_POST['middleName']);
+    unset($_POST['suffix']);
     unset($_POST['email']);
+    unset($_POST['password']);
+    unset($_POST['confirmPassword']);
+    unset($_POST['birthday']);
+    unset($_POST['phoneNumber']);
     mysqli_close($connect_db);
+    exit();
 }
 
 if (isset($_POST['superAdminRegister'])) {
@@ -82,7 +94,7 @@ if (isset($_POST['superAdminRegister'])) {
     $password = password_hash($password, PASSWORD_ARGON2I, $options);
 
     // Insert super admin account data
-    $qryInsertSuperAdminAccount = "INSERT INTO `smilesync_super_admin_accounts`(`super_admin_account_id`, `admin_email`, `admin_password`) VALUES (NULL, ?, ?)";
+    $qryInsertSuperAdminAccount = "INSERT INTO `smilesync_super_admin_accounts`(`super_admin_account_id`, 'super_admin_email`, `super_admin_password`) VALUES (NULL, ?, ?)";
     $conInsertSuperAdminAccount = mysqli_prepare($connect_db, $qryInsertSuperAdminAccount);
     mysqli_stmt_bind_param($conInsertSuperAdminAccount, 'ss', $email, $password);
 
@@ -93,5 +105,6 @@ if (isset($_POST['superAdminRegister'])) {
 
     unset($_POST['superAdminRegister']);
     mysqli_close($connect_db);
+    exit();
 }
 ?>

@@ -4,15 +4,14 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 // Check if user is already logged in
 if (isset($_SESSION['userSuperAdminID'])) {
-    header('location:superadmin_Dashboard.php');
+    header('location:../Dashboard/Dashboard.php');
     die();
 }
 if (isset($_SESSION['userAdminID'])) {
-    header('location:Dashboard.php');
+    header('location:../Dashboard/Dashboard.php');
     die();
 }
 
-//include "login.php";
 
 ?>
 
@@ -31,14 +30,14 @@ if (isset($_SESSION['userAdminID'])) {
 
 
 <body>
- 
+     <?php include "modal.php"; ?>
 
     <main>
-       <?php include "modal.php"; ?>
+   
       <div class="box">
         <div class="inner-box">
           <div class="forms-wrap">
-           <form id="register_form" name="register_form" autocomplete="off" class="sign-up-form">
+           <form id="register_form" name="register_form" autocomplete="off" class="sign-up-form" method="POST">
            <div class="logo">
                 <img src="img/logo.png" alt="SmileSync" />
                 SmileSync
@@ -106,18 +105,6 @@ if (isset($_SESSION['userAdminID'])) {
                   <label>Suffix</label>
                 </div>
 
-                <!--<div class="input-wrap">
-                <select class="input-field">
-                <option value="" disabled selected>Brithdate</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-            </select>
-                </div>-->
-                
-
-                <!--<input type="text" class="input-field" placeholder="Field 4">-->
-       
                 <div class="input-wrap">
                 <input
                     type="text"
@@ -137,6 +124,7 @@ if (isset($_SESSION['userAdminID'])) {
                   <input
                     type="text"
                     minlength="11"
+                    maxlength="13"
                     class="input-field"
                     name="phoneNumber"
                     autocomplete="off"
@@ -195,7 +183,7 @@ if (isset($_SESSION['userAdminID'])) {
             </form>
 
             
-          <form name="login_form" id="login_form" autocomplete="off" class="sign-in-form">
+          <form name="login_form" id="login_form" autocomplete="off" class="sign-in-form" method="POST">
           <div class="logo">
                 <img src="img/logo.png" alt="SmileSync" />
                 SmileSync
@@ -270,25 +258,16 @@ if (isset($_SESSION['userAdminID'])) {
     <script src="js/eye-toggle.js"></script>
 
 
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-    flatpickr("#birthdate-picker", {
-        minDate: "1975-01-01",
-        maxDate: "2015-12-31",
-        dateFormat: "Y-m-d", // Format as Year-Month-Day
-    });
-});
-
-    </script>
-   
 <!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 <!-- Flatpickr JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-  <script> //ajax code for form submission
+<!-- AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script> //ajax code for form submission
 $(document).ready(function () {
   $("#register_form").on("submit", function (e) {
     e.preventDefault();
@@ -328,14 +307,14 @@ $(document).ready(function () {
     
     $.ajax({
       type: "POST",
-      url: "login.php",
+      url: "login_code.php",
       data: formData,
       processData: false,
       contentType: false,
       success: function (response) {
         //console.log(response); // Handle success response
         // Redirect or show success message
-        window.location.href = "Dashboard.php";
+        window.location.href = "../Dashboard/Dashboard.php";
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);

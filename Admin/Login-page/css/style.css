@@ -126,14 +126,12 @@ form.sign-up-form {
     font-family: 'Alumni Sans';
 }
 
-img {
-    margin-right: 0.3rem;
-}
 
 
 .logo img {
     height: 24px;
 }
+
 
 .heading h2 {
     font-weight: 900;
@@ -148,23 +146,6 @@ img {
 }
 
 
-
-.nav-tabs {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.nav-tabs a {
-    color: black;
-    text-decoration: none;
-    margin-left: 30px;
-    font-weight: bold;
-}
-
-.nav-tabs a:hover {
-    color: #b96e50;
-    text-decoration: underline;
-}
 
 h1,
 h2,
@@ -230,7 +211,7 @@ indicator{
     outline: none;
     border-bottom: 1px solid #bbb;
     padding: 0;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     color: #151111;
     transition: 0.4s;
 }
@@ -240,7 +221,7 @@ label {
     left: 5px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.7rem;
+    font-size: 0.9rem;
     color: #bbb;
     pointer-events: none;
     transition: 0.4s;
@@ -253,7 +234,7 @@ label {
 }
 
 .input-field+label {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: #000;
     background-color: #fff;
@@ -272,17 +253,6 @@ label {
     border: 2px solid red;
 }
 
-/* Additional styling for select element */
-select.input-field {
-    background-color: #fff;
-    cursor: pointer;
-}
-
-input[type="date"] {
-    background-color: #fff;
-    cursor: pointer;
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
-}
 
 .remember-me-wrap {
     display: flex;
@@ -519,13 +489,13 @@ main.sign-up-mode form.sign-up-form {
 }
 
 @media (max-width: 530px) {
-   /* .wrap-2rows{
+    .wrap-2rows{
         grid-template-columns:1fr; 
     }
     
     .wrap-3rows{
         grid-template-columns:1fr; 
-    }*/
+    }  /* */
 
     html{
         height: 100%;
