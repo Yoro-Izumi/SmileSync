@@ -27,6 +27,8 @@ if (isset($_POST['email'])) {
     $confirmPassword = sanitize_input($_POST['confirmPassword'], $connect_db);
     $dateOfCreation = date('Y-m-d');
     $accountStatus = 'Pending';
+
+  
     $birthday = encryptData(sanitize_input($_POST['birthday'], $connect_db), $key);
     $phoneNumber = encryptData(sanitize_input($_POST['phoneNumber'], $connect_db), $key);
 
