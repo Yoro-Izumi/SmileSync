@@ -11,66 +11,67 @@
       <li class="nav-title">Home</li> 
 
       <li class="active">
-        <a href="#">
-          <i class='bx bx-grid-alt'></i>
+      <a href="Dashboard.php">
+          <i class='bx bx-bar-chart-square'></i>
           <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="#">
+        <a href="../Inventory/Inventory-page.php">
+          <i class='bx bx-package' ></i>
+          <span class="links_name">Inventory</span>
+        </a>
+        <span class="tooltip">Inventory</span>
+      </li>
+      <li>
+        <a href="../Reports/ReportAndAnalytics-page.php">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="links_name">Reports and Analytics</span>
+        </a>
+        <span class="tooltip">Reports and Analytics</span>
+      </li>
+      <li>
+        <a href="../Accounts/Accounts-page.php">
           <i class='bx bx-calendar' ></i>
           <span class="links_name">Accounts</span>
         </a>
         <span class="tooltip">Accounts</span>
       </li>
       <li>
-        <a href="#">
-          <i class='bx bx-chat' ></i>
-          <span class="links_name">Inventory</span>
+        <a href="../Services/Services-page.php">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name">Services</span>
         </a>
-        <span class="tooltip">Inventory</span>
+        <span class="tooltip">Services</span>
       </li>
       <li>
-        <a href="#">
-          <i class='bx bx-pie-chart-alt-2' ></i>
-          <span class="links_name">Analytics</span>
-        </a>
-        <span class="tooltip">Analytics</span>
-      </li>
-      <li>
-        <a href="#">
+        <a href="../Trash/Trash-page.php">
           <i class='bx bx-trash' ></i>
           <span class="links_name">Trash</span>
         </a>
         <span class="tooltip">Trash</span>
       </li>
-      <li>
-        <a href="#">
-          <i class='bx bxs-cog' ></i>
-          <span class="links_name">Settings</span>
-        </a>
-        <span class="tooltip">Settings</span>
-      </li>
 
       <li class="nav-title">Others</li> 
 
       <li>
-        <a href="#">
-          <i class='bx bx-chat' ></i>
+        <a href="#" id="chatbotBtn">
+          <i class='bx bx-message-alt' ></i>
           <span class="links_name">Chat</span>
         </a>
         <span class="tooltip">Chat</span>
       </li>
 
 
+     
       <li>
-  <a href="#" id="notificationLink">
-    <i class='bx bx-cog'></i>
-    <span class="links_name">Notifications</span>
-  </a>
-  <span class="tooltip">Notifications</span>
-</li>
+      <a href="#" id="notificationBtn">
+        <i class='bx bx-bell'></i>
+        <span class="links_name">Notifications</span>
+      </a>
+        <span class="tooltip">Notifications</span>
+      </li>
 
       <li class="profile">
         <div class="profile-details">
@@ -88,5 +89,6 @@
         
     </ul>
   </div>
+
 </body>
 </html>

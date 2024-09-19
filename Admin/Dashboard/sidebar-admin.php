@@ -11,35 +11,35 @@
       <li class="nav-title">Home</li> 
 
       <li class="active">
-        <a href="#">
-          <i class='bx bx-grid-alt'></i>
+      <a href="Dashboard.php">
+          <i class='bx bx-bar-chart-square'></i>
           <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
       <li>
-        <a href="#">
+        <a href="../Appointment/Appointment-page.php">
           <i class='bx bx-calendar' ></i>
-          <span class="links_name">Schedule</span>
+          <span class="links_name">Appointment</span>
         </a>
-        <span class="tooltip">Schedule</span>
+        <span class="tooltip">Appointment</span>
       </li>
       <li>
-        <a href="#">
-          <i class='bx bx-chat' ></i>
+        <a href="../Inventory/Inventory-page.php">
+          <i class='bx bx-package' ></i>
           <span class="links_name">Inventory</span>
         </a>
         <span class="tooltip">Inventory</span>
       </li>
       <li>
-        <a href="#">
+        <a href="../Reports/ReportAndAnalytics-page.php">
           <i class='bx bx-pie-chart-alt-2' ></i>
-          <span class="links_name">Analytics</span>
+          <span class="links_name">Reports and Analytics</span>
         </a>
-        <span class="tooltip">Analytics</span>
+        <span class="tooltip">Reports and Analytics</span>
       </li>
       <li>
-        <a href="#">
+        <a href="../Settings/Settings-page.php">
           <i class='bx bxs-cog' ></i>
           <span class="links_name">Settings</span>
         </a>
@@ -50,7 +50,7 @@
 
       <li>
         <a href="#" id="chatbotBtn">
-          <i class='bx bx-chat' ></i>
+          <i class='bx bx-message-alt' ></i>
           <span class="links_name">Chat</span>
         </a>
         <span class="tooltip">Chat</span>
@@ -79,5 +79,7 @@
         
     </ul>
   </div>
+
+
 </body>
 </html>

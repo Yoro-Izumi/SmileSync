@@ -47,20 +47,18 @@ main {
 
 .box {
     position: relative;
-    width: 100%;
-    /* max-width: 1024px; */
+    width: 100%;   
     height: 100vh;
     background-color: #fff;
-    /*border-radius: 10px;*/
-    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+    box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.27);
 }
 
 
 
 .inner-box {
     position: absolute;
-    width: calc(100% - 4.1rem);
-    height: calc(100% - 4.1rem);
+    width: calc(100% - 2.1rem);
+    height: calc(100% - 2.1rem);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -70,7 +68,7 @@ main {
 .forms-wrap {
     position: absolute;
     height: 100%;
-    width: 70%; /* Adjusted to 75% */
+    width: 50%; /* Adjusted to 75% */
     top: 0;
     left: 0;
     display: grid;
@@ -119,20 +117,21 @@ form.sign-up-form {
 
 .logo {
     display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 27px;
-    margin-right: 0.3rem;
-}
-
-.logo h4 {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     margin-top: -9px;
     letter-spacing: -0.5px;
-    color: #151111;
+    justify-content: center;
+    color: #205374;
+    text-decoration: dotted;
+    font-family: 'Alumni Sans';
 }
+
+
+
+.logo img {
+    height: 24px;
+}
+
 
 .heading h2 {
     font-weight: 900;
@@ -148,34 +147,6 @@ form.sign-up-form {
 
 
 
-.logo {
-    justify-content: center;
-    color: #205374;
-    text-decoration: dotted;
-    font-family: 'Alumni Sans';
-}
-
-.logo img {
-    height: 40px;
-}
-
-.nav-tabs {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.nav-tabs a {
-    color: black;
-    text-decoration: none;
-    margin-left: 30px;
-    font-weight: bold;
-}
-
-.nav-tabs a:hover {
-    color: #b96e50;
-    text-decoration: underline;
-}
-
 h1,
 h2,
 h3,
@@ -187,24 +158,23 @@ h6 {
     padding: 0;
 }
 
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a,
-h6 a {
-    color: #000;
+p {
+    font-family: "Open Sans Condensed";
+    color: #000000;
     text-decoration: none;
     margin-left: 5px;
     font-weight: bold;
 }
 
-h1 a:hover,
-h2 a:hover,
-h3 a:hover,
-h4 a:hover,
-h5 a:hover,
-h6 a:hover {
+a {
+    font-family: "Open Sans Condensed";
+    color: #007BFF;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+a:hover {
     color: #164e8a;
     text-decoration: underline;
 }
@@ -228,7 +198,8 @@ indicator{
 .input-wrap {
     position: relative;
     height: 37px;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .input-field {
@@ -240,7 +211,7 @@ indicator{
     outline: none;
     border-bottom: 1px solid #bbb;
     padding: 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #151111;
     transition: 0.4s;
 }
@@ -250,7 +221,7 @@ label {
     left: 5px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #bbb;
     pointer-events: none;
     transition: 0.4s;
@@ -262,9 +233,15 @@ label {
     border-radius: 5px;
 }
 
+.input-field+label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+}
 
 .input-field.active+label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: bold;
     color: #000;
     top: 0;
@@ -277,12 +254,11 @@ label {
 }
 
 
-
 .remember-me-wrap {
     display: flex;
     align-items: center;
-    margin-bottom: 1rem;
 }
+
 
 .remember-me-checkbox {
     margin-right: 10px; /* Space between checkbox and label */
@@ -342,7 +318,25 @@ label {
     }
 }
 
+.text-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
 
+
+.wrap-2rows{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px;
+}
+
+.wrap-3rows{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px;
+}
 
 .sign-btn {
     display: inline-block;
@@ -368,17 +362,10 @@ label {
 
 .text {
     color: #bbb;
-    font-size: 0.7rem;
+    font-size: 1rem;
 }
 
-.text a {
-    color: #bbb;
-    transition: 0.3s;
-}
 
-.text a:hover {
-    color: #007BFF;
-}
 
 main.sign-up-mode form.sign-in-form {
     opacity: 0;
@@ -391,7 +378,7 @@ main.sign-up-mode form.sign-up-form {
 }
 
 main.sign-up-mode .forms-wrap {
-    left: 25%;
+    left: 45%;
 }
 
 main.sign-up-mode .carousel {
@@ -400,45 +387,55 @@ main.sign-up-mode .carousel {
 
 .carousel {
     position: absolute;
-    height: 100%;
-    width: 25%; /* Adjusted to 25% */
-    left: 75%; /* Adjusted to match the width of forms */
+    height: 95vh;
+    width: 45%; /* Adjusted to 25% */
+    left: 55%; /* Adjusted to match the width of forms */
     top: 0;
-    background-color: #B8D4E7;
-    border-radius: 2rem;
-    display: grid;
-    grid-template-rows: 1fr auto;
+    background-color: #C1E4F8;
+    border-radius: 15px; /* Remove border-radius if you want full coverage */
     overflow: hidden;
+    display: flex; /* Use flex to control alignment */
+    justify-content: center; /* Center images horizontally */
+    align-items: center; /* Center images vertically */
     transition: 0.8s ease-in-out;
-    justify-content: flex-end;
 }
 
 
 .carousel .images-wrapper {
-    grid-row: 2;
-    height: auto;
-    width: 100%;
-}
-
-.img {
+    height: 100%; /* Set height to fill the parent */
+    width: 100%; /* Set width to fill the parent */
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
+.img {
+    max-width: 100%; /* Ensure the image scales properly */
+    max-height: 100%; /* Ensure the image scales properly */
+    object-fit: fill; /* Cover the entire area without distorting the image */
+}
+
 @media (max-width: 850px) {
+    logo{
+        margin: 0;
+        padding: 0;
+    }
+
     main {
-        height: 98vh;
-        overflow: hidden;
+        overflow-y: scroll;
+        overflow-x: hidden;
         align-content: center;
         justify-content: center;
     }
 
 
 .box {
+    top: 1%;
+    border-radius: 10px;
     align-content: center;
-    height: auto;
+    height: 100%;
     margin: 1rem;
-    overflow: hidden;
+    margin-bottom: 1%;
 }
 
 .inner-box {
@@ -456,6 +453,7 @@ main.sign-up-mode .carousel {
 }
 
 form {
+    padding-top: 2rem;
     margin: 1rem 0;
     max-width: revert;
     transition: transform 0.8s ease-in-out, opacity 0.45s linear;
@@ -478,12 +476,7 @@ main.sign-up-mode form.sign-up-form {
 }
 
 .carousel {
-    margin-top: 1.5rem;
-    position: revert;
-    height: auto;
-    width: 100%;
-    display: flex;
-    padding: 1rem 0;
+    display: none;
 }
 
 .images-wrapper {
@@ -496,26 +489,36 @@ main.sign-up-mode form.sign-up-form {
 }
 
 @media (max-width: 530px) {
+    .wrap-2rows{
+        grid-template-columns:1fr; 
+    }
+    
+    .wrap-3rows{
+        grid-template-columns:1fr; 
+    }  /* */
+
+    html{
+        height: 100%;
+        max-width: 640px;
+    }
+        
     main {
-        padding: 1rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
     .box {
-        padding-bottom: 2rem;
+        height: auto;
+        border-radius: 10px;
     }
 
     .inner-box {
+        height: fit-content;
         padding: 1rem;
     }
 
     .carousel {
-       margin-top: 2.5rem;
-       position: revert;
-       height: auto;
-       width: 100%;
-       display: flex;
-       padding: 1rem 0;
-       border-radius: 1.6rem;
+       display: none;
         
     }
 

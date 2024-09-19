@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Dashboard-ADMIN</title>
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!-- Sidebar -->
     <link rel="stylesheet" href="css/sidebar-nav.css"/>
     <!-- Page -->
@@ -54,16 +55,18 @@
   </head>
 <<<<<<< Updated upstream
 <body>
-<?php include "sidebar-admin.php"; ?>
+<div class="overlay"></div>
+<?php include "sidebar-super-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
  
   <section class="home-section">
+  <h1>Welcome back!</h1>
 
-  <?php include "appointment-table.php"; ?>
-
+  <?php include "smartChart.php"; ?>
   </section>
   
+
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
 </body>
