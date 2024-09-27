@@ -3,30 +3,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-/* General Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-html{
-  background-color: #f0f2f5;
+html {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    background-color: #f0f2f5;
+    justify-content: center;
+    align-content: center;
 }
+
 
 body {
-  background-color: #f0f2f5;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  height: 100vh;
-  margin: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
+    font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
+    background-color: #f0f2f5;
 }
-
-
 
 /* Sidebar when open */
 .sidebar.open {
@@ -35,14 +33,15 @@ body {
 
 /* Home section styles */
 .home-section {
-    /* background: #FFFF; */
-    min-height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 78px;
-    width: calc(100% - 78px);
-    padding: 20px;
-    transition: all 0.5s ease;
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  position: absolute;
+  margin: auto 20px;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  padding: 20px;
+  transition: all 0.5s ease;
 }
 
 /* Home section when the sidebar is open */
@@ -51,41 +50,38 @@ body {
   width: calc(100% - 250px);
 }
 
-
-
-.home-section .text{
+.home-section .text {
   display: inline-block;
   color: #11101d;
   font-size: 25px;
   font-weight: 500;
-  margin: 18px
+  margin: 18px;
 }
-
-
 
 /* Right Panel Styling */
 .right-panel {
   position: fixed;
   top: 0;
-  right: -350px; 
+  right: -350px;
   width: 300px;
-  height: 100%; 
+  height: 100%;
   border-radius: 15px;
-  background-color: #fff;
+  background-color: #E2ECF8;
   z-index: 99;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
-.right-panel.show{
+
+.right-panel.show {
   right: 0;
 }
 
 /* Maximized Panel Styling */
 .right-panel.maximized {
   height: 100%; /* Full viewport height */
-  width: 100%
+  width: 100%;
 }
 
 /* Minimized Panel Styling */
@@ -123,7 +119,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-
 /* Hide text when panel is shrunk */
 .right-panel.shrunk .panel-header h2 {
   opacity: 0;
@@ -138,7 +133,7 @@ body {
 /* Panel Content */
 .panel-content {
   background-color: #C1E4F8;
-  flex: 1; 
+  flex: 1;
   overflow-y: auto;
 }
 
@@ -195,15 +190,293 @@ body {
 }
 
 
-@media (max-width: 850px) {
 
-  .sidebar.open ~ .home-section{
+.dashboard_calendar-container {
+  height: 93vh;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  margin: auto;
+}
+
+.dashboard_calendar {
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.dashboard_month {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard_month span {
+  cursor: pointer;
+}
+
+.dashboard_weekdays, .dashboard_days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  margin-bottom: 10px;
+}
+
+.dashboard_weekdays span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #888;
+}
+
+.dashboard_days span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin: 2px 0;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.dashboard_days span:hover {
+  background-color: #eaeaea;
+}
+
+.dashboard_days .dashboard_selected {
+  background-color: #FF6B6B;
+  border-radius: 10px;
+  color: white;
+}
+
+
+.dashboard_days .dashboard_current-day {
+  background-color: #007bff;
+  color: white;
+}
+
+.dashboard_appointments {
+  text-align: left;
+  margin-top: 50px; /* Added margin to create space between calendar and appointments */
+}
+
+.dashboard_appointments h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.dashboard_appointments table {
+  height: -webkit-fill-available;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard_appointments td {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  height: 100%;
+}
+
+.dashboard_appointments .dashboard_arrow {
+  text-align: right;
+  color: #888;
+  font-size: 18px;
+}
+
+.dashboard_view-all {
+  display: block;
+  width: inherit;
+  padding: 10px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%); /* Center the button horizontally */
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.dashboard_btn {
+  display: block;
+  width: 20%;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard_btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+
+
+.dashboard_view-all:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.statistics-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stat-box {
+      /* height: auto; */
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      /* width: 30%; */
+      /* text-align: center;*/
+      transition: transform 0.3s;
+      margin-bottom: 20px;
+}
+
+.stat-box:hover {
+    transform: scale(1.05);
+}
+
+
+.stat-box h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stat-box p {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+/* Welcome Message */
+.welcome-message {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px 0;
+  color: #333;
+}
+
+.highlight {
+  color: #30CE88;
+}
+
+.side-title {
+  font-size: 0.9rem; /* Adjust to your preference */
+  font-weight: bold;
+  padding: 10px 0;
+  color: #4A4A4A; /* Darker gray */
+  margin-bottom: 1rem; /* Space below the title */
+  text-align: left;
+}
+
+/* SmartChart and Calendar Section with column separator */
+.calendar-chart-section {
+  display: flex;
+  margin-top: 30px;
+}
+
+.calendar-chart-section .calendar-container {
+  flex: 1;
+  padding-right: 20px;
+  border-right: 2px solid #ddd; /* Adds a vertical separator */
+}
+
+.calendar-chart-section .smartchart-container {
+  flex: 2;
+  padding-left: 20px;
+}
+
+
+@media (max-width: 1024px) {
+
+.home-section {
+  margin: auto;
+  padding: 10px;
+}
+
+}
+
+/* Responsive design: for mobile screens, stack the statistics boxes */
+@media (max-width: 768px) {
+  .home-section {
+    margin: 0;
+    padding: 0;
+  }
+
+  .dashboard_appointments table {
+    height: 100%;
+    width: 100%;
+  }
+
+  .dashboard_calendar-container {
+    height: 95vh;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    margin: auto;
+  }
+
+  .content-section{
+    width: 95%;
+    margin: auto;
+  }
+
+  .statistics-container {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+    grid-template-rows: auto; /* Auto-adjust the height of rows */
+  }
+
+  .calendar-chart-section {
+    flex-direction: column;
+  }
+
+  .calendar-chart-section .calendar-container {
+    border-right: none;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .calendar-chart-section .smartchart-container {
+    padding-left: 0;
+  }
+}
+
+
+@media (max-width: 850px) {
+  .sidebar.open ~ .home-section {
     left: 78px;
     width: calc(100% - 78px);
     opacity: 0.2;
     background: #000;
     z-index: 99;
   }
-
-
 }

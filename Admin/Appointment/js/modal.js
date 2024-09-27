@@ -1,97 +1,92 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const existingAccountModal = document.getElementById('existingAccountModal');
     const newAccountModal = document.getElementById('newAccountModal');
-    const successModal = document.getElementById('successModal');
+    const appointmentSuccessModal = document.getElementById('appointmentSuccessModal');
     const deleteProgressModal = document.getElementById('deleteProgressModal');
     const appointmentDoneModal = document.getElementById('appointmentDoneModal');
-    
 
-    const status = document.getElementById('status');
+    const statusBtn = document.getElementById('appointmentStatus'); // Renamed from status to statusBtn
     const closeDone = document.getElementById('closeDone');
 
-    const newAccountBtn = document.getElementById('newAccount');
-    const cancelBtnn = document.getElementById('cancelBtnn');
+    const newAccount = document.getElementById('newAccount');
+    const cancelSubmitNewBtn = document.getElementById('cancelSubmitNewBtn');
 
-    const existingAccountBtn = document.getElementById('existingAccount');
-    const cancelBtn = document.getElementById('cancelBtn');
+    const existingAccount = document.getElementById('existingAccount');
+    const cancelSubmitExistingBtn = document.getElementById('cancelSubmitExistingBtn');
 
-    const submitBtn = document.getElementById('submitBtn');
+    const submitExistingBtn = document.getElementById('submitExistingBtn');
     const submitNewBtn = document.getElementById('submitNewBtn');
-    const closeSuccessBtn = document.getElementById('closeSuccessModalBtn');
+    const closeAppointmentSuccessBtn = document.getElementById('closeAppointmentSuccessBtn');
 
     const deleteProgressBtn = document.getElementById('deleteProgressBtn');
     const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
 
-
-       // Show the new Account modal
-       status.addEventListener('click', function() {
+    // Show the appointmentDoneModal
+    statusBtn.addEventListener('click', function () {
         appointmentDoneModal.classList.add('show');
     });
 
-    // Close the new Account modal
-    closeDone.addEventListener('click', function() {
+    // Close the appointmentDoneModal
+    closeDone.addEventListener('click', function () {
         appointmentDoneModal.classList.remove('show');
     });
 
-
-    // Show the new Account modal
-    newAccountBtn.addEventListener('click', function() {
+    // Show the newAccountModal
+    newAccount.addEventListener('click', function () {
         newAccountModal.classList.add('show');
     });
 
-    // Close the new Account modal
-    /*cancelBtnn.addEventListener('click', function() {
+    // Close the newAccountModal
+    cancelSubmitNewBtn.addEventListener('click', function () {
         newAccountModal.classList.remove('show');
-    });*/
+    });
 
-       // Show the existingModal modal
-       existingAccountBtn.addEventListener('click', function() {
+    // Show the existingAccountModal
+    existingAccount.addEventListener('click', function () {
         existingAccountModal.classList.add('show');
     });
 
-     // Close the existing account modal
-    /* cancelBtn.addEventListener('click', function() {
+    // Close the existingAccountModal
+    cancelSubmitExistingBtn.addEventListener('click', function () {
         existingAccountModal.classList.remove('show');
-    });*/
+    });
 
-     // Show the success modal
-     submitBtn.addEventListener('click', function() {
+    // Show the appointmentSuccessModal when existingAccountModal is submitted
+    submitExistingBtn.addEventListener('click', function () {
         existingAccountModal.classList.remove('show');
-        successModal.classList.add('show');
+        appointmentSuccessModal.classList.add('show');
     });
 
-     // Show the success modal
-     submitNewBtn.addEventListener('click', function() {
-        newAccountModal.classList.remove('show')
-        successModal.classList.add('show');
+    // Show the appointmentSuccessModal when newAccountModal is submitted
+    submitNewBtn.addEventListener('click', function () {
+        newAccountModal.classList.remove('show');
+        appointmentSuccessModal.classList.add('show');
     });
 
-    // Close the success modal
-    closeSuccessBtn.addEventListener('click', function() {
-        successModal.classList.remove('show');
+    // Close the appointmentSuccessModal
+    closeAppointmentSuccessBtn.addEventListener('click', function () {
+        appointmentSuccessModal.classList.remove('show');
     });
 
-    // Show the delete progress modal
-    cancelBtn.addEventListener('click', function() {
-        deleteProgressModal.classList.add('show');
-    });
-    
-    // Show the delete progress modal
-    cancelBtnn.addEventListener('click', function() {
+    // Show the deleteProgressModal
+    cancelSubmitExistingBtn.addEventListener('click', function () {
         deleteProgressModal.classList.add('show');
     });
 
+    // Show the deleteProgressModal when newAccountModal is canceled
+    cancelSubmitNewBtn.addEventListener('click', function () {
+        deleteProgressModal.classList.add('show');
+    });
 
-    // Close the delete progress modal
-    cancelDeleteBtn.addEventListener('click', function() {
+    // Close the deleteProgressModal
+    cancelDeleteBtn.addEventListener('click', function () {
         deleteProgressModal.classList.remove('show');
     });
 
-    // Close all progress modal
-    deleteProgressBtn.addEventListener('click', function() {
+    // Close all progress modals
+    deleteProgressBtn.addEventListener('click', function () {
         deleteProgressModal.classList.remove('show');
-        newAccountModal.classList.remove('show')
+        newAccountModal.classList.remove('show');
         existingAccountModal.classList.remove('show');
     });
- 
 });

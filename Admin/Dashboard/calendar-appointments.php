@@ -4,136 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar UI</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f4f8;
-        }
 
-        .dashboard_calendar-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            width: 320px;
-        }
-
-        .dashboard_calendar {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .dashboard_month {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .dashboard_month span {
-            cursor: pointer;
-        }
-
-        .dashboard_weekdays, .dashboard_days {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            justify-items: center;
-            margin-bottom: 10px;
-        }
-
-        .dashboard_weekdays span {
-            font-size: 12px;
-            font-weight: bold;
-            color: #888;
-        }
-
-        .dashboard_days span {
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            text-align: center;
-            font-size: 14px;
-            margin: 2px 0;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
-
-        .dashboard_days span:hover {
-            background-color: #eaeaea;
-        }
-
-        .dashboard_days .dashboard_selected {
-            background-color: #FF6B6B;
-            color: white;
-        }
-
-        .dashboard_days .dashboard_current-day {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .dashboard_appointments {
-            text-align: left;
-            margin-top: 50px; /* Added margin to create space between calendar and appointments */
-        }
-
-        .dashboard_appointments h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        .dashboard_appointments table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .dashboard_appointments td {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-
-        .dashboard_appointments .dashboard_arrow {
-            text-align: right;
-            color: #888;
-            font-size: 18px;
-        }
-
-        .dashboard_view-all {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
-            border: 1px solid #007bff;
-            background-color: white;
-            color: #007bff;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 14px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .dashboard_view-all:hover {
-            background-color: #007bff;
-            color: white;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-    </style>
 </head>
 <body>
     <div class="dashboard_calendar-container">
@@ -160,10 +31,19 @@
             <h3>Upcoming Appointments</h3>
             <table id="dashboard_appointments-table">
                 <!-- Appointments will be dynamically populated here -->
+                 
             </table>
-            <button class="dashboard_view-all">View All</button>
+            
         </div>
+        <button class="dashboard_view-all" id="viewAllBtn">View All</button>
     </div>
+
+    <script>
+    document.getElementById("viewAllBtn").addEventListener("click", function() {
+        window.location.href = "http://localhost/SmileSync/Admin/Appointment/appointment-details.php?tab=upcoming-appointments";
+    });
+</script>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const dashboard_daysContainer = document.querySelector(".dashboard_days");

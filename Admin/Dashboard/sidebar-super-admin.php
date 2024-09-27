@@ -64,14 +64,13 @@
       </li>
 
 
-     
       <li>
-      <a href="#" id="notificationBtn">
-        <i class='bx bx-bell'></i>
-        <span class="links_name">Notifications</span>
-      </a>
-        <span class="tooltip">Notifications</span>
-      </li>
+  <a href="#" id="notificationLink">
+    <i class='bx bx-cog'></i>
+    <span class="links_name">Notifications</span>
+  </a>
+  <span class="tooltip">Notifications</span>
+</li>
 
       <li class="profile">
         <div class="profile-details">
