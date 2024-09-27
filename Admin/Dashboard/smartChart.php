@@ -14,7 +14,7 @@
   <div class="chart-container">
     <div class="patient-volume-header">
       <h2 class="chart-title">Patient Volume per Day</h2>
-      <?php include "dropdownWeek.php"; ?>
+      <button class="dashboard_btn"><a href="../Reports/ReportAndAnalytics-page.php">View Reports</a></button>
     </div>
 
     <div id="patientVolumeChart"></div>

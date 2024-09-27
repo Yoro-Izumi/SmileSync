@@ -132,6 +132,12 @@ if (isset($_SESSION['userAdminID'])) {
                   />
                   <label>Phone Number<indicator>*</indicator></label>
                 </div>
+                <div class="valid-feedback">
+                  <!-- Looks good! -->
+                  </div>
+                  <div class="invalid-feedback">
+                    Please provide a valid contact number.
+                  </div>
 
                 <div class="input-wrap">
                   <input
@@ -153,18 +159,33 @@ if (isset($_SESSION['userAdminID'])) {
                     maxlength="24"
                     class="input-field"
                     name="password"
+                    id="password"
                     autocomplete="off"
                     required
+                    oninput="checkPasswordStrength(this)"
                   />
                   <label>Password<indicator>*</indicator></label>
                 </div>
+                <div id="password-strength-indicator"></div>
+                  <div class="password-requirements" id="password-requirements" style="display: none;">
+                    <p>Password must contain:</p>
+                    <ul>
+                      <li id="uppercase" class="invalid">1 uppercase letter</li>
+                      <li id="number" class="invalid">1 number</li>
+                      <li id="special" class="invalid">1 special character</li>
+                      <li id="length" class="invalid">At least 8 characters</li>
+                    </ul>
+                  </div>
+                  <div class="invalid-feedback">Password strength is weak. Please enter a stronger password.</div>
+
 
                 <div class="input-wrap">
                 <input type="password" 
                   class="input-field"
                   name="confirmPassword"
+                  id="confirmPassword"
                   autocomplete="off"
-                required></diuv>
+                required></div>
             <label>Confirm Password<indicator>*</indicator></label>
         </div>
 
@@ -256,6 +277,8 @@ if (isset($_SESSION['userAdminID'])) {
     <!-- Javascript file -->
     <script src="js/app.js"></script>
     <script src="js/eye-toggle.js"></script>
+    <script src="js/submit_form.js"></script>
+    <script src="js/validations.js"></script>
 
 
 <!-- Flatpickr CSS -->
@@ -267,68 +290,6 @@ if (isset($_SESSION['userAdminID'])) {
 <!-- AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script> //ajax code for form submission
-$(document).ready(function () {
-  $("#register_form").on("submit", function (e) {
-    e.preventDefault();
-    
-    var formData = new FormData(this);
-    
-    // Disable the button to prevent multiple clicks
-    $("#registerBtn").prop("disabled", true);
-    
-    $.ajax({
-      type: "POST",
-      url: "register_code.php",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        console.log(response); // Handle success response
-        // Redirect or show success message
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-      },
-      complete: function() {
-        // Enable the button after request completes
-        $("#registerBtn").prop("disabled", false);
-      }
-    });
-  });
-
-  $("#login_form").on("submit", function (e) {
-    e.preventDefault();
-    
-    var formData = new FormData(this);
-    
-    // Disable the button to prevent multiple clicks
-    $("#loginBtn").prop("disabled", true);
-    
-    $.ajax({
-      type: "POST",
-      url: "login_code.php",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        //console.log(response); // Handle success response
-        // Redirect or show success message
-        window.location.href = "../Dashboard/Dashboard.php";
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-      },
-      complete: function() {
-        // Enable the button after request completes
-        $("#loginBtn").prop("disabled", false);
-      }
-    });
-  });
-}); 
-
-    
-  </script>
 
 
 </body>

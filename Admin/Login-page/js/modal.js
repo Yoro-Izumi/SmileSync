@@ -1,101 +1,86 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const loginFailedModal = document.getElementById('loginFailedModal');
-    const resetPasswordModal = document.getElementById('resetPasswordModal');
-    const successModal = document.getElementById('successModal');
-    const privacyPolicyModal = document.getElementById('privacyPolicyModal');
-    const termServicesModal = document.getElementById('termServicesModal');
-    const successRegisterModal = document.getElementById('successRegisterModal');
-    
-    
-    const registerBtn = document.getElementById('registerBtn');
-    const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
+    let loginFailedModal = document.getElementById('loginFailedModal');
+    let resetPasswordModal = document.getElementById('resetPasswordModal');
+    let successModal = document.getElementById('successModal');
+    let privacyPolicyModal = document.getElementById('privacyPolicyModal');
+    let termServicesModal = document.getElementById('termServicesModal');
+    let successRegisterModal = document.getElementById('successRegisterModal');
 
-    const showLoginFailedBtn = document.getElementById('loginBtn');
-    const closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
+    let registerBtn = document.getElementById('registerBtn');
+    let closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
 
-    const termServices = document.getElementById('termServices');
-    const closetermServicesBtn = document.getElementById('closetermServicesBtn');
+    let showLoginFailedBtn = document.getElementById('loginBtn');
+    let closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
 
-    const privacyPolicy = document.getElementById('privacyPolicy');
-    const closePrivacyPolicyBtn = document.getElementById('closePrivacyPolicyBtn');
+    let termServices = document.getElementById('termServices');
+    let closetermServicesBtn = document.getElementById('closetermServicesBtn');
 
-    const resetPasswordLink = document.getElementById('resetPasswordLink');
-    const resetLink = document.getElementById('forgotLink');
-    const closeResetPasswordBtn = document.getElementById('cancelButton');
+    let privacyPolicy = document.getElementById('privacyPolicy');
+    let closePrivacyPolicyBtn = document.getElementById('closePrivacyPolicyBtn');
 
-    const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
-    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+    let resetPasswordLink = document.getElementById('resetPasswordLink');
+    let resetLink = document.getElementById('forgotLink');
+    let closeResetPasswordBtn = document.getElementById('cancelButton');
 
-    // Show the login failed modal
+    let submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
+    let closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+
+    // Event listeners remain the same
     showLoginFailedBtn.addEventListener('click', function() {
-        event.preventDefault();
         loginFailedModal.classList.add('show');
     });
 
-    // Close the terms failed modal
     closetermServicesBtn.addEventListener('click', function() {
         termServicesModal.classList.remove('show');
     });
 
-       // Show the register modal
-       registerBtn.addEventListener('click', function() {
+    registerBtn.addEventListener('click', function() {
         successRegisterModal.classList.add('show');
     });
 
-     // Close the closeSuccessRegisterBtn modal
-     closeSuccessRegisterBtn.addEventListener('click', function() {
+    closeSuccessRegisterBtn.addEventListener('click', function() {
         successRegisterModal.classList.remove('show');
     });
 
-     // Show the terms and services modal
-     termServices.addEventListener('click', function() {
+    termServices.addEventListener('click', function() {
         termServicesModal.classList.add('show');
     });
 
-    // Close the terms and services modal
     closeLoginFailedBtn.addEventListener('click', function() {
-        event.preventDefault();
         loginFailedModal.classList.remove('show');
     });
 
-    // Show the privacy policy modal
     privacyPolicy.addEventListener('click', function() {
         privacyPolicyModal.classList.add('show');
     });
 
-    // Close the privacy policy  modal
     closePrivacyPolicyBtn.addEventListener('click', function() {
         privacyPolicyModal.classList.remove('show');
     });
 
-    // Show the reset password modal when clicking the reset password link
     resetPasswordLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
+        event.preventDefault();
         loginFailedModal.classList.remove('show');
         resetPasswordModal.classList.add('show');
     });
 
-    // Close the reset password modal (Cancel button)
-    closeResetPasswordBtn.addEventListener('click', function() {
+    closeResetPasswordBtn.addEventListener('click', function(event) {
         event.preventDefault();
         resetPasswordModal.classList.remove('show');
     });
 
-    // Show the reset password modal when clicking the reset password link
     resetLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
+        event.preventDefault();
         resetPasswordModal.classList.add('show');
     });
 
-    // Handle submit action
-    submitResetPasswordBtn.addEventListener('click', function() {
+    submitResetPasswordBtn.addEventListener('click', function(event) {
         event.preventDefault();
         resetPasswordModal.classList.remove('show');
-        successModal.classList.add('show'); // Show success modal after submitting
+        successModal.classList.add('show');
     });
 
-    // Close the success modal
-    closeSuccessModalBtn.addEventListener('click', function() {
+    closeSuccessModalBtn.addEventListener('click', function(event) {
         event.preventDefault();
         successModal.classList.remove('show');
     });

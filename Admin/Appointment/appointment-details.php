@@ -61,6 +61,26 @@
 
   </section>
   
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const params = new URLSearchParams(window.location.search);
+        const tab = params.get('tab');
+
+        if (tab) {
+            // Find the corresponding tab using data-content attribute
+            const activeTab = document.querySelector(`.tab[data-content="${tab}"]`);
+            
+            if (activeTab) {
+                // Deactivate any other active tabs
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+                // Activate the desired tab
+                activeTab.classList.add('active');
+            }
+        }
+    });
+</script>
+
 
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
