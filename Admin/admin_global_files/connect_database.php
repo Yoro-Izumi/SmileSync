@@ -7,6 +7,12 @@ $password = "";
 
 // Functions to connect to specific databases
 
+function connect_appointment($servername, $username, $password) {
+    $dbname = "smilesync_appointments";
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    return $conn;
+}
+
 function connect_inventory($servername, $username, $password) {
     $dbname = "smilesync_inventory";
     $conn = mysqli_connect($servername, $username, $password, $dbname);
