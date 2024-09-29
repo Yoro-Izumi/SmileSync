@@ -1,0 +1,540 @@
+@import url("//fonts.googleapis.com/css?family=Open+Sans+Condensed");
+@import url("https://fonts.googleapis.com/css?family=Inria+Sans");
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    background-color: #B8D4E7;
+    justify-content: center;
+    align-content: center;
+}
+
+
+body {
+    font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 35px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+
+main {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    position: relative;
+    width: 100%;   
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.27);
+}
+
+
+
+.inner-box {
+    position: absolute;
+    width: calc(100% - 2.1rem);
+    height: calc(100% - 2.1rem);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.forms-wrap {
+    position: absolute;
+    height: 100%;
+    width: 50%; /* Adjusted to 75% */
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: 0.8s ease-in-out;
+}
+
+form {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 20px;
+    height: 100%;  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+
+
+form.sign-up-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+
+.icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #bbb;
+}
+
+.icon:hover {
+    color: #333;
+}
+
+
+
+.logo {
+    display: flex;
+    font-size: 1.5rem;
+    margin-top: -9px;
+    letter-spacing: -0.5px;
+    justify-content: center;
+    color: #205374;
+    text-decoration: dotted;
+    font-family: 'Alumni Sans';
+}
+
+
+
+.logo img {
+    height: 24px;
+}
+
+
+.heading h2 {
+    font-weight: 900;
+    color: #133e6d;
+}
+
+.heading h5 {
+    padding-top: 20px;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: black;
+    font-family: "Open Sans Condensed";
+    padding: 0;
+}
+
+p {
+    font-family: "Open Sans Condensed";
+    color: #000000;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+a {
+    font-family: "Open Sans Condensed";
+    color: #007BFF;
+    text-decoration: none;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #164e8a;
+    text-decoration: underline;
+}
+
+indicator{
+    color: #ff3333;
+    font-weight: bold;
+}
+
+.toggle h5 {
+    color: #007BFF;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.toggle h5:hover {
+    color: #164e8a;
+    text-decoration: underline;
+}
+
+.input-wrap {
+    position: relative;
+    height: 37px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: 0.9rem;
+    color: #151111;
+    transition: 0.4s;
+}
+
+label {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.input-field.active {
+    padding-left: 2px;
+    border: 2px solid #164e8a;
+    border-radius: 5px;
+}
+
+.input-field+label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+}
+
+.input-field.active+label {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #000;
+    top: 0;
+    left: 10px;
+    background-color: #fff;
+}
+
+.input-field.error input {
+    border: 2px solid red;
+}
+
+
+.remember-me-wrap {
+    display: flex;
+    align-items: center;
+}
+
+
+.remember-me-checkbox {
+    margin-right: 10px; /* Space between checkbox and label */
+    width: 20px; /* Adjust size of checkbox */
+    height: 20px; /* Adjust size of checkbox */
+    position: relative;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.remember-me-checkbox:checked {
+    background-color: #fff; /* Background color remains white */
+    border-color: #164e8a; /* Border color when checked */
+}
+
+.remember-me-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 16px;
+    border: solid #164e8a; /* Checkmark color */
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg) translate(-50%, -50%);
+    animation: bounce 0.6s ease forwards;
+}
+
+.remember-me-checkbox::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 16px;
+    border: solid transparent;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg) translate(-50%, -50%);
+
+}
+
+@keyframes bounce {
+    0% {
+        transform: rotate(45deg) translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: rotate(45deg) translate(-50%, -60%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(45deg) translate(-50%, -50%) scale(1);
+    }
+}
+
+.text-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+}
+
+
+.wrap-2rows{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 16px;
+}
+
+.wrap-3rows{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 16px;
+}
+
+.sign-btn {
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #164e8a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.sign-btn:hover {
+    background-color: #007BFF;
+}
+
+.bold-text {
+    font-weight: 40px;
+}
+
+.text {
+    color: #bbb;
+    font-size: 1rem;
+}
+
+
+
+main.sign-up-mode form.sign-in-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+main.sign-up-mode .forms-wrap {
+    left: 45%;
+}
+
+main.sign-up-mode .carousel {
+    left: 0%
+}
+
+.carousel {
+    position: absolute;
+    height: 95vh;
+    width: 45%; /* Adjusted to 25% */
+    left: 55%; /* Adjusted to match the width of forms */
+    top: 0;
+    background-color: #C1E4F8;
+    border-radius: 15px; /* Remove border-radius if you want full coverage */
+    overflow: hidden;
+    display: flex; /* Use flex to control alignment */
+    justify-content: center; /* Center images horizontally */
+    align-items: center; /* Center images vertically */
+    transition: 0.8s ease-in-out;
+}
+
+
+.carousel .images-wrapper {
+    height: 100%; /* Set height to fill the parent */
+    width: 100%; /* Set width to fill the parent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img {
+    max-width: 100%; /* Ensure the image scales properly */
+    max-height: 100%; /* Ensure the image scales properly */
+    object-fit: fill; /* Cover the entire area without distorting the image */
+}
+
+@media (max-width: 850px) {
+    logo{
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        align-content: center;
+        justify-content: center;
+    }
+
+
+.box {
+    top: 1%;
+    border-radius: 10px;
+    align-content: center;
+    height: 100%;
+    margin: 1rem;
+    margin-bottom: 1%;
+}
+
+.inner-box {
+    position: static;
+    transform: none;
+    width: revert;
+    height: revert;
+    padding: 1rem 2rem;
+}
+
+.forms-wrap {
+    position: revert;
+    width: 100%;
+    height: auto;
+}
+
+form {
+    padding-top: 2rem;
+    margin: 1rem 0;
+    max-width: revert;
+    transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+}
+
+.heading {
+    margin: 2rem 0;
+}
+
+form.sign-up-form {
+    transform: translateX(100%);
+}
+
+main.sign-up-mode form.sign-in-form {
+    transform: translateX(-100%);
+}
+
+main.sign-up-mode form.sign-up-form {
+    transform: translateX(0%);
+}
+
+.carousel {
+    display: none;
+}
+
+.images-wrapper {
+    display: none; 
+}
+
+.text-slider {
+    width: 100%;
+}
+}
+
+@media (max-width: 530px) {
+    .wrap-2rows{
+        grid-template-columns:1fr; 
+    }
+    
+    .wrap-3rows{
+        grid-template-columns:1fr; 
+    }  /* */
+
+    html{
+        height: 100%;
+        max-width: 640px;
+    }
+        
+    main {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .box {
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .inner-box {
+        height: fit-content;
+        padding: 1rem;
+    }
+
+    .carousel {
+       display: none;
+        
+    }
+
+    
+    .text-wrap {
+        margin-bottom: 1rem;
+    }
+
+    .text-group h2 {
+        font-size: 1.2rem;
+    }
+
+    form {
+        padding-top: 2rem;
+        height: 100%;
+    }
+
+
+}
