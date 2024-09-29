@@ -134,10 +134,10 @@ if (isset($_SESSION['userAdminID'])) {
                 </div>
                 <div class="valid-feedback">
                   <!-- Looks good! -->
-                  </div>
-                  <div class="invalid-feedback">
-                    Please provide a valid contact number.
-                  </div>
+                </div>
+                <div class="invalid-feedback">
+                  Please provide a valid contact number.
+                </div>
 
                 <div class="input-wrap">
                   <input
