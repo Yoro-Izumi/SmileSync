@@ -1,92 +1,100 @@
-
- //ajax code for form submission
 $(document).ready(function () {
-  $("#register_form").on("submit", function (e) {
+  // Handle registration form
+  $("#registerBtn").on("click", function (e) {
     e.preventDefault();
-    
-    var formData = new FormData(this);
-    
-    // Disable the button to prevent multiple clicks
-    $("#registerBtn").prop("disabled", true);
-    
-    $.ajax({
-      type: "POST",
-      url: "register_code.php",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        console.log(response); // Handle success response
-        // Redirect or show success message
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-      },
-      complete: function() {
-        // Enable the button after request completes
-        $("#registerBtn").prop("disabled", false);
-      }
-    });
+
+    // Check if form has been submitted before (in the same session)
+    if (sessionStorage.getItem("registerFormSubmitted") === "true") {
+      return; // Prevent form from being submitted again
+    }
+
+    // Get the form
+    var form = $("#register_form")[0];
+    var formData = new FormData(form);
+
+    // Check if form is valid before proceeding
+    if (form.checkValidity()) {
+      // Disable the button to prevent multiple clicks
+      $(this).prop("disabled", true);
+
+      $.ajax({
+        type: "POST",
+        url: "register_code.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          if (response.trim() === "error") {
+            // Show error modal
+            //$("#errorModal").modal("show");
+            console.log("error");
+          } else {
+            // Show success modal
+            $("#successRegisterModal").modal("show");
+            // Set session storage to prevent re-submission
+            sessionStorage.setItem("registerFormSubmitted", "true");
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error(xhr.responseText);
+        },
+        complete: function () {
+          // Enable the button after the request completes
+          $("#registerBtn").prop("disabled", false);
+        }
+      });
+    } else {
+      form.reportValidity(); // Show validation messages
+    }
   });
 
-  $("#login_form").on("submit", function (e) {
+  // Handle login form
+  $("#loginBtn").on("click", function (e) {
     e.preventDefault();
-    
-    var formData = new FormData(this);
-    
-    // Disable the button to prevent multiple clicks
-    $("#loginBtn").prop("disabled", true);
-    
-    $.ajax({
-      type: "POST",
-      url: "login_code.php",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        //console.log(response); // Handle success response
-        // Redirect or show success message
-        window.location.href = "../Dashboard/Dashboard.php";
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-      },
-      complete: function() {
-        // Enable the button after request completes
-        $("#loginBtn").prop("disabled", false);
-      }
-    });
+
+    // Check if form has been submitted before (in the same session)
+    if (sessionStorage.getItem("loginFormSubmitted") === "true") {
+      return; // Prevent form from being submitted again
+    }
+
+    // Get the form
+    var form = $("#login_form")[0];
+    var formData = new FormData(form);
+
+    // Check if form is valid before proceeding
+    if (form.checkValidity()) {
+      // Disable the button to prevent multiple clicks
+      $(this).prop("disabled", false );
+
+      $.ajax({
+        type: "POST",
+        url: "login_code.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          if (response.trim() === "error") {
+            // Show error modal
+            $("#loginFailedModal").modal("show");
+          } else {
+            // Show success modal or redirect
+            $("#successModal").modal("show");
+            // Set session storage to prevent re-submission
+            sessionStorage.setItem("loginFormSubmitted", "true");
+            //window.location.href = "../Dashboard/Dashboard.php";
+            location.reload();
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error(xhr.responseText); 
+        },
+        complete: function () {
+          // Enable the button after the request completes
+          $("#loginBtn").prop("disabled", false);
+        }
+      });
+    } else {
+      form.reportValidity(); // Show validation messages
+    }
   });
-}); 
-
-    
-/*
-$(document).ready(function() {
-    $('#myForm').submit(function(event) {
-        event.preventDefault(); // Prevent the form from submitting via the browser
-
-        var formData = $(this).serialize();
-
-        $.ajax({
-            type: 'POST',
-            url: 'process.php',
-            data: formData,
-            success: function(response) {
-                if (response === "Form submitted successfully!") {
-                    $('#modalMessage').text(response);
-                } else if (response === "Failed to submit the form. Please try again.") {
-                    $('#modalMessage').text(response);
-                } else {
-                    $('#modalMessage').text("Unexpected response: " + response);
-                }
-                $('#responseModal').modal('show');
-            },
-            error: function(xhr, status, error) {
-                $('#modalMessage').text('An error occurred: ' + xhr.responseText);
-                $('#responseModal').modal('show');
-            }
-        });
-    });
 });
-
-*/

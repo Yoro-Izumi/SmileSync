@@ -30,4 +30,10 @@ function connect_accounts($servername, $username, $password) {
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     return $conn;
 }
+
+function smilesync_chatbot($servername, $username, $password) {
+    $dbname = "smilesync_chatbot";
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    return $conn;
+}
 ?>

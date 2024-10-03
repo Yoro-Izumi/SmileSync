@@ -13,19 +13,23 @@
 
 html {
     width: 100%;
+
     max-height: 100vh;
     position: absolute;
     background-color: #E2ECF8;
     justify-content: center;
     align-content: center;
     overflow-x: hidden;
+
 }
 
 
 body {
     font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
+
     background-color: #E2ECF8;
     /*zoom: 0.9;*/
+
 }
 
 /* Sidebar when open */
@@ -200,6 +204,7 @@ body {
   border-radius: 5px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   width: 90%;
+
   margin: auto;
 }
 
@@ -270,6 +275,7 @@ body {
   cursor: pointer;
   text-align: left;
   margin-top: 50px;
+
 }
 
 .dashboard_appointments h3 {
@@ -302,6 +308,7 @@ body {
   position: absolute;
   display: block;
   width: 80%;
+
   padding: 10px;
   border: 1px solid #007bff;
   background-color: white;
@@ -396,7 +403,9 @@ body {
   font-weight: bold;
   padding: 10px 0;
   color: #4A4A4A; /* Darker gray */
+
   margin: 1rem; /* Space below the title */
+
   text-align: left;
 }
 
@@ -423,6 +432,7 @@ body {
   width: 100%;
   margin: 20px 0;
 }
+
 .home-section {
   margin: auto;
   padding: 10px;
@@ -463,6 +473,7 @@ body {
     padding: 20px;
     width: 90%;
     margin: 20px auto;
+
   }
 
   .content-section{
@@ -471,7 +482,9 @@ body {
   }
 
   .statistics-container {
+
     margin:20px;
+
     grid-template-columns: 1fr; /* 1 column for mobile */
     grid-template-rows: auto; /* Auto-adjust the height of rows */
   }
