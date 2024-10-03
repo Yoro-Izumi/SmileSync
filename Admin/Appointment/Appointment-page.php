@@ -21,6 +21,7 @@
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "modal.php"; ?>
+<?php include "loader.php"; ?>
  
   <section class="home-section">
   <h2>Appointments</h2>

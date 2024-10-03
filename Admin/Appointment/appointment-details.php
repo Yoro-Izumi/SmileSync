@@ -20,6 +20,7 @@
 <?php include "sidebar-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
+<?php include "loader.php"; ?>
  
   <section class="home-section">
   <h2>Appointment Details</h2>

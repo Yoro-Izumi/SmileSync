@@ -5,67 +5,79 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins" , sans-serif;
+  
 }
-.sidebar{
+
+.sidebar {
+  
   position: fixed;
   left: 0;
   top: 0;
   height: 100%;
-  width: 75px;
+  width: 65px;
   background: #03253A;
-  padding: 6px 14px;
-  border-radius: 0px 15px 0px 15px;
+  padding: 6px;
+  margin: 5px;
+  border-radius: 15px;
   z-index: 99;
   transition: all 0.5s ease;
 }
-.sidebar.open{
+
+.sidebar.open {
   width: 250px;
 }
-.sidebar .logo-details{
+
+.sidebar .logo-details {
   height: 60px;
   display: flex;
+  padding: 10x;
+  margin-top: 15px;
   align-items: center;
+  font-family: 'Alumni Sans';
   position: relative;
 }
-.sidebar .logo-details .icon{
+
+.sidebar .logo-details .icon {
   opacity: 0;
   transition: all 0.5s ease;
 }
-.sidebar .logo-details .logo_name{
+
+.sidebar .logo-details .logo_name {
   color: #fff;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 24px;
   opacity: 0;
   transition: all 0.5s ease;
 }
-.sidebar.open .logo-details .icon,
-.sidebar.open .logo-details .logo_name{
+
+.sidebar.open .logo-details .logo_name {
   opacity: 1;
 }
-.sidebar .logo-details #btn{
+
+.sidebar .logo-details #btn {
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 15px;
   transform: translateY(-50%);
-  font-size: 22px;
-  transition: all 0.4s ease;
-  font-size: 23px;
-  text-align: center;
+  font-size: 24px;
   cursor: pointer;
+  text-align: right;
   transition: all 0.5s ease;
 }
-.sidebar.open .logo-details #btn{
+
+.sidebar.open .logo-details #btn {
   text-align: right;
 }
-.sidebar i{
+
+.sidebar i {
   color: #fff;
   height: 60px;
   min-width: 50px;
   font-size: 28px;
   text-align: center;
-  line-height: 60px;
+  line-height: 50px;
 }
-.sidebar .nav-title{
+
+.sidebar .nav-title {
   margin-top: 20px;
   color: #c5c5c5;
   font-size: 14px;
@@ -75,28 +87,30 @@
   pointer-events: none;
   transition: 0.4s;
 }
-.sidebar.open .nav-title{
+
+.sidebar.open .nav-title {
   opacity: 1;
   pointer-events: auto;
 }
-.sidebar .nav-list{
-  margin-top: 20px;
+
+.sidebar .nav-list {
   height: 100%;
+
 }
-.sidebar li{
+
+.sidebar li {
   position: relative;
-  margin: 8px 0;
   list-style: none;
 }
-.sidebar li .tooltip{
+
+.sidebar li .tooltip {
   position: absolute;
   top: -20px;
-  left: calc(100% + 15px);
+  left: calc(100% + 10px);
   z-index: 3;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   padding: 6px 12px;
-  border-radius: 4px;
   font-size: 15px;
   font-weight: 400;
   opacity: 0;
@@ -104,17 +118,20 @@
   pointer-events: none;
   transition: 0s;
 }
-.sidebar li:hover .tooltip{
+
+.sidebar li:hover .tooltip {
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
   top: 50%;
   transform: translateY(-50%);
 }
-.sidebar.open li .tooltip{
+
+.sidebar.open li .tooltip {
   display: none;
 }
-.sidebar input{
+
+.sidebar input {
   font-size: 15px;
   color: #FFF;
   font-weight: 400;
@@ -123,15 +140,17 @@
   width: 100%;
   width: 50px;
   border: none;
-  border-radius: 12px;
+ 
   transition: all 0.5s ease;
   background: #1d1b31;
 }
-.sidebar.open input{
+
+.sidebar.open input {
   padding: 0 20px 0 50px;
   width: 100%;
 }
-.sidebar .bx-search{
+
+.sidebar .bx-search {
   position: absolute;
   top: 50%;
   left: 0;
@@ -140,90 +159,105 @@
   background: #1d1b31;
   color: #FFF;
 }
-.sidebar.open .bx-search:hover{
+
+.sidebar.open .bx-search:hover {
   background: #1d1b31;
   color: #FFF;
 }
-.sidebar .bx-search:hover{
+
+.sidebar .bx-search:hover {
   background: #FFF;
   color: #11101d;
 }
-.sidebar li a{
+
+.sidebar.open li a {
+  border-radius: 0;
+}
+
+
+.sidebar li a {
   display: flex;
   height: 100%;
   width: 100%;
-  border-radius: 12px;
   align-items: center;
+  border-radius: 12px;
   text-decoration: none;
   transition: all 0.4s ease;
   background: #03253A;
 }
-.sidebar li a:hover{
+
+.sidebar li a:hover {
   background: #FFF;
 }
 
 
 .sidebar li.active a {
-  background: #30CE88; /* Highlight color */
-  color: #fff; /* Text color for active item */
+  background: #30CE88;
+  color: #fff;
 }
 
 
 .sidebar li.active a i {
-  color: #fff; /* Icon color for active item */
+  color: #fff;
+  /* Icon color for active item */
 }
 
 
-.sidebar li a .links_name{
+.sidebar li a .links_name {
   color: #fff;
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
-    margin-left: 1rem;
+  margin-left: 1rem;
   opacity: 0;
   pointer-events: none;
   transition: 0.4s;
 }
-.sidebar.open li a .links_name{
+
+.sidebar.open li a .links_name {
   opacity: 1;
   pointer-events: auto;
 }
+
 .sidebar li a:hover .links_name,
-.sidebar li a:hover i{
+.sidebar li a:hover i {
   transition: all 0.5s ease;
   color: #11101D;
 }
-.sidebar li i{
+
+.sidebar li i {
   height: 50px;
   line-height: 50px;
   font-size: 18px;
-  border-radius: 12px;
+  border-radius: 15px;
 }
-.sidebar li.profile{
+
+.sidebar li.profile {
   position: fixed;
   height: 60px;
-  width: 75px;
+  width: 50px;
   left: 0;
+  margin: 10px;
   bottom: -8px;
-  padding: 10px 14px;
   background: #03253A;
+  border-radius: 25px;
+  text-align: center;
   transition: all 0.5s ease;
+  border-radius: 0px 15px 0px 15px;
+  z-index: 99;
   overflow: hidden;
 }
-.sidebar.open li.profile{
-  width: 250px;
+
+
+.sidebar.open li.profile {
+  opacity: 1;
+  width: 240px;
 }
-.sidebar li .profile-details{
+
+.sidebar li .profile-details {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-}
-.sidebar li img{
-  height: 45px;
-  width: 45px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-right: 10px;
 }
 
 
@@ -234,60 +268,97 @@
   color: #fff;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* This will truncate text with an ellipsis (...) */
-  max-width: 100px; /* Adjust width to fit within the sidebar when open */
-  transition: max-width 0.5s ease; /* Smooth transition for width change */
-}
-
-.sidebar li.profile .name,
-.sidebar li.profile .job {
-  max-width: 50px; /* Smaller width when sidebar is closed */
+  text-overflow: ellipsis;
+  opacity: 0;
+  max-width: 55px;
+  transition: 0.5s;
+  /* Smaller width when sidebar is closed */
 }
 
 .sidebar.open li.profile .name,
 .sidebar.open li.profile .job {
-  max-width: 100px; /* Full width when sidebar is open */
+  opacity: 1;
+  max-width: 200px;
+  transition: 0.5s;
 }
 
-
 .sidebar li img {
+  opacity: 0;
+}
+
+.sidebar.open li img {
+  opacity: 1;
   height: 35px;
   width: 35px;
   object-fit: cover;
   border-radius: 25px;
-  margin-right: 8px; /* Adjusted to fit better in small space */
+  margin-right: 8px;
 }
 
 .sidebar .profile #log_out {
   position: absolute;
+  opacity: 1;
   top: 50%;
   transform: translateY(-50%);
   background: #03253A;
   width: 50px;
   height: 60px;
   line-height: 60px;
-  border-radius: 15px;
-  transition: all 0.4s ease;
-  color: #fff; 
+  border-radius: 25px;
+  color: #fff;
+  transition: all 0.5s ease;
 }
 
 .sidebar.open .profile #log_out {
-  width: 50px;
+  width: 30px;
   background: none;
   right: 5px;
+  transition: all 0.5s ease;
 }
 
 .sidebar .profile #log_out:hover {
   background: #FFF;
   color: #11101D;
   cursor: pointer;
-  border-radius: 12px; 
+  border-radius: 12px;
 }
 
 
-@media (max-width: 420px) {
-  .sidebar li .tooltip{
-    display: none;
+
+
+/* Overlay default (hidden) */
+.overlay {
+  display: none;
+}
+ 
+
+/* Sidebar and home section on mobile (overlay effect) */
+@media (max-width: 850px) {
+  .sidebar.open {
+    opacity: 1; /* Maintain opacity */
+    background:#03253A;
+    z-index: 9999;
+  }
+
+  /* Modal overlay effect */
+  .sidebar.open ~ .overlay {
+    width: fit-content;
+    height: 100%;
+    z-index: 99;  /* Ensure it's below the sidebar but above the home section */
+  }
+
+  /* Disable interaction with the home section */
+  .sidebar.open ~ .home-section {
+    pointer-events: none;  /* Disable clicking or interacting with home section */
+  }
+
+  
+  /* Adjust home section appearance when the sidebar opens */
+  .home-section {
+    position: relative;
+    margin-left: 0;
+    width: 100vw;  /* Ensure the home section occupies the full width */
+    transition: all 0.5s ease;
+    z-index: 97;  /* Ensure it's below the overlay */
   }
 }
-

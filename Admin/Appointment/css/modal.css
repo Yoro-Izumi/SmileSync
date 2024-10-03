@@ -233,6 +233,22 @@ label {
     background-color: #999;
 }
 
+.done-modal{
+    height: 100vh;
+    position: relative;
+    border-radius: 25px;
+    background-color: #fff;
+    width: 80vw;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    transform: scale(0.7);
+    animation: popup 0.3s ease forwards;
+    overflow: auto;
+
+}
+
 
 
 /* Media queries for smaller screens */

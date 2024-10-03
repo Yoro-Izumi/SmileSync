@@ -15,6 +15,7 @@
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "top-navbar.php"; ?>
+<?php include "loader.php"; ?>
 
   
   <div class="body-container">

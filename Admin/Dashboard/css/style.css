@@ -13,17 +13,19 @@
 
 html {
     width: 100%;
-    min-height: 100vh;
+    max-height: 100vh;
     position: absolute;
-    background-color: #f0f2f5;
+    background-color: #E2ECF8;
     justify-content: center;
     align-content: center;
+    overflow-x: hidden;
 }
 
 
 body {
     font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
-    background-color: #f0f2f5;
+    background-color: #E2ECF8;
+    /*zoom: 0.9;*/
 }
 
 /* Sidebar when open */
@@ -33,7 +35,6 @@ body {
 
 /* Home section styles */
 .home-section {
-  background-color: #f0f2f5;
   min-height: 100vh;
   position: absolute;
   margin: auto 20px;
@@ -192,12 +193,13 @@ body {
 
 
 .dashboard_calendar-container {
-  height: 93vh;
+  position: relative;
+  height: 110vh;
   background-color: white;
-  padding: 20px;
+  padding: 25px;
   border-radius: 5px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  width: 320px;
+  width: 90%;
   margin: auto;
 }
 
@@ -265,8 +267,9 @@ body {
 }
 
 .dashboard_appointments {
+  cursor: pointer;
   text-align: left;
-  margin-top: 50px; /* Added margin to create space between calendar and appointments */
+  margin-top: 50px;
 }
 
 .dashboard_appointments h3 {
@@ -281,21 +284,24 @@ body {
 }
 
 .dashboard_appointments td {
-  padding: 8px 0;
+  padding: 8px 4px;
   border-bottom: 1px solid #eee;
   font-size: 14px;
   height: 100%;
+  transition: transform 0.3s;
 }
+
 
 .dashboard_appointments .dashboard_arrow {
   text-align: right;
   color: #888;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 .dashboard_view-all {
+  position: absolute;
   display: block;
-  width: inherit;
+  width: 80%;
   padding: 10px;
   border: 1px solid #007bff;
   background-color: white;
@@ -303,10 +309,9 @@ body {
   border-radius: 25px;
   cursor: pointer;
   text-align: center;
-  position: absolute;
   bottom: 2rem;
   left: 50%;
-  transform: translateX(-50%); /* Center the button horizontally */
+  transform: translateX(-50%);
   font-size: 14px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -346,15 +351,14 @@ body {
 }
 
 .stat-box {
-      /* height: auto; */
+      height: auto;
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      /* width: 30%; */
+      padding: 20px;
+     
       /* text-align: center;*/
       transition: transform 0.3s;
-      margin-bottom: 20px;
 }
 
 .stat-box:hover {
@@ -392,7 +396,7 @@ body {
   font-weight: bold;
   padding: 10px 0;
   color: #4A4A4A; /* Darker gray */
-  margin-bottom: 1rem; /* Space below the title */
+  margin: 1rem; /* Space below the title */
   text-align: left;
 }
 
@@ -415,7 +419,10 @@ body {
 
 
 @media (max-width: 1024px) {
-
+  .stat-box {
+  width: 100%;
+  margin: 20px 0;
+}
 .home-section {
   margin: auto;
   padding: 10px;
@@ -425,9 +432,26 @@ body {
 
 /* Responsive design: for mobile screens, stack the statistics boxes */
 @media (max-width: 768px) {
+
+
+  html{
+    overflow-y: scroll;
+  }
+
+.dashboard_view-all {
+  width:80%;
+  bottom: 0;
+  margin: 20px 0;
+}
+
   .home-section {
     margin: 0;
     padding: 0;
+  }
+
+  .dashboard_appointments {
+    text-align: left;
+    margin-bottom: 50px; 
   }
 
   .dashboard_appointments table {
@@ -436,13 +460,9 @@ body {
   }
 
   .dashboard_calendar-container {
-    height: 95vh;
-    background-color: white;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     width: 90%;
-    margin: auto;
+    margin: 20px auto;
   }
 
   .content-section{
@@ -451,6 +471,7 @@ body {
   }
 
   .statistics-container {
+    margin:20px;
     grid-template-columns: 1fr; /* 1 column for mobile */
     grid-template-rows: auto; /* Auto-adjust the height of rows */
   }

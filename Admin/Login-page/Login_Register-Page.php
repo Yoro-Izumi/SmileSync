@@ -31,6 +31,7 @@ if (isset($_SESSION['userAdminID'])) {
 
 <body>
      <?php include "modal.php"; ?>
+     <?php include "loader.php"; ?>
 
     <main>
    

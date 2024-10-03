@@ -1,4 +1,12 @@
 /* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+  
+}
 
 .sidebar {
   
@@ -86,7 +94,6 @@
 }
 
 .sidebar .nav-list {
-  margin-top: 15px;
   height: 100%;
 
 }
@@ -99,12 +106,11 @@
 .sidebar li .tooltip {
   position: absolute;
   top: -20px;
-  left: calc(100% + 15px);
+  left: calc(100% + 10px);
   z-index: 3;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   padding: 6px 12px;
-  border-radius: 4px;
   font-size: 15px;
   font-weight: 400;
   opacity: 0;
@@ -134,7 +140,7 @@
   width: 100%;
   width: 50px;
   border: none;
-  border-radius: 12px;
+ 
   transition: all 0.5s ease;
   background: #1d1b31;
 }
@@ -164,12 +170,17 @@
   color: #11101d;
 }
 
+.sidebar.open li a {
+  border-radius: 0;
+}
+
+
 .sidebar li a {
   display: flex;
   height: 100%;
   width: 100%;
-  border-radius: 12px;
   align-items: center;
+  border-radius: 12px;
   text-decoration: none;
   transition: all 0.4s ease;
   background: #03253A;
@@ -197,7 +208,7 @@
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
-  margin-left: 2rem;
+  margin-left: 1rem;
   opacity: 0;
   pointer-events: none;
   transition: 0.4s;
