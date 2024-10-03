@@ -16,15 +16,15 @@ $connect_db = connect_accounts($servername,$username,$password);
 
 $message = "default";//for modal
 
-if (isset($_POST['email'])) {
+if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['middleName']) && isset($_POST['suffix']) && isset($_POST['emailRegister']) && isset($_POST['passwordRegister']) && isset($_POST['confirmPasswordRegister']) && isset($_POST['birthday']) && isset($_POST['phoneNumber'])) {
     // Format of input sanitization
     $firstName = encryptData(sanitize_input($_POST['firstName'], $connect_db), $key);
     $lastName = encryptData(sanitize_input($_POST['lastName'], $connect_db), $key);
     $middleName = encryptData(sanitize_input($_POST['middleName'], $connect_db), $key);
     $suffix = encryptData(sanitize_input($_POST['suffix'], $connect_db), $key);
-    $email = encryptData(sanitize_input($_POST['email'], $connect_db), $key);
-    $password = sanitize_input($_POST['password'], $connect_db);
-    $confirmPassword = sanitize_input($_POST['confirmPassword'], $connect_db);
+    $email = encryptData(sanitize_input($_POST['emailRegister'], $connect_db), $key);
+    $password = sanitize_input($_POST['passwordRegister'], $connect_db);
+    $confirmPassword = sanitize_input($_POST['confirmPasswordRegister'], $connect_db);
     $dateOfCreation = date('Y-m-d');
     $accountStatus = 'Pending';
 
@@ -34,9 +34,7 @@ if (isset($_POST['email'])) {
 
     // Check if passwords match
     if ($password !== $confirmPassword) {
-        echo '<script language="javascript">';
-        echo 'alert("Passwords do not match!")';
-        echo '</script>';
+        echo 'error';
         exit();
     }
 
@@ -49,28 +47,32 @@ if (isset($_POST['email'])) {
     $password = password_hash($password, PASSWORD_ARGON2I, $options);
 
     // Insert admin account data
-    //INSERT INTO `smilesync_admin_accounts`(`admin_account_id`, `admin_first_name`, `admin_last_name`, `admin_middle_name`, `admin_suffix`, `admin_email`, `admin_password`, `date_of_creation`, `account_status`, `admin_birthdate`, `admin_phone`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]')
     $qryInsertAdminAccount = "INSERT INTO `smilesync_admin_accounts`(`admin_account_id`, `admin_first_name`, `admin_last_name`, `admin_middle_name`, `admin_suffix`, `admin_email`, `admin_password`, `date_of_creation`, `account_status`, `admin_birthdate`, `admin_phone`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $conInsertAdminAccount = mysqli_prepare($connect_db, $qryInsertAdminAccount);
     mysqli_stmt_bind_param($conInsertAdminAccount, 'ssssssssss', $firstName, $lastName, $middleName, $suffix, $email, $password, $dateOfCreation, $accountStatus, $birthday, $phoneNumber);
-    mysqli_stmt_execute($conInsertAdminAccount);
+
     // Execute and handle errors
     if (!mysqli_stmt_execute($conInsertAdminAccount)) {
-        echo 'Error: ' . mysqli_stmt_error($conInsertAdminAccount);
+        echo 'error';
+    }
+    else{
+        echo 'success';
     }
 
-    unset($conInsertAdminAccount);
-    unset($_POST['firstName']);
-    unset($_POST['lastName']);
-    unset($_POST['middleName']);
-    unset($_POST['suffix']);
-    unset($_POST['email']);
-    unset($_POST['password']);
-    unset($_POST['confirmPassword']);
-    unset($_POST['birthday']);
-    unset($_POST['phoneNumber']);
-    mysqli_close($connect_db);
-    exit();
+// Clean up
+unset($conInsertAdminAccount);
+unset($_POST['firstName']);
+unset($_POST['lastName']);
+unset($_POST['middleName']);
+unset($_POST['suffix']);
+unset($_POST['email']);
+unset($_POST['password']);
+unset($_POST['confirmPassword']);
+unset($_POST['birthday']);
+unset($_POST['phoneNumber']);
+mysqli_close($connect_db);
+echo 'success';
+exit();
 }
 
 if (isset($_POST['superAdminRegister'])) {
