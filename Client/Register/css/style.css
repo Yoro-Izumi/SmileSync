@@ -48,71 +48,6 @@ img {
 }
 
 
-.home-section {
-    background: #FFFF;
-    position: absolute;
-    height: 100%;
-    padding: 20px;
-    transition: all 0.5s ease;
-}
-
-
-
-.home-section .text{
-  display: inline-block;
-  color: #11101d;
-  font-size: 25px;
-  font-weight: 500;
-  margin: 18px
-}
-
-.right-panel {
-  position: fixed;
-  top: 0;
-  right: -350px; 
-  width: 300px;
-  height: 100%; 
-  border-radius: 15px;
-  background-color: #fff;
-  z-index: 99;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.right-panel.show{
-  right: 0;
-}
-
-/* Maximized Panel Styling */
-.right-panel.maximized {
-  height: 100%; /* Full viewport height */
-  width: 100%
-}
-
-/* Minimized Panel Styling */
-.right-panel.minimized {
-  height: 100%; /* Minimizes the panel to just the header */
-  width: 300px;
-  overflow: hidden; /* Hide the panel content */
-}
-
-/* Panel Header */
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: #FFF;
-  color: #000;
-  border-bottom: 1px solid #ddd;
-}
-
-.panel-header h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
 .header-icons {
   display: flex;
   align-items: center;
@@ -126,27 +61,6 @@ img {
 }
 
 
-/* Hide text when panel is shrunk */
-.right-panel.shrunk .panel-header h2 {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Center icons when shrunk */
-.right-panel.shrunk .panel-header {
-  justify-content: center;
-}
-
-/* Panel Content */
-.panel-content {
-  background-color: #C1E4F8;
-  flex: 1; 
-  overflow-y: auto;
-}
-
-.right-panel.shrunk .panel-content {
-  display: none; /* Hide content when shrunk */
-}
 
 /* Notification Item */
 .notification-item {
@@ -175,37 +89,159 @@ img {
   font-size: 12px;
 }
 
-.panel-footer {
-  padding: 5px 0;
-  margin-top: auto;
-  background-color: #FFFF;
-  text-align: center;
-  border-top: 1px solid #ddd;
-  height: auto; 
-  line-height: 30px; 
+* {
+  box-sizing: border-box;
 }
 
-.panel-footer button {
-  color: #000;
-  border: none;
-  padding: 5px 10px;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.header {
+  padding: 1rem;
+  background-color: #164e8a;
+}
+
+.logo {
+  height: 40px;
+  float: left;
+}
+
+.return-link {
+  float: right;
+  color: white;
+  text-decoration: none;
+}
+
+.form-container {
+  width: 80%;
+  margin: 2rem auto;
+  background-color: white; /* White background for the form */
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.step {
+  flex-grow: 1;
+  text-align: center;
+  padding: 0.5rem;
+  border-bottom: 2px solid #bbb;
   cursor: pointer;
 }
 
-.panel-footer button:hover {
-  color: #130e5e;
+.step.active {
+  color: #164e8a;
+  font-weight: bold;
+  border-bottom: 2px solid #164e8a;
 }
 
+.input-wrap {
+  position: relative;
+  margin: 1rem 0;
+}
 
-@media (max-width: 850px) {
+.input-field {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  transition: 0.3s;
+}
 
-  .sidebar.open ~ .home-section{
-    left: 78px;
-    width: calc(100% - 78px);
-    opacity: 0.2;
-    background: #000;
-    z-index: 99;
+.input-field:focus {
+  border-color: #164e8a;
+}
+
+.error-text {
+  display: none;
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #164e8a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+button:hover {
+  background-color: #0e3c6f; /* Darker shade on hover */
+}
+
+button[disabled] {
+  background-color: #ccc;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  margin: 15% auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 4px;
+  width: 50%;
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 768px) {
+  .form-container {
+    width: 95%;
   }
 
+  .input-wrap {
+    margin: 0.5rem 0;
+  }
 
+  button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
 }
+
+

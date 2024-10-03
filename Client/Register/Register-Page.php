@@ -12,6 +12,7 @@
    
   </head>
 <body>
+<?php include "loader.php"; ?>
 
   <div class="body-container">
       <h1>Welcome dear <span>Patient!</span></h1>
