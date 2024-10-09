@@ -15,6 +15,7 @@
   </head>
 <body>
 <div class="overlay"></div>
+<?php include "modal.php"; ?>
 <?php include "sidebar-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>

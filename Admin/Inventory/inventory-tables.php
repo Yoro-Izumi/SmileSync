@@ -55,8 +55,9 @@
                 <div class="dropdown">
                   <button>⋮</button>
                   <div class="dropdown-content">
-                  <a href="#" id="removeProductTable">Remove Product</a>
-                    <a href="#" >View Details</a>
+                    <a href="#" id="removeProductTable">Remove Product</a>
+                    <a href="#" id="viewDetails">View Details</a>
+                    <a href="#" id="editProduct">Edit</a>
                     <a href="#">Download</a>
                   </div>
                 </div>
@@ -94,7 +95,6 @@
           <div class="dropdown">
             <button>⋮</button>
             <div class="dropdown-content">
-              <a href="#">View Details</a>
               <a href="#">Download</a>
             </div>
           </div>
@@ -128,32 +128,14 @@
                   <div class="dropdown">
                     <button>⋮</button>
                     <div class="dropdown-content">
-                      <a href="#" >View Details</a>
+                      <a href="#" id="viewDetailsHistory">View Details</a>
                       <a href="#">Download</a>
                     </div>
                   </div>
                 </div>
               </td>
             </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td data-label="Product Name">Anesthetic</td>
-              <td data-label="Product ID">001-00-2</td>
-              <td data-label="Quantity">10</td>
-              <td data-label="Date Used">08-10-2024</td>
-              <td data-label="Released By">Doc Oli, Jonas</td>
-              <td data-label="ACTIONS">
-                <div class="actions">
-                  <div class="dropdown">
-                    <button>⋮</button>
-                    <div class="dropdown-content">
-                      <a href="#" >View Details</a>
-                      <a href="#">Download</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
+
           </tbody>
         </table>
   
