@@ -8,7 +8,9 @@
 <body>
 
 <div class="modal" id="appointmentDoneModal">
+
     <div class="done-modal">
+
     <div class="modal-header">
                 <div class="content">
                     <h2>iMee-Toga Oli Dental Clinic</h2>
@@ -174,7 +176,9 @@
     </div>
 </div>
 
+
 <div class="modal" id="deleteNewProgressModal">
+
     <div class="modal-content">
         <div class="image-container">
             <img class="image" src="img/archive.png" alt="security">
@@ -185,6 +189,7 @@
                 All progress will be removed.
             </div>
         </div>
+
         <button class="modal-button normal" id="deleteNewProgressBtn">Delete</button>
         <button class="modal-button secondary-button warning" id="cancelNewDeleteBtn">Cancel</button>
     </div>
@@ -205,6 +210,7 @@
         <button class="modal-button secondary-button warning" id="cancelExistingDeleteBtn">Cancel</button>
     </div>
 </div>
+
 
 <!-- Success Modal -->
 <div class="modal" id="appointmentSuccessModal">

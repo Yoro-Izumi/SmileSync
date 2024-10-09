@@ -2,14 +2,20 @@
 // Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
+
+// Generate a CSRF token if it's not already set
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Check if user is already logged in
 if (isset($_SESSION['userSuperAdminID'])) {
     header('location:../Dashboard/Dashboard.php');
-    die();
+    exit();
 }
 if (isset($_SESSION['userAdminID'])) {
     header('location:../Dashboard/Dashboard.php');
-    die();
+    exit();
 }
 
 
@@ -25,6 +31,12 @@ if (isset($_SESSION['userAdminID'])) {
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!--style.css-->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Flatpickr JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -33,7 +45,7 @@ if (isset($_SESSION['userAdminID'])) {
      <?php include "modal.php"; ?>
      <?php include "loader.php"; ?>
 
-    <main>
+     <main>
    
       <div class="box">
         <div class="inner-box">
@@ -290,6 +302,7 @@ if (isset($_SESSION['userAdminID'])) {
 
 <!-- AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 
 
