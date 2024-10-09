@@ -71,7 +71,7 @@
     <div class="chart-group">
       <div class="container">
       
-      <div class="patient-volume-header">
+ <!--     <div class="patient-volume-header">
       <h2 class="chart-title">Inventory Forecast</h2>
       <?php include "dropdownWeek.php"; ?>
     </div>
@@ -114,7 +114,9 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
+    
+      <?php include "inventory_prediction/inventory_forecast.php";?>
   </div>
 </div>
 
