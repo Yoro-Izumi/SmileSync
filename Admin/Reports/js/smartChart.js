@@ -6,7 +6,7 @@ var peakDaysOptions = {
     toolbar: { show: false }
   },
   series: [{
-    data: [24, 18, 40, 36, 25, 28]
+    data: peakDayData // Access global variable set in HTML
   }],
   xaxis: {
     categories: ['M', 'T', 'W', 'T', 'F', 'S'],
@@ -27,6 +27,7 @@ var peakDaysOptions = {
     }
   }
 };
+
 var peakDaysChart = new ApexCharts(document.querySelector("#peakDaysChart"), peakDaysOptions);
 peakDaysChart.render();
 
