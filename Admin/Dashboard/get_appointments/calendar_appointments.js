@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 fetchDashboardAppointments(dashboard_fullDate);
             };
 
-            if (dashboard_fullDate === '2021-09-19') dashboard_dayElement.classList.add("dashboard_selected"); // Mark the 19th by default
+            if (dashboard_fullDate === '2024-09-19') dashboard_dayElement.classList.add("dashboard_selected"); // Mark the 19th by default
             dashboard_daysContainer.appendChild(dashboard_dayElement);
         }
     }
@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Add a clickable link for each appointment
             dashboard_row.innerHTML = `
-                <td>${dashboard_appointment.name}</td>
-                <td>${dashboard_appointment.time}</td>
+                <td>${dashboard_appointment.patient_first_name} ${dashboard_appointment.patient_middle_name} ${dashboard_appointment.patient_last_name} ${dashboard_appointment.patient_suffix}</td>
+                <td>${dashboard_appointment.appointment_date_time}</td>
                 <td class="dashboard_arrow">
                     <a href="http://localhost/SmileSync/Admin/Appointment/appointment-details.php?id=${dashboard_appointment.id}">
                         &#8250;
@@ -93,5 +93,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Initialize calendar
     updateDashboardCalendar();
-    fetchDashboardAppointments('2021-09-19'); // Default to 19th of September
+    fetchDashboardAppointments('2024-09-19'); // Default to 19th of September
 });
