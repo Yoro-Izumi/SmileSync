@@ -233,6 +233,107 @@ label {
     background-color: #999;
 }
 
+/* Base styles for the alert box */
+.alert {
+    position: fixed; /* Fixes the alert at the top of the viewport */
+    left: 50%; /* Centers the alert horizontally */
+    transform: translateX(-50%); /* Centers the alert perfectly */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-top: 10px; /* Space between alerts to create a stack effect */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 9999; /* Keeps the alerts above other elements */
+    animation: fadeIn 0.5s forwards; /* Fade-in animation */
+    font-family: Arial, sans-serif;
+    width: 90%; /* Adjust the width to fit properly on the screen */
+    max-width: 600px; /* Set a maximum width for better layout */
+}
+
+/* Position alerts based on their index to stack them vertically */
+.alert:nth-child(1) { top: 20px; }
+.alert:nth-child(2) { top: 90px; }
+.alert:nth-child(3) { top: 160px; }
+.alert:nth-child(4) { top: 220px; }
+.alert:nth-child(5) { top: 280px; }
+
+/* Success alert - Green background */
+.alert-success {
+    background-color: #4CAF50; /* Green */
+    border-left: 5px solid #388E3C;
+}
+
+/* Error (Deleted) alert - Red background */
+.alert-error {
+    background-color: #f44336; /* Red */
+    border-left: 5px solid #d32f2f;
+}
+
+/* Information (Edited) alert - Blue background */
+.alert-info {
+    background-color: #2196F3; /* Blue */
+    border-left: 5px solid #1976D2;
+}
+
+/* Close button styles */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.closebtn:hover {
+    color: #ddd;
+}
+
+/* Clear All button styles */
+#clearAllButton {
+    position: fixed; /* Fixes the button at a specific position on the page */
+    top: 10px; /* Distance from the top of the page */
+    right: 10px; /* Distance from the right edge of the page */
+    background-color: #555;
+    color: white; /* Changed to white for better visibility */
+    border: none;
+    padding: 10px 20px; /* Added more padding for better button size */
+    cursor: pointer;
+    border-radius: 8px;
+    z-index: 10000; /* Ensures it stays above all alerts */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Added shadow for better visibility */
+}
+
+#clearAllButton:hover {
+    background-color: #e5e5e5;
+    color: black; /* Text color change on hover */
+}
+
+/* Fade-in animation for showing the alert */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide-out animation for closing the alert */
+@keyframes slideOut {
+    from {
+        transform: translateX(-50%); /* Initial centered position */
+        opacity: 1; /* Fully visible */
+    }
+    to {
+        transform: translateX(100%); /* Slides out to the right */
+        opacity: 0; /* Fades out */
+    }
+}
+
+/* Alert icon styles */
+.alert-icon {
+    margin-right: 10px;
+    font-size: 24px;
+}
 
 
 /* Media queries for smaller screens */

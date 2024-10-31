@@ -198,8 +198,10 @@ if (isset($_SESSION['userAdminID'])) {
                   name="confirmPassword"
                   id="confirmPassword"
                   autocomplete="off"
-                required></div>
-            <label>Confirm Password<indicator>*</indicator></label>
+                required>
+              <label>Confirm Password<indicator>*</indicator></label>
+              </div>
+            
         </div>
 
                 <input type="submit" value="Sign Up" class="sign-btn" id="registerBtn" name="registerBtn"/>

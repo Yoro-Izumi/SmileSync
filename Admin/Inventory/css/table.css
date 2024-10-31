@@ -166,7 +166,7 @@ checkbox{
     padding: 12px 16px;
     z-index: 1;
     border-radius: 8px;
-    justify-content: center;
+    justify-content: left;
   }
 
   .dropdown:hover .dropdown-content {

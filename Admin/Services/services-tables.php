@@ -30,9 +30,8 @@
         <div class="dropdown">
           <button>⋮</button>
           <div class="dropdown-content">
-          <a href="#" >Add Service</a>
-          <a href="#" >Delete Service</a>
-          <a href="#">Edit Service</a>
+          <a href="#" id="addServices">Add Service</a>
+          <a href="#" id="deleteServices">Delete Service</a>
           </div>
         </div>
       </div>
@@ -63,32 +62,15 @@
                 <div class="dropdown">
                   <button>⋮</button>
                   <div class="dropdown-content">
-                    <a href="#" >Delete Service</a>
-                    <a href="#">Edit Service</a>
+                  <a href="#" id="deleteServicesTable">Delete Service</a>
+                  <a href="#" id="editServicesTable">Edit Service</a>
+                    <a href="#" id="viewServices">View Service</a>
                   </div>
                 </div>
               </div>
             </td>
           </tr>
 
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="Description">Prothodontics</td>
-            <td data-label="ID">00-00-002</td>
-            <td data-label="Price">10000.00</td>
-            <td data-label="Duration">2 hours</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#" >Delete Service</a>
-                    <a href="#">Edit Service</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
           
         </tbody>
       </table>

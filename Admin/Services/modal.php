@@ -8,7 +8,7 @@
 <body>
 
 <!-- View Items Modal -->
-<div class="modal" id="viewItemModal">
+<div class="modal" id="viewServiceModal">
     <div class="modal-content">
         <div class="message-container">
             <div class="modal-description">
@@ -21,7 +21,7 @@
 
 
 <!-- Edit Modal -->
-<div class="modal" id="addModal">
+<div class="modal" id="addServiceModal">
     <div class="modal-content">
         <b class="modal-title normal-title">Add Item</b>
 
@@ -30,8 +30,8 @@
                 -Place Information-
             </div>
         </div>
-        <button id="addItemBtn" class="modal-button success">Add</button>
-        <button class="modal-button secondary-button warning" id="cancelAddItemBtn">Cancel</button>
+        <button id="addServiceBtn" class="modal-button success">Add</button>
+        <button class="modal-button secondary-button warning" id="cancelAddServicesBtn">Cancel</button>
     </div>
 </div>
 
@@ -84,48 +84,24 @@
 </div>
 
 
-<!-- Success Edit Modal 
-<div class="modal" id="editSuccessModal">
-    <div class="modal-content">
-        <div class="modal-title success-title">Edit Successful!</div>
-        <div class="message-container">
-            <div class="modal-description">
-                Item has been successfully  edited.
-            </div>  
-        </div>
-        <button id="closeEditSuccessBtn" class="modal-button normal">OK</button>
-    </div>
-</div>-->
 
 <!-- Remove Account Warning Modal -->
-<div class="modal" id="removeItemModal">
+<div class="modal" id="removeAccountModal">
     <div class="modal-content">
         <div class="image-container">
             <img class="image" src="img/archive.png" alt="security">
         </div>
-        <div class="modal-title warning-title">Inventory Removal</div>
+        <div class="modal-title warning-title">Service Removal</div>
         <div class="message-container">
             <div class="modal-description">
                 You are trying to remove (1) item. The item will no longer be accessed by the admin. 
             </div>
         </div>
-        <button class="modal-button normal" id="removeItemBtn">Remove</button>
-        <button class="modal-button secondary-button warning" id="cancelRemoveItemBtn">Cancel</button>
+        <button class="modal-button normal" id="removeServicesBtn">Remove</button>
+        <button class="modal-button secondary-button warning" id="cancelRemoveServicesBtn">Cancel</button>
     </div>
 </div>
 
-<!-- Remove Account Success Modal
-<div class="modal" id="removeItemSuccessModal">
-    <div class="modal-content">
-        <div class="modal-title warning-title">Item Removed</div>
-        <div class="message-container">
-            <div class="modal-description">
-                Item/s has been successfully removed. You may view the removed account in Trash.
-            </div>
-        </div>
-        <button id="okRemoveItem" class="modal-button success">OK</button>
-    </div>
-</div> -->
 
 <div id="alertContainer"></div>
 
