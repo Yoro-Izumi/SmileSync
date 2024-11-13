@@ -3,23 +3,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
 /* General Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 html{
-  background-color: #f0f2f5;
+  background-color: #E2ECF8;
 }
 
+
 body {
-  background-color: #f0f2f5;
+  background-color: #E2ECF8;
   /* display: flex; */
   /* justify-content: center; */
   /* align-items: center; */
@@ -28,9 +29,6 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
-
-
 /* Sidebar when open */
 .sidebar.open {
   width: 250px; /* Expanded width */

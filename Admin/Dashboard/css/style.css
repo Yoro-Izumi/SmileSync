@@ -2,18 +2,21 @@
 @import url("https://fonts.googleapis.com/css?family=Inria+Sans");
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
-*,
-*::before,
-*::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 html {
     width: 100%;
-
     max-height: 100vh;
     position: absolute;
     background-color: #E2ECF8;
@@ -26,10 +29,8 @@ html {
 
 body {
     font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
-
     background-color: #E2ECF8;
-    /*zoom: 0.9;*/
-
+   zoom: 1.10;/* */
 }
 
 /* Sidebar when open */
@@ -197,14 +198,13 @@ body {
 
 
 .dashboard_calendar-container {
-  position: relative;
-  height: 110vh;
+ /* position: relative;
+  height: 110vh;*/
   background-color: white;
   padding: 25px;
   border-radius: 5px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   width: 90%;
-
   margin: auto;
 }
 
@@ -272,10 +272,11 @@ body {
 }
 
 .dashboard_appointments {
+  overflow-y: scroll;
+  height: 35vh;
   cursor: pointer;
   text-align: left;
   margin-top: 50px;
-
 }
 
 .dashboard_appointments h3 {
@@ -284,7 +285,7 @@ body {
 }
 
 .dashboard_appointments table {
-  height: -webkit-fill-available;
+  /*height: -webkit-fill-available;*/
   width: 100%;
   border-collapse: collapse;
 }
@@ -305,10 +306,9 @@ body {
 }
 
 .dashboard_view-all {
-  position: absolute;
+  position: relative;
   display: block;
   width: 80%;
-
   padding: 10px;
   border: 1px solid #007bff;
   background-color: white;
@@ -316,7 +316,7 @@ body {
   border-radius: 25px;
   cursor: pointer;
   text-align: center;
-  bottom: 2rem;
+  /*bottom: 2rem;*/
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;

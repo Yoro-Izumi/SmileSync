@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="nav-logo">
             <div class="logo">
-                <h4>SmileSync</h4>
+                SmileSync
               </div>
         </div>
         <ul class="nav-links">
@@ -25,19 +25,10 @@
         <div class="nav-icons">
         <i class="bx bx-message-alt" id="chatbotBtn"></i>
         <i class="bx bx-bell" id="notificationBtn"></i>
-            <div class="dropdown">
-                <i class="fa fa-user-circle dropdown-toggle"></i>
-                <div class="dropdown-menu">
-                    <a href="#">User Account</a>
-                    <a href="../Settings/Settings-page.php">Settings</a>
-                    <a href="#">Logout</a>
-                </div>
-            </div>
+
         </div>
     </nav>
 
-    <li>
-        
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/top-navbar.js"></script>
  

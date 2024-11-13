@@ -14,7 +14,7 @@
     <nav class="navbar">
         <div class="nav-logo">
             <div class="logo">
-                <h4>SmileSync</h4>
+                SmileSync
               </div>
         </div>
         <ul class="nav-links">
@@ -28,16 +28,14 @@
             <div class="dropdown">
                 <i class="fa fa-user-circle dropdown-toggle"></i>
                 <div class="dropdown-content">
-                    <a href="#">User Account</a>
-                    <a href="../Settings/Settings-page.php">Settings</a>
-                    <a href="#">Logout</a>
+                    <a href="#"><i class="fa fa-user-circle"></i>email@email.com</a>
+                    <a href="../Settings/Settings-page.php"><i class='bx bxs-cog' ></i>Settings</a>
+                    <a href="#"><i class='bx bx-log-out' id="log_out" ></i>Logout</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <li>
-        
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="js/top-navbar.js"></script>
  

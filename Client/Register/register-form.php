@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <div class="topbar">
-      <img src="logo.png" alt="Logo" class="logo">
-      <div class="return-link"><a href="#">Return to landing page</a></div>
+      <div class="logo"><img src="img/logo.png" alt="Logo">SmileSync</div>
+      <div class="return-link"><a href="../LogIn-Page/Login-Page.php">Return to landing page</a></div>
     </div>
   </header>
 
   <div class="form-container">
-    <h1 class="form-title">Add New Account</h1>
+    <h1 class="form-title">Add New Appointment</h1>
 
     <div class="steps">
       <div class="step active">
@@ -222,23 +221,6 @@
           </div>         
         </div>
 
-        <div class="question-form">
-  <div class="titles">
-    <span>Question</span>
-  </div>
-
-  <div class="question-row">
-    <div class="input-wrap">
-      <label for="questionInput">Have you visited any infected areas?</label>
-    </div>
-    <div class="answer-options">
-      <input type="radio" id="coffee-yes" name="coffee" value="yes">
-      <label for="coffee-yes">Yes</label>
-      <input type="radio" id="coffee-no" name="coffee" value="no">
-      <label for="coffee-no">No</label>
-    </div>
-  </div>
-</div>
  
       </div>
 

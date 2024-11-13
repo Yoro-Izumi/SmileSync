@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="css/sidebar-nav.css"/>
     <!-- Page -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- chatbot -->
+    <link rel="stylesheet" href="css/chatbot.css">
     <!-- Boxicons CDN Link -->
-    <link href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-
-   <!-- Bootstrap CSS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 

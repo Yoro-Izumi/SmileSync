@@ -250,14 +250,3 @@ input[type="date"] {
     color: #bbb;
     font-size: 1rem;
 }
-
-
-
-
-
-.img {
-    max-width: 100%; /* Ensure the image scales properly */
-    max-height: 100%; /* Ensure the image scales properly */
-    object-fit: fill; /* Cover the entire area without distorting the image */
-}
-

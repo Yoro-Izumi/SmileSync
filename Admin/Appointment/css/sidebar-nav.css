@@ -207,7 +207,7 @@
   color: #fff;
   font-size: 15px;
   font-weight: 400;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   margin-left: 1rem;
   opacity: 0;
   pointer-events: none;
