@@ -43,27 +43,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="Product Name">Analgesics</td>
-            <td data-label="Product ID">00-001</td>
-            <td data-label="Price Sold">10.00</td>
-            <td data-label="Batch Date">08-10-2024</td>
-            <td data-label="Expiry Date">08-10-2027</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                  <a href="#" id="removeProductTable">Remove Product</a>
-                    <a href="#" >View Details</a>
-                    <a href="#">Download</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-
+          <?php include "tr_inventory-tables_product_listing.php";?>
         </tbody>
       </table>
 
@@ -116,44 +96,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td data-label="Product Name">Analgesics</td>
-              <td data-label="Product ID">00-001</td>
-              <td data-label="Quantity">10</td>
-              <td data-label="Date Used">08-10-2024</td>
-              <td data-label="Released By">Doc Oli, Jonas</td>
-              <td data-label="ACTIONS">
-                <div class="actions">
-                  <div class="dropdown">
-                    <button>⋮</button>
-                    <div class="dropdown-content">
-                      <a href="#" >View Details</a>
-                      <a href="#">Download</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td data-label="Product Name">Anesthetic</td>
-              <td data-label="Product ID">001-00-2</td>
-              <td data-label="Quantity">10</td>
-              <td data-label="Date Used">08-10-2024</td>
-              <td data-label="Released By">Doc Oli, Jonas</td>
-              <td data-label="ACTIONS">
-                <div class="actions">
-                  <div class="dropdown">
-                    <button>⋮</button>
-                    <div class="dropdown-content">
-                      <a href="#" >View Details</a>
-                      <a href="#">Download</a>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
+          <?php include "tr_inventory-tables_product_history.php";?>
           </tbody>
         </table>
   
