@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Loading Screen</title>
+    <style>
+        /* Basic styling for the loading screen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Loading screen styling */
+        #loading-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .loading-spinner {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border: 8px solid rgba(0, 0, 0, 0.1);
+            border-top: 8px solid black;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Fade tail styling */
+        .tail {
+            position: absolute;
+            width: 8px;
+            height: 50px;
+            background-color: black;
+            border-radius: 5px;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            animation: fadeTail 1s ease-in-out infinite;
+        }
+
+        @keyframes fadeTail {
+            0% {
+                opacity: 1;
+                height: 50px;
+            }
+            50% {
+                opacity: 0;
+                height: 20px;
+            }
+            100% {
+                opacity: 1;
+                height: 50px;
+            }
+        }
+
+        /* Logo in the center, will not spin */
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            pointer-events: none; /* Prevent interaction */
+        }
+
+        /* Fade in/out keyframes */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Initially hide the content */
+        #content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-spinner">
+            <div class="tail"></div> <!-- Fading tail -->
+            <img src="monster-in-paris.jpg" alt="Loading Logo" class="logo">
+        </div>
+    </div>
+
+    <div id="content">
+        <!-- Your main content here -->
+        <h1>Welcome to SmileSync!</h1>
+        <p>Your content will appear here after 30 seconds of loading.</p>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Delay hiding the loading screen for 30 seconds (30,000 milliseconds)
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                const content = document.getElementById('content');
+
+                // Apply fade out animation before removing the loading screen
+                loadingScreen.style.animation = 'fadeOut 1s forwards';
+
+                // Wait for the fade out animation to complete before hiding
+                setTimeout(function() {
+                    loadingScreen.style.display = 'none';
+                    content.style.display = 'block';
+                }, 1000); // 1 second fade out time
+            }, 3000); // 30 seconds delay
+        });
+    </script>
+</body>
+</html>
