@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Register-SmileSync</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!-- Page -->
     <link rel="stylesheet" href="css/style.css" />
@@ -13,15 +13,10 @@
   </head>
 <body>
 <?php include "loader.php"; ?>
-
-  <div class="body-container">
-      <h1>Welcome dear <span>Patient!</span></h1>
-      <?php include "register-form.php"; ?>
-    </div>
-
+<?php include "register-form.php"; ?>
   
-
- <script src="js/app.js"></script>
- <script src="js/notif.js"></script>
+<script src="js/form.js"></script>
+<script src="js/app.js"></script>
+<script src="js/notif.js"></script>
 </body>
 </html>

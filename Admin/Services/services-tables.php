@@ -30,9 +30,8 @@
         <div class="dropdown">
           <button>⋮</button>
           <div class="dropdown-content">
-          <a href="#" >Add Service</a>
-          <a href="#" >Delete Service</a>
-          <a href="#">Edit Service</a>
+          <a href="#" id="addServices">Add Service</a>
+          <a href="#" id="deleteServices">Delete Service</a>
           </div>
         </div>
       </div>
@@ -52,6 +51,7 @@
           </tr>
         </thead>
         <tbody>
+
           <?php include "tr_services-tables.php";?>
           
         </tbody>

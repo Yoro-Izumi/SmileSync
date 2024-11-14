@@ -22,6 +22,7 @@ include "../admin_global_files/connect_database.php";
   </head>
 <body>
 <div class="overlay"></div>
+<?php include "modal.php"; ?>
 <?php include "sidebar-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>

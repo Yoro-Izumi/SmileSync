@@ -1,97 +1,115 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const loginFailedModal = document.getElementById('loginFailedModal');
-    const resetPasswordModal = document.getElementById('resetPasswordModal');
-    const successModal = document.getElementById('successModal');
-    const privacyPolicyModal = document.getElementById('privacyPolicyModal');
-    const termServicesModal = document.getElementById('termServicesModal');
-    const successRegisterModal = document.getElementById('successRegisterModal');
+   //Modal
+    const viewDetailsModal = document.getElementById('viewItemModal');
+    const deleteProgressModal = document.getElementById('deleteProgressModal');
+    const addItemModal = document.getElementById('addModal');
+    const editModal = document.getElementById('editModal');
+    const confirmEditModal = document.getElementById('confirmEditModal'); 
+    const deleteInventoryModal = document.getElementById('removeItemModal'); 
+    //Buttons
+    const viewDetailsBtn = document.getElementById('viewDetails');
+    const viewDetailsHistoryBtn = document.getElementById('viewDetailsHistory'); 
+    const okViewBtn = document.getElementById('okView');
+
+    const addProductBtn = document.getElementById('addProduct');
+    const addItemBtn = document.getElementById('addItemBtn');
+    const cancelAddItemBtn = document.getElementById('cancelAddItemBtn');
+
+    const deleteProgressBtn = document.getElementById('deleteNewProgressBtn');
+    const cancelDeleteProgressBtn = document.getElementById('cancelNewDeleteBtn');
+
+    const editProductBtn = document.getElementById('editProduct');
+    const editBtn = document.getElementById('EditBtn');
+    const cancelEditBtn = document.getElementById('cancelEditItemBtn');
+
+
+    const confirmEditBtn = document.getElementById('confirmEditBtn');
+    const cancelConfirmEditBtn = document.getElementById('cancelConfirmEditBtn');
+
+
+    const removeItemTableBtn = document.getElementById('removeProductTable');
+    const deleteInventoryBtn  = document.getElementById('removeProduct');
+    const removeItemBtn = document.getElementById('removeItemBtn');
+    const cancelDeleteInventoryBtn = document.getElementById('cancelRemoveItemBtn');
+
+
+    // Show View Detais of Product and Product History
+    viewDetailsBtn.addEventListener('click', function(){
+        viewDetailsModal.classList.add('show');
+    });
+
+    viewDetailsHistoryBtn.addEventListener('click', function(){
+        viewDetailsModal.classList.add('show');
+    });
+
+    // Close View Details Modal
+    okViewBtn.addEventListener('click', function(){
+        viewDetailsModal.classList.remove('show');
+    });
+
+    // Add New Item Modal
+    addProductBtn.addEventListener('click', function(){
+        addItemModal.classList.add('show');
+    });
+
+    addItemBtn.addEventListener('click', function(){
+        addItemModal.classList.remove('show');
+    });
+    // Show if progress muust continue modal   
+    cancelAddItemBtn.addEventListener('click', function(){
+        deleteProgressModal.classList.add('show');
+    });
     
+    cancelDeleteProgressBtn.addEventListener('click', function(){
+        deleteProgressModal.classList.remove('show');
+    });
+
+    deleteProgressBtn.addEventListener('click', function(){
+        deleteProgressModal.classList.remove('show');
+        addItemModal.classList.remove('show');
+    });
+
+    // Show Edit Item Modal
+    editProductBtn.addEventListener('click', function(){
+        editModal.classList.add('show');
+    });
+
+    cancelEditBtn.addEventListener('click', function(){
+        editModal.classList.remove('show');
+    });
     
-    const registerBtn = document.getElementById('registerBtn');
-    const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
-
-    const showLoginFailedBtn = document.getElementById('loginBtn');
-    const closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
-
-    const termServices = document.getElementById('termServices');
-    const closetermServicesBtn = document.getElementById('closetermServicesBtn');
-
-    const privacyPolicy = document.getElementById('privacyPolicy');
-    const closePrivacyPolicyBtn = document.getElementById('closePrivacyPolicyBtn');
-
-    const resetPasswordLink = document.getElementById('resetPasswordLink');
-    const resetLink = document.getElementById('forgotLink');
-    const closeResetPasswordBtn = document.getElementById('cancelButton');
-
-    const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
-    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
-
-    // Show the login failed modal
-    showLoginFailedBtn.addEventListener('click', function() {
-        loginFailedModal.classList.add('show');
+    // Confirm to edit item MOdal-------
+    editBtn.addEventListener('click', function(){
+        confirmEditModal.classList.add('show');
     });
 
-    // Close the terms failed modal
-    closetermServicesBtn.addEventListener('click', function() {
-        termServicesModal.classList.remove('show');
+    confirmEditBtn.addEventListener('click', function(){
+        confirmEditModal.classList.remove('show');
     });
 
-       // Show the register modal
-       registerBtn.addEventListener('click', function() {
-        successRegisterModal.classList.add('show');
+    cancelConfirmEditBtn.addEventListener('click', function(){
+        confirmEditModal.classList.remove('show');
+    });
+      
+
+    // Show Delete Inventory modal----------
+    removeItemTableBtn.addEventListener('click', function() {
+        deleteInventoryModal.classList.add('show');
+    }); 
+
+    deleteInventoryBtn.addEventListener('click', function() {
+        deleteInventoryModal.classList.add('show');
     });
 
-     // Close the closeSuccessRegisterBtn modal
-     closeSuccessRegisterBtn.addEventListener('click', function() {
-        successRegisterModal.classList.remove('show');
+    cancelDeleteInventoryBtn.addEventListener('click', function() {
+        deleteInventoryModal.classList.remove('show');
     });
 
-     // Show the terms and services modal
-     termServices.addEventListener('click', function() {
-        termServicesModal.classList.add('show');
+
+    // Close/Discard Delete Invntory Modal
+    removeItemBtn.addEventListener('click', function() {
+        deleteInventoryModal.classList.remove('show');
     });
 
-    // Close the terms and services modal
-    closeLoginFailedBtn.addEventListener('click', function() {
-        loginFailedModal.classList.remove('show');
-    });
 
-    // Show the privacy policy modal
-    privacyPolicy.addEventListener('click', function() {
-        privacyPolicyModal.classList.add('show');
-    });
-
-    // Close the privacy policy  modal
-    closePrivacyPolicyBtn.addEventListener('click', function() {
-        privacyPolicyModal.classList.remove('show');
-    });
-
-    // Show the reset password modal when clicking the reset password link
-    resetPasswordLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
-        loginFailedModal.classList.remove('show');
-        resetPasswordModal.classList.add('show');
-    });
-
-    // Close the reset password modal (Cancel button)
-    closeResetPasswordBtn.addEventListener('click', function() {
-        resetPasswordModal.classList.remove('show');
-    });
-
-    // Show the reset password modal when clicking the reset password link
-    resetLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
-        resetPasswordModal.classList.add('show');
-    });
-
-    // Handle submit action
-    submitResetPasswordBtn.addEventListener('click', function() {
-        resetPasswordModal.classList.remove('show');
-        successModal.classList.add('show'); // Show success modal after submitting
-    });
-
-    // Close the success modal
-    closeSuccessModalBtn.addEventListener('click', function() {
-        successModal.classList.remove('show');
-    });
 });

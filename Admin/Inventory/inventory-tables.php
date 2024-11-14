@@ -43,6 +43,7 @@
           </tr>
         </thead>
         <tbody>
+
           <?php include "tr_inventory-tables_product_listing.php";?>
         </tbody>
       </table>
@@ -74,7 +75,6 @@
           <div class="dropdown">
             <button>⋮</button>
             <div class="dropdown-content">
-              <a href="#">View Details</a>
               <a href="#">Download</a>
             </div>
           </div>
@@ -96,6 +96,7 @@
             </tr>
           </thead>
           <tbody>
+
           <?php include "tr_inventory-tables_product_history.php";?>
           </tbody>
         </table>
