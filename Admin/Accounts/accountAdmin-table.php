@@ -60,44 +60,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="ADMIN ID">00-00-001</td>
-            <td data-label="ADMIN NAME">Valera, Arwen Grace C.</td>
-            <td data-label="APPROVER">Dr. OLI, Jonas</td>
-            <td data-label="Date of Creation">08-10-2024</td>
-            <td data-label="STATUS" class="status">Active</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#">Delete Account</a>
-                    <a href="#">Edit Account</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="ADMIN ID">00-00-002</td>
-            <td data-label="ADMIN NAME">Dimaculangan, Chorlyn L.</td>
-            <td data-label="APPROVER">-</td>
-            <td data-label="Date of Creation">08-10-2024</td>
-            <td data-label="STATUS" class="status">Pending</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#">Delete Account</a>
-                    <a href="#">Edit Account</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+          <?php include "tr_accountAdmin-table.php";?>
         </tbody>
       </table>
 
