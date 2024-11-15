@@ -31,7 +31,7 @@ include "total_rescheduled_appointments.php";
 
 <body>
     <div class="overlay"></div>
-    <?php include "sidebar-super-admin.php"; ?>
+    <?php include "sidebar-admin.php"; ?>
     <?php include "notif.php"; ?>
     <?php include "chatbot.php"; ?>
     <?php include "loader.php"; ?>

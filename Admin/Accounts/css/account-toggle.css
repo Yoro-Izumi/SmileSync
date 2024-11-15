@@ -19,6 +19,9 @@
 }
 
 .toggle-item.active {
+  background-color: #e4eaf0;
+  padding: 10px 30px;
+  border-radius: 5px;
   color: #007bff;
 }
 

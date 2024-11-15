@@ -1,4 +1,7 @@
 .account-toggle {
+  width: max-content;
+  border-radius: 10px;
+  border: 1px solid black;
   padding: 10px;
   margin-top: 30px;
   font-family: 'Arial', sans-serif;
@@ -8,6 +11,7 @@
 }
 
 .toggle-item {
+  padding: 0 20px;
   display: inline-block;
   cursor: pointer;
   color: #0d3047;
@@ -15,6 +19,9 @@
 }
 
 .toggle-item.active {
+  background-color: #e4eaf0;
+  padding: 10px 30px;
+  border-radius: 5px;
   color: #007bff;
 }
 

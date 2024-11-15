@@ -27,9 +27,7 @@
   
   <div class="account-toggle">
     <div class="toggle-item active" data-content="client-accounts">Client Accounts</div>
-    <span class="separator">\</span>
     <div class="toggle-item" data-content="admin-accounts">Admin Accounts</div>
-    <span class="separator">\</span>
     <div class="toggle-item" data-content="inventory">Inventory</div>
   </div>
   <div class="content-area">

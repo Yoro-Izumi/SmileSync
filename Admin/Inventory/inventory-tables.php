@@ -97,7 +97,7 @@
           </thead>
           <tbody>
 
-          <?php include "tr_inventory-tables_product_history.php";?>
+         <!--<?php include "tr_inventory-tables_product_history.php";?>-->
           </tbody>
         </table>
   
