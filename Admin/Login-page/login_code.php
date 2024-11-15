@@ -15,7 +15,7 @@ $key = "TheGreatestNumberIs73";
 $connect_db = connect_accounts($servername, $username, $password);
 
 // Initialize login attempt limit variables
-$max_attempts = 5;
+$max_attempts = 3;
 $lockout_time = 5 * 60 * 60; // 5 hours in seconds
 $current_time = time();
 $error_message = ""; // Initialize error message variable
@@ -66,7 +66,7 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
     global $max_attempts, $lockout_time, $current_time, $error_message;
 
     $attempts_table = $user_type === 'admin' ? 'smilesync_admin_attempts' : 'smilesync_super_admin_attempts';
-    $id_column = $user_type === 'admin' ? 'admin_account_id' : 'super_admin_id';
+    $id_column = $user_type === 'admin' ? 'admin_account_id' : 'super_admin_acccount_id';
     $first_attempt_time = $user_type === 'admin' ? 'admin_first_attempt_time' : 'super_admin_first_attempt_time';
     $number_of_attempts = $user_type === 'admin' ? 'admin_number_of_attempts' : 'super_admin_number_of_attempts';
 
@@ -85,10 +85,15 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
         } elseif ($time_since_first_attempt > $lockout_time) {
             // Reset attempts after 5 hours
             reset_attempts($connect_db, $user_id, $user_type);
+            
+            $stmtRecordAttempt = mysqli_prepare($connect_db, "INSERT INTO `smilesync_admin_actions`(`admin_actions_id`, `admin_account_id`, `admin_action`, `admin_action_time_stamp`) VALUES (NULL,?,?,current_timestamp())");
+            mysqli_stmt_bind_param($stmtRecordAttempt, 'i', $user_id);
+            mysqli_stmt_execute($stmtCheckAttempts);
         }
     }
 
     if (password_verify($password, $stored_password)) {
+        $_SESSION['userType'] = $user_type;
         $_SESSION[$user_type === 'admin' ? 'userAdminID' : 'userSuperAdminID'] = $user_id;
         reset_attempts($connect_db, $user_id, $user_type);
         header('Location: ' . ($user_type === 'admin' ? '../Dashboard/Dashboard.php' : '..Dashboard/Dashboard.php'));

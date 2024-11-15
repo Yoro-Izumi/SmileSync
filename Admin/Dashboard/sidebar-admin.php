@@ -53,7 +53,7 @@
           <i class='bx bx-message-alt' ></i>
           <span class="links_name">Chat</span>
         </a>
-        <span class="tooltip">Chat</span>
+        <span class="tooltip">Chat</span>  
       </li>
 
 
@@ -72,8 +72,10 @@
             <div class="name">kazumiyoro@emailcom</div>
             <div class="job">Admin</div>
           </div>
-            <i class='bx bx-log-out' id="log_out" ></i>
-            <span class="tooltip">Logout</span>
+            <a href="..admin_global_files/log_out.php">
+              <i class='bx bx-log-out' id="log_out" ></i>
+              <span class="tooltip">Logout</span>
+            </a>
         </div>
       </li>  
         

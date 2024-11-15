@@ -1,3 +1,14 @@
+<?php
+// Start session and set timezone
+session_start();
+date_default_timezone_set('Asia/Manila');
+
+// Include necessary files for dashboard
+include '../admin_global_files/connect_database.php';
+include "total_patients_per_day.php";
+include "total_cancelled_appointments.php";
+include "total_rescheduled_appointments.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,19 +48,19 @@
                 <div class="col-md-4">
                     <div class="stat-box">
                         <h2>Total Patients</h2>
-                        <p>47</p>
+                        <p><?php echo $totalPatients;?></p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="stat-box">
                         <h2>Cancelled</h2>
-                        <p>19</p>
+                        <p><?php echo $totalCancelledAppointments;?></p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="stat-box">
                         <h2>Rescheduled</h2>
-                        <p>20</p>
+                        <p><?php echo $totalRescheduledAppointments;?></p>
                     </div>
                 </div>
             </div>
