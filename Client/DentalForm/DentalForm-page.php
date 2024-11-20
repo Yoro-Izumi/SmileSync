@@ -1,3 +1,11 @@
+<?php
+// Start session and set timezone
+session_start();
+date_default_timezone_set('Asia/Manila');
+
+include "../client_global_files/connect_database.php";
+include "pick_schedule_algo/stime_etime_procdur_leeway.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,4 +32,5 @@
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
 </body>
+
 </html>
