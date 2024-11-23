@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap">
     <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
@@ -10,7 +8,7 @@
 <div class="modal" id="appointmentDoneModal">
 
     <div class="done-modal">
-
+   <div class="modal-content">
     <div class="modal-header">
                 <div class="content">
                     <h2>iMee-Toga Oli Dental Clinic</h2>
@@ -150,30 +148,29 @@
                 </div>
 
             </div></div>
-        </div>
+        </div></div>
 </div></div>
 
 
 <div class="modal" id="existingAccountModal">
     <div class="modal-content">
+    <button class="close-btn"  id="cancelSubmitExistingBtn">&times;</button>
         <div class="modal-title normal-title">Add Existing Account</div>
         <div class="modal-description">
-            --Input data for new account--
+        <?php include "newAppointment.php"; ?>
         </div>
-        <button class="modal-button secondary-button" id="cancelSubmitExistingBtn">Cancel</button>
-        <button class="modal-button normal" id="submitExistingBtn">Submit</button>
-    </div>
+     </div>
 </div>
 
 <div class="modal" id="newAccountModal">
+
     <div class="modal-content">
-        <div class="modal-title normal-title">Add New Account</div>
-        <div class="modal-description">
-            --Input data for new account.--
-        </div>
-        <button class="modal-button secondary-button" id="cancelSubmitNewBtn">Cancel</button>
-        <button class="modal-button normal" id="submitNewBtn">Submit</button>
-    </div>
+      <button class="close-btn"  id="cancelSubmitNewBtn">&times;</button>
+    <h1 class="form-title">Add New Appointment</h1>
+
+     <?php include "newAppointment.php"; ?>
+
+</div>
 </div>
 
 
@@ -211,8 +208,24 @@
     </div>
 </div>
 
+<!-- Remove Account Warning Modal -->
+<div class="modal" id="cancelAppointmentModal">
+    <div class="modal-content">
+        <div class="image-container">
+            <img class="image" src="img/archive.png" alt="security">
+        </div>
+        <div class="modal-title warning-title">Appointment Removal</div>
+        <div class="message-container">
+            <div class="modal-description">
+                You are trying to remove (1) appointment. The item will no longer be accessed by the admin. 
+            </div>
+        </div>
+        <button class="modal-button normal" id="cancelAppointmentBtn">Remove</button>
+        <button class="modal-button secondary-button warning" id="cancelBtn">Cancel</button>
+    </div>
+</div>
 
-<!-- Success Modal -->
+<!-- Success Modal 
 <div class="modal" id="appointmentSuccessModal">
     <div class="modal-content">
         <div class="modal-title success-title">Appointment Added Successfully!</div>
@@ -223,8 +236,10 @@
         </div>
         <button id="closeAppointmentSuccessBtn" class="modal-button success">OK</button>
     </div>
-</div>
+</div> -->
 
+<div id="alertContainer"></div>
+<script src="js/alert.js"></script>
 <script src="js/modal.js"></script>
 
 
@@ -285,5 +300,7 @@
               // Add functionality to close modal here
           });
       </script>
+
+
 </body>
 </html>

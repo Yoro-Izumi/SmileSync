@@ -1,0 +1,542 @@
+@import url("//fonts.googleapis.com/css?family=Open+Sans+Condensed");
+@import url("https://fonts.googleapis.com/css?family=Inria+Sans");
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
+
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+html {
+    width: 100%;
+    max-height: 100vh;
+    position: absolute;
+    background-color: #E2ECF8;
+    justify-content: center;
+    align-content: center;
+    overflow-x: hidden;
+
+}
+
+
+body {
+    font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
+    background-color: #E2ECF8;
+   /* zoom: 1.10;*/
+}
+
+        /* Row container */
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+      }
+
+      /* Column */
+      .col-8 {
+          flex: 0 0 calc(66.66% - 20px); /* 8/12 columns */
+      }
+
+      .col-4 {
+          flex: 0 0 calc(33.33% - 20px); /* 4/12 columns */
+      }
+
+      .col-3 {
+          flex: 0 0 calc(25% - 20px); /* 3/12 columns */
+      }
+
+      .col-12 {
+          flex: 0 0 100%; /* Full width */
+      }
+
+/* Sidebar when open */
+.sidebar.open {
+  width: 250px; /* Expanded width */
+}
+
+/* Home section styles */
+.home-section {
+  min-height: 100vh;
+  position: absolute;
+  margin: auto 20px;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  padding: 20px;
+  transition: all 0.5s ease;
+}
+
+/* Home section when the sidebar is open */
+.sidebar.open ~ .home-section {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+.home-section .text {
+  display: inline-block;
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px;
+}
+
+/* Right Panel Styling */
+.right-panel {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 300px;
+  height: 100%;
+  border-radius: 15px;
+  background-color: #E2ECF8;
+  z-index: 99;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.right-panel.show {
+  right: 0;
+}
+
+/* Maximized Panel Styling */
+.right-panel.maximized {
+  height: 100%; /* Full viewport height */
+  width: 100%;
+}
+
+/* Minimized Panel Styling */
+.right-panel.minimized {
+  height: 100%; /* Minimizes the panel to just the header */
+  width: 300px;
+  overflow: hidden; /* Hide the panel content */
+}
+
+/* Panel Header */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #FFF;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+}
+
+.header-icons i {
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Hide text when panel is shrunk */
+.right-panel.shrunk .panel-header h2 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Center icons when shrunk */
+.right-panel.shrunk .panel-header {
+  justify-content: center;
+}
+
+/* Panel Content */
+.panel-content {
+  background-color: #C1E4F8;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.right-panel.shrunk .panel-content {
+  display: none; /* Hide content when shrunk */
+}
+
+/* Notification Item */
+.notification-item {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.notification-item img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.notification-item .notification-content {
+  flex: 1;
+}
+
+.notification-item .notification-time {
+  color: #888;
+  font-size: 12px;
+}
+
+.panel-footer {
+  padding: 5px 0;
+  margin-top: auto;
+  background-color: #FFFF;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  height: auto; 
+  line-height: 30px; 
+}
+
+.panel-footer button {
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.panel-footer button:hover {
+  color: #130e5e;
+}
+
+a{
+  text-decoration: none;
+}
+
+.dashboard_calendar-container {
+ /* position: relative;
+  height: 110vh;*/
+  background-color: white;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  margin: auto;
+}
+
+.dashboard_calendar {
+  text-align: center;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.dashboard_month {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard_month span {
+  cursor: pointer;
+}
+
+.dashboard_weekdays, .dashboard_days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  margin-bottom: 10px;
+}
+
+.dashboard_weekdays span {
+  font-size: 12px;
+  font-weight: bold;
+  color: #888;
+}
+
+.dashboard_days span {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin: 2px 0;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.dashboard_days span:hover {
+  background-color: #eaeaea;
+}
+
+.dashboard_days .dashboard_selected {
+  background-color: #FF6B6B;
+  border-radius: 10px;
+  color: white;
+}
+
+
+.dashboard_days .dashboard_current-day {
+  background-color: #007bff;
+  color: white;
+}
+
+.dashboard_appointments {
+  overflow-y: scroll;
+  height: 35vh;
+  cursor: pointer;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.dashboard_appointments h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.dashboard_appointments table {
+  /*height: -webkit-fill-available;*/
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard_appointments td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+
+.dashboard_appointments .dashboard_arrow {
+  text-align: right;
+  color: #888;
+  font-size: 24px;
+}
+
+.dashboard_view-all {
+  position: relative;
+  display: block;
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+  /*bottom: 2rem;*/
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.dashboard_btn {
+  display: block;
+  width: 20%;
+  padding: 10px;
+  margin-top: 15px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard_btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+
+
+.dashboard_view-all:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.statistics-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.stat-box {
+      height: auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+     
+      /* text-align: center;*/
+      transition: transform 0.3s;
+}
+
+.stat-box:hover {
+    transform: scale(1.05);
+}
+
+
+.stat-box h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stat-box p {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+/* Welcome Message */
+.welcome-message {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px 0;
+  color: #333;
+}
+
+.highlight {
+  color: #30CE88;
+}
+
+.side-title {
+  font-size: 0.9rem; /* Adjust to your preference */
+  font-weight: bold;
+  padding: 10px 0;
+  color: #4A4A4A; /* Darker gray */
+
+  margin: 1rem; /* Space below the title */
+
+  text-align: left;
+}
+
+/* SmartChart and Calendar Section with column separator */
+.calendar-chart-section {
+  display: flex;
+  margin-top: 30px;
+}
+
+.calendar-chart-section .calendar-container {
+  flex: 1;
+  padding-right: 20px;
+  border-right: 2px solid #ddd; /* Adds a vertical separator */
+}
+
+.calendar-chart-section .smartchart-container {
+  flex: 2;
+  padding-left: 20px;
+}
+
+
+@media (max-width: 1024px) {
+  .stat-box {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.home-section {
+  margin: auto;
+  padding: 10px;
+}
+
+}
+
+/* Responsive design: for mobile screens, stack the statistics boxes */
+@media (max-width: 768px) {
+
+
+  html{
+    overflow-y: scroll;
+  }
+
+.dashboard_view-all {
+  width:80%;
+  bottom: 0;
+  margin: 20px 0;
+}
+
+  .home-section {
+    margin: 0;
+    padding: 0;
+  }
+
+  .dashboard_appointments {
+    text-align: left;
+    margin-bottom: 50px; 
+  }
+
+  .dashboard_appointments table {
+    height: 100%;
+    width: 100%;
+  }
+
+  .dashboard_calendar-container {
+    padding: 20px;
+    width: 90%;
+    margin: 20px auto;
+
+  }
+
+  .content-section{
+    width: 95%;
+    margin: auto;
+  }
+
+  .statistics-container {
+
+    margin:20px;
+
+    grid-template-columns: 1fr; /* 1 column for mobile */
+    grid-template-rows: auto; /* Auto-adjust the height of rows */
+  }
+
+  .calendar-chart-section {
+    flex-direction: column;
+  }
+
+  .calendar-chart-section .calendar-container {
+    border-right: none;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .calendar-chart-section .smartchart-container {
+    padding-left: 0;
+  }
+}
+
+
+@media (max-width: 850px) {
+  .sidebar.open ~ .home-section {
+    left: 78px;
+    width: calc(100% - 78px);
+    opacity: 0.2;
+    background: #000;
+    z-index: 99;
+  }
+}

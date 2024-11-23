@@ -11,7 +11,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 
@@ -41,6 +41,7 @@ header {
 }
 
 .form-title{
+  font-family: 'Alumni Sans';
   text-align: center;
 }
 
@@ -106,7 +107,7 @@ h4,
 h5,
 h6 {
   color: black;
-  /*font-family: "Open Sans Condensed";*/
+  font-family: "Inter";
   padding: 0;
 }
 

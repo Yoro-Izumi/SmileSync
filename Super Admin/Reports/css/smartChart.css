@@ -1,0 +1,72 @@
+.chart-container {
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.patient-volume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+}
+
+#month {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.date-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+#patientVolumeChart, #peakDaysChart, #peakHoursChart {
+  height: 300px;
+}
+
+.chart-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+.chart-item {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.chart-item .chart-title {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}

@@ -8,7 +8,7 @@
   <header>
     <div class="topbar">
       <div class="logo"><img src="img/logo.png" alt="Logo">SmileSync</div>
-      <div class="return-link"><a href="../LogIn-Page/Login-Page.php">Return to landing page</a></div>
+      <div class="return-link"><a href="../LogIn-Page/Login-Page.php">Return to login</a></div>
     </div>
   </header>
 
@@ -116,9 +116,9 @@
                 <div class="valid-feedback">
                   <!-- Looks good! -->
                 </div>
-                <div class="invalid-feedback">
+                <!--div class="invalid-feedback">
                   Please provide a valid contact number.
-                </div>
+                </div-->
       </div>
 
       
@@ -221,6 +221,18 @@
           </div>         
         </div>
 
+        <div class="input-wrap">
+  <select class="input-field active" id="services">
+    <option value="" disabled selected>Select a Service</option>
+    <option value="consultation">Consultation</option>
+    <option value="therapy">Therapy</option>
+    <option value="diagnostics">Diagnostics</option>
+    <option value="surgery">Surgery</option>
+  </select>
+  <label for="services">Services</label>
+</div>
+
+
  
       </div>
 
@@ -253,6 +265,7 @@
                     oninput="checkPasswordStrength(this)"
                   />
                   <label>Password<indicator>*</indicator></label>
+                
                 </div>
                 <div id="password-strength-indicator"></div>
                   <div class="password-requirements" id="password-requirements" style="display: none;">
@@ -264,7 +277,7 @@
                       <li id="length" class="invalid">At least 8 characters</li>
                     </ul>
                   </div>
-                  <div class="invalid-feedback">Password strength is weak. Please enter a stronger password.</div>
+                  <!--div class="invalid-feedback">Password strength is weak. Please enter a stronger password.</div-->
 
 
                 <div class="input-wrap">
@@ -275,6 +288,7 @@
                   autocomplete="off"
                 required>
               <label>Confirm Password<indicator>*</indicator></label>
+          
               </div>
       </div>
 
@@ -336,5 +350,18 @@ document.querySelectorAll('.calendar-table td').forEach(cell => {
 });
 
   </script>
+
+ <script>
+
+$('.icon').click(function () {
+  if ($('#password').attr('type') == 'text') {
+    $('#password').attr('type', 'password');
+    $('#show-password').removeClass('fa-eye-slash').addClass('fa-eye');
+  } else {
+    $('#password').attr('type', 'text');
+    $('#show-password').removeClass('fa-eye').addClass('fa-eye-slash');
+  }
+});
+ </script> 
 </body>
 </html>

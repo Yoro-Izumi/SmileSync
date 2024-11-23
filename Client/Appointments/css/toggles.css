@@ -5,6 +5,7 @@
 }
 
 .toggle-tabs {
+  margin: auto;
   border-radius: 15px;
   padding: 2px;
   display: flex;

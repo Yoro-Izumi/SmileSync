@@ -1,5 +1,5 @@
 <?php
-// Start session and set timezone
+/* Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
 
@@ -18,7 +18,7 @@ else if (isset($_SESSION['userAdminID']) && $_SESSION['userType'] == 'admin') {
     exit();
 }
 
-else{
+else{*/
 ?>
 
 <!DOCTYPE html>
@@ -271,8 +271,8 @@ else{
     <!-- Javascript file -->
     <script src="js/app.js"></script>
     <script src="js/eye-toggle.js"></script>
-    <script src="js/submit_form.js"></script>
+    <script //src="js/submit_form.js"></script>
     <script src="js/validations.js"></script>
 </body>
 </html>
-<?php }?>
+<?php //}?>

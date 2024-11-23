@@ -27,11 +27,40 @@ html {
 }
 
 
+a{
+  text-decoration: none;
+}
+
+
 body {
     font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
     background-color: #E2ECF8;
-   zoom: 1.10;/* */
+   /* zoom: 1.10;*/
 }
+
+        /* Row container */
+        .row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+      }
+
+      /* Column */
+      .col-8 {
+          flex: 0 0 calc(66.66% - 20px); /* 8/12 columns */
+      }
+
+      .col-4 {
+          flex: 0 0 calc(33.33% - 20px); /* 4/12 columns */
+      }
+
+      .col-3 {
+          flex: 0 0 calc(25% - 20px); /* 3/12 columns */
+      }
+
+      .col-12 {
+          flex: 0 0 100%; /* Full width */
+      }
 
 /* Sidebar when open */
 .sidebar.open {
