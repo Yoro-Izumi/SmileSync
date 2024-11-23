@@ -6,12 +6,14 @@ checkbox{
 
 
   .container {
+    /* height: 85vh; */
     width: 100%;
     margin: 40px 0;
     background-color: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    border: 1px solid #c5c5c5;
   }
 
   .header {
@@ -49,8 +51,8 @@ checkbox{
   .top-controls {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    /* align-items: center; */
+    margin: 20px;
   }
 
   .filters {
@@ -104,7 +106,14 @@ checkbox{
   }
 
   .table-container {
-    width: 100%
+    padding: 0 2rem;
+    margin: auto;
+    height: 60vh;
+    border-radius: 15px;
+    border-top: 1px solid #c5c5c5;
+    border-bottom: 1px solid #c5c5c5;
+    /* width: 90%; */
+    overflow-y: auto;
   }
 
   table {

@@ -227,12 +227,11 @@ body {
 
 
 .dashboard_calendar-container {
- /* position: relative;
-  height: 110vh;*/
+  border: 1px solid #c5c5c5;
   background-color: white;
   padding: 25px;
-  border-radius: 5px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); */
   width: 90%;
   margin: auto;
 }
@@ -337,15 +336,15 @@ body {
 .dashboard_view-all {
   position: relative;
   display: block;
-  width: 80%;
+  width: 100%;
   padding: 10px;
   border: 1px solid #007bff;
-  background-color: white;
-  color: #007bff;
+  background-color: #007bff;
+  color: white;
   border-radius: 25px;
   cursor: pointer;
   text-align: center;
-  /*bottom: 2rem;*/
+  /* bottom: 2rem; */
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;
@@ -355,12 +354,12 @@ body {
 
 .dashboard_btn {
   display: block;
-  width: 20%;
+  width: 50%;
   padding: 10px;
   margin-top: 15px;
   border: 1px solid #007bff;
-  background-color: white;
-  color: #007bff;
+  background-color: #007bff;
+  color: white;
   border-radius: 25px;
   cursor: pointer;
   text-align: center;
@@ -387,14 +386,14 @@ body {
 }
 
 .stat-box {
-      height: auto;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-     
-      /* text-align: center;*/
-      transition: transform 0.3s;
+  border: 1px solid #c5c5c5;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  /* text-align: center; */
+  transition: transform 0.3s;
 }
 
 .stat-box:hover {

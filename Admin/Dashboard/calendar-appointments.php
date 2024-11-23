@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="dashboard_appointments">
-            <h3>Upcoming Appointments</h3>
+            <h3>Upcoming</h3>
             <table id="dashboard_appointments-table">
                 <!-- Appointments will be dynamically populated here -->
                  

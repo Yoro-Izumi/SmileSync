@@ -43,9 +43,8 @@
         <button class="btn" id="existingAccount">+Existing Account</button>
       </div>
     </div>
-  </div>
 
-  <div class="container">
+
     <div class="table-container">
       <table>
         <thead>
@@ -111,6 +110,7 @@
       <a href="#" class="pagination-item">3</a>
       <a href="#" class="next">Next</a>
     </div>
+
   </div>
 
   <script>

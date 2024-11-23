@@ -226,15 +226,16 @@ checkbox{
   }
 
   .pagination a {
+    padding: 0 20px;
     text-decoration: none;
     display: inline-block;
     border-radius: 5px;
     background-color: #fff;
-    width: 38px;
+    /* width: 38px; */
     height: 36px;
     line-height: 36px;
     text-align: center;
-    margin: 0 5px;
+    margin: auto;
     color: #007bff;
     font-weight: 600;
   }
@@ -250,21 +251,7 @@ checkbox{
 
   .pagination .previous,
   .pagination .next {
-    position: absolute;
     color: rgba(92, 92, 92, 0.8);
-    margin: 0 10px;
-  }
-
-  .pagination .previous {
-    left: 0;
-    display: inline-block;
-    width: 40px;
-  }
-
-  .pagination .next {
-    right: 0;
-    display: inline-block;
-    width: 40px;
   }
 
 
