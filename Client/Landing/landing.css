@@ -96,28 +96,48 @@ body {
 
 /* Responsive for smaller screens */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        border: 1px solid rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
-        background-color: #FFF;
-        width: max-content;
-        justify-content: right;
-        color: #000;
-        padding: 1rem;
-    }
 
-    .nav-links.active {
-        display: flex;
-    }
+/* Initially, hide the nav-links */
+.nav-links {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    gap: 10px;
+    z-index: 100;
+}
 
-    .hamburger {
-        display: block;
-    }
+/* When the hamburger menu is active, show the nav-links */
+.nav-links.active {
+    display: flex; /* Show when active */
+}
+
+/* Hamburger icon styling */
+.hamburger {
+    display: block;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate hamburger when active */
+.hamburger.active {
+    transform: rotate(90deg); /* Rotate when the menu is open */
+}
+
+
+}
+
+.wrap-2{
+    display: grid;
+    gap: 1.6em;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+    padding: 2em;
 }
 
 .container {
@@ -129,7 +149,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url(https://images.unsplash.com/photo-1519120944692-1a8d8cfc107f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80);
+    background-color: #fff;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -168,12 +188,13 @@ a {
 }
 
 .second {
-    background-image: url(https://images.unsplash.com/photo-1514496959998-c01c40915c5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80);
+    background-image: url('../Landing/img/services.jpg');
     background-attachment: fixed;
     height: 100%;
 }
 
 h3 {
+    padding: 1rem;
     font-weight: 700;
     font-size: 1.6rem;
     margin-top: 1em;
@@ -187,11 +208,11 @@ h3 {
 .second .card-container {
     display: grid;
     gap: 1.6em;
-    grid-template-columns: repeat(3, 1fr);
-    width: 80%;
+    grid-template-columns: repeat(4, 1fr);
     margin: 0 auto;
     padding: 2em;
 }
+
 
 @media (max-width: 992px) {
     .second .card-container {
@@ -219,21 +240,78 @@ h3 {
 .img {
     width: 90%;
     height: 200px;
-    background-color: lightgrey;
     background-size: cover;
     background-position: center;
     margin-top: 20px;
     border-radius: .3em;
 }
 
-.img-first {
-    background-image: url(https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1606&q=80);
-}
 
-.img-second {
-    background-image: url(https://images.unsplash.com/photo-1628746404106-4d3843b231b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2F2aW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60);
-}
 
-.img-third {
-    background-image: url(https://images.unsplash.com/photo-1632853073412-782bf0279d65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
-}
+        /* CSS */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+        .jarallax {
+            position: relative;
+            z-index: 0;
+        }
+        .jarallax > .jarallax-img {
+            position: absolute;
+            object-fit: cover;
+            font-family: 'object-fit: cover;';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .location-container {
+            position: relative;
+            width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .imgBx {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            overflow: hidden;
+            box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+        }
+        .imgBx img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .content {
+            position: absolute;
+            max-width: 400px;
+            right: 0;
+            margin-top: 200px;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: #333;
+            z-index: 1;
+            color: #fff;
+            box-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+            border-bottom: 6px solid #4ac7ff;
+        }
+        .content ul {
+            margin-top: 10px;
+            padding-left: 0;
+        }
+        .content ul li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .content ul li::before {
+            content: '\1F9B7'; /* Unicode for tooth emoji */
+            font-size: 1.5em;
+            margin-right: 10px;
+            color: #4ac7ff;
+        }

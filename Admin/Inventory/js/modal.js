@@ -6,8 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const editModal = document.getElementById('editModal');
     const confirmEditModal = document.getElementById('confirmEditModal'); 
     const deleteInventoryModal = document.getElementById('removeItemModal'); 
+<<<<<<< Updated upstream
 
     // Button Elements
+=======
+    
+    //Buttons
+>>>>>>> Stashed changes
     const viewDetailsBtn = document.getElementById('viewDetails');
     const viewDetailsHistoryBtn = document.getElementById('viewDetailsHistory'); 
     const okViewBtn = document.getElementById('okView');
