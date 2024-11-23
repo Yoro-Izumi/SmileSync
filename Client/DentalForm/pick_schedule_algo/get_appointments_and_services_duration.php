@@ -1,15 +1,10 @@
 <?php
-// Database connection parameters
-$host = 'localhost';
-$dbname = 'your_database';
-$username = 'your_username';
-$password = 'your_password';
 
 // Connect to the database
-$conn = mysqli_connect($host, $username, $password, $dbname);
+$connect_appointment = connect_appointment($servername,$username,$password);
 
 // Check connection
-if (!$conn) {
+if (!$connect_appointment) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
@@ -25,7 +20,7 @@ $query = "
 ";
 
 // Execute the query
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($connect_appointment, $query);
 
 // Initialize an array to store the reservations
 $reservations = [];
@@ -41,7 +36,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 }
 
 // Close the database connection
-mysqli_close($conn);
+mysqli_close($connect_appointment);
 
 // Output the reservations in JSON format for use in Python
 echo json_encode($reservations);

@@ -1,3 +1,5 @@
+#!C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe
+print ("Content-type: text/html\n\n")
 import random
 from datetime import datetime, timedelta
 from deap import base, creator, tools, algorithms
@@ -92,7 +94,7 @@ while current_time + timedelta(minutes=predicted_duration) <= end_of_day:
 
     if is_available:
         available_slots.append(current_time)
-
+    
     current_time += timedelta(minutes=1)  # Increment by 1 minute
 
 # Generate 5 recommended times considering leeway
