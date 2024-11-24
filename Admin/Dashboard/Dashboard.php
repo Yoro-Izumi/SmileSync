@@ -36,10 +36,13 @@ include "total_rescheduled_appointments.php";
     <?php include "loader.php"; ?>
 
     <section class="home-section">
+    <h1 class="welcome-message">Welcome <span class="highlight">
+        Admin!
+    </span></h1>
+
     <div class="row">
       <div class="col-8">
         <div class="content-section">
-            <h1 class="welcome-message">Welcome <span class="highlight">Admin!</span></h1>
                 <div class="side-title">Overview</div>
             <!-- Statistics Grid -->
             <div class="row">
@@ -76,6 +79,7 @@ include "total_rescheduled_appointments.php";
 
             <!-- SmartChart Section -->
                 <div class="col-4">
+                <div class="side-title">Appointments</div>
                     <div class="smartchart-container">
                       <?php include "calendar-appointments.php"; ?>  
                     </div>

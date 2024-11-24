@@ -14,7 +14,9 @@
   <div class="chart-container">
     <div class="patient-volume-header">
       <h2 class="chart-title">Patient Volume per Day</h2>
-      <button class="dashboard_btn"><a href="../Reports/ReportAndAnalytics-page.php">View Reports</a></button>
+      <button class="dashboard_btn" href="../Reports/ReportAndAnalytics-page.php">
+        View Reports
+        <button>
     </div>
 
     <div id="patientVolumeChart"></div>
