@@ -26,11 +26,11 @@ html {
 
 }
 
-
-a{
+button a{
+  color: white;
   text-decoration: none;
-}
 
+}
 
 body {
     font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;

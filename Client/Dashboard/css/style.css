@@ -127,6 +127,9 @@ body {
   transition: transform 0.3s ease;
 }
 
+a {
+  text-decoration: none;
+}
 
 /* Hide text when panel is shrunk */
 .right-panel.shrunk .panel-header h2 {
