@@ -33,7 +33,6 @@
     <form id="multiStepForm">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
-        <h2>Personal Information</h2>
         <div class="wrap-2rows">
 
               <div class="input-wrap">
@@ -124,7 +123,16 @@
       
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
-        <h2>Appointment Detail</h2>
+        <div class="input-wrap">
+  <select class="input-field" id="services">
+    <option value="" disabled selected>Select a Service</option>
+    <option value="consultation">Consultation</option>
+    <option value="therapy">Therapy</option>
+    <option value="diagnostics">Diagnostics</option>
+    <option value="surgery">Surgery</option>
+  </select>
+</div>
+
         <div class="appointment-container">
           <!-- Calendar Section -->
           <div class="calendar-container">
@@ -220,25 +228,11 @@
                 </select>
           </div>         
         </div>
-
-        <div class="input-wrap">
-  <select class="input-field active" id="services">
-    <option value="" disabled selected>Select a Service</option>
-    <option value="consultation">Consultation</option>
-    <option value="therapy">Therapy</option>
-    <option value="diagnostics">Diagnostics</option>
-    <option value="surgery">Surgery</option>
-  </select>
-  <label for="services">Services</label>
-</div>
-
-
  
       </div>
 
       <!-- Step 3: Account -->
       <div class="form-section">
-        <h2>Account Setup</h2>
         <!-- Add account setup fields here -->
         <div class="input-wrap">
                   <input
