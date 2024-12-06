@@ -38,7 +38,12 @@ include "total_rescheduled_appointments.php";
     <section class="home-section">
     <h1 class="welcome-message">Welcome <span class="highlight">
                 Super Admin!
-            </span></h1>
+            </span>
+            <p>
+    As a superadmin, you have full control over the platform. Manage users, configure system settings, oversee data analytics, and maintain the integrity of SmileSync’s operations. 
+    Your leadership ensures the platform remains reliable and scalable. Thank you for driving excellence in dental appointment management!
+</p>
+</h1>
     <div class="row">
       <div class="col-8">
         <div class="content-section">

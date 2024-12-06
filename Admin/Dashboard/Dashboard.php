@@ -38,8 +38,12 @@ include "total_rescheduled_appointments.php";
     <section class="home-section">
     <h1 class="welcome-message">Welcome <span class="highlight">
         Admin!
-    </span></h1>
-
+    </span>
+    <p>
+    As an administrator, you have the tools to manage appointments, monitor schedules, and ensure the smooth operation of our dental services.
+    Thank you for helping us create easy dental care experiences!
+</p>
+</h1>
     <div class="row">
       <div class="col-8">
         <div class="content-section">

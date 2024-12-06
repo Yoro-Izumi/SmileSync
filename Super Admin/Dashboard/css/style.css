@@ -26,11 +26,13 @@ html {
 
 }
 
+
 button a{
   color: white;
   text-decoration: none;
 
 }
+
 
 body {
     font-family: 'Inria Sans','Open Sans Condensed', Arial, sans-serif;
@@ -71,7 +73,6 @@ body {
 .home-section {
   min-height: 100vh;
   position: absolute;
-  margin: auto 20px;
   top: 0;
   left: 78px;
   width: calc(100% - 78px);
@@ -229,11 +230,11 @@ body {
 .dashboard_calendar-container {
   border: 1px solid #c5c5c5;
   background-color: white;
-  padding: 25px;
+  padding: 20px;
   border-radius: 25px;
   /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); */
-  width: 90%;
-  margin: auto;
+  /* width: 90%; */
+  /* margin: auto;*/
 }
 
 .dashboard_calendar {
@@ -288,7 +289,7 @@ body {
 }
 
 .dashboard_days .dashboard_selected {
-  background-color: #FF6B6B;
+  background-color: #03253a;
   border-radius: 10px;
   color: white;
 }
@@ -301,7 +302,7 @@ body {
 
 .dashboard_appointments {
   overflow-y: scroll;
-  height: 35vh;
+  height: 30vh;
   cursor: pointer;
   text-align: left;
   margin-top: 50px;
@@ -413,12 +414,24 @@ body {
   margin: 0;
 }
 
+p {
+  padding: 0 1rem;
+  font-family: inherit;
+  font-weight: 400;
+  color: #737171;
+  font-size: 12px;
+}
 
 /* Welcome Message */
 .welcome-message {
+  width: -webkit-fill-available;
+  border-radius: 10px;
+  border-bottom: 4px solid #333;
+  border-left: 4px solid #333;
   font-size: 24px;
   font-weight: bold;
-  padding: 20px 0;
+  padding: 20px;
+  margin: 20px 0;
   color: #333;
 }
 

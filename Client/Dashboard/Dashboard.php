@@ -19,7 +19,11 @@
 
   
   <div class="body-container">
-      <h1>Welcome dear <span>Patient!</span></h1>
+      <h1>Welcome dear <span>Patient!</span>
+      <p>
+            Explore our user-friendly platform to book, manage, and track your appointments easily. 
+            Thank you for choosing SmileSync as your dental care partner!
+        </p></h1>
       <?php include "dashboard-table.php"; ?>
     </div>
 
