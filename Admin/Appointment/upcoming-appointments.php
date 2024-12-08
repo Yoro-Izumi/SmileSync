@@ -29,16 +29,6 @@
    <div class="search-bar">
       <input type="text" placeholder="Search...">
     </div>
-
-    <div class="actions">
-          <div class="dropdown">
-            <button>⋮</button>
-            <div class="dropdown-content">
-              <a href="#">Delete</a>
-              <a href="#">Edit</a>
-            </div>
-          </div>
-        </div>
   </div>
 
   </div>

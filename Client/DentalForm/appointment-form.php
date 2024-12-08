@@ -20,44 +20,17 @@
         <span class="step-icon">📅</span>
         <span class="step-label">Appointment Detail</span>
       </div>
-      <div class="step">
-        <span class="step-icon">🔒</span>
-        <span class="step-label">Account</span>
-      </div>
     </div>
 
     <form id="multiStepForm">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <h3>Personal Information</h3>
-        <div class="wrap-2rows">
+        
           <div class="input-wrap">
             <input type="text" maxlength="24" class="input-field" autocomplete="off" name="firstName" required />
-            <label>First Name<indicator>*</indicator></label>
+            <label>Name of Patient<indicator>*</indicator></label>
           </div>
-          <div class="input-wrap">
-            <input type="text" minlength="1" maxlength="24" class="input-field" autocomplete="off" name="lastName" required />
-            <label>Last Name<indicator>*</indicator></label>
-          </div>
-        </div>
-        <div class="wrap-3rows">
-          <div class="input-wrap">
-            <input type="text" minlength="1" maxlength="24" class="input-field" autocomplete="off" name="middleName" />
-            <label>Middle Name</label>
-          </div>
-          <div class="input-wrap">
-            <input type="text" minlength="1" maxlength="5" class="input-field" name="suffix" autocomplete="off" />
-            <label>Suffix</label>
-          </div>
-          <div class="input-wrap">
-            <input type="text" id="birthdate-picker" class="input-field" name="birthday" autocomplete="off" required />
-            <label>Select Birthdate<indicator>*</indicator></label>
-          </div>
-        </div>
-        <div class="input-wrap">
-          <input type="text" minlength="11" maxlength="13" class="input-field" name="phoneNumber" autocomplete="off" required />
-          <label>Phone Number<indicator>*</indicator></label>
-        </div>
 
         <div class="question-form">
           <div class="titles">
@@ -155,6 +128,31 @@
               <label for="emergency-no">No</label>
             </div>
           </div>
+
+          <div class="question-row">
+            <label for="questionInput">Will you be using an HMO Card?</label>
+            <div class="answer-options">
+              <input type="radio" id="hmo-yes" name="visited" value="yes" onclick="toggleAddressField()">
+              <label for="hmo-yes">Yes</label>
+              <input type="radio" id="hmo-no" name="visited" value="no" onclick="toggleAddressField()">
+              <label for="hmo-no">No</label>
+            </div>
+          </div>
+          <div id="address-field" style="display: none;">
+            <div class="input-wrap">
+              <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
+              <label for="hmoID">Please the HMO ID No.</label>
+            </div>
+          </div>
+          <script>
+            function toggleAddressField() {
+              const addressField = document.getElementById("hmoID");
+              const isYesSelected = document.getElementById("hmo-yes").checked;
+              addressField.style.display = isYesSelected ? "block" : "none";
+            }
+          </script>
+
+           
         </div>
       </div>
 
@@ -278,23 +276,6 @@
             </div>
           </div>
         
-      </div>
-
-      <!-- Step 3: Account -->
-      <div class="form-section">
-        <h3>Account Setup</h3>
-        <div class="input-wrap">
-          <input type="email" minlength="1" maxlength="24" class="input-field" name="email" autocomplete="off" required />
-          <label>Email Address<indicator>*</indicator></label>
-        </div>
-        <div class="input-wrap">
-          <input type="password" minlength="1" maxlength="24" class="input-field" name="password" id="password" autocomplete="off" required />
-          <label>Password<indicator>*</indicator></label>
-        </div>
-        <div class="input-wrap">
-          <input type="password" class="input-field" name="confirmPassword" id="confirmPassword" autocomplete="off" required>
-          <label>Confirm Password<indicator>*</indicator></label>
-        </div>
       </div>
       
     </form>

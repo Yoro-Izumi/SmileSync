@@ -2,9 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Inria+Sans");
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
 /* General Styles */
 * {
@@ -14,42 +13,27 @@
   font-family: 'Inter', sans-serif;
 }
 
+html{
+  background-color: #E2ECF8;
+}
 
-/* General styles */
+
 body {
-  background-color: #fff;
+  background-color: #E2ECF8;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  height: 100vh;
   margin: 0;
-  padding: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-
-
-main {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-header {
-  background-color: #fff;
-  padding: 20px 10px;
-  text-align: center;
-  position: relative;
-}
 
 .form-title{
-  font-family: 'Alumni Sans';
+  font-family: 'Open Sans Condensed';
+  font-size: 24px;
   text-align: center;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
 }
 
 
@@ -71,11 +55,6 @@ header {
   height: 24px;
 }
 
-.return-link a {
-  text-decoration: none;
-  color: #007bff;
-  font-weight: bold;
-}
 
 .form-container {
   width: 70%;
@@ -107,7 +86,7 @@ h4,
 h5,
 h6 {
   color: black;
-  font-family: "Inter";
+  font-family: "Open Sans Condensed";
   padding: 0;
 }
 
@@ -399,9 +378,10 @@ indicator{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #ccc; /* Border for each question row */
+  border-bottom: 1px solid #ccc; /* Border for each question row */
   padding: 10px 20px;
   border-radius: 5px;
+  margin: 10px 0;
 }
 
 .question-row label {
@@ -413,7 +393,7 @@ indicator{
 input[type="radio"] {
   background-color: #4CAF50;
   border: 2px solid #4CAF50;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .radio-label {
@@ -576,6 +556,7 @@ input[type="radio"]:checked + label::before {
   font-weight: bold;
   border-radius: 10px;
   transform: scale(1.1); /* Slightly scale up the selected date */
+
 }
 
 
@@ -650,4 +631,158 @@ footer {
   text-align: center;
   font-size: 12px;
   color: #888;
+}
+
+
+.home-section .text{
+  display: inline-block;
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px
+}
+
+.right-panel {
+  position: fixed;
+  top: 0;
+  right: -350px; 
+  width: 300px;
+  height: 100%; 
+  border: 1px solid #000;
+  border-radius: 15px;
+  background-color: #fff;
+  z-index: 99;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-panel.show{
+  right: 0;
+}
+
+/* Maximized Panel Styling */
+.right-panel.maximized {
+  height: 100%; /* Full viewport height */
+  width: 100%
+}
+
+/* Minimized Panel Styling */
+.right-panel.minimized {
+  height: 100%; /* Minimizes the panel to just the header */
+  width: 300px;
+  overflow: hidden; /* Hide the panel content */
+}
+
+/* Panel Header */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #FFF;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+}
+
+.header-icons i {
+  margin-left: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+
+/* Hide text when panel is shrunk */
+.right-panel.shrunk .panel-header h2 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Center icons when shrunk */
+.right-panel.shrunk .panel-header {
+  justify-content: center;
+}
+
+/* Panel Content */
+.panel-content {
+  background-color: #FFFF;
+  flex: 1; 
+  overflow-y: auto;
+}
+
+.right-panel.shrunk .panel-content {
+  display: none; /* Hide content when shrunk */
+}
+
+/* Notification Item */
+.notification-item {
+  background-color: #fff;
+  border: 0.5px solid #000;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.notification-item img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.notification-item .notification-content {
+  flex: 1;
+}
+
+.notification-item .notification-time {
+  color: #888;
+  font-size: 12px;
+}
+
+.panel-footer {
+  padding: 5px 0;
+  margin-top: auto;
+  background-color: #FFFF;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  height: auto; 
+  line-height: 30px; 
+}
+
+.panel-footer button {
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.panel-footer button:hover {
+  color: #130e5e;
+}
+
+
+@media (max-width: 850px) {
+
+  .sidebar.open ~ .home-section{
+    left: 78px;
+    width: calc(100% - 78px);
+    opacity: 0.2;
+    background: #000;
+    z-index: 99;
+  }
+
+
 }
