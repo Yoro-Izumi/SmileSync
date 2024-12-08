@@ -115,7 +115,7 @@
             .Your information was successfully saved and is now undergoing review from the admin.
             Please wait for a confirmation to be sent to your email address.
         </div></div>
-        <button id="closeSuccessRegisterBtn" class="modal-button success">OK</button>
+        <button id="closeSuccessRegisterBtn" class="modal-button success" onclick="sendEmailRegistered()">OK</button>
     </div>
 </div>
 
@@ -193,5 +193,6 @@
 
 
 <script src=="js/modal.js"></script>
+
 </body>
 </html>

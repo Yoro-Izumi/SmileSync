@@ -1,0 +1,134 @@
+.chart-container {
+  width: 100%;
+  padding: 20px;
+  height: 100%;
+  background-color: #fff;
+  border: 1px solid #c5c5c5;
+  border-radius: 10px;
+}
+
+.patient-volume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.chart-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+}
+
+#month {
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.date-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+#patientVolumeChart, #peakDaysChart, #peakHoursChart {
+  height: 300px;
+}
+
+.chart-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.chart-item {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.chart-item .chart-title {
+  text-align: left;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.calendar-btn {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.calendar-btn:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.calendar-btn img {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.calendar-btn span {
+  font-size: 16px;
+  color: #4d4d4d;
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  min-width: 100px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  padding: 10px;
+  display: block;
+  text-align: center;
+  color: #4d4d4d;
+  text-decoration: none;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}

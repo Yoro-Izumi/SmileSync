@@ -10,12 +10,14 @@ checkbox{
 
 
   .container {
-    width: auto;
-    margin: 40px 10%;
+    height: 60vh;
+    /* border: 1px solid #c5c5c5; */
+    width: 100%;
+    /* margin: 40px 10%; */
     background-color: white;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
   }
 
   .header {
@@ -181,7 +183,7 @@ checkbox{
 
   .dropdown-content {
     display: none;
-    width: 15vh;
+    width: max-content;
     position: absolute;
     background-color: white;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -226,15 +228,16 @@ checkbox{
   }
 
   .pagination a {
+    padding: 0 20px;
     text-decoration: none;
     display: inline-block;
     border-radius: 5px;
     background-color: #fff;
-    width: 38px;
+    /* width: 38px; */
     height: 36px;
     line-height: 36px;
     text-align: center;
-    margin: 0 5px;
+    margin: auto;
     color: #007bff;
     font-weight: 600;
   }
@@ -250,21 +253,7 @@ checkbox{
 
   .pagination .previous,
   .pagination .next {
-    position: absolute;
     color: rgba(92, 92, 92, 0.8);
-    margin: 0 10px;
-  }
-
-  .pagination .previous {
-    left: 0;
-    display: inline-block;
-    width: 40px;
-  }
-
-  .pagination .next {
-    right: 0;
-    display: inline-block;
-    width: 40px;
   }
 
 

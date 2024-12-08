@@ -1,5 +1,5 @@
 <?php
-// Start session and set timezone
+/* Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
 // Check if user is already logged in
@@ -7,7 +7,7 @@ date_default_timezone_set('Asia/Manila');
 if (isset($_SESSION['userID'])) {
     header('location:Dashboard.php');
     die();
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +131,7 @@ $('.icon').click(function () {
   }
 });
 
-//code to post data using ajax
+/*code to post data using ajax
 $("#login_form").on("submit", function (e) {
     e.preventDefault();
     
@@ -159,7 +159,7 @@ $("#login_form").on("submit", function (e) {
         $("#loginBtn").prop("disabled", false);
       }
     });
-  });
+  });*/
 </script>
 
 </body>

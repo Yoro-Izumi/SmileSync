@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Page -->
   <link rel="stylesheet" href="css/invoice.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
 <body>
@@ -25,7 +26,6 @@
     </select>
     </div>
     <div class="search-bar"><input type="text" id="search" placeholder="Search..." /></div>
-    <button id="new-invoice">+ New Invoice</button>
   </div>
 
   <div class="table-and-details">
@@ -44,7 +44,9 @@
     </table>
 
     <div class="invoice-details" id="invoice-details">
-      <h3>Invoice Details</h3>
+      <h3>    
+      Details
+    </h3>
       <p class="place">
             <img src="img/archive.png" alt="security">
         </p>

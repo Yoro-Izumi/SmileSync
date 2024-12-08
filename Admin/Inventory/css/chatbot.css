@@ -1,22 +1,10 @@
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
-
-
-/* Chat Container Animation */
 .chat-container {
     display: none; /* Hide by default */
     position: fixed;
     width: 30vw;
     height: 90vh;
     border: 2px solid #03253A;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
     background: #03253A;
     right: 20px;
     top: 20px;
@@ -99,8 +87,6 @@
     display: flex;
     align-items: center;
     padding: 20px;
-    background-color: #03253A;
-    border-bottom: 1px solid #03253A;
     color: #fff;
 }
 
@@ -139,7 +125,7 @@
     flex: 1;
     padding: 20px;
     overflow-y: auto;
-    background-color: #f4f4f4;
+    background-color: #ffff;
 }
 
 /* Chat Box */
@@ -155,23 +141,35 @@
 /* Messages */
 .message {
     margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 10px;
+    /* padding: 1rem; */
+    /* border-radius: 5px; */
     position: relative;
 }
 
 .message.sent {
-    background-color: #30CE88;
+    margin-left: 25px;
     align-self: flex-end;
 }
 
 .message.received {
-    background-color: #e5e5e5;
+    margin-right: 25px;
     align-self: flex-start;
 }
 
 .message p {
-    margin: 0;
+    background: #e5e5e5;
+    border-radius: 10px;
+    /* border: 1px solid; */
+    padding: 0.5rem;
+}
+
+.received span.message-time {
+    display: block;
+    /* padding-left: 180px; */
+    margin: auto;
+    justify-content: end;
+    text-align: right;
+    width: 100%;
 }
 
 .message-time {
@@ -188,6 +186,7 @@
 
 /* Quick Replies */
 .quick-replies {
+    border-top: 1px solid;
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
@@ -212,11 +211,13 @@
 
 /* Chat Input Area */
 .chat-input-area {
+    border-radius: 50px;
+    /*border: 1px solid #c5c5c5;*/
+    background: white;
     display: flex;
     align-items: center;
-    padding: 20px;
-    background-color: #f0f2f5;
-    border-top: 1px solid #ccc;
+    margin: 10px;
+    /* padding: 10px;*/
 }
 
 .chat-input-area input {
@@ -224,14 +225,19 @@
     padding: 10px;
     border: none;
     border-radius: 10px;
-    background-color: #fff;
+    /* background-color: #fff; */
     margin: 0 10px;
     outline: none;
 }
 
 .chat-input-area button {
+    margin: 1px;
+    padding: 0px 5px;
+    /* border: 1px solid white; */
+    border-radius: 25px 25px 25px 5px;
+    color: black;
     background: none;
-    border: none;
+    /* border: none; */
     font-size: 1.5em;
     cursor: pointer;
     transition: background-color 0.3s ease;

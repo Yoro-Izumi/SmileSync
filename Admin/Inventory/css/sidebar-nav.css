@@ -9,7 +9,6 @@
 }
 
 .sidebar {
-  
   position: fixed;
   left: 0;
   top: 0;
@@ -17,13 +16,15 @@
   width: 65px;
   background: #03253A;
   padding: 6px;
-  margin: 5px;
-  border-radius: 15px;
+  margin: 0 5px;
+  border-radius: 25px;
   z-index: 99;
   transition: all 0.5s ease;
 }
 
 .sidebar.open {
+  margin: 0;
+  border-radius: 0;
   width: 250px;
 }
 
@@ -78,14 +79,14 @@
 }
 
 .sidebar .nav-title {
-  margin-top: 20px;
-  color: #c5c5c5;
-  font-size: 14px;
-  padding: 10px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
+    /* margin-top: 20px; */
+    color: #c5c5c5;
+    font-size: 14px;
+    padding: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
 }
 
 .sidebar.open .nav-title {
@@ -207,7 +208,7 @@
   color: #fff;
   font-size: 15px;
   font-weight: 400;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
   margin-left: 1rem;
   opacity: 0;
   pointer-events: none;
@@ -233,19 +234,19 @@
 }
 
 .sidebar li.profile {
-  position: fixed;
-  height: 60px;
-  width: 50px;
-  left: 0;
-  margin: 10px;
-  bottom: -8px;
-  background: #03253A;
-  border-radius: 25px;
-  text-align: center;
-  transition: all 0.5s ease;
-  border-radius: 0px 15px 0px 15px;
-  z-index: 99;
-  overflow: hidden;
+    /* width: 50px; */
+    position: absolute;
+    height: 60px;
+    /* left: 0; */
+    margin: 10px 0;
+    bottom: 0;
+    /* background: #03253A; */
+    border-radius: 25px;
+    text-align: center;
+    transition: all 0.5s ease;
+    /* border-radius: 0px 15px 0px 15px; */
+    z-index: 99;
+    overflow: hidden;
 }
 
 
@@ -263,16 +264,17 @@
 
 .sidebar li.profile .name,
 .sidebar li.profile .job {
+  text-align: left;
+  margin: 0 15px;
   font-size: 14px;
   font-weight: 400;
   color: #fff;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
   opacity: 0;
   max-width: 55px;
   transition: 0.5s;
-  /* Smaller width when sidebar is closed */
 }
 
 .sidebar.open li.profile .name,
@@ -300,11 +302,10 @@
   opacity: 1;
   top: 50%;
   transform: translateY(-50%);
-  background: #03253A;
   width: 50px;
   height: 60px;
-  line-height: 60px;
-  border-radius: 25px;
+  /* line-height: 60px; */
+  /* border-radius: 25px; */
   color: #fff;
   transition: all 0.5s ease;
 }

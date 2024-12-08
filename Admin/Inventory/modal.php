@@ -3,186 +3,186 @@
 <head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
 
-
-<div class="modal" id="newInventoryModal">
-    <div class="modal-content">
-        <div class="modal-title normal-title">Add Existing Account</div>
-        <div class="modal-description">
-            --Input data for new account--
+<!-- View Items Modal -->
+<div class="modal" id="viewItemModal">
+    <div class="modal-content medium">
+     <div class="modal-header">
+       <h3>Product Overview</h3>
+      <div class="modal-actions">
+        <div class="dropdown">
+          <button class="table-btn"><i class="fas fa-download"></i> Download</button>
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-option" id="exportExcel"><i class="fas fa-file-excel"></i>Excel</a>
+            <a href="#" class="dropdown-option" id="exportPDF"><i class="fas fa-file-pdf"></i>PDF</a>
+            <a href="#" class="dropdown-option" id="exportWord"><i class="fas fa-file-word"></i>Word</a>
+          </div>
         </div>
-        <button class="modal-button secondary-button" id="cancelSubmitExistingBtn">Cancel</button>
-        <button class="modal-button normal" id="submitExistingBtn">Submit</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Primary Details</h3>
+      <table class="modal-table">
+        <tr>
+          <td><strong>Product Name</strong></td>
+          <td>Maggi</td>
+        </tr>
+        <tr>
+          <td><strong>Product ID</strong></td>
+          <td>456567</td>
+        </tr>
+        <tr>
+          <td><strong>Product Category</strong></td>
+          <td>Instant food</td>
+        </tr>
+        <tr>
+          <td><strong>Expiry Date</strong></td>
+          <td>13/4/23</td>
+        </tr>
+        <tr>
+          <td><strong>Threshold Value</strong></td>
+          <td>12</td>
+        </tr>
+        <tr>
+          <td><strong>Opening Stock</strong></td>
+          <td>40</td>
+        </tr>
+        <tr>
+          <td><strong>Remaining Stock</strong></td>
+          <td>34</td>
+        </tr>
+      </table>
+      <h3>Stock Locations</h3>
+      <table>
+        <tr>
+          <td><strong>Store Name</strong></td>
+          <td>Cabuyao Branch</td>
+        </tr>
+      </table>
+    </div>
+
+        <button id="okView" class="modal-button normal">OK</button>
     </div>
 </div>
 
-
-
-<div class="modal" id="deleteProgressModal">
-    <div class="modal-content">
-        <div class="image-container">
-            <img class="image" src="img/archive.png" alt="security">
-        </div>
-        <div class="modal-title warning-title">DELETE PROGRESS</div>
-        <div class="message-container">
-            <div class="modal-description">
-                All progress will be removed.
-            </div>
-        </div>
-        <button class="modal-button normal" id="deleteNewProgressBtn">Delete</button>
-        <button class="modal-button secondary-button warning" id="cancelNewDeleteBtn">Cancel</button>
-    </div>
-</div>
-
-
-<!-- Success Modal -->
-<div class="modal" id="appointmentSuccessModal">
-    <div class="modal-content">
-        <div class="modal-title success-title">Appointment Added Successfully!</div>
-        <div class="message-container">
-            <div class="modal-description">
-                Appointment was successfully added to the account. Please check your email for confirmation.
-            </div>
-        </div>
-        <button id="closeAppointmentSuccessBtn" class="modal-button success">OK</button>
-    </div>
-</div>
-
-
-<!-- Success Approved Account Modal -->
-<div class="modal" id="appointmentSuccessModal">
-    <div class="modal-content">
-        <div class="modal-title success-title">Account Approved!</div>
-        <div class="message-container">
-            <div class="modal-description">
-                Account has been successfully  approved. You may view the  approved account in  Accounts.
-            </div>
-        </div>
-        <button id="closeEditSuccessBtn" class="modal-button success">OK</button>
-    </div>
-</div>
-
-<!-- Login Failed Modal -->
-<div class="modal" id="confirmEditModal" >
-    <div class="modal-content">
-        <b class="modal-title normal-title">Confirm Edit</b>
-
-        <div class="message-container">
-            <div class="modal-description">
-                By clicking confirm, changes will be saved and can longer be reverted.
-            </div>
-        </div>
-        <button id="Btn" class="modal-button normal">Confirm</button>
-    </div>
-</div>
-
-
-<!-- Success Edit Modal -->
-<div class="modal" id="appointmentSuccessModal">
-    <div class="modal-content">
-        <div class="modal-title success-title">Edit Successful!</div>
-        <div class="message-container">
-            <div class="modal-description">
-                Account has been successfully  edited. You may view the  edited account in  Accounts page.
-            </div>
-        </div>
-        <button id="closeEditSuccessBtn" class="modal-button normal">OK</button>
-        <button class="modal-button secondary-button warning" id="removeAccountBtn">Cancel</button>
-    </div>
-</div>
 
 <!-- Remove Account Warning Modal -->
-<div class="modal" id="deleteProgressModal">
+<div class="modal" id="removeItemModal">
     <div class="modal-content">
         <div class="image-container">
             <img class="image" src="img/archive.png" alt="security">
         </div>
-        <div class="modal-title warning-title">Account Removal</div>
+        <div class="modal-title warning-title">Inventory Removal</div>
         <div class="message-container">
             <div class="modal-description">
-                You are trying to remove (1) account. The user will no longer be able to access their account. 
+                You are trying to remove (1) item. The item will no longer be accessed by the admin. 
             </div>
         </div>
-        <button class="modal-button normal" id="removeAccountBtn">Remove</button>
-        <button class="modal-button secondary-button warning" id="cancelRemoveAccountBtn">Cancel</button>
+        <button class="modal-button normal" id="removeItemBtn">Remove</button>
+        <button class="modal-button secondary-button warning" id="cancelRemoveItemBtn">Cancel</button>
     </div>
 </div>
 
-<!-- Remove Account Success Modal -->
-<div class="modal" id="deleteProgressModal">
+<!-- Remove Account Success Modal
+<div class="modal" id="removeItemSuccessModal">
     <div class="modal-content">
-        <div class="modal-title warning-title">Account Removed</div>
+        <div class="modal-title warning-title">Item Removed</div>
         <div class="message-container">
             <div class="modal-description">
-                Account has been successfully removed. You may view the removed account in Archive.
+                Item/s has been successfully removed. You may view the removed account in Trash.
             </div>
         </div>
-        <button id="okRemoveAccount" class="modal-button success">OK</button>
+        <button id="okRemoveItem" class="modal-button success">OK</button>
     </div>
-</div>
+</div> -->
 
-<script src="js/modal.js"></script>
+<div id="alertContainer"></div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+    const productTable = document.querySelector('table');
+    const bubbleDesignStyles = `
+        .bubble {
+            border-radius: 12px;
+            background: #f2f2f2;
+            padding: 8px 16px;
+            margin: 5px;
+            display: inline-block;
+            font-size: 14px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    `;
+
+    // Function to create the bubble design for each cell
+    const applyBubbleDesign = (data) => {
+        return `<span class="bubble">${data}</span>`;
+    };
+
+    // Export to Excel (XLSX)
+    document.getElementById('exportExcel').addEventListener('click', function () {
+        const wb = XLSX.utils.table_to_book(productTable, {sheet: "Product Overview"});
+        const wbout = XLSX.write(wb, {bookType: "xlsx", type: "array"});
+
+        // Create a Blob and trigger a download
+        const blob = new Blob([wbout], {type: "application/octet-stream"});
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "product_overview.xlsx";
+        link.click();
+    });
+
+    // Export to PDF
+    document.getElementById('exportPDF').addEventListener('click', function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        // Add table to PDF
+        doc.autoTable({ html: productTable });
+
+        // Download PDF
+        doc.save('product_overview.pdf');
+    });
+
+    // Export to Word (DOCX)
+    document.getElementById('exportWord').addEventListener('click', function () {
+        const pptx = new PptxGenJS();
+        const slide = pptx.addSlide();
+
+        // Set bubble design for text and add table to the slide
+        const rows = Array.from(productTable.rows);
+        const tableData = rows.map(row => {
+            const cells = Array.from(row.cells).map(cell => applyBubbleDesign(cell.innerText));
+            return cells;
+        });
+
+        slide.addTable(tableData, {x: 1, y: 1, w: '90%', h: '80%'});
+
+        // Save the presentation as a Word doc
+        pptx.save("product_overview");
+    });
+
+    // Optional: Add the bubble design styles to the page
+    const style = document.createElement('style');
+    style.innerHTML = bubbleDesignStyles;
+    document.head.appendChild(style);
+});
+
+
+</script>
+
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-            function toggleDropdown() {
-              const dropdownMenu = document.querySelector('.dropdown-menu');
-              dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-            }
+<script src="js/modal.js"></script>
+<script src="js/alert.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.12.0/pptxgen.bundle.js"></script>
 
-            $('input[type="checkbox"]').on('change', function() {
-                const isChecked = $(this).is(':checked');
-                const productName = $(this).data('name');
-                const quantity = $(this).siblings('.number-input').val();
-
-                if (isChecked) {
-                    $('.selected-items').append(`
-                        <div class="selected-item-box" data-product="${productName}">
-                            <button class="remove-item" onclick="removeItem('${productName}')">X</button>
-                            ${productName} (Quantity: ${quantity})
-                        </div>
-                    `);
-                } else {
-                    $('.selected-item-box[data-product="${productName}"]').remove();
-                }
-                updateHiddenField();
-            });
-
-            $('.number-input').on('change', function() {
-                const productName = $(this).siblings('input[type="checkbox"]').data('name');
-                const newQuantity = $(this).val();
-
-                $('.selected-item-box[data-product="${productName}"]').html(`
-                    <button class="remove-item" onclick="removeItem('${productName}')">X</button>
-                    ${productName} (Quantity: ${newQuantity})
-                `);
-                updateHiddenField();
-            });
-
-            function removeItem(productName) {
-                $('input[data-name="${productName}"]').prop('checked', false);
-                $('.selected-item-box[data-product="${productName}"]').remove();
-                updateHiddenField();
-            }
-
-            function updateHiddenField() {
-                const selectedProducts = [];
-                $('.selected-item-box').each(function() {
-                    const product = $(this).data('product');
-                    const quantity = $(this).text().match(/\d+/)[0];
-                    selectedProducts.push({ product, quantity });
-                });
-                $('#selected-products').val(JSON.stringify(selectedProducts));
-            }
-
-          document.querySelector('.close-btn').addEventListener('click', function () {
-              alert('Modal closed');
-              // Add functionality to close modal here
-          });
-      </script>
 </body>
 </html>

@@ -78,39 +78,6 @@
     cursor: pointer;
 }
 
-/* Dropdown styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 40px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 1000;
-}
-
-.dropdown-menu a {
-    display: block;
-    text-decoration: none;
-    color: #001f3f;
-    padding: 20px;
-    font-size: 14px;
-}
-
-.dropdown-menu a:hover {
-    background-color: #f0f0f0;
-}
-
-/* Hover over dropdown toggle to display menu */
-.dropdown-toggle:hover + .dropdown-menu {
-    display: block;
-}
 
 .body-container {
     margin-top: 55px;
