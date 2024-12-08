@@ -38,7 +38,17 @@
     const detailsDiv = document.getElementById('invoice-details');
     const invoice = invoices[index];
     detailsDiv.innerHTML = `
-      <h3>Invoice Details</h3>
+      <h3>
+      Invoice Details
+            <div class="dropdown">
+          <button class="btn" style="align-items: right;"><i class="fas fa-download"></i> Download</button>
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-option" id="exportExcel"><i class="fas fa-file-excel"></i>Excel</a>
+            <a href="#" class="dropdown-option" id="exportPDF"><i class="fas fa-file-pdf"></i>PDF</a>
+            <a href="#" class="dropdown-option" id="exportWord"><i class="fas fa-file-word"></i>Word</a>
+          </div>
+        </div>
+      </h3>
       <p><strong>Invoice ID:</strong> ${invoice.id}</p>
       <p><strong>Client Name:</strong> ${invoice.client}</p>
       <p><strong>Date:</strong> ${invoice.date}</p>

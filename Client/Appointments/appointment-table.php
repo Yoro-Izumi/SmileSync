@@ -64,7 +64,6 @@
       </table>
 
     </div>
-
     <div class="pagination">
       <a href="#" class="previous">Previous</a>
       <a href="#" class="pagination-item pagination-child">1</a>

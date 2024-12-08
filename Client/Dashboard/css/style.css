@@ -127,6 +127,17 @@ body {
   transition: transform 0.3s ease;
 }
 
+a {
+  text-decoration: none;
+}
+
+p {
+  padding: 0 1rem;
+  font-family: inherit;
+  font-weight: 400;
+  color: #737171;
+  font-size: 12px;
+}
 
 /* Hide text when panel is shrunk */
 .right-panel.shrunk .panel-header h2 {

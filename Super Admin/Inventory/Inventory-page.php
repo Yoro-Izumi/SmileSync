@@ -15,6 +15,7 @@ include "../admin_global_files/connect_database.php";
     <link rel="stylesheet" href="css/sidebar-nav.css"/>
     <!-- Page -->
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/inventoryToggle.css" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,10 +31,19 @@ include "../admin_global_files/connect_database.php";
  
   <section class="home-section">
   <h2>Inventory</h2>
-  <?php include "inventory-tables.php"; ?>
+
+  <div class="account-toggle">
+    <div class="toggle-item active" data-content="list">Inventory List</div>
+    <div class="toggle-item" data-content="history">History</div>
+
+  </div>
+  <div class="content-area">
+    <div class="content active" id="list"><?php include "inventory-tables.php"; ?></div>
+    <div class="content" id="history" style="display: none;"><?php include "inventory-tablesHistory.php"; ?></div>
+  </div>
   </section>
   
-
+ <script src="js/inventoryToggle.js"></script>
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
 </body>

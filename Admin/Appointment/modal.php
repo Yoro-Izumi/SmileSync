@@ -157,7 +157,7 @@
     <button class="close-btn"  id="cancelSubmitExistingBtn">&times;</button>
         <div class="modal-title normal-title">Add Existing Account</div>
         <div class="modal-description">
-        <?php include "newAppointment.php"; ?>
+        <?php include "existingAppointment.php"; ?>
         </div>
      </div>
 </div>
