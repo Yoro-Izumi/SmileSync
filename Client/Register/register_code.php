@@ -51,6 +51,7 @@ $appointmentsConn = connect_patient($servername, $username, $password);
     //for the appointment
     $appointmentDate = sanitize_input($_POST['appointmentDate'],$appointmentsConn);
     $appointmentTime = sanitize_input($_POST['appointmentTime'],$appointmentsConn);
+    $appointmentDateTime = $appointmentDate." ".$appointmentTime;
     $appointmentReason = sanitize_input($_POST['appointmentReason'],$appointmentsConn);
 
     if($password !== $confirmPassword){
@@ -72,14 +73,15 @@ $appointmentsConn = connect_patient($servername, $username, $password);
     //patient information insert starts here
 
     // SQL query to insert patient information
-    $qryInsertPatientInfo = "INSERT INTO `smilesync_patient_info`(`patient_info_id`, `first_name`, `last_name`, `middleName`, `suffix`, `sex`, `phoneNumber`) 
-                             VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+    $qryInsertPatientInfo = "INSERT INTO `smilesync_patient_information`
+                            (`patient_info_id`, `patient_first_name`, `patient_last_name`, `patient_middle_name`, `patient_sufix`, `patient_sex`, `patient_phone_number`, `patient_address`) 
+                            VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL)";
 
     // Prepare the statement
     $conInsertPatientInfo = mysqli_prepare($patientsConn, $qryInsertPatientInfo);
 
     // Bind the parameters to the prepared statement (6 parameters)
-    mysqli_stmt_bind_param($conInsertPatientInfo, 'ssssss', $firstName, $lastName, $middleName, $suffix, $sex, $phoneNumber);
+    mysqli_stmt_bind_param($conInsertPatientInfo, "ssssss", $firstName, $lastName, $middleName, $suffix, $sex, $phoneNumber);
 
     // Execute the prepared statement
     mysqli_stmt_execute($conInsertPatientInfo);
@@ -110,9 +112,9 @@ $appointmentsConn = connect_patient($servername, $username, $password);
 
     //$accountConn , $patientsConn, $appointmentsConn
     //here is where the covid form values are inserted
-    $qryInsertAppointment = "INSERT INTO `smilesync_appointments`(`appointment_id`,`patient_id`,` staff_id`,`covid_form_id`, `appointment_status`, `appointment_date`, `appointment_time`, `appointment_reason`) VALUES (NULL,?,NULL,?,?,?,?,?)";
+    $qryInsertAppointment = "INSERT INTO `smilesync_appointments`(`appointment_id`,`patient_id`,` staff_id`,`covid_form_id`, `appointment_status`, `appointment_Date_time`, `appointment_reason`) VALUES (NULL,?,NULL,?,?,?,?,?)";
     $conInsertAppointment = mysqli_prepare($appointmentsConn, $qryInsertAppointment);
-    mysqli_stmt_bind_param($conInsertAppointment, 'iiisss', $patientInfoID, $covidFormID, $appointmentDate, $appointmentTime, $appointmentReason);
+    mysqli_stmt_bind_param($conInsertAppointment, 'iiisss', $patientInfoID, $covidFormID, $appointmentDateTime, $appointmentReason);
     mysqli_stmt_execute($conInsertCovidForm);
 
     mysqli_close($patientsConn);
