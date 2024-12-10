@@ -21,7 +21,7 @@ document.getElementById('submitNewBtn').addEventListener('click', () => {
 function createAlert(message, alertType = 'alert-info', duration = 5000) { // duration in milliseconds
     const alertContainer = document.getElementById('alertContainer');
     let icon = '';
-
+ 
     // Set icons based on alert type
     switch (alertType) {
         case 'alert-success':

@@ -8,7 +8,7 @@
 <body>
 
   <div class="container">
-    <h2>Removed Inventory List</h2>
+    <h2>Removed Services</h2>
     <div class="header">
       <div class="filters">
         <div>
@@ -64,24 +64,6 @@
                   <div class="dropdown-content">
                   <a href="#">Restore</a>
                   <a href="#">Permanent Delete</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="Product Name">Anesthetic</td>
-            <td data-label="Product ID">001-00-2</td>
-            <td data-label="Price Sold">50.00</td>
-            <td data-label="Batch Date">08-10-2024</td>
-            <td data-label="Expiry Date">08-10-2027</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#" >Restore</a>
                   </div>
                 </div>
               </div>

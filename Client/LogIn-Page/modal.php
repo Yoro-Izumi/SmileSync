@@ -10,7 +10,7 @@
 
 
 <!-- Login Failed Modal -->
-<div class="modal" id="loginFailedModal" >
+<div class="modal" id="loginFailedModalClient" >
     <div class="modal-content">
         <b class="modal-title normal-title">Login Failed</b>
 
@@ -28,7 +28,7 @@
 
 
 
-<div class="modal" id="resetPasswordModal">
+<div class="modal" id="resetPasswordModalClient">
     <div class="modal-content">
 
     <div class="image-container">
@@ -48,7 +48,7 @@
                 autocomplete="off"
                 required
             />
-            <label for="emailInput">Email<indicator>*</indicator></label>
+            <label for="emailInputReset">Email<indicator>*</indicator></label>
         </div></div>
         <button class="modal-button warning" id="submitResetPasswordBtn">Submit</button>
         <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
@@ -57,7 +57,7 @@
 
 
 <!-- Success Modal -->
-<div class="modal" id="successModal">
+<div class="modal" id="resetSuccessModal">
     <div class="modal-content">
     <div class="image-container">
             <img class="image" src="img/check.png" alt="security">

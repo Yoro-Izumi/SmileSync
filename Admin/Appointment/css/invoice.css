@@ -7,6 +7,13 @@
       border-bottom: 2px solid #E8E8E8;
     }
 
+    button.btn {
+      margin: auto;
+      background: white;
+      border-radius: 5px;
+      padding: 6px;
+  }
+
     .header h2 {
       color: #1A73E8;
       font-size: 24px;

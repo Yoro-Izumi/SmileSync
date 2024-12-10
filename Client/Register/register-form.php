@@ -226,7 +226,7 @@
               <label for="hmo-no">No</label>
             </div>
           </div>
-          <div id="address-field" style="display: none;">
+          <div id="hmoID" style="display: none;">
             <div class="input-wrap">
               <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
               <label for="hmoID">Please the HMO ID No.</label>

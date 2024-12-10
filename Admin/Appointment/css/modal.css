@@ -21,7 +21,11 @@
   margin-bottom: 25px;
 }
 
-
+span {
+  font-size: 12px;
+  flex-grow: 1;
+  padding-left: 10px;
+}
 
 h1,
 h2,
@@ -574,6 +578,18 @@ footer {
   color: #888;
 }
 
+.modal-done {
+  position: relative;
+  border-radius: 25px;
+  background-color: #fff;
+  width: max-content;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transform: scale(0.7);
+  animation: popup 0.3s ease forwards;
+}
 
 /* General modal styles */
 .modal {
@@ -588,6 +604,7 @@ footer {
     align-items: center;
     opacity: 0;
     visibility: hidden;
+    overflow: auto;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 9999; /* Ensures modal is above all other content */
 }
@@ -666,7 +683,7 @@ footer {
     position: relative;
     border-radius: 25px;
     background-color: #fff;
-    max-width: 600px;
+    width: 60vh;
     padding: 20px;
     text-align: center;
     box-sizing: border-box;
@@ -893,14 +910,14 @@ footer {
 }
 
 label {
-    position: absolute;
-    left: 5px;
-    top: 45%;
-    transform: translateY(-50%);
+    /* position: absolute; */
+    /* left: 5px; */
+    /* top: 45%; */
+    /* transform: translateY(-50%); */
     font-size: 0.8rem;
-    color: #bbb;
+    color: #000;
     pointer-events: none;
-    transition: 0.4s;
+    /* transition: 0.4s;*/
 }
 
 .modal-input.error {

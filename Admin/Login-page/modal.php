@@ -27,7 +27,7 @@
 </div>
 
 
-
+ 
 <div class="modal" id="resetPasswordModal">
     <div class="modal-content">
 
@@ -42,7 +42,7 @@
         <div class="input-wrap">
             <input
                 type="text"
-                id="emailInput"
+                id="emailInputReset"
                 minlength="4"
                 class="modal-input"
                 autocomplete="off"
@@ -189,10 +189,6 @@
 
 
 
-
-
-
-<script src=="js/modal.js"></script>
 
 </body>
 </html>
