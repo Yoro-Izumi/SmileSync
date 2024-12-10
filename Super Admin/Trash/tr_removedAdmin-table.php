@@ -29,15 +29,15 @@ if ($resultsAdminAccounts) {
             <td data-label="Date of Creation"><?php echo htmlspecialchars($dateOfCreation); ?></td>
             <td data-label="STATUS" class="status"><?php echo htmlspecialchars($statusAccount); ?></td>
             <td data-label="ACTIONS">
-                <div class="actions">
-                    <div class="dropdown">
-                        <button>⋮</button>
-                        <div class="dropdown-content">
-                            <a href="#">Delete Account</a>
-                            <a href="#">Edit Account</a>
-                        </div>
-                    </div>
+              <div class="actions">
+                <div class="dropdown">
+                  <button>⋮</button>
+                  <div class="dropdown-content">
+                    <a href="#">Restore</a>
+                    <a href="#">Permanent Delete</a>
+                  </div>
                 </div>
+              </div>
             </td>
         </tr>
 

@@ -46,24 +46,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="Description">X-ray</td>
-            <td data-label="ID">00-00-001</td>
-            <td data-label="Price">10.00</td>
-            <td data-label="Duration">10 hours</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#" id="deleteServicesTable"><i class="fas fa-trash"></i> Delete Service</a>
-                    <a href="#" id="viewServices"><i class="fas fa-eye"></i> View Service</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+          <?php include "tr-services-tables.php";?>
         </tbody>
       </table>
     </div>
