@@ -1,6 +1,6 @@
 <?php
 //initialize servername username and password first for database connection
-$servername = "131.226.104.230"; //localhost
+$servername = "localhost"; //localhost
 $username = "admin_superAdmin";//"root";
 $password = "SmileSyncWorld11+";
 
