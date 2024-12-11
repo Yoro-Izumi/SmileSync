@@ -19,26 +19,28 @@ $patientsConn = connect_patient($servername, $username, $password);
 $appointmentsConn = connect_patient($servername, $username, $password);
 
 
-  if (isset($_POST['userRegister'])) {
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // format of input sanitization = sanitize_input($_POST['username'], $connect_db);
     //  initialize all inputted data
     $firstName = encryptData(sanitize_input($_POST['firstName'],$patientsConn),$key);
     $lastName = encryptData(sanitize_input($_POST['lastName'],$patientsConn),$key);
     $middleName = encryptData(sanitize_input($_POST['middleName'],$patientsConn),$key);
     $suffix = encryptData(sanitize_input($_POST['suffix'],$patientsConn),$key);
-    $sex = encryptData(sanitize_input($_POST['sex'],$patientsConn),$key);
+    $sex = encryptData(sanitize_input(isset($_POST['sex'])?$_POST['sex'] : " ",$patientsConn),$key);
     $phoneNumber = encryptData(sanitize_input($_POST['phoneNumber'],$patientsConn),$key);
+    $birthday = encryptData(sanitize_input($_POST['birthday'],$patientsConn),$key);
 
     //input of covid form
-    $bodyTemp = sanitize_input($_POST['bodyTemp'],$appointmentsConn);
-    $answerOne = sanitize_input($_POST['answerOne'],$appointmentsConn);
-    $answerTwo = sanitize_input($_POST['answerTwo'],$appointmentsConn);
-    $answerThree = sanitize_input($_POST['answerThree'],$appointmentsConn);
-    $answerFour = sanitize_input($_POST['answerFour'],$appointmentsConn);
-    $answerFive = sanitize_input($_POST['answerFive'],$appointmentsConn);
-    $answerSix = sanitize_input($_POST['answerSix'],$appointmentsConn);
-    $answerSeven = sanitize_input($_POST['answerSeven'],$appointmentsConn);
-    $answerEight = sanitize_input($_POST['answerEight'],$appointmentsConn);
+    $bodyTemp = sanitize_input(isset($_POST['bodyTemp'])?$_POST['bodyTemp']:0.00,$appointmentsConn);
+    $answerOne = sanitize_input($_POST['visited'] === "yes"? $_POST['visited']:$_POST['infectedAddress'] ,$appointmentsConn);
+    $answerTwo = sanitize_input($_POST['gathering'],$appointmentsConn);
+    $answerThree = sanitize_input($_POST['contact'],$appointmentsConn);
+    $answerFour = sanitize_input($_POST['pui'],$appointmentsConn);
+    $answerFive = sanitize_input($_POST['pum'],$appointmentsConn);
+    $answerSix = sanitize_input($_POST['symptoms'],$appointmentsConn);
+    $answerSeven = sanitize_input($_POST['medical'],$appointmentsConn);
+    $answerEight = sanitize_input($_POST['emergency'],$appointmentsConn);
+    $answerNine = sanitize_input($_POST['hmo'] === "yes"? $_POST['hmo']:$_POST['hmoID'],$appointmentsConn);
 
 
     //for the account
@@ -49,8 +51,9 @@ $appointmentsConn = connect_patient($servername, $username, $password);
     $dateOfCreation = date('Y-m-d');
 
     //for the appointment
-    $appointmentDate = sanitize_input($_POST['appointmentDate'],$appointmentsConn);
-    $appointmentTime = sanitize_input($_POST['appointmentTime'],$appointmentsConn);
+    $appointmentDate = $dateOfCreation;
+    $appointmentTime = "8:00:00";
+    $appointmentDateTime = $appointmentDate." ".$appointmentTime;
     $appointmentReason = sanitize_input($_POST['appointmentReason'],$appointmentsConn);
 
     if($password !== $confirmPassword){
@@ -72,14 +75,15 @@ $appointmentsConn = connect_patient($servername, $username, $password);
     //patient information insert starts here
 
     // SQL query to insert patient information
-    $qryInsertPatientInfo = "INSERT INTO `smilesync_patient_info`(`patient_info_id`, `first_name`, `last_name`, `middleName`, `suffix`, `sex`, `phoneNumber`) 
-                             VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+    $qryInsertPatientInfo = "INSERT INTO `smilesync_patient_information`
+                            (`patient_info_id`, `patient_first_name`, `patient_last_name`, `patient_middle_name`, `patient_sufix`, `patient_sex`, `patient_phone_number`, `patient_address`, `patient_birthday`) 
+                            VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL,?)";
 
     // Prepare the statement
     $conInsertPatientInfo = mysqli_prepare($patientsConn, $qryInsertPatientInfo);
 
     // Bind the parameters to the prepared statement (6 parameters)
-    mysqli_stmt_bind_param($conInsertPatientInfo, 'ssssss', $firstName, $lastName, $middleName, $suffix, $sex, $phoneNumber);
+    mysqli_stmt_bind_param($conInsertPatientInfo, "sssssss", $firstName, $lastName, $middleName, $suffix, $sex, $phoneNumber,$birthday);
 
     // Execute the prepared statement
     mysqli_stmt_execute($conInsertPatientInfo);
@@ -101,7 +105,7 @@ $appointmentsConn = connect_patient($servername, $username, $password);
     //here is where the covid form values are inserted
     $qryInsertCovidForm = "INSERT INTO `smilesync_covid_form`(`covid_form_id`,`patient_id`,`body_temp`,`question_one`, `question_two`, `question_three`, `question_four`, `question_five`, `question_six`, `question_seven`, `question_eight`) VALUES (NULL,?,?,?,?,?,?,?,?,?,?)";
     $conInsertCovidForm = mysqli_prepare($appointmentsConn, $qryInsertCovidForm);
-    mysqli_stmt_bind_param($conInsertCovidForm, 'iissssssss' , $patientAccountID, $bodyTemp, $answerOne, $answerTwo, $answerThree, $answerFour, $answerFive, $answerSix, $answerSeven, $answerEight);
+    mysqli_stmt_bind_param($conInsertCovidForm, 'iidsssssss' , $patientAccountID, $bodyTemp, $answerOne, $answerTwo, $answerThree, $answerFour, $answerFive, $answerSix, $answerSeven, $answerEight);
     mysqli_stmt_execute($conInsertCovidForm);
 
     //get the id of patient info that was inserted
@@ -110,14 +114,14 @@ $appointmentsConn = connect_patient($servername, $username, $password);
 
     //$accountConn , $patientsConn, $appointmentsConn
     //here is where the covid form values are inserted
-    $qryInsertAppointment = "INSERT INTO `smilesync_appointments`(`appointment_id`,`patient_id`,` staff_id`,`covid_form_id`, `appointment_status`, `appointment_date`, `appointment_time`, `appointment_reason`) VALUES (NULL,?,NULL,?,?,?,?,?)";
+    $qryInsertAppointment = "INSERT INTO `smilesync_appointments`(`appointment_id`,`patient_id`,` staff_id`,`covid_form_id`, `appointment_status`, `appointment_Date_time`, `appointment_reason`) VALUES (NULL,?,NULL,?,?,?,?,?)";
     $conInsertAppointment = mysqli_prepare($appointmentsConn, $qryInsertAppointment);
-    mysqli_stmt_bind_param($conInsertAppointment, 'iiisss', $patientInfoID, $covidFormID, $appointmentDate, $appointmentTime, $appointmentReason);
+    mysqli_stmt_bind_param($conInsertAppointment, 'iiisss', $patientInfoID, $covidFormID, $appointmentDateTime, $appointmentReason);
     mysqli_stmt_execute($conInsertCovidForm);
 
     mysqli_close($patientsConn);
     mysqli_close($accountConn);
     mysqli_close($appointmentsConn);
-    unset($_POST['userRegister']);
+    unset($_POST['firstName']);
 
   } 

@@ -24,16 +24,16 @@ if ($resultInventoryContent) {
             <td data-label="ACTIONS">
               <div class="actions">
                 <div class="dropdown">
-                  <button>⋮</button>
+                  <button><i class="fas fa-ellipsis-v"></i></button>
                   <div class="dropdown-content">
-                    <a href="#" id="removeProductTable">Remove Product</a>
-                    <a href="#">View Details</a>
-                    <a href="#">Download</a>
+                    <a href="#" id="removeProductTable"><i class="fas fa-trash-alt"></i> Delete</a>
+                    <a href="#" id="viewDetails"><i class="fas fa-eye"></i> View Details</a>
                   </div>
                 </div>
               </div>
             </td>
         </tr>
+
 
 <?php 
     }

@@ -9,7 +9,6 @@ if (isset($_GET['date'])) {
     // Check connection
     if (!$connect_appointment) {
         die("Connection failed: " . mysqli_connect_error());
-        exit();
     }
 
     // Query to fetch appointments with JOINs for associated data

@@ -10,7 +10,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 // Check if user is already logged in
 if (isset($_SESSION['userSuperAdminID']) && $_SESSION['userType'] == 'superAdmin') {
-    header('location: ../Dashboard/Dashboard.php');
+    header('location: ../../Super Admin/Dashboard/Dashboard.php');
     exit();
 }
 else if (isset($_SESSION['userAdminID']) && $_SESSION['userType'] == 'admin') {

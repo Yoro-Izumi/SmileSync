@@ -1,3 +1,9 @@
+<?php 
+session_start();
+date_default_timezone_set('Asia/Manila');
+
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,9 +226,9 @@
           <div class="question-row">
             <label for="questionInput">Will you be using an HMO Card?</label>
             <div class="answer-options">
-              <input type="radio" id="hmo-yes" name="visited" value="yes" onclick="toggleAddressField()">
+              <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleAddressField()">
               <label for="hmo-yes">Yes</label>
-              <input type="radio" id="hmo-no" name="visited" value="no" onclick="toggleAddressField()">
+              <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleAddressField()">
               <label for="hmo-no">No</label>
             </div>
           </div>
@@ -272,15 +278,15 @@
 
             <div class="calendar-month" style="text-align: center;">
               <select id="month" name="month">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
                 <option value="10">October</option>
                 <option value="11">November</option>
                 <option value="12">December</option>
@@ -482,5 +488,37 @@ $('.icon').click(function () {
   }
 });
  </script> 
+
+<!--FormData POST using AJAX-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#multiStepForm").on("submit", function (e) {
+      e.preventDefault(); // Prevent default form submission
+      
+      // Collect all form data
+      const formData = new FormData(this);
+
+      // AJAX request to send form data
+      $.ajax({
+        url: "register_code.php", // Change to your server endpoint
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          alert("Form submitted successfully!");
+          console.log("Server Response:", response);
+        },
+        error: function (xhr, status, error) {
+          alert("Failed to submit form!");
+          console.error("Error:", error);
+        },
+      });
+    });
+  });
+</script>
+
+
 </body>
 </html>

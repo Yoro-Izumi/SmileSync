@@ -1,4 +1,5 @@
 <?php
+include "../admin_global_files/connect_database.php";
 $connect_inventory = connect_inventory($servername, $username, $password);
 
 $item_no = 0;
@@ -49,16 +50,15 @@ if ($resultInventoryHistory) {
             <td data-label="ACTIONS">
               <div class="actions">
                 <div class="dropdown">
-                  <button>⋮</button>
+                  <button><i class="fas fa-ellipsis-v"></i></button>
                   <div class="dropdown-content">
-                    <a href="#" id="removeProductTable">Remove Product</a>
-                    <a href="#">View Details</a>
-                    <a href="#">Download</a>
+                    <a href="#" id="removeProduct"><i class="fas fa-trash-alt"></i> Delete</a>
+                    <a href="#" id="viewDetailsHistory"><i class="fas fa-eye"></i> View Details</a>
                   </div>
                 </div>
               </div>
             </td>
-        </tr>
+          </tr>
 
 <?php 
     } // End of while loop

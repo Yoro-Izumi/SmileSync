@@ -1,11 +1,12 @@
 <?php
 $connect_inventory = connect_inventory($servername, $username, $password);
 
-$item_no = 0;
+$item_status = "Deleted";
+
 //get all items alphabetically
-$stmtInventoryContent = "SELECT * FROM smilesync_inventory_items WHERE item_quantity >= ? ORDER BY item_name ASC";
+$stmtInventoryContent = "SELECT * FROM smilesync_inventory_items WHERE item_status = ? ORDER BY item_name ASC";
 $prepareInventoryContent = mysqli_prepare($connect_inventory, $stmtInventoryContent);
-mysqli_stmt_bind_param($prepareInventoryContent, "i", $item_no);
+mysqli_stmt_bind_param($prepareInventoryContent, "s",$item_status);
 mysqli_stmt_execute($prepareInventoryContent);
 $resultInventoryContent = mysqli_stmt_get_result($prepareInventoryContent);
 
@@ -26,12 +27,14 @@ if ($resultInventoryContent) {
                 <div class="dropdown">
                   <button>⋮</button>
                   <div class="dropdown-content">
-                    <a href="#">Restore</a>
+                    <a href="#" id="removeProductTable">Remove Product</a>
+                    <a href="#">View Details</a>
+                    <a href="#">Download</a>
                   </div>
                 </div>
               </div>
             </td>
-         </tr>
+        </tr>
 
 <?php 
     }

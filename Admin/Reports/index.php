@@ -1,3 +1,3 @@
 <?php
-header("location: ReportsAndAnalytics-page.php");
+header("location: ReportAndAnalytics-page.php");
 ?>

@@ -20,12 +20,14 @@ if ($resultsPatientAccounts) {
             $patientFirstName = $patientAccounts['patient_first_name'] = "";
             $patientMiddleName = $patientAccounts['patient_middle_name'] = "";
             $patientLastName = $patientAccounts['patient_last_name'] = "";
+            $patient_info_id = $patientAccounts['patient_info_id'] = "";
         } else {
             $patientFirstName = $patientAccounts['patient_first_name'] ?? "";
             $patientMiddleName = $patientAccounts['patient_middle_name'] ?? "";
             $patientLastName = $patientAccounts['patient_last_name'] ?? "";
             $patientID = $patientAccounts['patient_account_id'];
             $patientFullName = $patientLastName . ", " . $patientFirstName . " " . $patientMiddleName;
+            $patient_info_id = $patientAccounts[ 'patient_info_id' ]?? " ";
         }
         if ($patientAccounts['admin_id'] === NULL) {
             $approver = "--";
@@ -34,7 +36,7 @@ if ($resultsPatientAccounts) {
         }
 ?>
 <tr>
-    <td><input type="checkbox"></td>
+    <td><input type="checkbox" value="<?php echo $patient_info_id;?>"></td>
     <td data-label="ID"><?php echo $patientID; ?></td>
     <td data-label="NAME"><?php echo $patientFullName; ?></td>
     <td data-label="APPROVER"><?php echo $approver; ?></td>
@@ -43,15 +45,15 @@ if ($resultsPatientAccounts) {
     <td data-label="ACTIONS">
         <div class="actions">
             <div class="dropdown">
-                <button>⋮</button>
-                <div class="dropdown-content">
-                    <a href="#">Delete Account</a>
-                    <a href="#">Edit Account</a>
-                </div>
+              <button>⋮</button>
+              <div class="dropdown-content">
+                <a href="#">Delete Account</a>
+                <a href="#">Edit Account</a>
+              </div>
             </div>
-        </div>
+          </div>
     </td>
-</tr>    
+</tr> 
 <?php
     }
 }
