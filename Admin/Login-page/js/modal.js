@@ -1,29 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let loginFailedModal = document.getElementById('loginFailedModal');
-    let resetPasswordModal = document.getElementById('resetPasswordModal');
-    let successModal = document.getElementById('successModal');
-    let privacyPolicyModal = document.getElementById('privacyPolicyModal');
-    let termServicesModal = document.getElementById('termServicesModal');
-    let successRegisterModal = document.getElementById('successRegisterModal');
+    const loginFailedModal = document.getElementById('loginFailedModal');
+    const resetPasswordModal = document.getElementById('resetPasswordModal');
+    const successModal = document.getElementById('successModal');
+    const privacyPolicyModal = document.getElementById('privacyPolicyModal');
+    const termServicesModal = document.getElementById('termServicesModal');
+    const successRegisterModal = document.getElementById('successRegisterModal');
 
-    let registerBtn = document.getElementById('registerBtn');
-    let closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
+    const showLoginFailedBtn = document.getElementById('loginBtn');
+    const closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
 
-    let showLoginFailedBtn = document.getElementById('loginBtn');
-    let closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
+    const termServices = document.getElementById('termServices');
+    const closetermServicesBtn = document.getElementById('closetermServicesBtn');
 
-    let termServices = document.getElementById('termServices');
-    let closetermServicesBtn = document.getElementById('closetermServicesBtn');
+    const privacyPolicy = document.getElementById('privacyPolicy');
+    const closePrivacyPolicyBtn = document.getElementById('closePrivacyPolicyBtn');
 
-    let privacyPolicy = document.getElementById('privacyPolicy');
-    let closePrivacyPolicyBtn = document.getElementById('closePrivacyPolicyBtn');
+    const resetPasswordLink = document.getElementById('resetPasswordLink');
+    const resetLink = document.getElementById('forgotLink');
+    const closeResetPasswordBtn = document.getElementById('cancelButton');
 
-    let resetPasswordLink = document.getElementById('resetPasswordLink');
-    let resetLink = document.getElementById('forgotLink');
-    let closeResetPasswordBtn = document.getElementById('cancelButton');
-
-    let submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
-    let closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+    const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
+    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
 
     // Event listeners remain the same
     showLoginFailedBtn.addEventListener('click', function() {
@@ -58,30 +57,25 @@ document.addEventListener('DOMContentLoaded', function() {
         privacyPolicyModal.classList.remove('show');
     });
 
-    resetPasswordLink.addEventListener('click', function(event) {
-        event.preventDefault();
+    resetPasswordLink.addEventListener('click', function() {
         loginFailedModal.classList.remove('show');
         resetPasswordModal.classList.add('show');
     });
 
-    closeResetPasswordBtn.addEventListener('click', function(event) {
-        event.preventDefault();
+    closeResetPasswordBtn.addEventListener('click', function() {
         resetPasswordModal.classList.remove('show');
     });
 
-    resetLink.addEventListener('click', function(event) {
-        event.preventDefault();
+    resetLink.addEventListener('click', function() {
         resetPasswordModal.classList.add('show');
     });
 
-    submitResetPasswordBtn.addEventListener('click', function(event) {
-        event.preventDefault();
+    submitResetPasswordBtn.addEventListener('click', function() {
         resetPasswordModal.classList.remove('show');
         successModal.classList.add('show');
     });
 
-    closeSuccessModalBtn.addEventListener('click', function(event) {
-        event.preventDefault();
+    closeSuccessModalBtn.addEventListener('click', function() {
         successModal.classList.remove('show');
     });
 });

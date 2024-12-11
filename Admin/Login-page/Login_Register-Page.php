@@ -178,7 +178,7 @@ else{*/
                class="input-field"
                name="confirmPasswordRegister"
                autocomplete="off"
-             required></diuv>
+             required>
          <label>Confirm Password<indicator>*</indicator></label>
      </div>
 
@@ -188,7 +188,7 @@ else{*/
       <div class="text-wrap">
              <p class="text">
                By signing up, I agree to the
-               <a href="#" id="termServices">Terms of Services</a> and
+               <a href="#" id="termServices">Terms of Services</a> |
                <a href="#" id="privacyPolicy">Privacy Policy</a>
              </p>
            </div>
@@ -270,9 +270,8 @@ else{*/
 
     <!-- Javascript file -->
     <script src="js/app.js"></script>
-    <script src="js/eye-toggle.js"></script>
-    <script //src="js/submit_form.js"></script>
+    <script src="js/submit_form.js"></script>
     <script src="js/validations.js"></script>
 </body>
 </html>
-<?php //}?>
+<?php ?>

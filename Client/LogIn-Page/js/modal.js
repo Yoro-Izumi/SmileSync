@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const loginFailedModal = document.getElementById('loginFailedModal');
-    const resetPasswordModal = document.getElementById('resetPasswordModal');
-    const successModal = document.getElementById('successModal');
+    const loginFailedModal = document.getElementById('loginFailedModalClient');
+    const resetPasswordModal = document.getElementById('resetPasswordModalClient');
+    const successModal = document.getElementById('resetSuccessModal');
 
     
-    const showLoginFailedBtnn = document.getElementById('loginBtn');
+    const showLoginFailedBtnn = document.getElementById('loginClientBtn');
     const closeLoginFailedBtnn = document.getElementById('closeLoginFailedBtnn');
 
     const resetPasswordLinkk = document.getElementById('resetPasswordLink');
-    const resetLink = document.getElementById('forgotLink');
+    const resetLink = document.getElementById('forgotPassword');
     const closeResetPasswordBtn = document.getElementById('cancelButton');
 
     const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');

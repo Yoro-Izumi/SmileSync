@@ -3,51 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Pager</title>
+  <title>Welcome to SmileSync</title>
+  <link rel="icon" type="image/x-icon" href="img/logo.png">
   <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-  
+
 <header class="topbar">
-    <div class="logo">SmileSync</div>
-    <nav class="nav-links" id="navLinks">
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">About Us</a>
-    </nav>
-    <a href="../LogIn-Page/Login-Page.php" class="login-link">Login</a>
-    <div class="hamburger" onclick="toggleMenu()">
-      &#9776;
-    </div>
+<div class="logo">
+             <img src="img/logo.png" alt="SmileSync">
+             SmileSync
+           </div>
+  <nav class="nav-links" id="navLinks">
+    <a onclick="Welcome">Home</a>
+    <a onclick="Services">Services</a>
+    <a onclick="About">About Us</a>
+  </nav>
+  <a href="../LogIn-Page/Login-Page.php" class="login-link">Login</a>
+  <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
 </header>
 
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('navLinks');
+    menu.classList.toggle('active');
+  }
+</script>
 
-  <script>
-function toggleMenu() {
-  const menu = document.querySelector('navLinks');
-  menu.classList.toggle('active');
-}
-  </script>
-
-
-  
-  <div class="container">
-    <h1>Welcome!</h1>
-    <p>Shcema</p>
-    <a href="#">Get Started</a>
+<div id="Welcome" class="container">
+      <h1>Welcome to SmileSync!</h1>
+      <p>
+        Discover a brighter, healthier smile with SmileSync. We are dedicated to providing exceptional dental care services tailored to your needs.
+      </p>
+      <p>For our new patients, get an appointment now by going to our appointment page below.</p>
+      <a href="../Register/Register-Page.php">Get an Appointment</a>
+    </div>
   </div>
+</div>
 
-  <!--div class="blank"></div-->
+  <div class="blank"></div><!---->
 
 
-  <div class="containers">
+  <div id="Services" class="container split">
   <h1>Services</h1>
     <p>
-    We provide to you the best choiches for you.
-    Adjust it to your health needs and make sure your undergo treatment with our highly qualified doctors you can consult with us which type of service is suitable for your health.
+    We provide the best choiches for you.
+    Adjust services to your health needs and make sure you undergo treatment with our highly qualified doctors.
+    You can consult with us with which type of service is suitable for your health!
   </p>
 
-      <div class="card-container">
+  <div class="card-container">
     <div class="item">
       <div class="img"></div>
       <div class="card">
@@ -66,6 +71,9 @@ function toggleMenu() {
         </p>
       </div>
     </div>
+      </div>
+
+      <div class="card-container">
     <div class="item">
       <div class="img"></div>
       <div class="card">
@@ -86,7 +94,7 @@ function toggleMenu() {
     </div>
       </div>
 
-      <div class="card-container">
+    <div class="card-container">
       <div class="item">
       <div class="img"></div>
       <div class="card">
@@ -105,6 +113,9 @@ function toggleMenu() {
         </p>
       </div>
     </div>
+      </div>
+
+  <div class="card-container">
     <div class="item">
       <div class="img"></div>
       <div class="card">
@@ -127,10 +138,10 @@ function toggleMenu() {
     
   </div>
 
-  <!--div class="blank"></div-->
+  <div class="blank"></div><!---->
 
   
-  <div class="container">
+  <div id="About" class="container">
   <h1>About Us</h1>
     <p>
     You can find us in the location pinned below or contact us with the phone number below for more inquiries.
@@ -144,15 +155,14 @@ function toggleMenu() {
                 </div>
                 <div class="content" data-jarallax-element="-200 0">
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Reprehenderit maxime quas quisquam harum ab, nostrum sequi
-                        ducimus dicta accusamus sint dolorum similique.
+                       We offer professional dental care services,
+                        including advanced teeth whitening treatments to brighten your smile. Our clinic specializes in customized braces and aligners for a perfect fit and alignment,
+                         along with painless tooth extraction methods to ensure your comfort.
                     </p>
-                    <ul>
-                        <li>Professional dental care services.</li>
-                        <li>Advanced teeth whitening treatments.</li>
-                        <li>Customized braces and aligners.</li>
-                        <li>Painless tooth extraction methods.</li>
+                    <ul> 
+                        <li>Address: #53 Banlic, Cabuyao, Calabarzon, Philippines, Cabuyao, Philippines</li>
+                        <li>Number: 0917 587 4263</li>
+                        <li>Usual Time: 9:00 AM : 5:00 PM</li>
                     </ul>
 
                     <a href="https://maps.app.goo.gl/uELgbafYaUNUAJn59">See Location</a>
@@ -160,6 +170,10 @@ function toggleMenu() {
             </div>
         </div>
   </div>
+
+  <footer>
+    <h4>&copy; 2024 SmileSync. All rights reserved.</h4>
+  </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.8/jarallax.min.js"></script>
 

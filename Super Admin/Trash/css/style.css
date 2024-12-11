@@ -18,6 +18,10 @@ html{
   background-color: #E2ECF8;
 }
 
+h2 {
+  margin: 1rem 0;
+  font-family: 'Open Sans Condensed';
+}
 
 body {
   background-color: #E2ECF8;

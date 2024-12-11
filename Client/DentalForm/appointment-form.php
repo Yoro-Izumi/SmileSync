@@ -156,11 +156,22 @@
         </div>
       </div>
 
+    
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
-        <h3>Appointment Detail</h3>
+        <div class="input-wrap">
+  <select class="input-field" id="services">
+    <option value="" disabled selected>Select a Service</option>
+    <option value="consultation">Consultation</option>
+    <option value="therapy">Therapy</option>
+    <option value="diagnostics">Diagnostics</option>
+    <option value="surgery">Surgery</option>
+  </select>
+</div>
+
         <div class="appointment-container">
-        <div class="calendar-container">
+          <!-- Calendar Section -->
+          <div class="calendar-container">
             <div class="calendar-header">
               <span>Select Date<span class="required">*</span></span>
               <span class="calendar-legend">
@@ -201,56 +212,32 @@
               </thead>
               <tbody>
                 <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td class="unavailable">1</td>
-                  <td class="unavailable">2</td>
-                  <td class="choice">3</td>
-                  <td class="recommended">4</td>
+                  <td></td><td></td><td></td><td class="unavailable">1</td><td class="unavailable">2</td><td class="choice">3</td><td class="recommended">4</td>
                 </tr>
                 <tr>
-                  <td class="choice">5</td>
-                  <td>6</td>
-                  <td>7</td>
-                  <td class="recommended">8</td>
-                  <td>9</td>
-                  <td class="unavailable">10</td>
-                  <td class="choice">11</td>
+                  <td class="choice">5</td><td>6</td><td>7</td>
+                  <td class="recommended">8</td><td>9</td><td class="unavailable">10</td><td class="choice">11</td>
                 </tr>
                 <tr>
-                  <td>12</td>
-                  <td>13</td>
-                  <td>14</td>
-                  <td class="choice">15</td>
-                  <td>16</td>
-                  <td class="recommended">17</td>
+                  <td>12</td><td>13</td><td>14</td>
+                  <td class="choice">15</td><td>16</td><td class="recommended">17</td>
                   <td>18</td>
                 </tr>
                 <tr>
-                  <td>19</td>
-                  <td>20</td>
-                  <td>21</td>
-                  <td>22</td>
-                  <td class="unavailable">23</td>
-                  <td>24</td>
-                  <td>25</td>
+                  <td>19</td><td>20</td><td>21</td>
+                  <td>22</td><td class="unavailable">23</td>
+                  <td>24</td><td>25</td>
                 </tr>
                 <tr>
-                  <td>26</td>
-                  <td>27</td>
-                  <td>28</td>
-                  <td class="choice">29</td>
-                  <td>30</td>
-                  <td>31</td>
-                  <td></td>
+                  <td>26</td><td>27</td><td>28</td>
+                  <td class="choice">29</td><td>30</td><td>31</td><td></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-           <!-- Recommendation Section -->
-           <div class="recommendation-container">
+          <!-- Recommendation Section -->
+          <div class="recommendation-container">
             <h3>Available Times</h3>
             <p>10:00 AM</p>
             <p>11:00 AM</p>
@@ -263,20 +250,23 @@
             <p>Date: 14th August 2024</p>
             <p>Time: 2:00 PM - 3:00 PM</p>
           </div>
-        </div>
-          <div class="select-time-container">
-            <label for="time">Select a Time:</label>
-            <div class="time-selection">
-              <select id="time" name="time">
-                <option value="10:00 AM">10:00 AM</option>
-                <option value="11:00 AM">11:00 AM</option>
-                <option value="2:00 PM">2:00 PM</option>
-                <option value="3:00 PM">3:00 PM</option>
-              </select>
-            </div>
-          </div>
-        
+          
       </div>
+
+        <div class="select-time-container">
+             <label for="time">Select a Time:</label>
+              <div class="time-selection"> 
+                <select id="time" name="time">
+                  <option value="10:00 AM">10:00 AM</option>
+                  <option value="11:00 AM">11:00 AM</option>
+                  <option value="2:00 PM">2:00 PM</option>
+                  <option value="3:00 PM">3:00 PM</option>
+                </select>
+          </div>         
+        </div>
+ 
+      </div>
+
       
     </form>
     <div class="form-navigation">
