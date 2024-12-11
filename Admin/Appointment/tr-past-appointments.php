@@ -47,7 +47,6 @@ if ($result && mysqli_num_rows($result) > 0) {
         $appointments[] = $row;
     }
 }
-mysqli_close($connect_appointment);
 
 foreach ($appointments as $appointment) {
     $patient_id = $appointment['patient_info_id'];

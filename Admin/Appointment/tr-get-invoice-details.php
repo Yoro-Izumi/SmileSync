@@ -9,7 +9,7 @@ $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
 $user_id = 0; // $_SESSION['userID'];
 $patient_id = "";
-//$_GET['entry_id'] = 0;
+$_GET['entry_id'] = 0;
 
 // Check connection
 if ($connect_appointment->connect_error) {

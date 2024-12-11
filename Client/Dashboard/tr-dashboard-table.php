@@ -1,9 +1,11 @@
 <?php
-include "../admin_global_files/connect_database.php";
-include "../admin_global_files/input_sanitizing.php";
+session_start();
+include "../client_global_files/connect_database.php";
+include "../client_global_files/input_sanitizing.php";
 
 $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
+$user_id = $_SESSION['userID'];
 $appointment_status = "Cancelled";
 
 // Create a connection
@@ -14,7 +16,7 @@ if (!$connect_appointment) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// SQL query to get the appointment data, filtering for appointments that are equal to or greater than the current date
+// SQL query to get the appointment data
 $getAppointmentDetails = "
     SELECT 
         a.patient_info_id, 
@@ -34,8 +36,7 @@ $getAppointmentDetails = "
     LEFT JOIN 
         $approvers_db.smilesync_admin_accounts ar ON a.admin_id = ar.admin_account_id
     WHERE 
-        a.appointment_status = '$appointment_status' 
-        AND a.appointment_date_time >= CURDATE()  -- Filters for appointments equal to or greater than today's date
+        a.patient_info_id = '$user_id'
 ";
 
 $result = mysqli_query($connect_appointment, $getAppointmentDetails);
@@ -47,8 +48,9 @@ if ($result && mysqli_num_rows($result) > 0) {
         $appointments[] = $row;
     }
 }
+mysqli_close($connect_appointment);
 
-foreach ($appointments as $appointment) {
+foreach ($appointments as $appointment){
     $patient_id = $appointment['patient_info_id'];
     $admin_id = $appointment['admin_id'];
     $appointment_date_time = formatDateTime($appointment['appointment_date_time']);
@@ -66,11 +68,11 @@ foreach ($appointments as $appointment) {
 ?>
 <tr>
     <td><input type="checkbox"></td>
-    <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id, $connect_appointment); ?></td>
-    <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name, $connect_appointment); ?></td>
-    <td data-label="APPROVER"><?php echo sanitize_input($approver_name, $connect_appointment); ?></td>
-    <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time, $connect_appointment); ?></td>
-    <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status, $connect_appointment); ?></td>
+    <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
+    <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
+    <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
+    <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
+    <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
     <td data-label="ACTIONS">
         <div class="actions">
             <div class="dropdown">
@@ -84,4 +86,11 @@ foreach ($appointments as $appointment) {
         </div>
     </td>
 </tr>
+
+<tr>
+            <td data-label="Name">Oli,Jonas</td>
+            <td data-label="Service">Orthodontics</td>
+            <td data-label="Schedule">08-10-2024</td>
+            <td data-label="Time">10:30 AM : 2:30 PM</td>
+          </tr>
 <?php } ?>
