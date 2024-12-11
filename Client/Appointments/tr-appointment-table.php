@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../client_global_files/connect_database.php";
 include "../client_global_files/input_sanitizing.php";
 
@@ -21,7 +22,8 @@ $getAppointmentDetails = "
         a.patient_info_id, 
         a.admin_id, 
         a.appointment_date_time, 
-        a.appointment_status, 
+        a.appointment_status,
+        a.appointment_id,
         p.patient_first_name,
         p.patient_middle_name,
         p.patient_last_name, 
@@ -54,6 +56,7 @@ foreach ($appointments as $appointment){
     $admin_id = $appointment['admin_id'];
     $appointment_date_time = formatDateTime($appointment['appointment_date_time']);
     $appointment_status = $appointment['appointment_status'];
+    $appointment_id = $appointment['appointment_id'];
 
     $patient_first_name = $appointment['patient_first_name'] ?? "";
     $patient_middle_name = $appointment['patient_middle_name'] ?? "";
@@ -65,14 +68,14 @@ foreach ($appointments as $appointment){
     $approver_last_name = $appointment['admin_last_name'] ?? "";
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
 ?>
-<tr>
-    <td><input type="checkbox"></td>
-    <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
-    <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
-    <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
-    <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
-    <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
-    <td data-label="ACTIONS">
+    <tr>
+        <td><input type="checkbox"></td>
+        <td data-label="CLIENT ID">00-00-002</td>
+        <td data-label="CLIENT NAME">Dimaculangan, Chorlyn L.</td>
+        <td data-label="APPROVER">Dr. OLI, Jonas</td>
+        <td data-label="APPOINTMENT">08-10-2024</td>
+        <td data-label="STATUS" class="status">Rescheduled</td>
+        <td data-label="ACTIONS">
         <div class="actions">
             <div class="dropdown">
                 <button>⋮</button>
@@ -83,6 +86,6 @@ foreach ($appointments as $appointment){
                 </div>
             </div>
         </div>
-    </td>
-</tr>
+        </td>
+    </tr>
 <?php } ?>

@@ -19,7 +19,8 @@ $getAppointmentDetails = "
         a.patient_info_id, 
         a.admin_id, 
         a.appointment_date_time, 
-        a.appointment_status, 
+        a.appointment_status,
+        a.appointment_id, 
         p.patient_first_name,
         p.patient_middle_name,
         p.patient_last_name, 
@@ -43,13 +44,13 @@ if ($result && mysqli_num_rows($result) > 0) {
         $appointments[] = $row;
     }
 }
-mysqli_close($connect_appointment);
 
 foreach ($appointments as $appointment){
     $patient_id = $appointment['patient_info_id'];
     $admin_id = $appointment['admin_id'];
     $appointment_date_time = formatDateTime($appointment['appointment_date_time']);
-    $appointment_status = $appointment['appointment_status'];
+    $appointment_status = $appointment['appointment_status']; 
+    $appointment_id = $appointment['appointment_id'];
 
     $patient_first_name = $appointment['patient_first_name'] ?? "";
     $patient_middle_name = $appointment['patient_middle_name'] ?? "";
@@ -62,7 +63,7 @@ foreach ($appointments as $appointment){
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
 ?>
 <tr>
-    <td><input type="checkbox"></td>
+    <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
     <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
     <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
     <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>

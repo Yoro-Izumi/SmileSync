@@ -33,6 +33,8 @@ FROM
 LEFT JOIN 
     smilesync_appointments ap ON `is`.appointment_id = ap.appointment_id
 LEFT JOIN 
+    smilesync_invoices inv ON `is`.invoice_id = inv.invoice_id
+LEFT JOIN 
     {$patients_db}.smilesync_patient_information p ON ap.patient_info_id = p.patient_info_id
 LEFT JOIN 
     {$approvers_db}.smilesync_admin_accounts ar ON ap.admin_id = ar.admin_account_id
@@ -70,28 +72,29 @@ if ($result && $result->num_rows > 0) {
             $approver_last_name = $appointment['admin_last_name'] ?? "";
             $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
 
+            //Invoice
+            $invoice_id = sanitize_input($appointment['invoice_id'],$connect_appointment) ?? NULL;
             // Render table row
             ?>
             <tr>
-                <td><input type="checkbox"></td>
-                <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id, $connect_appointment); ?></td>
-                <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name, $connect_appointment); ?></td>
-                <td data-label="APPROVER"><?php echo sanitize_input($approver_name, $connect_appointment); ?></td>
-                <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time, $connect_appointment); ?></td>
-                <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status, $connect_appointment); ?></td>
-                <td data-label="ACTIONS">
-                    <div class="actions">
-                        <div class="dropdown">
-                            <button>⋮</button>
-                            <div class="dropdown-content">
-                                <a href="appointment-details.php">View Details</a>
-                                <a href="#">Download</a>
-                                <a href="#" id="appointmentStatus">Done Appointment</a>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-            </tr>
+            <td><input type="checkbox" value = "<?php echo $invoice_id?>"></td>
+            <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id, $connect_appointment); ?></td>
+            <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name, $connect_appointment); ?></td>
+            <td data-label="APPROVER"><?php echo sanitize_input($approver_name, $connect_appointment); ?></td>
+            <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time, $connect_appointment); ?></td>
+            <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status, $connect_appointment); ?></td>
+            <td data-label="ACTIONS">
+              <div class="actions">
+                <div class="dropdown">
+                  <button>⋮</button>
+                  <div class="dropdown-content">
+                    <a href="#" >View Details</a>
+                    <a href="#">Download</a>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
             <?php
         }
     }
