@@ -17,24 +17,22 @@
             <option>All</option>
           </select>
         </div>
+      </div> <!-- Close filters div -->
 
       <div class="search-bar">
         <input type="text" placeholder="Search...">
       </div>
-    </div>
-
-        <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#">Restore</a>
-                    <a href="#">Permanent Delete</a>
-                  </div>
-                </div>
-              </div>
-    </div>
-
-
+      
+      <div class="actions">
+        <div class="dropdown">
+          <button>⋮</button>
+          <div class="dropdown-content">
+            <a href="#">Restore</a>
+            <a href="#">Permanent Delete</a>
+          </div>
+        </div>
+      </div> <!-- Close actions div -->
+    </div> <!-- Close header div -->
 
     <div class="table-container">
       <table>
@@ -50,47 +48,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="CLIENT ID">00-00-001</td>
-            <td data-label="CLIENT NAME">Valera, Arwen Grace C.</td>
-            <td data-label="APPROVER">Dr. OLI, Jonas</td>
-            <td data-label="LAST APPOINTMENT">08-10-2024</td>
-            <td data-label="STATUS" class="status">Deactivated</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#">Restore</a>
-                    <a href="#">Permanent Delete</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="CLIENT ID">00-00-002</td>
-            <td data-label="CLIENT NAME">Dimaculangan, Chorlyn L.</td>
-            <td data-label="APPROVER">Dr. OLI, Jonas</td>
-            <td data-label="APPOINTMENT">08-10-2024</td>
-            <td data-label="STATUS" class="status">Deactivated</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#">Restore</a>
-                    <a href="#">Permanent Delete</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+          <?php include "tr_removedAdmin-table.php"; ?> <!-- Closing PHP tag added -->
         </tbody>
       </table>
-
     </div>
 
     <div class="pagination">
@@ -101,8 +61,6 @@
       <a href="#" class="next">Next</a>
     </div>
 
-    
-    </div>
-  </div>
+  </div> <!-- Close container div -->
 </body>
 </html>

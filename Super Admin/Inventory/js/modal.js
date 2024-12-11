@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const editModal = document.getElementById('editModal');
     const confirmEditModal = document.getElementById('confirmEditModal'); 
     const deleteInventoryModal = document.getElementById('removeItemModal'); 
+    const deleteInventoryModalSolo = document.getElementById('removeItemModalSolo'); 
 
     // Button Elements
     const viewDetailsBtn = document.getElementById('viewDetails');
@@ -25,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const deleteInventoryBtn = document.getElementById('removeProduct');
     const removeItemBtn = document.getElementById('removeItemBtn');
     const cancelDeleteInventoryBtn = document.getElementById('cancelRemoveItemBtn');
+    const removeItemBtnSolo = document.getElementById('removeItemBtnSolo');
+    const cancelDeleteInventoryBtnSolo = document.getElementById('cancelRemoveItemBtnSolo');
 
     // Show View Details Modal
     viewDetailsBtn.addEventListener('click', function(){
@@ -104,4 +107,20 @@ document.addEventListener('DOMContentLoaded', function() {
     removeItemBtn.addEventListener('click', function() {
         deleteInventoryModal.classList.remove('show');
     });
+
+    // Close/Discard Delete Inventory Modal
+    removeItemTableBtn.addEventListener('click', function() {
+        deleteInventoryModalSolo.classList.add('show');
+    });
+    
+
+    // Close/Discard Delete Inventory Modal
+    removeItemBtnSolo.addEventListener('click', function() {
+        deleteInventoryModalSolo.classList.remove('show');
+    });
+
+    cancelDeleteInventoryBtnSolo.addEventListener('click', function() {
+        deleteInventoryModalSolo.classList.remove('show');
+    });
+
 });

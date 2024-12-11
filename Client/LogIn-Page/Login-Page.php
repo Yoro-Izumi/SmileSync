@@ -19,6 +19,9 @@ if (isset($_SESSION['userID'])) {
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!--style.css-->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
 </head>
 
@@ -81,11 +84,11 @@ if (isset($_SESSION['userID'])) {
                 </div>
 
                   <p class="text">
-                  <a href="#" id="forgotLink"> Forgotten your password?</a>
+                  <a href="#" id="forgotPassword"> Forgotten your password?</a>
                 </p>
                 </div >
 
-                <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
+                <input type="submit" value="Sign In" class="sign-btn" id="loginClientBtn"/>
 
                 
               </div>
@@ -106,16 +109,8 @@ if (isset($_SESSION['userID'])) {
 
     <!-- Javascript file -->
     <script src="js/app.js"></script>
-    <script src="js/eye-toggle.js"></script>
-
-
-   
-<!-- Flatpickr CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
 <!-- Flatpickr JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
 <!-- AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

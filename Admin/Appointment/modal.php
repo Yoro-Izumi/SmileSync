@@ -8,7 +8,7 @@
 <div class="modal" id="appointmentDoneModal">
 
     <div class="done-modal">
-   <div class="modal-content">
+   <div class="modal-done">
     <div class="modal-header">
                 <div class="content">
                     <h2>iMee-Toga Oli Dental Clinic</h2>

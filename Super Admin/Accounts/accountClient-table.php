@@ -59,7 +59,7 @@
           </tr>
         </thead>
         <tbody>
-          <!--?php include "tr_accountClient-table.php";?-->
+          <?php include "tr_accountClient-table.php";?>
           <tr>
             <td><input type="checkbox"></td>
             <td data-label="ID">00-00-002</td>

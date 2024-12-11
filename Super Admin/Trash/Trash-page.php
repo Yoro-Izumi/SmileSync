@@ -29,11 +29,13 @@
     <div class="toggle-item active" data-content="client-accounts">Client Accounts</div>
     <div class="toggle-item" data-content="admin-accounts">Admin Accounts</div>
     <div class="toggle-item" data-content="inventory">Inventory</div>
+    <div class="toggle-item" data-content="services">Services</div>
   </div>
   <div class="content-area">
     <div class="content active" id="client-accounts"><?php include "removedClient-table.php"; ?></div>
     <div class="content" id="admin-accounts" style="display: none;"><?php include "removedAdmin-table.php"; ?></div>
     <div class="content" id="inventory" style="display: none;"><?php include "removedInventory-table.php"; ?></div>
+    <div class="content" id="services" style="display: none;"><?php include "removedServices-table.php"; ?></div>
   </div>
 
   </section>

@@ -14,7 +14,6 @@
   <div class="chart-container">
     <div class="patient-volume-header">
       <h2 class="chart-title">Patient Volume per Day</h2>
-      <?php include "dropdownWeek.php"; ?>
     </div>
 
     <div id="patientVolumeChart"></div>
@@ -70,7 +69,7 @@
 
     <div class="chart-group">
       <div class="container">    
-      <?php include "inventory_prediction/inventory_forecast.php";?>
+      <?php include "inventory_prediction/inventory_forecast2.php";?>
   </div>
 </div>
 

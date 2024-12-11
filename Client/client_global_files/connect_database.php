@@ -1,9 +1,8 @@
 <?php
 //initialize servername username and password first for database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-
+$servername = "localhost"; //localhost
+$username = "admin_superAdmin";//"root";
+$password = "SmileSyncWorld11+";
 
 // Functions to connect to specific databases
 
