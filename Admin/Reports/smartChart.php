@@ -69,7 +69,7 @@
 
     <div class="chart-group">
       <div class="container">    
-      <?php include "inventory_prediction/inventory_forecast.php";?>
+      <?php include "inventory_prediction/inventory_forecast2.php";?>
   </div>
 </div>
 
