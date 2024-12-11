@@ -58,7 +58,7 @@ fclose($fp);
 
 // Step 4: Call Python script to forecast stock levels
 $python_script = 'inventory_prediction/inventory_forecast2.py'; // Replace with your Python script
-exec("C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe $python_script $csv_file stock_forecast.csv"); // Replace with your Python path
+exec("python3 $python_script $csv_file stock_forecast.csv"); // Replace with your Python path
 
 // Step 5: Load the forecast data
 $forecast_file = 'stock_forecast.csv';
