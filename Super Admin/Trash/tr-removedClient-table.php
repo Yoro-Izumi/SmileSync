@@ -1,6 +1,7 @@
 <?php 
 $connect_accounts = connect_accounts($servername, $username, $password);
 $statusAccount = "Active";
+$key = "TheGreatestNumberIs73";
 $stmtPatientAccounts = "
                         SELECT smilesync_patient_management.smilesync_patient_information.*
                         , smilesync_patient_accounts.*  
@@ -21,9 +22,9 @@ if ($resultsPatientAccounts) {
             $patientMiddleName = $patientAccounts['patient_middle_name'] = "";
             $patientLastName = $patientAccounts['patient_last_name'] = "";
         } else {
-            $patientFirstName = $patientAccounts['patient_first_name'] ?? "";
-            $patientMiddleName = $patientAccounts['patient_middle_name'] ?? "";
-            $patientLastName = $patientAccounts['patient_last_name'] ?? "";
+            $patientFirstName = decryptData($patientAccounts['patient_first_name'],$key) ?? "";
+            $patientMiddleName = decryptData($patientAccounts['patient_middle_name'],$key) ?? "";
+            $patientLastName = decryptData($patientAccounts['patient_last_name'],$key) ?? "";
             $patientID = $patientAccounts['patient_account_id'];
             $patientFullName = $patientLastName . ", " . $patientFirstName . " " . $patientMiddleName;
         }

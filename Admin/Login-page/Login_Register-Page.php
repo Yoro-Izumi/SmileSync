@@ -1,5 +1,5 @@
 <?php
-/* Start session and set timezone
+// Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
 
@@ -10,7 +10,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 // Check if user is already logged in
 if (isset($_SESSION['userSuperAdminID']) && $_SESSION['userType'] == 'superAdmin') {
-    header('location: ../../Super Admin/Dashboard/Dashboard.php');
+    header('location: ../../Super%20Admin/Dashboard');
     exit();
 }
 else if (isset($_SESSION['userAdminID']) && $_SESSION['userType'] == 'admin') {
@@ -18,7 +18,6 @@ else if (isset($_SESSION['userAdminID']) && $_SESSION['userType'] == 'admin') {
     exit();
 }
 
-else{*/
 ?>
 
 <!DOCTYPE html>
@@ -274,4 +273,3 @@ else{*/
     <script src="js/validations.js"></script>
 </body>
 </html>
-<?php ?>

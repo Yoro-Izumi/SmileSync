@@ -1,19 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['userAdminID'])){
+if (isset($_SESSION['userID'])){
         unset($_SESSION['userAdminID']);
         session_destroy();
         header('location: ../Login-page/Login_Register-Page.php');
 
         die();
 }
-     else if(isset($_SESSION['userSuperAdminID'])){
-        unset($_SESSION['userSuperAdmin']);
-        session_destroy();
-        header('location: ../Login-page/Login_Register-Page.php');
-        die();
-     }
-     else{
+else{
         session_destroy();
         header('location: ../Login-page/Login_Register-Page.php');
 }

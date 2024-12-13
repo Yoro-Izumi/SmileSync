@@ -66,9 +66,12 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
     global $max_attempts, $lockout_time, $current_time, $error_message;
 
     $attempts_table = $user_type === 'admin' ? 'smilesync_admin_attempts' : 'smilesync_super_admin_attempts';
+    $actions_table = $user_type === 'admin' ? 'smilesync_admin_actions' : 'smilesync_super_admin_actions';
     $id_column = $user_type === 'admin' ? 'admin_account_id' : 'super_admin_acccount_id';
-    $first_attempt_time = $user_type === 'admin' ? 'admin_first_attempt_time' : 'super_admin_first_attempt_time';
+    $first_attempt_time = $user_type === 'admin' ? 'admin_first_attempt_time' : 'super_admin_first_attempt';
     $number_of_attempts = $user_type === 'admin' ? 'admin_number_of_attempts' : 'super_admin_number_of_attempts';
+    $user_action = $user_type === 'admin' ? 'admin_action' : 'super_admin_action';
+    $action_time_stamp = $user_action = $user_type === 'admin' ? 'admin_action_time_stamp' : 'super_admin_action_time_stamp';
 
     $stmtCheckAttempts = mysqli_prepare($connect_db, "SELECT * FROM $attempts_table WHERE $id_column = ?");
     mysqli_stmt_bind_param($stmtCheckAttempts, 'i', $user_id);
@@ -86,7 +89,7 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
             // Reset attempts after 5 hours
             reset_attempts($connect_db, $user_id, $user_type);
             
-            $stmtRecordAttempt = mysqli_prepare($connect_db, "INSERT INTO `smilesync_admin_actions`(`admin_actions_id`, `admin_account_id`, `admin_action`, `admin_action_time_stamp`) VALUES (NULL,?,?,current_timestamp())");
+            $stmtRecordAttempt = mysqli_prepare($connect_db, "INSERT INTO `$actions_table`(`$id_column`, `$user_action`, `$action_time_stamp`) VALUES (?,?,current_timestamp())");
             mysqli_stmt_bind_param($stmtRecordAttempt, 'i', $user_id);
             mysqli_stmt_execute($stmtCheckAttempts);
         }
@@ -119,7 +122,8 @@ function increment_attempts($connect_db, $user_id, $user_type) {
     $attempts_table = $user_type === 'admin' ? 'smilesync_admin_attempts' : 'smilesync_super_admin_attempts';
     $id_column = $user_type === 'admin' ? 'admin_account_id' : 'super_admin_account_id';
     $number_of_attempts = $user_type === 'admin' ? 'admin_number_of_attempts' : 'super_admin_number_of_attempts';
-    $first_attempt_time = $user_type === 'admin' ? 'admin_first_attempt_time' : 'super_admin_first_attempt_time';
+    $first_attempt_time = $user_type === 'admin' ? 'admin_first_attempt_time' : 'super_admin_first_attempt';
+    $last_attempt_time = $user_type === 'admin' ? 'admin_last_attempt_time' : 'super_admin_last_attempt';
 
     $stmtCheck = mysqli_prepare($connect_db, "SELECT * FROM $attempts_table WHERE $id_column = ?");
     mysqli_stmt_bind_param($stmtCheck, 'i', $user_id);
@@ -128,11 +132,11 @@ function increment_attempts($connect_db, $user_id, $user_type) {
     $attempt = mysqli_fetch_assoc($resultCheck);
 
     if ($attempt) {
-        $stmtUpdate = mysqli_prepare($connect_db, "UPDATE $attempts_table SET $number_of_attempts = $number_of_attempts + 1, admin_last_attempt_time = NOW() WHERE $id_column = ?");
+        $stmtUpdate = mysqli_prepare($connect_db, "UPDATE $attempts_table SET $number_of_attempts = $number_of_attempts + 1, $last_attempt_time = NOW() WHERE $id_column = ?");
         mysqli_stmt_bind_param($stmtUpdate, 'i', $user_id);
         mysqli_stmt_execute($stmtUpdate);
     } else {
-        $stmtInsert = mysqli_prepare($connect_db, "INSERT INTO $attempts_table ($id_column, $number_of_attempts, $first_attempt_time, admin_last_attempt_time) VALUES (?, 1, NOW(), NOW())");
+        $stmtInsert = mysqli_prepare($connect_db, "INSERT INTO $attempts_table ($id_column, $number_of_attempts, $first_attempt_time, $last_attempt_time) VALUES (?, 1, NOW(), NOW())");
         mysqli_stmt_bind_param($stmtInsert, 'i', $user_id);
         mysqli_stmt_execute($stmtInsert);
     }

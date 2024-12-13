@@ -18,3 +18,5 @@ function decryptData($data, $key) {
     $encryptedData = substr($data, $ivlen);
     return openssl_decrypt($encryptedData, $cipher, $key, OPENSSL_RAW_DATA, $iv);
 }
+
+//echo decryptData("yrwyBtGMg2SQ8ewbF0q6F1y1PnSsrNMWjS4FUMzDMIVLd/ReXT9eNEPLKqW5WfHN","TheGreatestNumberIs73");
