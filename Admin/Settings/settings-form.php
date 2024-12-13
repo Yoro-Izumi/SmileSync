@@ -150,11 +150,19 @@
             <label>Confirm Password<indicator>*</indicator></label>
         </div>
 
-        <button type="submit" class="btn">Save Changes</button>
-
         <div class="footer-note">
             <p>You will be asked to log in again with your new password after you save your changes.</p>
         </div>
+        <button type="submit" class="btn">Save Changes</button>
+
+        <h3>Deactivate Account</h3>
+        <p class="footer-note">This will temporarily deactivate your account.
+          You must not login for the next 30 days or it will activate automatically.
+          If user attempts to login within the allocated days and cannot retrieve account. SmileSync has forced deleted your account.
+        </p>
+        <button  class="btn">Deactivate Account</button>
+
+
      </form>
     </div>
    

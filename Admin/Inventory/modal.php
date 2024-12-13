@@ -87,18 +87,23 @@
     </div>
 </div>
 
-<!-- Remove Account Success Modal
-<div class="modal" id="removeItemSuccessModal">
+<!-- Remove Account Warning Modal -->
+<div class="modal" id="removeItemTableModal">
     <div class="modal-content">
-        <div class="modal-title warning-title">Item Removed</div>
+        <div class="image-container">
+            <img class="image" src="img/archive.png" alt="security">
+        </div>
+        <div class="modal-title warning-title">Inventory Removal</div>
         <div class="message-container">
             <div class="modal-description">
-                Item/s has been successfully removed. You may view the removed account in Trash.
+                You are trying to remove an item. The item will no longer be accessed by the admin. 
             </div>
         </div>
-        <button id="okRemoveItem" class="modal-button success">OK</button>
+        <button class="modal-button normal" id="removeItemTableBtn">Remove</button>
+        <button class="modal-button secondary-button warning" id="cancelRemoveItemTableBtn">Cancel</button>
     </div>
-</div> -->
+</div>
+
 
 <div id="alertContainer"></div>
 
