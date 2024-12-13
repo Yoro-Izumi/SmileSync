@@ -1,13 +1,12 @@
 <?php
-/* Start session and set timezone
+//Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
 // Check if user is already logged in
-
 if (isset($_SESSION['userID'])) {
-    header('location:Dashboard.php');
+    header('location: ../Dashboard');
     die();
-}*/
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +26,7 @@ if (isset($_SESSION['userID'])) {
 
 
 <body>
-<?php include "modal.php"; ?>
+<?php //include "modal.php"; ?>
 <?php include "loader.php"; ?>
 
     <main> 
@@ -52,7 +51,7 @@ if (isset($_SESSION['userID'])) {
                 <div class="input-wrap">
                   <input
                     type="text"
-                    minlength="24"
+                    minlength="1"
                     class="input-field"
                     name="email"
                     autocomplete="off"
@@ -64,7 +63,7 @@ if (isset($_SESSION['userID'])) {
                 <div class="input-wrap">
                   <input
                     type="password"
-                    minlength="24"
+                    minlength="1"
                     class="input-field"
                     id="signup-password"
                     name="password"
@@ -144,7 +143,7 @@ $("#login_form").on("submit", function (e) {
       success: function (response) {
         //console.log(response); // Handle success response
         // Redirect or show success message
-        window.location.href = "../Dashboard/Dashboard.php";
+        window.location.href = "../Dashboard";
       },
       error: function (xhr, status, error) {
         console.error(xhr.responseText);

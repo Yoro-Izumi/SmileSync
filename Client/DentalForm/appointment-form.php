@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div class="form-container">
+<div class="form-container">
     <h1 class="form-title">Add New Appointment</h1>
 
     <div class="steps">
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <form id="multiStepForm">
+    <form id="multiStepForm" name="multiStepForm" action="appointment-form.php" method="POST">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <h3>Personal Information</h3>
@@ -160,12 +160,9 @@
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
         <div class="input-wrap">
-  <select class="input-field" id="services">
+  <select class="input-field" id="services" name="services">
     <option value="" disabled selected>Select a Service</option>
-    <option value="consultation">Consultation</option>
-    <option value="therapy">Therapy</option>
-    <option value="diagnostics">Diagnostics</option>
-    <option value="surgery">Surgery</option>
+    <?php include "service_list.php";?>
   </select>
 </div>
 
@@ -211,44 +208,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td></td><td></td><td></td><td class="unavailable">1</td><td class="unavailable">2</td><td class="choice">3</td><td class="recommended">4</td>
-                </tr>
-                <tr>
-                  <td class="choice">5</td><td>6</td><td>7</td>
-                  <td class="recommended">8</td><td>9</td><td class="unavailable">10</td><td class="choice">11</td>
-                </tr>
-                <tr>
-                  <td>12</td><td>13</td><td>14</td>
-                  <td class="choice">15</td><td>16</td><td class="recommended">17</td>
-                  <td>18</td>
-                </tr>
-                <tr>
-                  <td>19</td><td>20</td><td>21</td>
-                  <td>22</td><td class="unavailable">23</td>
-                  <td>24</td><td>25</td>
-                </tr>
-                <tr>
-                  <td>26</td><td>27</td><td>28</td>
-                  <td class="choice">29</td><td>30</td><td>31</td><td></td>
-                </tr>
               </tbody>
             </table>
           </div>
 
+          <input type="hidden" id="cal-day" name="cal-day">
+
           <!-- Recommendation Section -->
           <div class="recommendation-container">
-            <h3>Available Times</h3>
-            <p>10:00 AM</p>
-            <p>11:00 AM</p>
-            <p>2:00 PM</p>
-            <p>3:00 PM</p>
-
             <h3>Recommended Dates & Times</h3>
-            <p>Date: 3rd August 2024</p>
-            <p>Time: 10:00 AM - 11:00 AM</p>
-            <p>Date: 14th August 2024</p>
-            <p>Time: 2:00 PM - 3:00 PM</p>
           </div>
           
       </div>
@@ -257,10 +225,10 @@
              <label for="time">Select a Time:</label>
               <div class="time-selection"> 
                 <select id="time" name="time">
-                  <option value="10:00 AM">10:00 AM</option>
-                  <option value="11:00 AM">11:00 AM</option>
-                  <option value="2:00 PM">2:00 PM</option>
-                  <option value="3:00 PM">3:00 PM</option>
+                  <option value="10:00:00">10:00 AM</option>
+                  <option value="11:00:00">11:00 AM</option>
+                  <option value="14:00">2:00 PM</option>
+                  <option value="15:00">3:00 PM</option>
                 </select>
           </div>         
         </div>
@@ -278,51 +246,37 @@
   <footer>
     <p>&copy; 2024 iMee Dental Clinic. All rights reserved.</p>
   </footer>
+  <script src="js/appointment_form2.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#multiStepForm').on('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-  <script>
-    const formSections = document.querySelectorAll('.form-section');
-    const nextButton = document.querySelector('.next-btn');
-    const prevButton = document.querySelector('.prev-btn');
-    const steps = document.querySelectorAll('.steps .step');
-    let currentStep = 0;
+            const formData = $(this).serialize(); // Serialize form data
 
-    nextButton.addEventListener('click', () => {
-      if (currentStep < formSections.length - 1) {
-        formSections[currentStep].classList.remove('active');
-        steps[currentStep].classList.remove('active');
-        currentStep++;
-        formSections[currentStep].classList.add('active');
-        steps[currentStep].classList.add('active');
-        prevButton.style.display = 'block';
-      }
-      if (currentStep === formSections.length - 1) {
-        nextButton.textContent = 'Submit';
-      }
+            $.ajax({
+                url: 'appointment_add.php',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        $('#multiStepForm')[0].reset(); // Clear the form
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                }
+            });
+        });
     });
+</script>
 
-    prevButton.addEventListener('click', () => {
-      if (currentStep > 0) {
-        formSections[currentStep].classList.remove('active');
-        steps[currentStep].classList.remove('active');
-        currentStep--;
-        formSections[currentStep].classList.add('active');
-        steps[currentStep].classList.add('active');
-        if (currentStep === 0) {
-          prevButton.style.display = 'none';
-        }
-      }
-      nextButton.textContent = 'Next';
-    });
 
-    document.querySelectorAll('.calendar-table td').forEach(cell => {
-      cell.addEventListener('click', () => {
-        document.querySelectorAll('.calendar-table td').forEach(td => td.classList.remove('selected-date'));
-        if (!cell.classList.contains('unavailable')) {
-          cell.classList.add('selected-date');
-        }
-      });
-    });
-  </script>
 </body>
 
 </html>
