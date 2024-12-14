@@ -105,7 +105,7 @@ $data_to_send = json_encode([
 
 // Execute the Python script via stdin
 $python_script_path = 'linear_regression2.py';
-$command = escapeshellcmd("C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe $python_script_path");
+$command = escapeshellcmd("python3 $python_script_path");
 
 // Open the process and pass the data to stdin
 $process = proc_open($command, [

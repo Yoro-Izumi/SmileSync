@@ -5,11 +5,10 @@ session_start();
 $default_value = 40; // Default duration
 
 // Set the recommendation script path
-//$recommend_schedule_script = "recommend_schedule_algo2.py";
 $recommend_schedule_script = "recommend_schedule_algo2.py";
 
 // Run Recommendation algo
-$command_recommend_schedule = escapeshellcmd("C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe $recommend_schedule_script");
+$command_recommend_schedule = escapeshellcmd("python3 $recommend_schedule_script");
 $schedule_output = shell_exec($command_recommend_schedule);
 
 // Log the output for debugging
