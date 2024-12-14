@@ -50,7 +50,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php include "tr-removedClient.php";?>
+          <?php include "tr-removedClient-table.php";?>
         </tbody>
       </table>
 

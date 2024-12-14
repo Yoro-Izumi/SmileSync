@@ -551,7 +551,7 @@ input[type="radio"]:checked + label::before {
 
 /* Selected Date Styling */
 .calendar-table td.selected-date {
-  background-color: #007bff; /* Highlight color */
+  background-color: green; /* Highlight color */
   color: #fff; /* Text color */
   font-weight: bold;
   border-radius: 10px;

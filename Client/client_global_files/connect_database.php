@@ -4,6 +4,7 @@ $servername = "localhost"; //localhost
 $username = "admin_superAdmin";//"root";
 $password = "SmileSyncWorld11+";
 
+
 // Functions to connect to specific databases
 
 function connect_appointment($servername, $username, $password) {
@@ -35,4 +36,5 @@ function smilesync_chatbot($servername, $username, $password) {
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     return $conn;
 }
+
 ?>

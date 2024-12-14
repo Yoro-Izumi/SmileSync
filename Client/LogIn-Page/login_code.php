@@ -34,14 +34,14 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $password = sanitize_input($_POST['password'], $connect_db);
 
     // Check for user accounts
-    $stmtUser = mysqli_prepare($connect_db, "SELECT * FROM smilesync_user_accounts");
+    $stmtUser = mysqli_prepare($connect_db, "SELECT * FROM smilesync_patient_accounts");
     mysqli_stmt_execute($stmtUser);
     $resultUser = mysqli_stmt_get_result($stmtUser);
 
     while ($userAccount = mysqli_fetch_assoc($resultUser)) {
-        $decryptedEmail = decryptData($userAccount['user_email'], $key);
+        $decryptedEmail = decryptData($userAccount['patient_account_email'], $key);
         if ($decryptedEmail === $username) {
-            handle_login_attempts($connect_db, $userAccount['user_account_id'], 'user', $password, $userAccount['user_password']);
+            handle_login_attempts($connect_db, $userAccount['patient_account_id'], 'user', $password, $userAccount['patient_account_password']);
             return; // Stop execution after successful match
         }
     }
@@ -53,10 +53,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 function handle_login_attempts($connect_db, $user_id, $user_type, $password, $stored_password) {
     global $max_attempts, $lockout_time, $current_time, $error_message;
 
-    $attempts_table = 'smilesync_user_attempts';
-    $id_column = 'user_account_id';
-    $first_attempt_time = 'user_first_attempt_time';
-    $number_of_attempts = 'user_number_of_attempts';
+    $attempts_table = 'smilesync_patient_attempts';
+    $id_column = 'patient_account_id';
+    $first_attempt_time = 'patient_first_attempt_time';
+    $number_of_attempts = 'patient_number_of_attempts';
 
     $stmtCheckAttempts = mysqli_prepare($connect_db, "SELECT * FROM $attempts_table WHERE $id_column = ?");
     mysqli_stmt_bind_param($stmtCheckAttempts, 'i', $user_id);
@@ -88,25 +88,25 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
 
 // Function to reset login attempts
 function reset_attempts($connect_db, $user_id) {
-    $stmtReset = mysqli_prepare($connect_db, "DELETE FROM smilesync_user_attempts WHERE user_account_id = ?");
+    $stmtReset = mysqli_prepare($connect_db, "DELETE FROM smilesync_patient_attempts WHERE patient_account_id = ?");
     mysqli_stmt_bind_param($stmtReset, 'i', $user_id);
     mysqli_stmt_execute($stmtReset);
 }
 
 // Function to increment login attempts
 function increment_attempts($connect_db, $user_id) {
-    $stmtCheck = mysqli_prepare($connect_db, "SELECT * FROM smilesync_user_attempts WHERE user_account_id = ?");
+    $stmtCheck = mysqli_prepare($connect_db, "SELECT * FROM smilesync_patient_attempts WHERE patient_account_id = ?");
     mysqli_stmt_bind_param($stmtCheck, 'i', $user_id);
     mysqli_stmt_execute($stmtCheck);
     $resultCheck = mysqli_stmt_get_result($stmtCheck);
     $attempt = mysqli_fetch_assoc($resultCheck);
 
     if ($attempt) {
-        $stmtUpdate = mysqli_prepare($connect_db, "UPDATE smilesync_user_attempts SET user_number_of_attempts = user_number_of_attempts + 1, user_last_attempt_time = NOW() WHERE user_account_id = ?");
+        $stmtUpdate = mysqli_prepare($connect_db, "UPDATE smilesync_patient_attempts SET patient_number_of_attempts = patient_number_of_attempts + 1, patient_last_attempt_time = NOW() WHERE patient_account_id = ?");
         mysqli_stmt_bind_param($stmtUpdate, 'i', $user_id);
         mysqli_stmt_execute($stmtUpdate);
     } else {
-        $stmtInsert = mysqli_prepare($connect_db, "INSERT INTO smilesync_user_attempts (user_account_id, user_number_of_attempts, user_first_attempt_time, user_last_attempt_time) VALUES (?, 1, NOW(), NOW())");
+        $stmtInsert = mysqli_prepare($connect_db, "INSERT INTO smilesync_patient_attempts (patient_account_id, patient_number_of_attempts, patient_first_attempt_time, patient_last_attempt_time) VALUES (?, 1, NOW(), NOW())");
         mysqli_stmt_bind_param($stmtInsert, 'i', $user_id);
         mysqli_stmt_execute($stmtInsert);
     }

@@ -41,34 +41,14 @@
         <thead>
           <tr>
             <th><input type="checkbox"></th>
-            <th>Product Name</th>
-            <th>Product ID</th>
-            <th>Price Sold</th>
-            <th>Batch Date</th>
-            <th>Expiry Date</th>
+            <th>Service Name</th>
+            <th>Service ID</th>
+            <th>Service Price</th>
             <th>ACTIONS</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="Product Name">Analgesics</td>
-            <td data-label="Product ID">00-001</td>
-            <td data-label="Price Sold">10.00</td>
-            <td data-label="Batch Date">08-10-2024</td>
-            <td data-label="Expiry Date">08-10-2027</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                  <a href="#">Restore</a>
-                  <a href="#">Permanent Delete</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+          <?php include "tr-removedServices-table.php";?>
         </tbody>
       </table>
 
