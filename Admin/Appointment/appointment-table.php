@@ -28,6 +28,7 @@
             <option value="upcoming">Upcoming</option>
             <option value="ongoing">Ongoing</option>
             <option value="done">Done</option>
+            <option value="pending">Pending</option>
           </select>
         </div>
         <div>
@@ -73,45 +74,7 @@
     </div>
 
   </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the query parameter from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const statusFilter = urlParams.get('status');  // This will be 'upcoming' if the button was clicked
-
-        // Get references to all the table rows
-        const rows = document.querySelectorAll('tbody tr');
-        const statusDropdown = document.getElementById('status');
-
-        // Set dropdown value based on the query parameter
-        if (statusFilter === 'upcoming') {
-            statusDropdown.value = 'upcoming';
-        }
-
-        // Function to filter rows based on the selected status
-        function filterRowsByStatus() {
-            const selectedStatus = statusDropdown.value;
-
-            rows.forEach(row => {
-                // Get the status from the data-label attribute
-                const status = row.querySelector('td[data-label="STATUS"]').textContent;
-                
-                if (selectedStatus === 'all' || status.toLowerCase() === selectedStatus.toLowerCase()) {
-                    row.classList.remove('hidden');  // Show the row
-                } else {
-                    row.classList.add('hidden');  // Hide the row
-                }
-            });
-        }
-
-        // Event listener for the status dropdown
-        statusDropdown.addEventListener('change', filterRowsByStatus);
-
-        // Initial filtering
-        filterRowsByStatus();
-    });
-</script>
+  <script href="js/appointment-table.js"></script>
 
 </body>
 </html>

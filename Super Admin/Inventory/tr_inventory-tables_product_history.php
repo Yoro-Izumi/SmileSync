@@ -33,8 +33,11 @@ if ($resultInventoryHistory) {
       }
       else{
         $adminFirstName = $inventoryHistory['admin_first_name']?? "";
+        $adminFirstName = decryptData($adminFirstName, $key);
         $adminMiddleName = $inventoryHistory['admin_middle_name']?? "";
+        $adminMiddleName = decryptData($adminMiddleName, $key);
         $adminLastName = $inventoryHistory['admin_last_name']?? "";
+        $adminLastName = decryptData($adminLastName, $key);
       }
       $adminName = $adminFirstName . " " . $adminMiddleName . " " . $adminLastName;
 ?>

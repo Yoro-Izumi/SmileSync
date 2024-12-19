@@ -2,6 +2,7 @@
 
 include "../admin_global_files/connect_database.php";
 include "../admin_global_files/input_sanitizing.php";
+include "../admin_global_files/ecnrypt_decrypt.php";
 
 // Create a connection
 $connect_appointment = connect_appointment($servername, $username, $password);

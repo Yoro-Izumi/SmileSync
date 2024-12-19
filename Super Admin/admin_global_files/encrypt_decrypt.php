@@ -1,5 +1,13 @@
 <?php
 // code to encrypt data before inserting in database
+$root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
+require_once $root_dir.'/vendor/autoload.php';
+
+// Load the .env file
+$dotenv = Dotenv\Dotenv::createImmutable($root_dir);
+$dotenv->load();
+
+$key = $_ENV['ENCRYPTION_KEY'];
 
 //this is the encryption function
 function encryptData($data, $key) {
@@ -18,3 +26,5 @@ function decryptData($data, $key) {
     $encryptedData = substr($data, $ivlen);
     return openssl_decrypt($encryptedData, $cipher, $key, OPENSSL_RAW_DATA, $iv);
 }
+
+

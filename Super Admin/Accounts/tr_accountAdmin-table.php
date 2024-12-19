@@ -14,8 +14,11 @@ if ($resultsAdminAccounts) {
     while ($adminAccounts = mysqli_fetch_assoc($resultsAdminAccounts)) {
         // Fetch necessary data
         $adminFirstName = $adminAccounts['admin_first_name'] ?? "";
+        $adminFirstName = decryptData($adminFirstName, $key);
         $adminMiddleName = $adminAccounts['admin_middle_name'] ?? "";
+        $adminMiddleName = decryptData($adminMiddleName, $key);
         $adminLastName = $adminAccounts['admin_last_name'] ?? "";
+        $adminLastName = decryptData($adminLastName, $key);
         $adminID = $adminAccounts['admin_account_id'];
         $adminFullName = $adminLastName . ", " . $adminFirstName . " " . $adminMiddleName;
         $dateOfCreation = $adminAccounts['date_of_creation'] ?? "";

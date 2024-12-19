@@ -1,6 +1,4 @@
 <?php
-include "../admin_global_files/connect_database.php";
-include "../admin_global_files/input_sanitizing.php";
 
 $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
@@ -34,7 +32,7 @@ $getAppointmentDetails = "
     LEFT JOIN 
         $approvers_db.smilesync_admin_accounts ar ON a.admin_id = ar.admin_account_id
     WHERE 
-        a.appointment_status = '$appointment_status' 
+        a.appointment_status != '$appointment_status' 
         AND a.appointment_date_time >= CURDATE()  -- Filters for appointments equal to or greater than today's date
 ";
 
@@ -55,13 +53,19 @@ foreach ($appointments as $appointment) {
     $appointment_status = $appointment['appointment_status'];
 
     $patient_first_name = $appointment['patient_first_name'] ?? "";
+    $patient_first_name = decryptData($patient_first_name,$key);
     $patient_middle_name = $appointment['patient_middle_name'] ?? "";
+    $patient_middle_name = decryptData($patient_middle_name,$key);
     $patient_last_name = $appointment['patient_last_name'] ?? "";
+    $patient_last_name = decryptData($patient_last_name,$key);
     $patient_name = trim("$patient_first_name $patient_middle_name $patient_last_name");
 
     $approver_first_name = $appointment['admin_first_name'] ?? "";
+    $approver_first_name = decryptData($approver_first_name,$key);
     $approver_middle_name = $appointment['admin_middle_name'] ?? "";
+    $approver_middle_name = decryptData($approver_middle_name,$key);
     $approver_last_name = $appointment['admin_last_name'] ?? "";
+    $approver_last_name = decryptData($approver_last_name,$key);
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
 ?>
 <tr>

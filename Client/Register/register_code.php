@@ -8,8 +8,6 @@ include '../client_global_files/connect_database.php';
 include '../client_global_files/encrypt_decrypt.php';
 include '../client_global_files/input_sanitizing.php';
 
-// Encryption key (update to a secure key management system in production)
-$key = "TheGreatestNumberIs73";
 
 // Connect to the databases
 $accountConn = connect_accounts($servername, $username, $password);

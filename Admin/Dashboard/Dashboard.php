@@ -1,14 +1,16 @@
-<!--?php
+<?php
 // Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
 
 // Include necessary files for dashboard
-include '../admin_global_files/connect_database.php';
+include "../admin_global_files/connect_database.php";
+include "../admin_global_files/encrypt_decrypt.php";
+include "../admin_global_files/input_sanitizing.php";
 include "total_patients_per_day.php";
 include "total_cancelled_appointments.php";
 include "total_rescheduled_appointments.php";
-?-->
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
