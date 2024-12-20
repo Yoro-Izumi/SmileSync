@@ -402,11 +402,6 @@
       </div>
     </form>
 
-
-  <footer>
-    <p>&copy; 2024 iMee Dental Clinic. All rights reserved.</p>
-  </footer>
-
   <script>
      const formSections = document.querySelectorAll('.form-section');
     const nextButton = document.querySelector('.next-btn');

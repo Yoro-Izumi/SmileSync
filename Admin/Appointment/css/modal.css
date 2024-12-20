@@ -680,6 +680,7 @@ footer {
 
 /* Popup animation */
 .modal-content {
+  overflow-y: scroll;
     position: relative;
     border-radius: 25px;
     background-color: #fff;
@@ -1089,7 +1090,7 @@ label {
 
 
     .modal-content {
-        width: 40vw;
+        width: 100vw;
     }
 
 
