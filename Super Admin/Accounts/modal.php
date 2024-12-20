@@ -17,7 +17,7 @@
        
         <button class="table-btn" id="editProduct"><i class="fas fa-edit"></i>Edit</button>
         <div class="dropdown">
-          <button class="table-btn"><i class="fas fa-download"></i> Download</button>
+          <button class="table-btn"><i class="fas fa-download"></i>Change </button>
           <div class="dropdown-content">
             <a href="#" class="dropdown-option" id="exportExcel"><i class="fas fa-file-excel"></i>Excel</a>
             <a href="#" class="dropdown-option" id="exportPDF"><i class="fas fa-file-pdf"></i>PDF</a>

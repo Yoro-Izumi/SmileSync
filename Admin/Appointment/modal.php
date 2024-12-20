@@ -162,15 +162,16 @@
      </div>
 </div>
 
+
+
 <div class="modal" id="newAccountModal">
-
     <div class="modal-content">
-      <button class="close-btn"  id="cancelSubmitNewBtn">&times;</button>
-    <h1 class="form-title">Add New Appointment</h1>
-
-     <?php include "newAppointment.php"; ?>
-
-</div>
+    <button class="close-btn"  id="cancelSubmitNewBtn">&times;</button>
+        <div class="modal-title normal-title">Add New Account</div>
+        <div class="modal-description">
+        <?php include "newAppointment.php"; ?>
+        </div>
+     </div>
 </div>
 
 

@@ -20,8 +20,8 @@
                 <div class="dropdown">
                   <button>⋮</button>
                   <div class="dropdown-content">
-                    <a href="#">Delete Account</a>
-                    <a href="#">Approve Account</a>
+                    <a href="#" id="deleteAccountBtnTable">Delete Account</a>
+                    <a href="#" id="approveAccountBtnTable">Approve Account</a>
                   </div>
                 </div>
               </div>

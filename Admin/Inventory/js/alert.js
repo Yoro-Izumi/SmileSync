@@ -2,8 +2,13 @@
 document.getElementById('addItemBtn').addEventListener('click', () => {
     createAlert('Success! Item has been successfully added.', 'alert-success');
 });
-
+ 
 document.getElementById('removeItemBtn').addEventListener('click', () => {
+    createAlert('Deleted! Item/s has been successfully removed.', 'alert-error');
+});
+
+ 
+document.getElementById('removeItemTableBtn').addEventListener('click', () => {
     createAlert('Deleted! Item/s has been successfully removed.', 'alert-error');
 });
 
