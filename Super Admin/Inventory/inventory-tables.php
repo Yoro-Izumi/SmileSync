@@ -44,7 +44,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php include "tr-inventory-tables_product_list.php";?>
+          <?php include "tr_inventory-tables_product_listing.php";?>
         </tbody>
       </table>
     </div>
@@ -54,49 +54,6 @@
   <a href="#" class="next">Next</a>
 </div>
 
-  </div>
-  <div class="container">
-    <div class="header">
-      <h2>Product History</h2>
-      <div class="search-bar">
-        <input type="text" placeholder="Search...">
-      </div>
-      <div class="actions">
-        <div class="dropdown">
-          <button><i class="fas fa-ellipsis-v"></i></button>
-          <div class="dropdown-content">
-            <a href="#" id="removeProduct"><i class="fas fa-trash-alt"></i> Delete</a>
-            <a href="#"><i class="fas fa-download"></i> Download</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th><input type="checkbox"></th>
-            <th>Product Name</th>
-            <th>Product ID</th>
-            <th>Quantity</th>
-            <th>Date Used</th>
-            <th>Released By</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php include "tr-inventory-tables_product_history.php";?>
-        </tbody>
-      </table>
-    </div>
-
-<div class="pagination">
-  <a href="#" class="previous">Previous</a>
-  <a href="#" class="next">Next</a>
-</div>
-
-  </div>
 
   <script>
   $(document).ready(function() {

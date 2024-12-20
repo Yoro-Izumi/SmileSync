@@ -1,9 +1,3 @@
-<?php 
-session_start();
-date_default_timezone_set('Asia/Manila');
-
- 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +30,7 @@ date_default_timezone_set('Asia/Manila');
       </div>
     </div>
 
-    <form id="multiStepForm">
+    <form id="multiStepForm" name="multiStepForm" action="Register-Page.php" method="POST">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <div class="wrap-2rows">
@@ -95,7 +89,7 @@ date_default_timezone_set('Asia/Manila');
 
   <div class="input-wrap">
   <input
-      type="text"
+      type="date"
       id="birthdate-picker"
       class="input-field"
       name="birthday"
@@ -121,10 +115,6 @@ date_default_timezone_set('Asia/Manila');
                 <div class="valid-feedback">
                   <!-- Looks good! -->
                 </div>
-                <!--div class="invalid-feedback">
-                  Please provide a valid contact number.
-                </div-->
-
 
                 <div class="question-form">
           <div class="titles">
@@ -232,7 +222,7 @@ date_default_timezone_set('Asia/Manila');
               <label for="hmo-no">No</label>
             </div>
           </div>
-          <div id="hmoID" style="display: none;">
+          <div id="address-field" style="display: none;">
             <div class="input-wrap">
               <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
               <label for="hmoID">Please the HMO ID No.</label>
@@ -246,7 +236,7 @@ date_default_timezone_set('Asia/Manila');
             }
           </script>
 
-
+           
         </div>
 
       </div>
@@ -254,16 +244,13 @@ date_default_timezone_set('Asia/Manila');
       
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
+        <h2>Appointment Detail</h2>
         <div class="input-wrap">
-  <select class="input-field" id="services">
-    <option value="" disabled selected>Select a Service</option>
-    <option value="consultation">Consultation</option>
-    <option value="therapy">Therapy</option>
-    <option value="diagnostics">Diagnostics</option>
-    <option value="surgery">Surgery</option>
-  </select>
-</div>
-
+          <select class="input-field" id="services" name="services">
+            <option value="" disabled selected>Select a Service</option>
+            <?php include "service_list.php";?>
+          </select>
+        </div>
         <div class="appointment-container">
           <!-- Calendar Section -->
           <div class="calendar-container">
@@ -330,20 +317,10 @@ date_default_timezone_set('Asia/Manila');
               </tbody>
             </table>
           </div>
-
+          <input type="hidden" id="cal-day" name="cal-day">
           <!-- Recommendation Section -->
           <div class="recommendation-container">
-            <h3>Available Times</h3>
-            <p>10:00 AM</p>
-            <p>11:00 AM</p>
-            <p>2:00 PM</p>
-            <p>3:00 PM</p>
-
             <h3>Recommended Dates & Times</h3>
-            <p>Date: 3rd August 2024</p>
-            <p>Time: 10:00 AM - 11:00 AM</p>
-            <p>Date: 14th August 2024</p>
-            <p>Time: 2:00 PM - 3:00 PM</p>
           </div>
           
       </div>
@@ -352,10 +329,10 @@ date_default_timezone_set('Asia/Manila');
              <label for="time">Select a Time:</label>
               <div class="time-selection"> 
                 <select id="time" name="time">
-                  <option value="10:00 AM">10:00 AM</option>
-                  <option value="11:00 AM">11:00 AM</option>
-                  <option value="2:00 PM">2:00 PM</option>
-                  <option value="3:00 PM">3:00 PM</option>
+                  <option value="10:00:00">10:00 AM</option>
+                  <option value="11:00:00">11:00 AM</option>
+                  <option value="14:00:00">2:00 PM</option>
+                  <option value="15:00:00">3:00 PM</option>
                 </select>
           </div>         
         </div>
@@ -429,96 +406,35 @@ date_default_timezone_set('Asia/Manila');
     <p>&copy; 2024 iMee Dental Clinic. All rights reserved.</p>
   </footer>
 
-  <script>
-     const formSections = document.querySelectorAll('.form-section');
-    const nextButton = document.querySelector('.next-btn');
-    const prevButton = document.querySelector('.prev-btn');
-    const steps = document.querySelectorAll('.steps .step');
-    let currentStep = 0;
-
-    nextButton.addEventListener('click', () => {
-      if (currentStep < formSections.length - 1) {
-        formSections[currentStep].classList.remove('active');
-        steps[currentStep].classList.remove('active');
-        currentStep++;
-        formSections[currentStep].classList.add('active');
-        steps[currentStep].classList.add('active');
-        prevButton.style.display = 'block';
-      }
-      if (currentStep === formSections.length - 1) {
-        nextButton.textContent = 'Submit';
-      }
-    });
-
-    prevButton.addEventListener('click', () => {
-      if (currentStep > 0) {
-        formSections[currentStep].classList.remove('active');
-        steps[currentStep].classList.remove('active');
-        currentStep--;
-        formSections[currentStep].classList.add('active');
-        steps[currentStep].classList.add('active');
-        if (currentStep === 0) {
-          prevButton.style.display = 'none';
-        }
-      }
-      nextButton.textContent = 'Next';
-    });
-  </script>
-
-  <script>
-    // JavaScript to highlight selected date
-document.querySelectorAll('.calendar-table td').forEach(cell => {
-  cell.addEventListener('click', () => {
-    document.querySelectorAll('.calendar-table td').forEach(td => td.classList.remove('selected-date'));
-    cell.classList.add('selected-date');
-  });
-});
-
-  </script>
-
- <script>
-
-$('.icon').click(function () {
-  if ($('#password').attr('type') == 'text') {
-    $('#password').attr('type', 'password');
-    $('#show-password').removeClass('fa-eye-slash').addClass('fa-eye');
-  } else {
-    $('#password').attr('type', 'text');
-    $('#show-password').removeClass('fa-eye').addClass('fa-eye-slash');
-  }
-});
- </script> 
-
-<!--FormData POST using AJAX-->
+<script src="js/appointment_form.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  $(document).ready(function () {
-    $("#multiStepForm").on("submit", function (e) {
-      e.preventDefault(); // Prevent default form submission
-      
-      // Collect all form data
-      const formData = new FormData(this);
+    $(document).ready(function() {
+        $('#multiStepForm').on('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-      // AJAX request to send form data
-      $.ajax({
-        url: "register_code.php", // Change to your server endpoint
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (response) {
-          alert("Form submitted successfully!");
-          console.log("Server Response:", response);
-        },
-        error: function (xhr, status, error) {
-          alert("Failed to submit form!");
-          console.error("Error:", error);
-        },
-      });
+            const formData = $(this).serialize(); // Serialize form data
+
+            $.ajax({
+                url: 'register_code.php',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        $('#multiStepForm')[0].reset(); // Clear the form
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                }
+            });
+        });
     });
-  });
 </script>
-
-
+        
 </body>
 </html>

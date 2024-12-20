@@ -33,8 +33,11 @@ if ($resultInventoryHistory) {
       }
       else{
         $adminFirstName = $inventoryHistory['admin_first_name']?? "";
+        $adminFirstName = decryptData($adminFirstName, $key);
         $adminMiddleName = $inventoryHistory['admin_middle_name']?? "";
+        $adminMiddleName = decryptData($adminMiddleName, $key);
         $adminLastName = $inventoryHistory['admin_last_name']?? "";
+        $adminLastName = decryptData($adminLastName, $key);
       }
       $adminName = $adminFirstName . " " . $adminMiddleName . " " . $adminLastName;
 ?>
@@ -57,28 +60,7 @@ if ($resultInventoryHistory) {
                 </div>
               </div>
             </td>
-        </tr>
-
-      <tr>
-        <td><input type="checkbox"></td>
-        <td data-label="Product Name">Analgesics</td>
-        <td data-label="Product ID">00-001</td>
-        <td data-label="Quantity">10</td>
-        <td data-label="Date Used">08-10-2024</td>
-        <td data-label="Released By">Doc Oli, Jonas</td>
-        <td data-label="ACTIONS">
-          <div class="actions">
-            <div class="dropdown">
-              <button><i class="fas fa-ellipsis-v"></i></button>
-              <div class="dropdown-content">
-                <a href="#" id="removeProduct"><i class="fas fa-trash-alt"></i> Delete</a>
-                <a href="#" id="viewDetailsHistory"><i class="fas fa-eye"></i> View Details</a>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-      
+    </tr>
 <?php 
     } // End of while loop
 } // End of if block

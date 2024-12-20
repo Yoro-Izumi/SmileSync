@@ -17,24 +17,22 @@
             <option>All</option>
           </select>
         </div>
+      </div> <!-- Close filters div -->
 
       <div class="search-bar">
         <input type="text" placeholder="Search...">
       </div>
-    </div>
-
-        <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#">Restore</a>
-                    <a href="#">Permanent Delete</a>
-                  </div>
-                </div>
-              </div>
-    </div>
-
-
+      
+      <div class="actions">
+        <div class="dropdown">
+          <button>⋮</button>
+          <div class="dropdown-content">
+            <a href="#">Restore</a>
+            <a href="#">Permanent Delete</a>
+          </div>
+        </div>
+      </div> <!-- Close actions div -->
+    </div> <!-- Close header div -->
 
     <div class="table-container">
       <table>
@@ -50,10 +48,9 @@
           </tr>
         </thead>
         <tbody>
-          <?php include "tr_removedAdmin-table.php";
+          <?php include "tr_removedAdmin-table.php"; ?> <!-- Closing PHP tag added -->
         </tbody>
       </table>
-
     </div>
 
     <div class="pagination">
@@ -64,8 +61,6 @@
       <a href="#" class="next">Next</a>
     </div>
 
-    
-    </div>
-  </div>
+  </div> <!-- Close container div -->
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 include "../client_global_files/connect_database.php";
 include "../client_global_files/input_sanitizing.php";
+include "../client_global_files/encrypt_decrypt.php";
 
 $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
@@ -62,14 +63,20 @@ if ($result && $result->num_rows > 0) {
 
             // Patient name
             $patient_first_name = $appointment['patient_first_name'] ?? "";
+            $patient_first_name = decryptData($patient_first_name,$key);
             $patient_middle_name = $appointment['patient_middle_name'] ?? "";
+            $patient_middle_name = decryptData($patient_middle_name,$key);
             $patient_last_name = $appointment['patient_last_name'] ?? "";
+            $patient_last_name = decryptData($patient_last_name,$key);
             $patient_name = trim("$patient_first_name $patient_middle_name $patient_last_name");
 
             // Approver name
             $approver_first_name = $appointment['admin_first_name'] ?? "";
+            $approver_first_name = decryptData($appointment,$key);
             $approver_middle_name = $appointment['admin_middle_name'] ?? "";
+            $approver_middle_name = decryptData($approver_middle_name,$key);
             $approver_last_name = $appointment['admin_last_name'] ?? "";
+            $approver_last_name = decryptData($approver_last_name,$key);
             $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
 
             //Invoice

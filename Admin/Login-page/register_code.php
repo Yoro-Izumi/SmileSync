@@ -8,9 +8,6 @@ include '../admin_global_files/connect_database.php';
 include '../admin_global_files/encrypt_decrypt.php';
 include '../admin_global_files/input_sanitizing.php';
 
-// Encryption key (to be changed later)
-$key = "TheGreatestNumberIs73";
-
 // Connect to the accounts database
 $connect_db = connect_accounts($servername,$username,$password);
 

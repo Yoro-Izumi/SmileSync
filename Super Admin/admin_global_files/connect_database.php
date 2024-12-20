@@ -1,9 +1,15 @@
 <?php
-//initialize servername username and password first for database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
+$root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
+require_once $root_dir.'/vendor/autoload.php';
 
+// Load the .env file
+$dotenv = Dotenv\Dotenv::createImmutable($root_dir);
+$dotenv->load();
+
+//initialize servername username and password first for database connection
+$servername = $_ENV['DB_SERVERNAME'];
+$username = $_ENV['DB_USERNAME'];
+$password = $_ENV['DB_PASSWORD'];
 
 // Functions to connect to specific databases
 
@@ -36,4 +42,5 @@ function smilesync_chatbot($servername, $username, $password) {
     $conn = mysqli_connect($servername, $username, $password, $dbname);
     return $conn;
 }
+
 ?>

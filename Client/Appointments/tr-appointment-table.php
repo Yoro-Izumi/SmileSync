@@ -2,6 +2,7 @@
 session_start();
 include "../client_global_files/connect_database.php";
 include "../client_global_files/input_sanitizing.php";
+include "../client_global_files/encrypt_decrypt.php";
 
 $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
@@ -59,22 +60,28 @@ foreach ($appointments as $appointment){
     $appointment_id = $appointment['appointment_id'];
 
     $patient_first_name = $appointment['patient_first_name'] ?? "";
+    $patient_first_name = decryptData($patient_first_name,$key);
     $patient_middle_name = $appointment['patient_middle_name'] ?? "";
+    $patient_middle_name = decryptData($patient_middle_name,$key);  
     $patient_last_name = $appointment['patient_last_name'] ?? "";
+    $patient_last_name = decryptData($patient_last_name,$key);
     $patient_name = trim("$patient_first_name $patient_middle_name $patient_last_name");
 
     $approver_first_name = $appointment['admin_first_name'] ?? "";
+    $approver_first_name = decryptData($approver_first_name,$key);
     $approver_middle_name = $appointment['admin_middle_name'] ?? "";
+    $approver_middle_name = decryptData($approver_middle_name,$key);
     $approver_last_name = $appointment['admin_last_name'] ?? "";
+    $approver_last_name = decryptData($approver_last_name,$key);
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
 ?>
     <tr>
-        <td><input type="checkbox"></td>
-        <td data-label="CLIENT ID">00-00-002</td>
-        <td data-label="CLIENT NAME">Dimaculangan, Chorlyn L.</td>
-        <td data-label="APPROVER">Dr. OLI, Jonas</td>
-        <td data-label="APPOINTMENT">08-10-2024</td>
-        <td data-label="STATUS" class="status">Rescheduled</td>
+        <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
+        <td data-label="CLIENT ID"><?php echo $appointment_id;?></td>
+        <td data-label="CLIENT NAME"><?php echo $patient_name;?></td>
+        <td data-label="APPROVER"><?php echo $approver_name;?></td>
+        <td data-label="APPOINTMENT"><?php echo $appointment_date_time;?></td>
+        <td data-label="STATUS" class="status"><?php echo $appointment_status;?></td>
         <td data-label="ACTIONS">
         <div class="actions">
             <div class="dropdown">

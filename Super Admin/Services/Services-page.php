@@ -1,9 +1,10 @@
-<!--?php 
+<?php 
 session_start();
 
 include "../admin_global_files/input_sanitizing.php";
 include "../admin_global_files/connect_database.php";
-?-->
+include "../admin_global_files/encrypt_decrypt.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

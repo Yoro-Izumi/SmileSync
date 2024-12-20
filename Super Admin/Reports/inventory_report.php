@@ -1,5 +1,4 @@
 <?php
-include "../admin_global_files/connect_database.php";
 $connect_inventory = connect_inventory($servername, $username, $password);
 
 // Assume $connect_inventory is the correct connection for your inventory database

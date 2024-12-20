@@ -13,5 +13,9 @@ if (isset($_SESSION['userAdminID'])){
         header('location: ../Login-page/Login_Register-Page.php');
         die();
      }
+     else{
+        session_destroy();
+        header('location: ../Login-page/Login_Register-Page.php');
+}
 
 
