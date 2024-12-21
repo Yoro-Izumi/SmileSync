@@ -1,5 +1,4 @@
 <?php
-include "../admin_global_files/connect_database.php";
 $connect_inventory = connect_inventory($servername, $username, $password);
 
 $item_status = "Available";

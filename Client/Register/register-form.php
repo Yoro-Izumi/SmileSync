@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <header>
@@ -137,7 +138,7 @@
           </div>
           <script>
             function toggleAddressField() {
-              const addressField = document.getElementById("address-field");
+              const addressField = document.getElementById("infectedAddress");
               const isYesSelected = document.getElementById("visited-yes").checked;
               addressField.style.display = isYesSelected ? "block" : "none";
             }
@@ -329,10 +330,6 @@
              <label for="time">Select a Time:</label>
               <div class="time-selection"> 
                 <select id="time" name="time">
-                  <option value="10:00:00">10:00 AM</option>
-                  <option value="11:00:00">11:00 AM</option>
-                  <option value="14:00:00">2:00 PM</option>
-                  <option value="15:00:00">3:00 PM</option>
                 </select>
           </div>         
         </div>
@@ -407,34 +404,6 @@
   </footer>
 
 <script src="js/appointment_form.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#multiStepForm').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = $(this).serialize(); // Serialize form data
-
-            $.ajax({
-                url: 'register_code.php',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                        $('#multiStepForm')[0].reset(); // Clear the form
-                    } else {
-                        alert('Error: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                }
-            });
-        });
-    });
-</script>
         
 </body>
 </html>

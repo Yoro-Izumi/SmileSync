@@ -4,7 +4,7 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 // Check if user is already logged in
 if (isset($_SESSION['userID'])) {
-    header('location: ../Dashboard');
+    header('location: ../Dashboard/index.php');
     die();
 }
 ?>
@@ -34,7 +34,7 @@ if (isset($_SESSION['userID'])) {
         <div class="inner-box">
           <div class="forms-wrap">
             
-          <form name="login_form" id="login_form" action="Login_Register-Page.php" autocomplete="off" class="sign-in-form">
+          <form name="login_form" id="login_form" action="Login-Page.php" autocomplete="off" class="sign-in-form">
           <div class="logo">
                 <img src="img/logo.png" alt="SmileSync" />
                 SmileSync
@@ -125,14 +125,14 @@ $('.icon').click(function () {
   }
 });
 
-/*code to post data using ajax
+//code to post data using ajax
 $("#login_form").on("submit", function (e) {
     e.preventDefault();
     
     var formData = new FormData(this);
     
     // Disable the button to prevent multiple clicks
-    $("#loginBtn").prop("disabled", true);
+    $("#loginClientBtn").prop("disabled", true);
     
     $.ajax({
       type: "POST",
@@ -150,10 +150,10 @@ $("#login_form").on("submit", function (e) {
       },
       complete: function() {
         // Enable the button after request completes
-        $("#loginBtn").prop("disabled", false);
+        $("#loginClientBtn").prop("disabled", false);
       }
     });
-  });*/
+  });
 </script>
 
 </body>

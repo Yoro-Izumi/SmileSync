@@ -7,7 +7,7 @@ include "../admin_global_files/input_sanitizing.php";
 
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    if(isset($_POST['adminUserID']) && isset($_POST['appointment_add_value'])){
+    if(isset($_POST['appointment_add_value'])){
         $adminUserID = sanitize_input($_POST['adminUserID'], $connect_appointment);
         $client_id = sanitize_input($_POST['client_id'], $connect_appointment);
         $client_name = sanitize_input($_POST['client_name'], $connect_appointment);

@@ -2,6 +2,7 @@
 
 $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
+$appointment_status = "Cancelled";
 
 // Create a connection
 $connect_appointment = connect_appointment($servername, $username, $password);
@@ -31,6 +32,8 @@ $getAppointmentDetails = "
         $patients_db.smilesync_patient_information p ON a.patient_info_id = p.patient_info_id
     LEFT JOIN 
         $approvers_db.smilesync_admin_accounts ar ON a.admin_id = ar.admin_account_id
+    WHERE 
+    a.appointment_status != '$appointment_status'
 ";
 
 $result = mysqli_query($connect_appointment, $getAppointmentDetails);

@@ -1,5 +1,4 @@
 <?php
-//include "../client_global_files/set_sesssion_dir.php";
 // Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
@@ -9,17 +8,11 @@ include '../client_global_files/connect_database.php';
 include '../client_global_files/encrypt_decrypt.php';
 include '../client_global_files/input_sanitizing.php';
 
-// Encryption key (update to a secure key management system in production)
-$key = "TheGreatestNumberIs73";
-
 // Connect to the databases
-$accountConn = connect_accounts($servername, $username, $password);
-$patientsConn = connect_patient($servername, $username, $password);
 $appointmentsConn = connect_appointment($servername, $username, $password);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $patientAccountID = $_SESSION['userID']??NULL;
-
+    // Sanitize input data
     $bodyTemp = sanitize_input($_POST['bodyTemp'] ?? 0, $appointmentsConn);
     $answerOne = sanitize_input($_POST['visited'] === "no" ? $_POST['visited'] : ($_POST['infectedAddress'] ?? ""), $appointmentsConn);
     $answerTwo = sanitize_input($_POST['gathering'] ?? "", $appointmentsConn);
@@ -31,17 +24,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $answerEight = sanitize_input($_POST['emergency'] ?? "", $appointmentsConn);
     $answerNine = sanitize_input($_POST['hmo'] === "no" ? $_POST['hmo'] : ($_POST['hmoID'] ?? ""), $appointmentsConn);
 
-    $email = encryptData(sanitize_input($_POST['email'] ?? "", $accountConn), $key);
-    $password = sanitize_input($_POST['password'] ?? "", $accountConn);
-    $confirmPassword = sanitize_input($_POST['confirmPassword'] ?? "", $accountConn);
     $status = 'Pending';
-    $dateOfCreation = date('Y-m-d');
     $dateTimeOfCreation = date('Y-m-d H:i:s');
+    $calDay = isset($_POST['cal-day']) && !empty($_POST['cal-day']) 
+    ? sanitize_input($_POST['cal-day'], $appointmentsConn) 
+    : date('Y-m-d');
 
-    $appointmentDateTime = isset($_POST['time'], $_POST['cal-day']) ?
-        sanitize_input($_POST['cal-day'], $appointmentsConn) . " " . sanitize_input($_POST['time'], $appointmentsConn) :
-        date('Y-m-d H:i:s');
+    $time = isset($_POST['time']) && !empty($_POST['time']) 
+        ? sanitize_input($_POST['time'], $appointmentsConn) 
+        : date('H:i:s');
+
+    $appointmentDateTime = $calDay . " " . $time;
     $appointmentReason = sanitize_input($_POST['appointmentReason'] ?? "", $appointmentsConn);
+
+    // Determine patientInfoID based on session
+    $patientInfoID = isset($_SESSION['userID']) ? $_SESSION['userID'] : null;
 
     // Insert COVID form
     $qryInsertCovidForm = "INSERT INTO `smilesync_covid_form`(`covid_form_id`, `patient_info_id`, `body_temp`, `question_one`, `question_two`, `question_three`, `question_four`, `question_five`, `question_six`, `question_seven`, `question_eight`, `question_nine`, `covid_form_datetime`)
@@ -65,11 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Close connections
-    mysqli_close($patientsConn);
-    mysqli_close($accountConn);
     mysqli_close($appointmentsConn);
 
-    echo '<script>alert("Registration successful!")</script>';
+    echo '<script>alert("Appointment successfully created!")</script>';
 }
 
 /**

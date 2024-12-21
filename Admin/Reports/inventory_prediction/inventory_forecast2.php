@@ -61,7 +61,7 @@ $python_script = 'inventory_prediction/inventory_forecast2.py'; // Replace with 
 exec("python3 $python_script $csv_file stock_forecast.csv"); // Replace with your Python path
 
 // Step 5: Load the forecast data
-$forecast_file = 'stock_forecast.csv';
+$forecast_file = 'inventory_prediction/stock_forecast.csv';
 if (file_exists($forecast_file)) {
     $forecast_data = array_map('str_getcsv', file($forecast_file));
     $forecast_header = array_shift($forecast_data); // Remove header
