@@ -73,10 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $patientInfoID = mysqli_insert_id($patientsConn);
 
     // Insert patient account
-    $qryInsertPatientAccount = "INSERT INTO `smilesync_patient_accounts`(`patient_account_id`, `patient_info_id`, `patient_account_email`, `patient_account_password`, `date_of_creation`, `patient_account_status`)
-                               VALUES (NULL, ?, ?, ?, ?, ?)";
+    $qryInsertPatientAccount = "INSERT INTO `smilesync_patient_accounts`(`patient_account_id`, `patient_info_id`, `patient_account_email`, `patient_account_password`, `date_time_of_creation`,  `patient_account_status`)
+                               VALUES (NULL, ?, ?, ?,current_timestamp(), ?)";
     $stmt = mysqli_prepare($accountConn, $qryInsertPatientAccount);
-    mysqli_stmt_bind_param($stmt, 'issss', $patientInfoID,$email, $hashedPassword, $dateOfCreation, $status);
+    mysqli_stmt_bind_param($stmt, 'issss', $patientInfoID,$email, $hashedPassword, $status);
 
     if (!mysqli_stmt_execute($stmt)) {
         handleError($accountConn, "Error inserting patient account");

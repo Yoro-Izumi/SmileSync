@@ -60,7 +60,6 @@
                       <button>⋮</button>
                       <div class="dropdown-content">
                           <a href="#">Download</a>
-                          <a href="#" id="appointmentStatus">Done Appointment</a>
                       </div>
                   </div>
               </div>

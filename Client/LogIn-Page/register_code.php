@@ -1,5 +1,6 @@
 <?php
 // Start session and set timezone
+include "../client_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
 

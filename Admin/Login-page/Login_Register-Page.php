@@ -1,5 +1,6 @@
 <?php
 // Start session and set timezone
+include "../admin_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
 
@@ -9,15 +10,15 @@ if (empty($_SESSION['csrf_token'])) {
 }
 
 // Check if user is already logged in
-if (isset($_SESSION['userSuperAdminID']) && $_SESSION['userType'] == 'superAdmin') {
-    header('location: ../../Super%20Admin/Dashboard');
+if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
+    header('location: ../../Super%20Admin/Dashboard/Dashboard.php');
     exit();
 }
-else if (isset($_SESSION['userAdminID']) && $_SESSION['userType'] == 'admin') {
+else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     header('location: ../Dashboard/Dashboard.php');
     exit();
 }
-
+echo $_SESSION['userAdminID']??"hetalia";
 ?>
 
 <!DOCTYPE html>

@@ -1,9 +1,11 @@
 <?php
+include "../client_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
 include "../client_global_files/connect_database.php";
 include "../client_global_files/encrypt_decrypt.php";
 include "../client_global_files/input_sanitizing.php";
+if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,8 +29,7 @@ include "../client_global_files/input_sanitizing.php";
 <?php include "loader.php"; ?>
 
   
-  <div class="body-container">
-
+<div class="body-container">
   <div class="appointment-details">
   <div class="toggle-tabs">
           <div class="tab active" data-content="invoices">
@@ -42,15 +43,8 @@ include "../client_global_files/input_sanitizing.php";
           <div class="content active" id="invoices"><?php include "appointment-table.php"; ?></div>
           <div class="content" id="canceled-appointments" style="display: none;"><?php include "invoice-table.php"; ?></div>
       </div>
-
-
-
-
-
-
-
   </div>
-    </div>
+</div>
 
   
 
@@ -59,3 +53,10 @@ include "../client_global_files/input_sanitizing.php";
  <script src="js/toggles.js"></script>
 </body>
 </html>
+<?php
+}
+else{
+  header('location: ../LogIn-Page/Login-Page.php');
+  die();
+}
+?>

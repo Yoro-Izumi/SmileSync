@@ -1,5 +1,6 @@
 <?php
 // Start session and set timezone
+include "../admin_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
 
@@ -22,7 +23,6 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['mid
     $email = encryptData(sanitize_input($_POST['emailRegister'], $connect_db), $key);
     $password = sanitize_input($_POST['passwordRegister'], $connect_db);
     $confirmPassword = sanitize_input($_POST['confirmPasswordRegister'], $connect_db);
-    $dateOfCreation = date('Y-m-d');
     $accountStatus = 'Pending';
 
   
@@ -44,9 +44,9 @@ if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['mid
     $password = password_hash($password, PASSWORD_ARGON2I, $options);
 
     // Insert admin account data
-    $qryInsertAdminAccount = "INSERT INTO `smilesync_admin_accounts`(`admin_account_id`, `admin_first_name`, `admin_last_name`, `admin_middle_name`, `admin_suffix`, `admin_email`, `admin_password`, `date_of_creation`, `account_status`, `admin_birthdate`, `admin_phone`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $qryInsertAdminAccount = "INSERT INTO `smilesync_admin_accounts`(`admin_account_id`, `admin_first_name`, `admin_last_name`, `admin_middle_name`, `admin_suffix`, `admin_email`, `admin_password`,`date_time_of_creation`,`account_status`, `admin_birthdate`, `admin_phone`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?,current_timestamp(), ?)";
     $conInsertAdminAccount = mysqli_prepare($connect_db, $qryInsertAdminAccount);
-    mysqli_stmt_bind_param($conInsertAdminAccount, 'ssssssssss', $firstName, $lastName, $middleName, $suffix, $email, $password, $dateOfCreation, $accountStatus, $birthday, $phoneNumber);
+    mysqli_stmt_bind_param($conInsertAdminAccount, 'sssssssss', $firstName, $lastName, $middleName, $suffix, $email, $password, $accountStatus, $birthday, $phoneNumber);
 
     // Execute and handle errors
     if (!mysqli_stmt_execute($conInsertAdminAccount)) {

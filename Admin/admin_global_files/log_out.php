@@ -10,7 +10,7 @@ if (isset($_SESSION['userAdminID'])){
      else if(isset($_SESSION['userSuperAdminID'])){
         unset($_SESSION['userSuperAdmin']);
         session_destroy();
-        header('location: ../Login-page/Login_Register-Page.php');
+        header('location: ../../Admin/Login-page/Login_Register-Page.php');
         die();
      }
      else{

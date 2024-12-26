@@ -1,5 +1,6 @@
 <?php
 // Start session and set timezone
+include "../admin_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
 
@@ -10,6 +11,8 @@ include "../admin_global_files/input_sanitizing.php";
 include "total_patients_per_day.php";
 include "total_cancelled_appointments.php";
 include "total_rescheduled_appointments.php";
+// Check if user is already logged in
+if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,3 +103,10 @@ include "total_rescheduled_appointments.php";
     
 </body>
 </html>
+<?php 
+}
+else{
+    header('location: ../Login-page');
+    exit(); 
+}
+?>

@@ -1,10 +1,10 @@
 <?php
+include "../client_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
 include "../client_global_files/connect_database.php";
 include "../client_global_files/encrypt_decrypt.php";
 include "../client_global_files/input_sanitizing.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
