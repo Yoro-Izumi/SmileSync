@@ -66,12 +66,13 @@
 </li>
 
       <li class="profile">
-        <div class="profile-details">
+        < class="profile-details">
           <img src="img/login.png"  alt="profile">
           <div class="name_job">
             <div class="name">kazumiyoro@emailcom</div>
             <div class="job">Admin</div>
           </div>
+            <a href="../admin_global_files/log_out.php"></a>
             <i class='bx bx-log-out' id="log_out" ></i>
             <span class="tooltip">Logout</span>
         </div>

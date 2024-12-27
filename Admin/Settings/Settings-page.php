@@ -7,6 +7,7 @@ include "../admin_global_files/encrypt_decrypt.php";
 include "../admin_global_files/input_sanitizing.php";
 // Check if user is already logged in
 if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
