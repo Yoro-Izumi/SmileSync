@@ -18,7 +18,6 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     header('location: ../Dashboard/Dashboard.php');
     exit();
 }
-echo $_SESSION['userAdminID']??"hetalia";
 ?>
 
 <!DOCTYPE html>
