@@ -24,7 +24,7 @@ $(document).ready(function () {
         processData: false,
         contentType: false,
         success: function (response) {
-          document.getElementById('register_form').reset();
+          //document.getElementById('register_form').reset();
           if (response.trim() === "error") {
             // Show error modal
             //$("#errorModal").modal("show");
@@ -34,6 +34,7 @@ $(document).ready(function () {
             $("#successRegisterModal").modal("show");
             // Set session storage to prevent re-submission
             sessionStorage.setItem("registerFormSubmitted", "true");
+            document.getElementById('register_form').reset();
           }
         },
         error: function (xhr, status, error) {
