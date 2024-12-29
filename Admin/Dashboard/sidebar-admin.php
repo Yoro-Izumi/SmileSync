@@ -65,17 +65,16 @@
   <span class="tooltip">Notifications</span>
 </li>
 
-      <li class="profile">
-        <div class="profile-details">
+<li class="profile">
+        < class="profile-details">
           <img src="img/login.png"  alt="profile">
           <div class="name_job">
             <div class="name">kazumiyoro@emailcom</div>
             <div class="job">Admin</div>
           </div>
             <a href="../admin_global_files/log_out.php">
-              <i class='bx bx-log-out' id="log_out" ></i>
-              <span class="tooltip">Logout</span>
-            </a>
+            <i class='bx bx-log-out' id="log_out" ></i></a>
+            <span class="tooltip">Logout</span>
         </div>
       </li>  
         
