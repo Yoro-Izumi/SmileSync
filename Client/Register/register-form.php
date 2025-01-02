@@ -33,7 +33,6 @@
     </div>
 
     <form id="multiStepForm" name="multiStepForm" action="register_code.php" method="POST">
-    <form id="step1Form" action="register_code.php" method="POST">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <div class="wrap-2rows">
@@ -242,8 +241,6 @@
         </div>
 
       </div>
-    </form>
-    <form id="step2Form" action="register_code.php" method="POST">
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
         <h2>Appointment Detail</h2>
@@ -336,8 +333,6 @@
         </div>
  
       </div>
-    </form>  
-    <form id="step3Form" action="register_code.php" method="POST">
       <!-- Step 3: Account -->
       <div class="form-section">
         <!-- Add account setup fields here -->
@@ -392,7 +387,6 @@
           
               </div>
       </div>
-      </form>
       <!-- Form Navigation -->
       <div class="form-navigation">
         <button type="button" class="prev-btn" style="display: none;">Previous</button>

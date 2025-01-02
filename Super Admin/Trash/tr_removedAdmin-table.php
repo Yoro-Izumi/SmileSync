@@ -1,9 +1,9 @@
 <?php 
 $connect_accounts = connect_accounts($servername, $username, $password);
-$statusAccount = "Active";
+$statusAccount = "Deactivated";
 
 // Prepare and execute the query
-$stmtAdminAccounts = "SELECT * FROM smilesync_admin_accounts WHERE account_status != ?";
+$stmtAdminAccounts = "SELECT * FROM smilesync_admin_accounts WHERE account_status = ?";
 $prepareAdminAccounts = mysqli_prepare($connect_accounts, $stmtAdminAccounts);
 mysqli_stmt_bind_param($prepareAdminAccounts, "s", $statusAccount);
 mysqli_stmt_execute($prepareAdminAccounts);

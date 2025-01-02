@@ -1,6 +1,6 @@
 <?php 
 $connect_accounts = connect_accounts($servername, $username, $password);
-$statusAccount = "Active";
+$statusAccount = "Deactivated";
 $stmtPatientAccounts = "
                         SELECT smilesync_patient_management.smilesync_patient_information.*
                         , smilesync_patient_accounts.*
@@ -10,7 +10,7 @@ $stmtPatientAccounts = "
                         ON smilesync_patient_information.patient_info_id = smilesync_patient_accounts.patient_info_id
                         LEFT JOIN smilesync_appointments.smilesync_appointments
                         ON smilesync_appointments.patient_info_id = smilesync_patient_accounts.patient_info_id
-                        WHERE patient_account_status != ?
+                        WHERE patient_account_status = ?
                         ";
 $preparePatientAccounts = mysqli_prepare($connect_accounts, $stmtPatientAccounts);
 mysqli_stmt_bind_param($preparePatientAccounts, "s", $statusAccount);

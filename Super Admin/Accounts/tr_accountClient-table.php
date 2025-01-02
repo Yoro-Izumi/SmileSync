@@ -1,13 +1,13 @@
 <?php 
 $connect_accounts = connect_accounts($servername, $username, $password);
-$statusAccount = "Active";
+$statusAccount = "Deactivated";
 $stmtPatientAccounts = "
                         SELECT smilesync_patient_management.smilesync_patient_information.*
                         , smilesync_patient_accounts.*  
                         FROM smilesync_patient_accounts
                         LEFT JOIN smilesync_patient_management.smilesync_patient_information
                         ON smilesync_patient_information.patient_info_id = smilesync_patient_accounts.patient_info_id
-                        WHERE patient_account_status = ?
+                        WHERE patient_account_status != ?
                         ";
 $preparePatientAccounts = mysqli_prepare($connect_accounts, $stmtPatientAccounts);
 mysqli_stmt_bind_param($preparePatientAccounts, "s", $statusAccount);
@@ -31,11 +31,16 @@ if ($resultsPatientAccounts) {
             $patientID = $patientAccounts['patient_account_id'];
             $patientFullName = $patientLastName . ", " . $patientFirstName . " " . $patientMiddleName;
             $patient_info_id = $patientAccounts[ 'patient_info_id' ]?? " ";
+            $status = $patientAccounts['patient_account_status'] ?? "";
+            $dateTime = $patientAccounts['date_time_of_creation'] ?? "";
+            if($dateTime !== ""){
+                $dateOfCreation = formatDateTime($dateTime);
+            }
         }
-        if ($patientAccounts['admin_id'] === NULL) {
+        if ($patientAccounts['admin_account_id'] === NULL) {
             $approver = "--";
         } else {
-            $approver = $patientAccounts['admin_id'];
+            $approver = $patientAccounts['admin_account_id'];
         }
 ?>
 <tr>
@@ -43,8 +48,8 @@ if ($resultsPatientAccounts) {
     <td data-label="ID"><?php echo $patientID; ?></td>
     <td data-label="NAME"><?php echo $patientFullName; ?></td>
     <td data-label="APPROVER"><?php echo $approver; ?></td>
-    <td data-label="Date of Creation"><?php echo $patientAccounts['date_of_creation']; ?></td>
-    <td data-label="STATUS" class="status"><?php echo $patientAccounts['patient_account_status']; ?></td>
+    <td data-label="Date of Creation"><?php echo $dateOfCreation; ?></td>
+    <td data-label="STATUS" class="status"><?php echo $status; ?></td>
     <td data-label="ACTIONS">
         <div class="actions">
             <div class="dropdown">
