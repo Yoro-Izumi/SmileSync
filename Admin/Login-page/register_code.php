@@ -12,15 +12,20 @@ include '../admin_global_files/input_sanitizing.php';
 // Connect to the accounts database
 $connect_db = connect_accounts($servername, $username, $password);
 
+
 if (isset($_POST['firstName'], $_POST['lastName'], $_POST['middleName'], $_POST['suffix'], $_POST['emailRegister'], $_POST['passwordRegister'], $_POST['confirmPasswordRegister'], $_POST['birthday'], $_POST['phoneNumber'])) {
-    // Sanitize and encrypt input
+
+$message = "default"; // For modal
+
     $firstName = encryptData(sanitize_input($_POST['firstName'], $connect_db), $key);
     $lastName = encryptData(sanitize_input($_POST['lastName'], $connect_db), $key);
     $middleName = encryptData(sanitize_input($_POST['middleName'], $connect_db), $key);
     $suffix = encryptData(sanitize_input($_POST['suffix'], $connect_db), $key);
+
     $email = sanitize_input($_POST['emailRegister'], $connect_db);
     $password = sanitize_input($_POST['passwordRegister'], $connect_db);
     $confirmPassword = sanitize_input($_POST['confirmPasswordRegister'], $connect_db);
+
     $birthday = encryptData(sanitize_input($_POST['birthday'], $connect_db), $key);
     $phoneNumber = encryptData(sanitize_input($_POST['phoneNumber'], $connect_db), $key);
     $accountStatus = 'Pending';
@@ -44,6 +49,7 @@ if (isset($_POST['firstName'], $_POST['lastName'], $_POST['middleName'], $_POST[
         }
     }
 
+
     // Encrypt email for storage
     $encryptedEmail = encryptData($email, $key);
 
@@ -53,7 +59,9 @@ if (isset($_POST['firstName'], $_POST['lastName'], $_POST['middleName'], $_POST[
         'time_cost' => 4,
         'threads' => 3,
     ];
+
     $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
+
 
     // Insert admin account data
     $qryInsertAdminAccount = "INSERT INTO smilesync_admin_accounts (admin_first_name, admin_last_name, admin_middle_name, admin_suffix, admin_email, admin_password, account_status, admin_birthdate, admin_phone, date_time_of_creation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, current_timestamp())";
