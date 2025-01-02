@@ -1,15 +1,15 @@
 <?php
 session_start();
 if (isset($_SESSION['userID'])){
-        unset($_SESSION['userAdminID']);
+        unset($_SESSION['userID']);
         session_destroy();
-        header('location: ../Login-page/Login_Register-Page.php');
+        header('location: ../Login-page/Login-Page.php');
 
         die();
 }
 else{
         session_destroy();
-        header('location: ../Login-page/Login_Register-Page.php');
+        header('location: ../Login-page/Login-Page.php');
 }
 
 

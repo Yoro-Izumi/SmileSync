@@ -1,149 +1,147 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const loginFailedModal = document.getElementById('loginFailedModal');
-  const emailExistsModal = document.getElementById('emailExistsModal');
-  const passwordMismatchModal = document.getElementById('passwordMismatchModal');
-  const successModal = document.getElementById('successModal');
-  const successRegisterModal = document.getElementById('successRegisterModal');
-  const errorModal = document.getElementById('errorModal');
+document.addEventListener('DOMContentLoaded', function () {
+    const loginFailedModal = document.getElementById('loginFailedModal');
+    const emailExistsModal = document.getElementById('emailExistsModal');
+    const passwordMismatchModal = document.getElementById('passwordMismatchModal');
+    const successModal = document.getElementById('successModal');
+    const successRegisterModal = document.getElementById('successRegisterModal');
+    const resetPasswordModal = document.getElementById('resetPasswordModal');
+    const noEmailModal = document.getElementById('noEmailModal');
+    const privacyPolicyModal = document.getElementById('privacyPolicyModal');
+    const termServicesModal = document.getElementById('termServicesModal');
   
-  const registerBtn = document.getElementById('registerBtn');
-  const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
-  const showLoginFailedBtn = document.getElementById('loginBtn');
-  const closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
+    const showLoginFailedBtn = document.getElementById('loginBtn');
+    const closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
+    const closeResetPasswordBtn = document.getElementById('cancelButton');
+    const resetPasswordLink = document.getElementById('resetPasswordLink');
+    const resetLink = document.getElementById('forgotLink');
+    const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
+    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+    const closeExistEmailModalBtn = document.getElementById('close-emailExistModal');
   
-  const resetPasswordLink = document.getElementById('resetPasswordLink');
-  const resetLink = document.getElementById('forgotLink');
-  const closeResetPasswordBtn = document.getElementById('cancelButton');
+    // Helper function to show modals
+    function showModal(modal) {
+      if (modal) modal.classList.add('show');
+    }
   
-  const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
-  const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
-
-  // Event listeners for handling modals and form submissions
-  showLoginFailedBtn.addEventListener('click', function() {
-      loginFailedModal.classList.add('show');
-  });
-
-  closeLoginFailedBtn.addEventListener('click', function() {
-      loginFailedModal.classList.remove('show');
-  });
-
-  registerBtn.addEventListener('click', function() {
-      successRegisterModal.classList.add('show');
-  });
-
-  closeSuccessRegisterBtn.addEventListener('click', function() {
-      successRegisterModal.classList.remove('show');
-  });
-
-  closeSuccessModalBtn.addEventListener('click', function() {
-      successModal.classList.remove('show');
-  });
-
-  // Handle registration form submission
-  document.getElementById('registerBtn').addEventListener('click', function(e) {
+    // Helper function to hide modals
+    function hideModal(modal) {
+      if (modal) modal.classList.remove('show');
+    }
+  
+    // Close modal events
+    closeLoginFailedBtn.addEventListener('click', function () {
+      hideModal(loginFailedModal);
+    });
+  
+    closeSuccessRegisterBtn.addEventListener('click', function () {
+      hideModal(successRegisterModal);
+      const form = document.getElementById('register_form');
+      if (form) form.reset(); // Reset the form after successful registration
+    });
+  
+    closeSuccessModalBtn.addEventListener('click', function () {
+      hideModal(successModal);
+    });
+  
+    closeExistEmailModalBtn.addEventListener('click', function () {
+      hideModal(emailExistsModal);
+    });
+  
+    closeResetPasswordBtn.addEventListener('click', function () {
+      hideModal(resetPasswordModal);
+    });
+  
+    // Handle reset password link click
+    resetPasswordLink.addEventListener('click', function () {
+      hideModal(loginFailedModal);
+      showModal(resetPasswordModal);
+    });
+  
+    resetLink?.addEventListener('click', function () {
+      showModal(resetPasswordModal);
+    });
+  
+    submitResetPasswordBtn.addEventListener('click', function () {
+      hideModal(resetPasswordModal);
+      showModal(successModal);
+    });
+  
+    // Registration form submission
+    registerBtn.addEventListener('click', function (e) {
       e.preventDefault();
-      var form = document.getElementById('register_form');
-      var formData = new FormData(form);
-
+      const form = document.getElementById('register_form');
+      const formData = new FormData(form);
+  
       if (form.checkValidity()) {
-          this.disabled = true;  // Disable button to prevent further submissions during process
-
-          $.ajax({
-              type: "POST",
-              url: "register_code.php",
-              data: formData,
-              processData: false,
-              contentType: false,
-              success: function(response) {
-                  form.reset();  // Reset the registration form
-                  if (response.trim() === "error:Email already exists") {
-                      emailExistsModal.classList.add('show');  // Show email exists modal
-                  } else if (response.trim() === "error:Passwords do not match") {
-                      passwordMismatchModal.classList.add('show');  // Show password mismatch modal
-                  } else if (response.trim() === "success") {
-                      successRegisterModal.classList.add('show');  // Show success modal
-                      sessionStorage.setItem("registerFormSubmitted", "true");  // Mark as submitted
-                  } else {
-                      errorModal.classList.add('show');  // Show the generic error modal
-                  }
-              },
-              error: function(xhr, status, error) {
-                  console.error(xhr.responseText);
-                  errorModal.classList.add('show');  // Show the generic error modal on AJAX failure
-              },
-              complete: function() {
-                  document.getElementById('registerBtn').disabled = false;  // Re-enable the register button
-              }
-          });
+        $.ajax({
+          type: 'POST',
+          url: 'register_code.php',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            switch (response.trim()) {
+              case 'error:Email already exists':
+                showModal(emailExistsModal);
+                registerBtn.disabled = false; // Re-enable for user correction
+                break;
+              case 'error:Passwords do not match':
+                showModal(passwordMismatchModal);
+                registerBtn.disabled = false; // Re-enable for user correction
+                break;
+              case 'success':
+                showModal(successRegisterModal);
+                sessionStorage.setItem('registerFormSubmitted', 'true');
+                form.reset(); // Reset the form after successful submission
+                registerBtn.disabled = true; // Disable the button after success
+                break;
+              default:
+                registerBtn.disabled = false; // Re-enable for user correction
+            }
+          },
+          error: function (xhr) {
+            console.error(xhr.responseText);
+            registerBtn.disabled = false; // Re-enable for user correction
+          },
+        });
       } else {
-          form.reportValidity();  // Trigger HTML5 form validation if the form is invalid
+        form.reportValidity(); // Trigger validation error messages
       }
-  });
-
-  // Handle login form submission
-  document.getElementById('loginBtn').addEventListener('click', function(e) {
+    });
+  
+    // Login form submission
+    showLoginFailedBtn.addEventListener('click', function (e) {
       e.preventDefault();
-      var form = document.getElementById('login_form');
-      var formData = new FormData(form);
-
+      const form = document.getElementById('login_form');
+      const formData = new FormData(form);
+  
       if (form.checkValidity()) {
-          this.disabled = true;  // Disable button to prevent further submissions during process
-
-          $.ajax({
-              type: "POST",
-              url: "login_code.php",
-              data: formData,
-              processData: false,
-              contentType: false,
-              success: function(response) {
-                  if (response.trim() === "error") {
-                      loginFailedModal.classList.add('show');  // Show login failed modal
-                  } else if (response.trim() === "success") {
-                      successModal.classList.add('show');  // Show success modal
-                  }
-              },
-              error: function(xhr, status, error) {
-                  console.error(xhr.responseText);
-                  loginFailedModal.classList.add('show');  // Show login failed modal on error
-              },
-              complete: function() {
-                  document.getElementById('loginBtn').disabled = false;  // Re-enable the login button
-              }
-          });
+        $.ajax({
+          type: 'POST',
+          url: 'login_code.php',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            if (response.trim() === 'error') {
+              showModal(loginFailedModal);
+            } else if (response.trim() === 'success') {
+              location.reload(); // Reload the page on successful login
+            }
+          },
+          error: function (xhr) {
+            console.error(xhr.responseText);
+            showModal(loginFailedModal);
+          },
+          complete: function () {
+            showLoginFailedBtn.disabled = false; // Re-enable the button
+          },
+        });
       } else {
-          form.reportValidity();  // Trigger HTML5 form validation
+        form.reportValidity(); // Trigger HTML5 form validation
       }
+    });
   });
-
-  // Modal events for closing the modals
-  document.getElementById('closeSuccessRegisterBtn').addEventListener('click', function() {
-      successRegisterModal.classList.remove('show');
-  });
-
-  document.getElementById('closeLoginFailedBtn').addEventListener('click', function() {
-      loginFailedModal.classList.remove('show');
-  });
-
-  document.getElementById('closeResetPasswordBtn').addEventListener('click', function() {
-      resetPasswordModal.classList.remove('show');
-  });
-
-  // Reset password modal event
-  resetPasswordLink.addEventListener('click', function() {
-      loginFailedModal.classList.remove('show');
-      resetPasswordModal.classList.add('show');
-  });
-
-  resetLink.addEventListener('click', function() {
-      resetPasswordModal.classList.add('show');
-  });
-
-  submitResetPasswordBtn.addEventListener('click', function() {
-      resetPasswordModal.classList.remove('show');
-      successModal.classList.add('show');
-  });
-
-  closeSuccessModalBtn.addEventListener('click', function() {
-      successModal.classList.remove('show');
-  });
-});
+  

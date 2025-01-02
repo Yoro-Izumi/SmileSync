@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         if (confirm('Are you sure you want to delete the selected products?')) {
             $.ajax({
-                url: 'delete_products.php',
+                url: 'modal_crud/delete_products.php',
                 method: 'POST',
                 data: { ids: selectedIds },
                 success: function(response) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
     $('#editProduct').on('click', function() {
         const productId = $(this).closest('tr').find('[data-label="Product ID"]').text().trim();
         $.ajax({
-            url: 'get_product_details.php',
+            url: 'modal_crud/get_product_details.php',
             method: 'GET',
             data: { id: productId },
             success: function(data) {
@@ -77,7 +77,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: 'update_product.php',
+            url: 'modal_crud/update_product.php',
             method: 'POST',
             data: updatedProduct,
             success: function(response) {
@@ -96,7 +96,7 @@ $(document).ready(function() {
     $('#viewDetails').on('click', function() {
         const productId = $(this).closest('tr').find('[data-label="Product ID"]').text().trim();
         $.ajax({
-            url: 'get_product_details.php',
+            url: 'modal_crud/get_product_details.php',
             method: 'GET',
             data: { id: productId },
             success: function(data) {

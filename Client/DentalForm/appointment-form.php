@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
 </head>
 
 <body>
@@ -25,11 +26,6 @@
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <h3>Personal Information</h3>
-        
-          <div class="input-wrap">
-            <input type="text" maxlength="24" class="input-field" autocomplete="off" name="firstName" required />
-            <label>Name of Patient<indicator>*</indicator></label>
-          </div>
 
         <div class="question-form">
           <div class="titles">
@@ -51,8 +47,8 @@
             </div>
           </div>
           <script>
-            function toggleAddressField() {
-              const addressField = document.getElementById("infectedAddress");
+            function toggleInfectedField() {
+              const addressField = document.getElementById("infectedAddressField");
               const isYesSelected = document.getElementById("visited-yes").checked;
               addressField.style.display = isYesSelected ? "block" : "none";
             }
@@ -144,10 +140,10 @@
             </div>
           </div>
           <script>
-            function toggleAddressField() {
-              const addressField = document.getElementById("hmoID");
+            function toggleHmoField() {
+              const hmoField = document.getElementById("hmoField");
               const isYesSelected = document.getElementById("hmo-yes").checked;
-              addressField.style.display = isYesSelected ? "block" : "none";
+              hmoField.style.display = isYesSelected ? "block" : "none";
             }
           </script>
 
@@ -230,50 +226,19 @@
         </div>
  
       </div>
-
+  
       
     <div class="form-navigation">
       <button type="button" class="prev-btn" style="display: none;">Previous</button>
       <button type="button" class="next-btn">Next</button>
     </div>
-    </form>
+  </form>
   </div>
 
   <footer>
     <p>&copy; 2024 iMee Dental Clinic. All rights reserved.</p>
   </footer>
   <script src="js/appointment_form2.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-        $('#multiStepForm').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = $(this).serialize(); // Serialize form data
-
-            $.ajax({
-                url: 'appointment_add.php',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                        $('#multiStepForm')[0].reset(); // Clear the form
-                    } else {
-                        alert('Error: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                }
-            });
-        });
-    });
-</script>
-
-
-
 </body>
 
 </html>

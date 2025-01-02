@@ -51,6 +51,9 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
  <script src="js/inventoryToggle.js"></script>
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
+ <script src="js/modal.js"></script>
+ <script src="js/crud.js"></script>
+
 </body>
 </html>
 <?php

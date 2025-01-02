@@ -95,7 +95,8 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
         $time_since_first_attempt = $current_time - strtotime($login_attempt[$first_attempt_time]);
         if ($login_attempt[$number_of_attempts] >= $max_attempts && $time_since_first_attempt <= $lockout_time) {
             $remaining_lockout = ceil(($lockout_time - $time_since_first_attempt) / 60);
-            die("You have exceeded the maximum login attempts. Please try again after $remaining_lockout minutes.");
+            echo "locked:You have exceeded the maximum login attempts. Please try again after $remaining_lockout minutes.";
+            exit();
         } elseif ($time_since_first_attempt > $lockout_time) {
             reset_attempts($connect_db, $user_id, $user_type);
         }
@@ -105,11 +106,12 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
         $_SESSION['userType'] = $user_type;
         $_SESSION[$user_type === 'admin' ? 'userAdminID' : 'userSuperAdminID'] = $user_id;
         reset_attempts($connect_db, $user_id, $user_type);
-        header('Location: ' . ($user_type === 'admin' ? '../Dashboard/Dashboard.php' : '../Dashboard/Dashboard.php'));
+        echo "success";
         exit();
     } else {
         $error_message = "Email or Password are mismatched.";
         increment_attempts($connect_db, $user_id, $user_type);
+        echo "error";  // Return error message
     }
 }
 

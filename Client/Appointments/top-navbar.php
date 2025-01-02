@@ -30,7 +30,7 @@
                 <div class="dropdown-content">
                     <a href="#"><i class="fa fa-user-circle"></i>email@email.com</a>
                     <a href="../Settings/Settings-page.php"><i class='bx bxs-cog' ></i>Settings</a>
-                    <a href="#"><i class='bx bx-log-out' id="log_out" ></i>Logout</a>
+                    <a href="../client_global_files/logout.php"><i class='bx bx-log-out' id="log_out" ></i>Logout</a>
                 </div>
             </div>
         </div>

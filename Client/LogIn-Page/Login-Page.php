@@ -1,9 +1,14 @@
 <?php
-//Start session and set timezone
+// Start session and set timezone
+include "../client_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
+// Generate a CSRF token if it's not already set
+if (empty($_SESSION['csrf_token'])) {
+  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 // Check if user is already logged in
-if (isset($_SESSION['userID'])) {
+if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
     header('location: ../Dashboard/index.php');
     die();
 }
@@ -26,7 +31,7 @@ if (isset($_SESSION['userID'])) {
 
 
 <body>
-<?php //include "modal.php"; ?>
+<?php include "modal.php"; ?>
 <?php include "loader.php"; ?>
 
     <main> 
@@ -46,7 +51,7 @@ if (isset($_SESSION['userID'])) {
                 <h4>Don't have an account?
                 <a href="../Register/Register-Page.php">Sign up</a></h4>
               </div>
-
+              <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
@@ -125,35 +130,94 @@ $('.icon').click(function () {
   }
 });
 
-//code to post data using ajax
-$("#login_form").on("submit", function (e) {
+document.addEventListener('DOMContentLoaded', function() {
+    const loginFailedModal = document.getElementById('loginFailedModalClient');
+    const resetPasswordModal = document.getElementById('resetPasswordModalClient');
+    const successModal = document.getElementById('resetSuccessModal');
+
+    const showLoginFailedBtnn = document.getElementById('loginClientBtn');
+    const closeLoginFailedBtnn = document.getElementById('closeLoginFailedBtnn');
+
+    const resetPasswordLinkk = document.getElementById('resetPasswordLink');
+    const resetLink = document.getElementById('forgotPassword');
+    const closeResetPasswordBtn = document.getElementById('cancelButton');
+
+    const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
+    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+
+    // Show the login failed modal (triggered by AJAX error)
+    closeLoginFailedBtnn.addEventListener('click', function() {
+        loginFailedModal.classList.remove('show');
+    });
+
+    // Show the reset password modal when clicking the reset password link
+    resetPasswordLinkk.addEventListener('click', function(event) {
+        loginFailedModal.classList.remove('show');
+        resetPasswordModal.classList.add('show');
+    });
+
+    // Close the reset password modal (Cancel button)
+    closeResetPasswordBtn.addEventListener('click', function() {
+        resetPasswordModal.classList.remove('show');
+    });
+
+    // Show the reset password modal when clicking the reset password link
+    resetLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        resetPasswordModal.classList.add('show');
+    });
+
+    // Handle submit action
+    submitResetPasswordBtn.addEventListener('click', function() {
+        resetPasswordModal.classList.remove('show');
+        successModal.classList.add('show'); // Show success modal after submitting
+    });
+
+    // Close the success modal
+    closeSuccessModalBtn.addEventListener('click', function() {
+        successModal.classList.remove('show');
+    });
+
+    // AJAX form submission (for login form)
+    $("#login_form").on("submit", function (e) {
     e.preventDefault();
     
     var formData = new FormData(this);
     
     // Disable the button to prevent multiple clicks
-    $("#loginClientBtn").prop("disabled", true);
+    //$("#loginClientBtn").prop("disabled", true);
     
     $.ajax({
-      type: "POST",
-      url: "login_code.php",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        //console.log(response); // Handle success response
-        // Redirect or show success message
-        window.location.href = "../Dashboard";
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-      },
-      complete: function() {
-        // Enable the button after request completes
-        $("#loginClientBtn").prop("disabled", false);
-      }
+        type: "POST",
+        url: "login_code.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            response = JSON.parse(response); // Parse the JSON response
+
+            if (response.status === 'success') {
+                location.reload();
+            } else {
+                // Show the error message in the login failed modal
+                $('#loginFailedModalClient').addClass('show');
+                $('#loginFailedModalClient .modal-message').text(response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            $('#loginFailedModalClient').addClass('show');
+            $('#loginFailedModalClient .modal-message').text('An error occurred. Please try again.');
+        },
+        complete: function() {
+            // Enable the button after request completes
+            $("#loginClientBtn").prop("disabled", false);
+        }
     });
-  });
+});
+
+});
+
 </script>
 
 </body>

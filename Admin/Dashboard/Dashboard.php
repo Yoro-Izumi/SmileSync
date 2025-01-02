@@ -59,19 +59,19 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
                 <div class="col-4">
                     <div class="stat-box">
                         <h2>Total Patients</h2>
-                        <p><!--?php echo $totalPatients;?-->0</p>
+                        <p><?php echo $totalPatients;?></p>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="stat-box">
                         <h2>Cancelled</h2>
-                        <p><!--?php echo $totalCancelledAppointments;?-->0</p>
+                        <p><?php echo $totalCancelledAppointments;?></p>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="stat-box">
                         <h2>Rescheduled</h2>
-                        <p><!--?php echo $totalRescheduledAppointments;?-->0</p>
+                        <p><?php echo $totalRescheduledAppointments;?></p>
                     </div>
                 </div>
             </div>
