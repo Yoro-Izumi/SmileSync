@@ -96,8 +96,7 @@
   <a href="#" class="next">Next</a>
 </div>
 
-  </div>
-
+  </div
   <script>
   $(document).ready(function() {
     var rowsPerPage = 5;  // Number of rows per page

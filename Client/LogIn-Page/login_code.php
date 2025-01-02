@@ -5,9 +5,9 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 
 // Include necessary files
-include '../global_files/connect_database.php';
-include '../global_files/encrypt_decrypt.php';
-include '../global_files/input_sanitizing.php';
+include '../client_global_files/connect_database.php';
+include '../client_global_files/encrypt_decrypt.php';
+include '../client_global_files/input_sanitizing.php';
 
 // Connect to the accounts database
 $connect_db = connect_accounts($servername, $username, $password);
@@ -16,14 +16,16 @@ $connect_db = connect_accounts($servername, $username, $password);
 $max_attempts = 3;
 $lockout_time = 5 * 60 * 60; // 5 hours in seconds
 $current_time = time();
-$error_message = ""; // Initialize error message variable
+$response = []; // Initialize response array
 
 // Check if both email and password are posted
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
     // Check if CSRF token is valid
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        echo "error";
+        $response['status'] = 'error';
+        $response['message'] = 'Invalid CSRF token.';
+        echo json_encode($response);
         exit();
     }
 
@@ -36,20 +38,26 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     mysqli_stmt_execute($stmtUser);
     $resultUser = mysqli_stmt_get_result($stmtUser);
 
+    $user_found = false;
     while ($userAccount = mysqli_fetch_assoc($resultUser)) {
         $decryptedEmail = decryptData($userAccount['patient_account_email'], $key);
         if ($decryptedEmail === $username) {
             handle_login_attempts($connect_db, $userAccount['patient_account_id'], 'user', $password, $userAccount['patient_account_password']);
-            return; // Stop execution after successful match
+            $user_found = true; // User found, break loop
+            break;
         }
     }
 
-    $error_message = "Invalid email or password.";
+    if (!$user_found) {
+        $response['status'] = 'error';
+        $response['message'] = 'Invalid email or password.';
+        echo json_encode($response);
+    }
 }
 
 // Function to handle login attempts for user accounts
 function handle_login_attempts($connect_db, $user_id, $user_type, $password, $stored_password) {
-    global $max_attempts, $lockout_time, $current_time, $error_message;
+    global $max_attempts, $lockout_time, $current_time, $response;
 
     $attempts_table = 'smilesync_patient_attempts';
     $id_column = 'patient_account_id';
@@ -67,7 +75,10 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
 
         if ($login_attempt[$number_of_attempts] >= $max_attempts && $time_since_first_attempt <= $lockout_time) {
             $remaining_lockout = ceil(($lockout_time - $time_since_first_attempt) / 60); // Convert to minutes
-            die("You have exceeded the maximum login attempts. Please try again after $remaining_lockout minutes.");
+            $response['status'] = 'error';
+            $response['message'] = "You have exceeded the maximum login attempts. Please try again after $remaining_lockout minutes.";
+            echo json_encode($response);
+            exit();
         } elseif ($time_since_first_attempt > $lockout_time) {
             reset_attempts($connect_db, $user_id);
         }
@@ -76,11 +87,15 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
     if (password_verify($password, $stored_password)) {
         $_SESSION['userID'] = $user_id;
         reset_attempts($connect_db, $user_id);
-        header('Location: ../Dashboard/UserDashboard.php');
-        exit();
+        $response['status'] = 'success';
+        $response['message'] = 'Login successful.';
+        $response['redirect'] = '../Dashboard/UserDashboard.php'; // Redirect URL to send to JavaScript
+        echo json_encode($response);
     } else {
-        $error_message = "Email or Password are mismatched.";
+        $response['status'] = 'error';
+        $response['message'] = 'Invalid email or password.';
         increment_attempts($connect_db, $user_id);
+        echo json_encode($response);
     }
 }
 

@@ -218,7 +218,7 @@
 </div>
 
 
-<!-- Success Edit Modal 
+<!-- Success Edit Modal -->
 <div class="modal" id="editSuccessModal">
     <div class="modal-content">
         <div class="modal-title success-title">Edit Successful!</div>
@@ -229,7 +229,7 @@
         </div>
         <button id="closeEditSuccessBtn" class="modal-button normal">OK</button>
     </div>
-</div>-->
+</div>
 
 <!-- Remove Account Warning Modal -->
 <div class="modal" id="removeItemModal">
@@ -264,7 +264,7 @@
         <button class="modal-button secondary-button warning" id="cancelRemoveItemBtnSolo">Cancel</button>
     </div>
 </div>
-<!-- Remove Account Success Modal
+<!-- Remove Account Success Modal-->
 <div class="modal" id="removeItemSuccessModal">
     <div class="modal-content">
         <div class="modal-title warning-title">Item Removed</div>
@@ -275,7 +275,7 @@
         </div>
         <button id="okRemoveItem" class="modal-button success">OK</button>
     </div>
-</div> -->
+</div> 
 
 <div id="alertContainer"></div>
 
@@ -283,6 +283,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     const productTable = document.querySelector('table');
+    
+    // Function to apply bubble design to text
     const bubbleDesignStyles = `
         .bubble {
             border-radius: 12px;
@@ -295,18 +297,35 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     `;
 
-    // Function to create the bubble design for each cell
     const applyBubbleDesign = (data) => {
         return `<span class="bubble">${data}</span>`;
     };
 
+    // Modal open and close functionality
+    const modals = document.querySelectorAll('.modal');
+    const openModal = (modalId) => document.getElementById(modalId).style.display = 'block';
+    const closeModal = (modalId) => document.getElementById(modalId).style.display = 'none';
+
+    // Handle open and close actions for modals
+    document.getElementById('viewItemModal').addEventListener('click', () => openModal('viewItemModal'));
+    document.getElementById('addModal').addEventListener('click', () => openModal('addModal'));
+    document.getElementById('editModal').addEventListener('click', () => openModal('editModal'));
+    document.getElementById('deleteProgressModal').addEventListener('click', () => openModal('deleteProgressModal'));
+    document.getElementById('removeItemModal').addEventListener('click', () => openModal('removeItemModal'));
+
+    // Close modals on 'OK' and 'Cancel' buttons
+    document.getElementById('okView').addEventListener('click', () => closeModal('viewItemModal'));
+    document.getElementById('cancelAddItemBtn').addEventListener('click', () => closeModal('addModal'));
+    document.getElementById('cancelEditItemBtn').addEventListener('click', () => closeModal('editModal'));
+    document.getElementById('cancelNewDeleteBtn').addEventListener('click', () => closeModal('deleteProgressModal'));
+    document.getElementById('cancelRemoveItemBtn').addEventListener('click', () => closeModal('removeItemModal'));
+
     // Export to Excel (XLSX)
     document.getElementById('exportExcel').addEventListener('click', function () {
-        const wb = XLSX.utils.table_to_book(productTable, {sheet: "Product Overview"});
-        const wbout = XLSX.write(wb, {bookType: "xlsx", type: "array"});
+        const wb = XLSX.utils.table_to_book(productTable, { sheet: "Product Overview" });
+        const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
 
-        // Create a Blob and trigger a download
-        const blob = new Blob([wbout], {type: "application/octet-stream"});
+        const blob = new Blob([wbout], { type: "application/octet-stream" });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
         link.download = "product_overview.xlsx";
@@ -337,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return cells;
         });
 
-        slide.addTable(tableData, {x: 1, y: 1, w: '90%', h: '80%'});
+        slide.addTable(tableData, { x: 1, y: 1, w: '90%', h: '80%' });
 
         // Save the presentation as a Word doc
         pptx.save("product_overview");

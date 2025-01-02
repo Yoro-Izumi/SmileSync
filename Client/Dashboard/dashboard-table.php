@@ -28,12 +28,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td data-label="Name">Oli,Jonas</td>
-            <td data-label="Service">Orthodontics</td>
-            <td data-label="Schedule">08-10-2024</td>
-            <td data-label="Time">10:30 AM : 2:30 PM</td>
-          </tr>
 
         </tbody>
       </table>
@@ -44,4 +38,39 @@
     </div>
   </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    function fetchAppointments() {
+      $.ajax({
+        url: 'get_appointments.php', // The PHP file that fetches the data
+        type: 'GET',
+        success: function (response) {
+          // Parse the JSON response and populate the table
+          const appointments = JSON.parse(response);
+          let tableBody = '';
+          appointments.forEach(appointment => {
+            tableBody += `
+              <tr>
+                <td data-label="Name">${appointment.patient_name}</td>
+                <td data-label="Service">${appointment.appointment_reason}</td>
+                <td data-label="Date">${appointment.appointment_date}</td>
+                <td data-label="Time">${appointment.appointment_time}</td>
+              </tr>
+            `;
+          });
+          $('tbody').html(tableBody);
+        },
+        error: function (xhr) {
+          alert('Error fetching appointments: ' + xhr.responseText);
+        }
+      });
+    }
+
+    // Fetch appointments when the page loads
+    fetchAppointments();
+  });
+</script>
+
 </html>

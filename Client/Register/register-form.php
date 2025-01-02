@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <header>
@@ -31,12 +32,12 @@
       </div>
     </div>
 
-    <form id="multiStepForm" name="multiStepForm" action="Register-Page.php" method="POST">
+    <form id="multiStepForm" name="multiStepForm" action="register_code.php" method="POST">
+    <form id="step1Form" action="register_code.php" method="POST">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <div class="wrap-2rows">
-
-              <div class="input-wrap">
+                <div class="input-wrap">
                   <input
                     type="text"
                     maxlength="24"
@@ -64,44 +65,44 @@
 
               <div class="wrap-3rows">
 
-<div class="input-wrap">
-    <input
-      type="text"
-      minlength="1"
-      maxlength="24"
-      class="input-field"
-      autocomplete="off"
-      name="middleName"
-    />
-    <label>Middle Name</label>
-  </div>
+              <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="1"
+                    maxlength="24"
+                    class="input-field"
+                    autocomplete="off"
+                    name="middleName"
+                  />
+                  <label>Middle Name</label>
+              </div>
 
-  <div class="input-wrap">
-    <input
-      type="text"
-      minlength="1"
-      maxlength="5"
-      class="input-field"
-      name="suffix"
-      autocomplete="off"
-    />
-    <label>Suffix</label>
-  </div>
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  minlength="1"
+                  maxlength="5"
+                  class="input-field"
+                  name="suffix"
+                  autocomplete="off"
+                />
+                <label>Suffix</label>
+              </div>
 
-  <div class="input-wrap">
-  <input
-      type="date"
-      id="birthdate-picker"
-      class="input-field"
-      name="birthday"
-      autocomplete="off"
-      required
-    />
-    <label>Select Birthdate<indicator>*</indicator></label>
-  </div>
+              <div class="input-wrap">
+              <input
+                  type="date"
+                  id="birthdate-picker"
+                  class="input-field"
+                  name="birthday"
+                  autocomplete="off"
+                  required
+                />
+                <label>Select Birthdate<indicator>*</indicator></label>
+              </div>
 
-</div>
-<div class="input-wrap">
+            </div>
+            <div class="input-wrap">
                   <input
                     type="text"
                     minlength="11"
@@ -241,8 +242,8 @@
         </div>
 
       </div>
-
-      
+    </form>
+    <form id="step2Form" action="register_code.php" method="POST">
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
         <h2>Appointment Detail</h2>
@@ -335,7 +336,8 @@
         </div>
  
       </div>
-
+    </form>  
+    <form id="step3Form" action="register_code.php" method="POST">
       <!-- Step 3: Account -->
       <div class="form-section">
         <!-- Add account setup fields here -->
@@ -390,13 +392,14 @@
           
               </div>
       </div>
-
+      </form>
       <!-- Form Navigation -->
       <div class="form-navigation">
         <button type="button" class="prev-btn" style="display: none;">Previous</button>
-        <button type="button" class="next-btn">Next</button>
+        <button type="button" class="next-btn">Next</button> 
+        <button type="submit" class="next-btn" id="submitButton" name="submitButton">Submit</button>
       </div>
-    </form>
+   </form>
   </div>
 
   <footer>
@@ -404,6 +407,5 @@
   </footer>
 
 <script src="js/appointment_form.js"></script>
-        
 </body>
 </html>

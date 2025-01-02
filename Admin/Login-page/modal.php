@@ -187,6 +187,18 @@
     </div>
 </div>
 
+<!-- Email Already Exists Modal -->
+<div id="emailExistsModal" class="modal">
+  <div class="modal-content">
+    <h4>Email Already Exists</h4>
+    <p>The email you entered is already registered. Please use a different email.</p>
+    <div class="modal-footer">
+    <button class="modal-close btn" id="close-emailExistModal">Close</button>
+  </div>
+  </div>
+</div>
+
+
 
 
 

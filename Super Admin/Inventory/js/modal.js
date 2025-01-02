@@ -1,126 +1,141 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Modal Elements
-    const viewDetailsModal = document.getElementById('viewItemModal');
-    const deleteProgressModal = document.getElementById('deleteProgressModal');
-    const addItemModal = document.getElementById('addModal');
-    const editModal = document.getElementById('editModal');
-    const confirmEditModal = document.getElementById('confirmEditModal'); 
-    const deleteInventoryModal = document.getElementById('removeItemModal'); 
-    const deleteInventoryModalSolo = document.getElementById('removeItemModalSolo'); 
+    const modals = {
+        viewDetailsModal: document.getElementById('viewItemModal'),
+        deleteProgressModal: document.getElementById('deleteProgressModal'),
+        addItemModal: document.getElementById('addModal'),
+        editModal: document.getElementById('editModal'),
+        confirmEditModal: document.getElementById('confirmEditModal'),
+        deleteInventoryModal: document.getElementById('removeItemModal'),
+        deleteInventoryModalSolo: document.getElementById('removeItemModalSolo')
+    };
 
     // Button Elements
-    const viewDetailsBtn = document.getElementById('viewDetails');
-    const viewDetailsHistoryBtn = document.getElementById('viewDetailsHistory'); 
-    const okViewBtn = document.getElementById('okView');
-    const addProductBtn = document.getElementById('addProduct');
-    const addItemBtn = document.getElementById('addItemBtn');
-    const cancelAddItemBtn = document.getElementById('cancelAddItemBtn');
-    const deleteProgressBtn = document.getElementById('deleteNewProgressBtn');
-    const cancelDeleteProgressBtn = document.getElementById('cancelNewDeleteBtn');
-    const editProductBtn = document.getElementById('editProduct');
-    const editBtn = document.getElementById('EditBtn');
-    const cancelEditBtn = document.getElementById('cancelEditItemBtn');
-    const confirmEditBtn = document.getElementById('confirmEditBtn');
-    const cancelConfirmEditBtn = document.getElementById('cancelConfirmEditBtn');
-    const removeItemTableBtn = document.getElementById('removeProductTable');
-    const deleteInventoryBtn = document.getElementById('removeProduct');
-    const removeItemBtn = document.getElementById('removeItemBtn');
-    const cancelDeleteInventoryBtn = document.getElementById('cancelRemoveItemBtn');
-    const removeItemBtnSolo = document.getElementById('removeItemBtnSolo');
-    const cancelDeleteInventoryBtnSolo = document.getElementById('cancelRemoveItemBtnSolo');
+    const buttons = {
+        viewDetailsBtn: document.getElementById('viewDetails'),
+        viewDetailsHistoryBtn: document.getElementById('viewDetailsHistory'),
+        okViewBtn: document.getElementById('okView'),
+        addProductBtn: document.getElementById('addProduct'),
+        addItemBtn: document.getElementById('addItemBtn'),
+        cancelAddItemBtn: document.getElementById('cancelAddItemBtn'),
+        deleteProgressBtn: document.getElementById('deleteNewProgressBtn'),
+        cancelDeleteProgressBtn: document.getElementById('cancelNewDeleteBtn'),
+        editProductBtn: document.getElementById('editProduct'),
+        editBtn: document.getElementById('EditBtn'),
+        cancelEditBtn: document.getElementById('cancelEditItemBtn'),
+        confirmEditBtn: document.getElementById('confirmEditBtn'),
+        cancelConfirmEditBtn: document.getElementById('cancelConfirmEditBtn'),
+        removeItemTableBtn: document.getElementById('removeProductTable'),
+        deleteInventoryBtn: document.getElementById('removeProduct'),
+        removeItemBtn: document.getElementById('removeItemBtn'),
+        cancelDeleteInventoryBtn: document.getElementById('cancelRemoveItemBtn'),
+        removeItemBtnSolo: document.getElementById('removeItemBtnSolo'),
+        cancelDeleteInventoryBtnSolo: document.getElementById('cancelRemoveItemBtnSolo'),
+        exportExcel: document.getElementById('exportExcel'),
+        exportPDF: document.getElementById('exportPDF'),
+        exportWord: document.getElementById('exportWord')
+    };
 
-    // Show View Details Modal
-    viewDetailsBtn.addEventListener('click', function(){
-        viewDetailsModal.classList.add('show');
+    // Function to apply bubble design to text
+    const bubbleDesignStyles = `
+        .bubble {
+            border-radius: 12px;
+            background: #f2f2f2;
+            padding: 8px 16px;
+            margin: 5px;
+            display: inline-block;
+            font-size: 14px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    `;
+
+    const applyBubbleDesign = (data) => {
+        return `<span class="bubble">${data}</span>`;
+    };
+
+    // Reusable function to open and close modals
+    const toggleModal = (modalId, action = 'open') => {
+        const modal = modals[modalId];
+        if (action === 'open') {
+            modal.classList.add('show');
+        } else {
+            modal.classList.remove('show');
+        }
+    };
+
+    // Modal open and close functionality (using toggleModal)
+    buttons.viewDetailsBtn.addEventListener('click', () => toggleModal('viewDetailsModal', 'open'));
+    buttons.viewDetailsHistoryBtn.addEventListener('click', () => toggleModal('viewDetailsModal', 'open'));
+    buttons.okViewBtn.addEventListener('click', () => toggleModal('viewDetailsModal', 'close'));
+
+    buttons.addProductBtn.addEventListener('click', () => toggleModal('addItemModal', 'open'));
+    buttons.addItemBtn.addEventListener('click', () => toggleModal('addItemModal', 'close'));
+
+    buttons.cancelAddItemBtn.addEventListener('click', () => toggleModal('deleteProgressModal', 'open'));
+    buttons.cancelDeleteProgressBtn.addEventListener('click', () => toggleModal('deleteProgressModal', 'close'));
+    buttons.deleteProgressBtn.addEventListener('click', () => {
+        toggleModal('deleteProgressModal', 'close');
+        toggleModal('addItemModal', 'close');
     });
 
-    viewDetailsHistoryBtn.addEventListener('click', function(){
-        viewDetailsModal.classList.add('show');
+    buttons.editProductBtn.addEventListener('click', () => {
+        toggleModal('viewDetailsModal', 'close');
+        toggleModal('editModal', 'open');
     });
+    buttons.cancelEditBtn.addEventListener('click', () => toggleModal('editModal', 'close'));
 
-    // Close View Details Modal
-    okViewBtn.addEventListener('click', function(){
-        viewDetailsModal.classList.remove('show');
+    buttons.editBtn.addEventListener('click', () => toggleModal('confirmEditModal', 'open'));
+    buttons.confirmEditBtn.addEventListener('click', () => {
+        toggleModal('confirmEditModal', 'close');
+        toggleModal('editModal', 'close');
     });
+    buttons.cancelConfirmEditBtn.addEventListener('click', () => toggleModal('confirmEditModal', 'close'));
 
-    // Add New Item Modal
-    addProductBtn.addEventListener('click', function(){
-        addItemModal.classList.add('show');
-    });
+    buttons.removeItemTableBtn.addEventListener('click', () => toggleModal('deleteInventoryModal', 'open'));
+    buttons.deleteInventoryBtn.addEventListener('click', () => toggleModal('deleteInventoryModal', 'open'));
+    buttons.cancelDeleteInventoryBtn.addEventListener('click', () => toggleModal('deleteInventoryModal', 'close'));
+    buttons.removeItemBtn.addEventListener('click', () => toggleModal('deleteInventoryModal', 'close'));
 
-    addItemBtn.addEventListener('click', function(){
-        addItemModal.classList.remove('show');
-    });
+    buttons.removeItemBtnSolo.addEventListener('click', () => toggleModal('deleteInventoryModalSolo', 'close'));
+    buttons.cancelDeleteInventoryBtnSolo.addEventListener('click', () => toggleModal('deleteInventoryModalSolo', 'close'));
 
-    // Show progress modal
-    cancelAddItemBtn.addEventListener('click', function(){
-        deleteProgressModal.classList.add('show');
-    });
+    // Reusable Export Functionality
+    const exportToFile = (type) => {
+        const productTable = document.querySelector('table');
 
-    cancelDeleteProgressBtn.addEventListener('click', function(){
-        deleteProgressModal.classList.remove('show');
-    });
+        if (type === 'excel') {
+            const wb = XLSX.utils.table_to_book(productTable, { sheet: "Product Overview" });
+            const wbout = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+            const blob = new Blob([wbout], { type: "application/octet-stream" });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "product_overview.xlsx";
+            link.click();
+        } else if (type === 'pdf') {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.autoTable({ html: productTable });
+            doc.save('product_overview.pdf');
+        } else if (type === 'word') {
+            const pptx = new PptxGenJS();
+            const slide = pptx.addSlide();
+            const rows = Array.from(productTable.rows);
+            const tableData = rows.map(row => {
+                const cells = Array.from(row.cells).map(cell => applyBubbleDesign(cell.innerText));
+                return cells;
+            });
+            slide.addTable(tableData, { x: 1, y: 1, w: '90%', h: '80%' });
+            pptx.save("product_overview");
+        }
+    };
 
-    deleteProgressBtn.addEventListener('click', function(){
-        deleteProgressModal.classList.remove('show');
-        addItemModal.classList.remove('show');
-    });
+    // Export Button Event Listeners (all use reusable export function)
+    buttons.exportExcel.addEventListener('click', () => exportToFile('excel'));
+    buttons.exportPDF.addEventListener('click', () => exportToFile('pdf'));
+    buttons.exportWord.addEventListener('click', () => exportToFile('word'));
 
-    // Show Edit Item Modal
-    editProductBtn.addEventListener('click', function(){
-        viewDetailsModal.classList.remove('show');  // Close View Modal
-        editModal.classList.add('show');
-    });
-
-    cancelEditBtn.addEventListener('click', function(){
-        editModal.classList.remove('show');
-    });
-
-    // Confirm to Edit Item Modal
-    editBtn.addEventListener('click', function(){
-        confirmEditModal.classList.add('show');
-    });
-
-    confirmEditBtn.addEventListener('click', function(){
-        confirmEditModal.classList.remove('show');
-        editModal.classList.remove('show');  // Close Edit Modal when Confirm Edit is clicked
-    });
-
-    cancelConfirmEditBtn.addEventListener('click', function(){
-        confirmEditModal.classList.remove('show');
-    });
-
-    // Show Delete Inventory modal
-    removeItemTableBtn.addEventListener('click', function() {
-        deleteInventoryModal.classList.add('show');
-    });
-
-    deleteInventoryBtn.addEventListener('click', function() {
-        deleteInventoryModal.classList.add('show');
-    });
-
-    cancelDeleteInventoryBtn.addEventListener('click', function() {
-        deleteInventoryModal.classList.remove('show');
-    });
-
-    // Close/Discard Delete Inventory Modal
-    removeItemBtn.addEventListener('click', function() {
-        deleteInventoryModal.classList.remove('show');
-    });
-
-    // Close/Discard Delete Inventory Modal
-    removeItemTableBtn.addEventListener('click', function() {
-        deleteInventoryModalSolo.classList.add('show');
-    });
-    
-
-    // Close/Discard Delete Inventory Modal
-    removeItemBtnSolo.addEventListener('click', function() {
-        deleteInventoryModalSolo.classList.remove('show');
-    });
-
-    cancelDeleteInventoryBtnSolo.addEventListener('click', function() {
-        deleteInventoryModalSolo.classList.remove('show');
-    });
-
+    // Optional: Add the bubble design styles to the page
+    const style = document.createElement('style');
+    style.innerHTML = bubbleDesignStyles;
+    document.head.appendChild(style);
 });

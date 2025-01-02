@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
 
     // Show the login failed modal
-    showLoginFailedBtnn.addEventListener('click', function() {
-        loginFailedModal.classList.add('show');
-    });
+    //showLoginFailedBtnn.addEventListener('click', function() {
+    //    loginFailedModal.classList.add('show');
+    //});
 
 
     // Close the terms and services modal

@@ -24,7 +24,7 @@
   </div>
 
 
-  <script src="js/smartChart.js"></script>
+  <script src="js/smartChart2.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </body>
 

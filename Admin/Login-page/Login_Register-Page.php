@@ -36,8 +36,6 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- AJAX -->
     <script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
-    
-
 </head>
 
 
