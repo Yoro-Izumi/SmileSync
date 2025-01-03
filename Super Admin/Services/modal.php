@@ -47,11 +47,11 @@
 </div>
 
 
-<!-- Edit Modal -->
+<!-- Add Modal -->
 <div class="modal" id="addServiceModal">
-    <div class="modal-content">
+<div class="modal-content">
+    <form id="addServiceForm" name="addServiceForm" action="Service-page.php" method="POST">
         <b class="modal-title normal-title">Add New Services</b>
-
         <div class="message-container">
             <div class="modal-description">
             <div class="input-wrap">
@@ -68,16 +68,17 @@
                 <label>Price<indicator>*</indicator></label>
                 </div>
                 <div class="input-wrap">
-                    <input class="modal-input" type="time" maxlength="24" autocomplete="off" name="serviceTime" required />
+                    <input class="modal-input" type="number" maxlength="4" autocomplete="off" name="serviceTime" required />
                 <label>Duration<indicator>*</indicator></label>
                 </div>
         </div>
         <button id="addServiceBtn" class="modal-button success">Add</button>
+        </form>
         <button class="modal-button secondary-button warning" id="cancelAddServiceBtn">Cancel</button>
     </div>
 </div>
 
-
+<!-- Delete Progress Modal -->
 <div class="modal" id="deleteProgressModal">
     <div class="modal-content">
         <div class="image-container">
@@ -96,31 +97,33 @@
 
 <!-- Edit Modal -->
 <div class="modal" id="editModal" >
-    <div class="modal-content">
+<div class="modal-content">
         <b class="modal-title normal-title">Edit Item</b>
-
+        <form id="editServiceForm" name="editServiceForm" action="Service-page.php" method="POST">
         <div class="message-container">
             <div class="modal-description">
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="serviceName" required />
+                <input type="hidden" id="editServiceId" name="editServiceId" value="1"/>
+                <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="editServiceName" required />
                 <label>Name<indicator>*</indicator></label>
                 </div>
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="serviceDescription" required />
+                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="editServiceDescription" required />
                 <label>Description<indicator>*</indicator></label>
                 </div>
             </div>
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="servicePrice" required />
+                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="editServicePrice" required />
                 <label>Price<indicator>*</indicator></label>
                 </div>
                 <div class="input-wrap">
-                    <input class="modal-input" type="time" maxlength="24" autocomplete="off" name="serviceTime" required />
+                    <input class="modal-input" maxlength="4" autocomplete="off" name="editServiceTime" required />
                 <label>Duration<indicator>*</indicator></label>
                 </div>
         </div>
         
         <button id="editBtn" class="modal-button normal">Edit</button>
+        </form>
         <button class="modal-button secondary-button warning" id="cancelEditServiceBtn">Cancel</button>
     </div>
 </div>
@@ -143,7 +146,7 @@
 
 
 
-<!-- Remove Account Warning Modal -->
+<!-- Remove Service Warning Modal -->
 <div class="modal" id="removeServicesModal">
     <div class="modal-content">
         <div class="image-container">

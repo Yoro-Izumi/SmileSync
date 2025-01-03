@@ -30,8 +30,8 @@ if ($resultsServiceListing) {
                     <div class="dropdown">
                         <button>⋮</button>
                         <div class="dropdown-content">
-                            <a href="#">Delete Service</a>
-                            <a href="#">Edit Service</a>
+                            <a href="#" class="removeServiceTable" data-modal="removeServicesModal" data-id="<?php echo $serviceID; ?>">Delete Service</a>
+                            <a href="#" class="editServiceTable" data-modal="removeServicesModal" data-id="<?php echo $serviceID; ?>">Edit Service</a>
                         </div>
                     </div>
                 </div>

@@ -26,8 +26,8 @@
         <div class="dropdown">
           <button>⋮</button>
           <div class="dropdown-content">
-            <a href="#" id="addServices"><i class="fas fa-plus"></i> Add New Service</a>
-            <a href="#" id="deleteServices"><i class="fas fa-trash"></i> Delete Service</a>
+            <a href="#" id="addServices" data-modal="addServiceModal"><i class="fas fa-plus"></i> Add New Service</a>
+            <a href="#" id="deleteServices" data-modal="deleteProgressModal"><i class="fas fa-trash"></i> Delete Service</a>
           </div>
         </div>
       </div>
