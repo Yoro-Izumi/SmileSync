@@ -1,4 +1,10 @@
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
+
+
+    <h1 class="form-title">Add New Appointment</h1>
+
     <div class="steps">
       <div class="step active">
         <span class="step-icon">👤</span>
@@ -14,12 +20,11 @@
       </div>
     </div>
 
-    <form id="multiStepForm">
+    <form id="multiStepForm" name="multiStepForm" action="register_code.php" method="POST">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <div class="wrap-2rows">
-
-              <div class="input-wrap">
+                <div class="input-wrap">
                   <input
                     type="text"
                     maxlength="24"
@@ -47,44 +52,44 @@
 
               <div class="wrap-3rows">
 
-<div class="input-wrap">
-    <input
-      type="text"
-      minlength="1"
-      maxlength="24"
-      class="input-field"
-      autocomplete="off"
-      name="middleName"
-    />
-    <label>Middle Name</label>
-  </div>
+              <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="1"
+                    maxlength="24"
+                    class="input-field"
+                    autocomplete="off"
+                    name="middleName"
+                  />
+                  <label>Middle Name</label>
+              </div>
 
-  <div class="input-wrap">
-    <input
-      type="text"
-      minlength="1"
-      maxlength="5"
-      class="input-field"
-      name="suffix"
-      autocomplete="off"
-    />
-    <label>Suffix</label>
-  </div>
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  minlength="1"
+                  maxlength="5"
+                  class="input-field"
+                  name="suffix"
+                  autocomplete="off"
+                />
+                <label>Suffix</label>
+              </div>
 
-  <div class="input-wrap">
-  <input
-      type="text"
-      id="birthdate-picker"
-      class="input-field"
-      name="birthday"
-      autocomplete="off"
-      required
-    />
-    <label>Select Birthdate<indicator>*</indicator></label>
-  </div>
+              <div class="input-wrap">
+              <input
+                  type="date"
+                  id="birthdate-picker"
+                  class="input-field"
+                  name="birthday"
+                  autocomplete="off"
+                  required
+                />
+                <label>Select Birthdate<indicator>*</indicator></label>
+              </div>
 
-</div>
-<div class="input-wrap">
+            </div>
+            <div class="input-wrap">
                   <input
                     type="text"
                     minlength="11"
@@ -99,10 +104,6 @@
                 <div class="valid-feedback">
                   <!-- Looks good! -->
                 </div>
-                <!--div class="invalid-feedback">
-                  Please provide a valid contact number.
-                </div-->
-
 
                 <div class="question-form">
           <div class="titles">
@@ -125,7 +126,7 @@
           </div>
           <script>
             function toggleAddressField() {
-              const addressField = document.getElementById("address-field");
+              const addressField = document.getElementById("infectedAddress");
               const isYesSelected = document.getElementById("visited-yes").checked;
               addressField.style.display = isYesSelected ? "block" : "none";
             }
@@ -204,9 +205,9 @@
           <div class="question-row">
             <label for="questionInput">Will you be using an HMO Card?</label>
             <div class="answer-options">
-              <input type="radio" id="hmo-yes" name="visited" value="yes" onclick="toggleAddressField()">
+              <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleAddressField()">
               <label for="hmo-yes">Yes</label>
-              <input type="radio" id="hmo-no" name="visited" value="no" onclick="toggleAddressField()">
+              <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleAddressField()">
               <label for="hmo-no">No</label>
             </div>
           </div>
@@ -224,24 +225,19 @@
             }
           </script>
 
-
+           
         </div>
 
       </div>
-
-      
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
+        <h2>Appointment Detail</h2>
         <div class="input-wrap">
-  <select class="input-field" id="services">
-    <option value="" disabled selected>Select a Service</option>
-    <option value="consultation">Consultation</option>
-    <option value="therapy">Therapy</option>
-    <option value="diagnostics">Diagnostics</option>
-    <option value="surgery">Surgery</option>
-  </select>
-</div>
-
+          <select class="input-field" id="services" name="services">
+            <option value="" disabled selected>Select a Service</option>
+            <?php include "service_list.php";?>
+          </select>
+        </div>
         <div class="appointment-container">
           <!-- Calendar Section -->
           <div class="calendar-container">
@@ -256,15 +252,15 @@
 
             <div class="calendar-month" style="text-align: center;">
               <select id="month" name="month">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
                 <option value="10">October</option>
                 <option value="11">November</option>
                 <option value="12">December</option>
@@ -308,20 +304,10 @@
               </tbody>
             </table>
           </div>
-
+          <input type="hidden" id="cal-day" name="cal-day">
           <!-- Recommendation Section -->
           <div class="recommendation-container">
-            <h3>Available Times</h3>
-            <p>10:00 AM</p>
-            <p>11:00 AM</p>
-            <p>2:00 PM</p>
-            <p>3:00 PM</p>
-
             <h3>Recommended Dates & Times</h3>
-            <p>Date: 3rd August 2024</p>
-            <p>Time: 10:00 AM - 11:00 AM</p>
-            <p>Date: 14th August 2024</p>
-            <p>Time: 2:00 PM - 3:00 PM</p>
           </div>
           
       </div>
@@ -330,16 +316,11 @@
              <label for="time">Select a Time:</label>
               <div class="time-selection"> 
                 <select id="time" name="time">
-                  <option value="10:00 AM">10:00 AM</option>
-                  <option value="11:00 AM">11:00 AM</option>
-                  <option value="2:00 PM">2:00 PM</option>
-                  <option value="3:00 PM">3:00 PM</option>
                 </select>
           </div>         
         </div>
  
       </div>
-
       <!-- Step 3: Account -->
       <div class="form-section">
         <!-- Add account setup fields here -->
@@ -394,70 +375,12 @@
           
               </div>
       </div>
-
       <!-- Form Navigation -->
       <div class="form-navigation">
         <button type="button" class="prev-btn" style="display: none;">Previous</button>
-        <button type="button" class="next-btn">Next</button>
+        <button type="button" class="next-btn">Next</button> 
+        <button type="submit" class="next-btn" id="submitButton" name="submitButton">Submit</button>
       </div>
-    </form>
+   </form>
 
-  <script>
-     const formSections = document.querySelectorAll('.form-section');
-    const nextButton = document.querySelector('.next-btn');
-    const prevButton = document.querySelector('.prev-btn');
-    const steps = document.querySelectorAll('.steps .step');
-    let currentStep = 0;
-
-    nextButton.addEventListener('click', () => {
-      if (currentStep < formSections.length - 1) {
-        formSections[currentStep].classList.remove('active');
-        steps[currentStep].classList.remove('active');
-        currentStep++;
-        formSections[currentStep].classList.add('active');
-        steps[currentStep].classList.add('active');
-        prevButton.style.display = 'block';
-      }
-      if (currentStep === formSections.length - 1) {
-        nextButton.textContent = 'Submit';
-      }
-    });
-
-    prevButton.addEventListener('click', () => {
-      if (currentStep > 0) {
-        formSections[currentStep].classList.remove('active');
-        steps[currentStep].classList.remove('active');
-        currentStep--;
-        formSections[currentStep].classList.add('active');
-        steps[currentStep].classList.add('active');
-        if (currentStep === 0) {
-          prevButton.style.display = 'none';
-        }
-      }
-      nextButton.textContent = 'Next';
-    });
-  </script>
-
-  <script>
-    // JavaScript to highlight selected date
-document.querySelectorAll('.calendar-table td').forEach(cell => {
-  cell.addEventListener('click', () => {
-    document.querySelectorAll('.calendar-table td').forEach(td => td.classList.remove('selected-date'));
-    cell.classList.add('selected-date');
-  });
-});
-
-  </script>
-
- <script>
-
-$('.icon').click(function () {
-  if ($('#password').attr('type') == 'text') {
-    $('#password').attr('type', 'password');
-    $('#show-password').removeClass('fa-eye-slash').addClass('fa-eye');
-  } else {
-    $('#password').attr('type', 'text');
-    $('#show-password').removeClass('fa-eye').addClass('fa-eye-slash');
-  }
-});
- </script> 
+<script src="js/appointment_form.js"></script>
