@@ -44,8 +44,11 @@ if(isset($_POST['adminUserID']) && isset($_POST['inventory_delete_value'])){
     $inventory_id = sanitize_input($_POST['inventory_id'], $connect_inventory);
     $inventory_status = "Deleted";
 
-    $inventoryQuery = "UPDATE inventory SET inventory_status = '$inventory_status' WHERE inventory_id = ?";
+    $inventoryQuery = "UPDATE inventory SET inventory_status = ? WHERE inventory_id = ?";
     $inventoryPrepareQuery = mysqli_prepare($connect_inventory, $inventoryQuery);
+    mysqli_stmt_bind_param($inventoryPrepareQuery, "si", $inventory_status, $inventory_id);
+    mysqli_stmt_execute($inventoryPrepareQuery);
+    mysqli_stmt_close($inventoryPrepareQuery);
 
 }
 ?>

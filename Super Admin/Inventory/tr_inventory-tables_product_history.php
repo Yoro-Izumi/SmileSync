@@ -2,7 +2,6 @@
 $connect_inventory = connect_inventory($servername, $username, $password);
 
 $item_no = 0;
-
 //get all items alphabetically
 $stmtInventoryHistory = "
         SELECT smilesync_inventory_usage.*, 

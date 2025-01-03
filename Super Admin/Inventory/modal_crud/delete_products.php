@@ -1,12 +1,12 @@
 <?php
-include 'db_config.php';
+include "../../admin_global_files/connect_database.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['ids']) && is_array($_POST['ids'])) {
         $ids = $_POST['ids'];
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
         
-        $query = "DELETE FROM smilesync_inventory_items WHERE item_id IN ($placeholders)";
+        $query = "UPDATE smilesync_inventory_items SET item_status = 'Deleted' WHERE item_id IN ($placeholders)";
         $stmt = $conn->prepare($query);
         
         // Bind the values to the placeholders
@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param($types, ...$ids);
         
         if ($stmt->execute()) {
-            echo json_encode(['message' => 'Selected products deleted successfully.']);
+            echo json_encode(['message' => 'Success']);
         } else {
             echo json_encode(['message' => 'Failed to delete selected products.']);
         }
