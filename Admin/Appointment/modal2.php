@@ -6,6 +6,7 @@
 <body>
 
 <div class="modal" id="appointmentDoneModal">
+
     <div class="done-modal">
    <div class="modal-done">
     <div class="modal-header">
@@ -225,7 +226,7 @@
     </div>
 </div>
 
-<!-- Success Modal -->
+<!-- Success Modal 
 <div class="modal" id="appointmentSuccessModal">
     <div class="modal-content">
         <div class="modal-title success-title">Appointment Added Successfully!</div>
@@ -236,7 +237,7 @@
         </div>
         <button id="closeAppointmentSuccessBtn" class="modal-button success">OK</button>
     </div>
-</div> 
+</div> -->
 
 <div id="alertContainer"></div>
 <script src="js/alert.js"></script>

@@ -70,123 +70,106 @@
 
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const statusFilter = document.getElementById('status');
-      const searchInput = document.querySelector('.search-bar input');
-      const checkAllCheckbox = document.querySelector('th input[type="checkbox"]');
-      const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-      const rows = document.querySelectorAll('tbody tr');
-      const paginationLinks = document.querySelectorAll('.pagination-item');
-      const rowsPerPage = 5; // Number of rows per page
-      let currentPage = 1;
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const statusFilter = document.getElementById('status');
+    const searchInput = document.querySelector('.search-bar input');
+    const checkAllCheckbox = document.querySelector('th input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+    const rows = document.querySelectorAll('tbody tr');
+    const paginationLinks = document.querySelectorAll('.pagination-item');
+    const rowsPerPage = 5; // Number of rows per page
+    let currentPage = 1;
 
-      // Function to filter rows based on the status
-      function filterRows() {
-        const status = statusFilter.value.toLowerCase();
-        const searchText = searchInput.value.toLowerCase();
+    // Function to filter rows based on the status
+    function filterRows() {
+  const status = statusFilter.value.toLowerCase(); // Get the selected status
+  const searchText = searchInput.value.toLowerCase().trim(); // Get the search input
 
-        rows.forEach(row => {
-          const statusText = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
-          const clientName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-          const clientId = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+  console.log("Filtering with status:", status); // Debugging: Check status filter value
+  console.log("Filtering with search text:", searchText); // Debugging: Check search input value
 
-          const matchesStatus = status === 'all' || statusText.includes(status);
-          const matchesSearch = clientName.includes(searchText) || clientId.includes(searchText);
+  rows.forEach((row, index) => {
+    const statusText = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
+    const clientName = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+    const clientId = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
 
-          if (matchesStatus && matchesSearch) {
-            row.classList.remove('hidden');
-          } else {
-            row.classList.add('hidden');
-          }
-        });
+    console.log(`Row ${index} - Status: ${statusText}, Client Name: ${clientName}, Client ID: ${clientId}`); // Debugging
 
-        updatePagination();
-      }
+    // Match all rows if "all" is selected or match specific status
+    const matchesStatus = status === "all" || statusText === status;
+    const matchesSearch = 
+      searchText === "" || 
+      clientName.includes(searchText) || 
+      clientId.includes(searchText);
 
-      // Function to update the pagination
-      function updatePagination() {
-        const visibleRows = Array.from(rows).filter(row => !row.classList.contains('hidden'));
-        const totalPages = Math.ceil(visibleRows.length / rowsPerPage);
+    // Debugging: Check if the row matches status and search conditions
+    console.log(`Row ${index} - Matches Status: ${matchesStatus}, Matches Search: ${matchesSearch}`);
 
-        // Hide all pagination items
-        paginationLinks.forEach(link => link.classList.add('hidden'));
+    if (matchesStatus && matchesSearch) {
+      row.classList.remove('hidden'); // Show matching rows
+    } else {
+      row.classList.add('hidden'); // Hide non-matching rows
+    }
+  });
 
-        // Show the relevant pagination items
-        const startIndex = (currentPage - 1) * rowsPerPage;
-        const endIndex = startIndex + rowsPerPage;
+  currentPage = 1; // Reset to the first page when filters change
+  updatePagination(); // Update pagination
+}
 
-        visibleRows.slice(startIndex, endIndex).forEach((row, index) => {
-          row.classList.remove('hidden');
-        });
 
-        // Show page numbers based on the current page
-        const pageItems = Array.from(paginationLinks);
-        pageItems.slice(startIndex, endIndex).forEach(item => item.classList.remove('hidden'));
-      }
+    // Search functionality
+    searchInput.addEventListener('input', filterRows);
 
-      // Pagination functionality
-      paginationLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const pageNum = parseInt(this.textContent, 10);
-          currentPage = pageNum;
-          updatePagination();
-        });
-      });
+    // Status filter functionality
+    statusFilter.addEventListener('change', filterRows);
 
-      // Search functionality
-      searchInput.addEventListener('input', filterRows);
-
-      // Status filter functionality
-      statusFilter.addEventListener('change', filterRows);
-
-      // Checkbox "select all" functionality
-      checkAllCheckbox.addEventListener('change', function() {
-        checkboxes.forEach(checkbox => {
-          checkbox.checked = checkAllCheckbox.checked;
-        });
-      });
-
-      // Individual checkbox functionality
+    // Checkbox "select all" functionality
+    checkAllCheckbox.addEventListener('change', function() {
       checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-          // If all checkboxes are checked, check the "select all" checkbox
-          checkAllCheckbox.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
-        });
+        checkbox.checked = checkAllCheckbox.checked;
       });
-
-      // Sorting functionality
-      const thElements = document.querySelectorAll('th.sortable');
-      thElements.forEach(th => {
-        th.addEventListener('click', function() {
-          const columnIndex = th.getAttribute('data-column') - 1;
-          const rowsArray = Array.from(rows);
-
-          // Determine the sorting order
-          const currentOrder = th.classList.contains('ascending') ? 'ascending' : 'descending';
-          const newOrder = currentOrder === 'ascending' ? 'descending' : 'ascending';
-
-          rowsArray.sort((rowA, rowB) => {
-            const cellA = rowA.querySelectorAll('td')[columnIndex].textContent.trim();
-            const cellB = rowB.querySelectorAll('td')[columnIndex].textContent.trim();
-
-            return currentOrder === 'ascending'
-              ? cellA > cellB ? 1 : -1
-              : cellA < cellB ? 1 : -1;
-          });
-
-          // Reorder the rows in the table
-          rowsArray.forEach(row => row.parentElement.appendChild(row));
-
-          // Toggle class to indicate sorting order
-          th.classList.toggle('ascending', newOrder === 'ascending');
-          th.classList.toggle('descending', newOrder === 'descending');
-        });
-      });
-
-      // Initial filter application on page load
-      filterRows();
     });
-  </script> 
+
+    // Individual checkbox functionality
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        checkAllCheckbox.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+      });
+    });
+
+    // Sorting functionality
+    const thElements = document.querySelectorAll('th.sortable');
+    thElements.forEach(th => {
+      th.addEventListener('click', function() {
+        const columnIndex = th.getAttribute('data-column') - 1;
+        const rowsArray = Array.from(rows);
+
+        // Determine the sorting order
+        const currentOrder = th.classList.contains('ascending') ? 'ascending' : 'descending';
+        const newOrder = currentOrder === 'ascending' ? 'descending' : 'ascending';
+
+        rowsArray.sort((rowA, rowB) => {
+          const cellA = rowA.querySelectorAll('td')[columnIndex].textContent.trim();
+          const cellB = rowB.querySelectorAll('td')[columnIndex].textContent.trim();
+
+          return currentOrder === 'ascending'
+            ? cellA > cellB ? 1 : -1
+            : cellA < cellB ? 1 : -1;
+        });
+
+        // Reorder the rows in the table
+        rowsArray.forEach(row => row.parentElement.appendChild(row));
+
+        // Toggle class to indicate sorting order
+        th.classList.toggle('ascending', newOrder === 'ascending');
+        th.classList.toggle('descending', newOrder === 'descending');
+      });
+    });
+
+    // Initial filter application on page load
+    filterRows();
+  });
+</script>
+
 

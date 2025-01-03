@@ -2,9 +2,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
 
-
-    <h1 class="form-title">Add New Appointment</h1>
-
     <div class="steps">
       <div class="step active">
         <span class="step-icon">👤</span>

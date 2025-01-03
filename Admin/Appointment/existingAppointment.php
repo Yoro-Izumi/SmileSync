@@ -15,10 +15,17 @@
       <div class="form-section active">
         <h3>Personal Information</h3>
         
-          <div class="input-wrap">
-            <input type="text" maxlength="24" class="input-field" autocomplete="off" name="firstName" required />
-            <label>Name of Patient<indicator>*</indicator></label>
-          </div>
+      <div class="input-wrap">
+      <select class="input-field" name="patientName" required>
+        <option value="" disabled selected>Select Name of Patient</option>
+        <option value="John Doe">John Doe</option>
+        <option value="Jane Smith">Jane Smith</option>
+        <option value="Alice Johnson">Alice Johnson</option>
+        <!-- Add more options as needed -->
+    </select>
+      <label>Name of Patient<indicator>*</indicator></label>
+</div>
+
 
         <div class="question-form">
           <div class="titles">

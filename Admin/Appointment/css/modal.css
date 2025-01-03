@@ -680,11 +680,12 @@ footer {
 
 /* Popup animation */
 .modal-content {
-  overflow-y: scroll;
+    /* overflow-y: scroll; */
     position: relative;
     border-radius: 25px;
     background-color: #fff;
-    width: 60vh;
+    width: 80%;
+    margin: 50px;
     padding: 20px;
     text-align: center;
     box-sizing: border-box;
