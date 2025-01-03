@@ -4,7 +4,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 // Functions to connect to specific databases
-$key = "SmileSync";
+//$key = "SmileSync";
 
 // Functions to connect to specific databases
 

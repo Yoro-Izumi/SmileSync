@@ -1,4 +1,4 @@
-<?php
+<div?php
 session_start();
 date_default_timezone_set('Asia/Manila');
 include "../client_global_files/connect_database.php";
@@ -21,14 +21,14 @@ include "../client_global_files/input_sanitizing.php";
    
   </head>
 <body>
+
+<?php include "loader.php"; ?>
+  
+<div class="body-container"  id="body-container">
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "top-navbar.php"; ?>
-<?php include "loader.php"; ?>
-
-  
-  <div class="body-container">
-
+<div class="Container">
   <div class="appointment-details">
   <div class="toggle-tabs">
           <div class="tab active" data-content="invoices">
@@ -45,7 +45,7 @@ include "../client_global_files/input_sanitizing.php";
 
 
 
-
+</div>
 
 
 

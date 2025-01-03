@@ -313,6 +313,23 @@ label {
     border: 2px solid red;
 }
 
+.modal-input.error input {
+    border: 2px solid red;
+}
+
+/* Additional styling for select element */
+select.input-field {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+input[type="date"] {
+    background-color: #fff;
+    cursor: pointer;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+
 .indicator {
     color: #ff3333;
     font-weight: bold;

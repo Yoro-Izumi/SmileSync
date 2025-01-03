@@ -4,7 +4,9 @@ checkbox{
   width: 24px;
 }
 
-
+.hidden {
+  display: none; /* This class hides the rows */
+}
   .container {
     /* height: 85vh; */
     width: 100%;

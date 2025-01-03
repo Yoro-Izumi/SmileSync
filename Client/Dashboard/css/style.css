@@ -19,6 +19,7 @@ html{
 
 
 body {
+  z-index: 1;
   background-color: #E2ECF8;
   /* display: flex; */
   /* justify-content: center; */

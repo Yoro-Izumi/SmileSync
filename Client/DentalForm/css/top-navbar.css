@@ -124,8 +124,14 @@
 }
 
 
-.body-container {
-    margin-top: 55px;
-    padding: auto 40px;
+.Container {
+  margin: 0 auto;
+  margin-top: 55px;
+  /* padding: 0 40px; */
+  text-align: left;
 }
 
+.body-container {
+  /* padding: 0 40px; */
+  text-align: left;
+}

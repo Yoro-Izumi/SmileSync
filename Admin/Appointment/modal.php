@@ -9,12 +9,13 @@
 
     <div class="done-modal">
    <div class="modal-done">
-    <div class="modal-header">
-                <div class="content">
+    <div class="modal-header"> 
+        <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
+        <div class="content">
                     <h2>iMee-Toga Oli Dental Clinic</h2>
                     <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
                 </div>
-                <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
+               
             </div>
 
         <!-- Personal Information -->

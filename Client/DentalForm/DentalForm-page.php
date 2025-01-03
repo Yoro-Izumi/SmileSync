@@ -18,15 +18,20 @@ include "../client_global_files/input_sanitizing.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 <body>
-<?php include "notif.php"; ?>
-<?php include "chatbot.php"; ?>
-<?php include "top-navbar.php"; ?>
+
 <?php include "loader.php"; ?>
 
   
-  <div class="body-container">
+<div class="body-container" id="body-container">
+<?php include "notif.php"; ?>
+<?php include "chatbot.php"; ?>
+<?php include "top-navbar.php"; ?>    
+  <div class="Container">
+  
     <?php include "appointment-form.php"; ?>
-  </div>
+  </div></div>
+
+
   <script src="js/app.js"></script>
   <script src="js/notif.js"></script>
   <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>

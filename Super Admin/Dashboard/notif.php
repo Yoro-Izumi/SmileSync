@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-
-  <!-- Right Panel for Notifications -->
+ <!-- Right Panel for Notifications -->
   <div id="rightPanel" class="right-panel">
     <div class="panel-header">
       <h2>Notifications</h2>
@@ -44,5 +40,3 @@
 
     
   </div>
-</body>
-</html>

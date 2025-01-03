@@ -438,4 +438,9 @@ footer {
     width: 100%;
     background-color: var(--color);
     }
-          
+     
+    img {
+        margin: auto;
+        width: 25px;
+        height: 25px;
+    }
