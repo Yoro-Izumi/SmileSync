@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-    <div class="dashboard_calendar-container">
+<div class="dashboard_calendar-container">
         <div class="dashboard_calendar">
             <div class="dashboard_month">
                 <span class="dashboard_prev-month">&#8249;</span>
@@ -31,16 +28,3 @@
         </div>
         <button class="dashboard_view-all" id="viewAllBtn" onclick='redirectToUpcoming()'>View All</button>
     </div>
-
-   
-
-<script>
-    function redirectToUpcoming() {
-        // Redirect to page2.html with a query parameter to show only "Upcoming" rows
-        window.location.href = 'http://localhost/SmileSync/Admin/Appointment/Appointment-page.php?status=upcoming';
-    }
-</script>
-
-    <script src="js/calendar-appointments.js"></script>
-</body>
-</html>

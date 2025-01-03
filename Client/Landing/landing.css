@@ -9,7 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
 
 :root {
-    --color: #333;
+    --color: #1b3642;
 }
 
 * {
@@ -22,24 +22,57 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
 }
 
-/* Topbar Styles */
+.dust-container {
+    text-align: center;
+    color: var(--color);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Allow scrolling through the dust */
+    overflow: hidden;
+}
+
+
+.dust {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+   
+    border-radius: 50%;
+    opacity: 0.5;
+    filter: blur(2px); /* Add blur effect */
+}
+
 .topbar {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
     display: flex;
+    /* border: 1px solid var(--color);
+   border-radius: 0 50px 50px 0;*/
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: #fff;
+    padding: 0 1rem;
+    background-color: white;
     z-index: 10;
 }
 
 .logo {
-    color: #205374;
-    font-family: 'Alumni Sans';
+    display: flex;
     font-size: 1.5rem;
+    margin-top: -9px;
+    letter-spacing: -0.5px;
+    justify-content: center;
+    color: #205374;
+    text-decoration: dotted;
+    font-family: 'Alumni Sans';
 }
 
 .topbar .nav-links {
@@ -49,6 +82,13 @@ body {
     justify-content: right;
     color: #0000;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+a.login-link {
+    color: white;
+    background: var(--color);
+    border-radius: 10px;
+    padding: 10px 20px;
 }
 
 .nav-links a {
@@ -130,8 +170,52 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #FFF;
+    background: rgb(221,238,255);
+background: linear-gradient(342deg, rgba(221,238,255,1) 0%, rgba(70,252,189,1) 100%);
 }
+
+
+.first-box {
+    text-align: left;
+    position: absolute;
+    top: 8%;
+    left: 1%;
+    /* right: -149px; */
+    /* height: 100%; */
+    /* transform: translate(-25%, -50%); */
+    /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(218, 235, 255, 1) 95%); */
+    background: var(--color);
+    border-radius: 10px;
+    border: 4px solid white;
+    color: #fff;
+    padding: 190px;
+    /* z-index: 999; */
+}
+
+    & figure {
+        bottom: -115px;
+        /* left: 20%; */
+        left: 70%;
+        border: 4px solid var(--color);
+        /* right: 50%; */
+        font-family: "Open Sans Condensed";
+        /* margin: auto; */
+        justify-content: center;
+        text-align: center;
+        /* padding: 5rem; */
+        width: 55%;
+        height: 55%;
+        /* border-radius: 10px; */
+        /* background: white; */
+        /* color: var(--color); */
+        position: absolute;
+        z-index: 0;
+        /* margin-bottom: 10px; */
+        /* transform: translate(90%, -100%); */
+        /* box-shadow: 0 10px 20px rgba(0, 0, 0, .3); */
+        overflow: hidden;
+        /* opacity: .95;*/
+    }
 
 h1 {
     margin-top: 1rem;
@@ -162,13 +246,15 @@ a {
 .blank,
 .other {
     align-items: center;
-    width: 100%;
-    min-height: 60vh;
-    background-color: var(--color);
+    max-width: max-content;
+    min-height: 20vh;
+    background-color: white;
 }
 
 
 .split {
+    background: rgb(255, 255, 255);
+    background: white;
     height: 100%;
 }
 
@@ -352,4 +438,9 @@ footer {
     width: 100%;
     background-color: var(--color);
     }
-          
+     
+    img {
+        margin: auto;
+        width: 25px;
+        height: 25px;
+    }

@@ -31,16 +31,19 @@
 </script>
 
 <div id="Welcome" class="container">
+<!--div class="dust-container dust-container-1"></div>
+<div class="dust-container dust-container-2">   </div-->
+      <div class="first-box">
+       <figure></figure>
       <h1>Welcome to SmileSync!</h1>
       <p>
         Discover a brighter, healthier smile with SmileSync. We are dedicated to providing exceptional dental care services tailored to your needs.
       </p>
       <p>For our new patients, get an appointment now by going to our appointment page below.</p>
       <a href="../Register/Register-Page.php">Get an Appointment</a>
-    </div>
-  </div>
 </div>
-
+ 
+</div>
   <div class="blank"></div><!---->
 
 
@@ -177,5 +180,32 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.8/jarallax.min.js"></script>
 
+    <script>
+        const dustContainer1 = document.querySelector('.dust-container-1');
+        const dustContainer2 = document.querySelector('.dust-container-2');
+        const numDustParticles = 100; // Number of dust particles
+
+        // Function to create a single dust particle
+        function createDust(container) {
+            const dust = document.createElement('div');
+            dust.classList.add('dust');
+            dust.style.left = `${Math.random() * 100}%`;
+            dust.style.top = `${Math.random() * 100}%`;
+            container.appendChild(dust);
+        }
+
+        // Create multiple dust particles for each container
+        for (let i = 0; i < numDustParticles; i++) {
+            createDust(dustContainer1);
+            createDust(dustContainer2);
+        }
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            dustContainer1.style.transform = `translate(0, ${scrollY * 0.05}px)`; // Dust moves slower
+            dustContainer2.style.transform = `translate(0, ${scrollY * 0.1}px)`; // Dust moves faster
+        });
+    </script>
 </body>
 </html>

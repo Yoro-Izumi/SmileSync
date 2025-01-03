@@ -48,11 +48,7 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
    <div class="box">
      <div class="inner-box">
        <div class="forms-wrap">
-        <form id="register_form" name="register_form" autocomplete="off" class="sign-up-form" method="POST">
-        <div class="logo">
-             <img src="img/logo.png" alt="SmileSync" />
-             SmileSync
-           </div>   
+        <form id="register_form" name="register_form" autocomplete="off" class="sign-up-form" method="POST">   
         <div class="heading">
              <h2>To get started, please register.</h2>
              <h4>Already have an account?

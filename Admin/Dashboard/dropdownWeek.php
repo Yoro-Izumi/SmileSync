@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
-
-    <div class="dropdown">
+<div class="dropdown">
         <button class="calendar-btn">
             <img src="https://img.icons8.com/ios/50/000000/calendar--v1.png" alt="Calendar Icon">
             <span id="current-selection">Week</span>
@@ -14,11 +10,9 @@
         </div>
     </div>
 
+
     <script>
         function changeSelection(period) {
             document.getElementById('current-selection').textContent = period;
         }
     </script>
-
-</body>
-</html>

@@ -6,10 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const deleteExistingProgressModal = document.getElementById('deleteExistingProgressModal');
     const appointmentDoneModal = document.getElementById('appointmentDoneModal');
 
-    const statusBtn = document.getElementById('appointmentStatus'); 
-
     const closeDone = document.getElementById('closeDone');
-
+ 
     const newAccount = document.getElementById('newAccount');
     const cancelSubmitNewBtn = document.getElementById('cancelSubmitNewBtn');
 
@@ -25,10 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const submitExistingBtn = document.getElementById('submitExistingBtn');
     const submitNewBtn = document.getElementById('submitNewBtn');
 
-    // Show the appointmentDoneModal
-    statusBtn.addEventListener('click', function () {
-        appointmentDoneModal.classList.add('show');
-    });
 
     // Close the appointmentDoneModal
     closeDone.addEventListener('click', function () {

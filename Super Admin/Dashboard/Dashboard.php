@@ -5,9 +5,9 @@ session_start();
 date_default_timezone_set('Asia/Manila');
 
 // Include necessary files for dashboard
-include '../admin_global_files/connect_database.php';
-include '../admin_global_files/encrypt_decrypt.php';
-include '../admin_global_files/input_sanitizing.php';
+include "../admin_global_files/connect_database.php";
+include "../admin_global_files/encrypt_decrypt.php";
+include "../admin_global_files/input_sanitizing.php";
 include "total_patients_per_day.php";
 include "total_cancelled_appointments.php";
 include "total_rescheduled_appointments.php";
@@ -30,6 +30,9 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
     <link rel="stylesheet" href="css/chatbot.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="css/smartChart.css">
+  <link rel="stylesheet" href="css/table.css">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
 
@@ -42,11 +45,11 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
 
     <section class="home-section">
     <h1 class="welcome-message">Welcome <span class="highlight">
-                Super Admin!
-            </span>
-            <p>
-    As a superadmin, you have full control over the platform. Manage users, configure system settings, oversee data analytics, and maintain the integrity of SmileSync’s operations. 
-    Your leadership ensures the platform remains reliable and scalable. Thank you for driving excellence in dental appointment management!
+       Super Admin!
+    </span>
+    <p>
+    As an administrator, you have the tools to manage appointments, monitor schedules, and ensure the smooth operation of our dental services.
+    Thank you for helping us create easy dental care experiences!
 </p>
 </h1>
     <div class="row">
@@ -99,7 +102,17 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
 
     <script src="js/app.js"></script>
     <script src="js/notif.js"></script>
+    <script src="js/smartChart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+    function redirectToUpcoming() {
+        // Redirect to page2.html with a query parameter to show only "Upcoming" rows
+        window.location.href = 'http://localhost/SmileSync/Admin/Appointment/Appointment-page.php?status=upcoming';
+    }
+    </script>
 
+    <script src="js/calendar-appointments.js"></script>
+    
     
 </body>
 </html>

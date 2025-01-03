@@ -30,6 +30,9 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     <link rel="stylesheet" href="css/chatbot.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="css/smartChart.css">
+  <link rel="stylesheet" href="css/table.css">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
 
@@ -99,7 +102,17 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 
     <script src="js/app.js"></script>
     <script src="js/notif.js"></script>
+    <script src="js/smartChart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+    function redirectToUpcoming() {
+        // Redirect to page2.html with a query parameter to show only "Upcoming" rows
+        window.location.href = 'http://localhost/SmileSync/Admin/Appointment/Appointment-page.php?status=upcoming';
+    }
+    </script>
 
+    <script src="js/calendar-appointments.js"></script>
+    
     
 </body>
 </html>

@@ -1,5 +1,9 @@
+
+
+
 <?php
 include "../client_global_files/set_sesssion_dir.php";
+
 session_start();
 date_default_timezone_set('Asia/Manila');
 include "../client_global_files/connect_database.php";
@@ -23,13 +27,15 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
    
   </head>
 <body>
+
+<?php include "loader.php"; ?>
+  
+<div class="body-container"  id="body-container">
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "top-navbar.php"; ?>
-<?php include "loader.php"; ?>
-
+<div class="Container">
   
-<div class="body-container">
   <div class="appointment-details">
   <div class="toggle-tabs">
           <div class="tab active" data-content="invoices">

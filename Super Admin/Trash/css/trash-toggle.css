@@ -1,7 +1,6 @@
 .account-toggle {
-  width: max-content;
   border-radius: 10px;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
   padding: 10px;
   margin-top: 30px;
   font-family: 'Arial', sans-serif;

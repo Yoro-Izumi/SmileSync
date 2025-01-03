@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Client Schedule</title>
-  <link rel="stylesheet" href="css/table.css">
-</head>
-<body>
+
   <div class="container">
 
   <div class="top-controls">
@@ -65,5 +57,3 @@
     
     </div>
   </div>
-</body>
-</html>

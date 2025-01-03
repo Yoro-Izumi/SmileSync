@@ -78,13 +78,16 @@
     cursor: pointer;
 }
 
-.body-container {
-    border-radius: 15px;
-    border: 1px solid #c5c5c5;
+.Container {
     width: 80%;
     background: white;
     margin: 0 auto;
     margin-top: 55px;
+    /* padding: 0 40px; */
+    text-align: left;
+}
+
+.body-container {
     /* padding: 0 40px; */
     text-align: left;
 }

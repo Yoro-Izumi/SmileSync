@@ -41,15 +41,17 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
    
   </head>
 <body>
-<?php include "notif.php"; ?>
-<?php include "chatbot.php"; ?>
-<?php include "top-navbar.php"; ?>
+
 <?php include "loader.php"; ?>
 
   
-  <div class="body-container">
+<div class="body-container" id="body-container">
+<?php include "notif.php"; ?>
+<?php include "chatbot.php"; ?>
+<?php include "top-navbar.php"; ?>  
+  <div class="Container">
       <?php include "settings-form.php"; ?>
-    </div>
+    </div></div>
 
   
 

@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger Chat Room</title>
-    <link rel="stylesheet" href="css/chatbot.css">
-</head>
-<body>
-
 
     <!-- Chat Box Container -->
     <div class="chat-container">
@@ -43,9 +33,3 @@
 
 
     </div>
-
-
-<script src="js/chatbot.js"></script>
-<script src="js/chathead-icon.js"></script>
-</body>
-</html>

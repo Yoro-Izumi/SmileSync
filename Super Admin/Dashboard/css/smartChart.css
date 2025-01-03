@@ -1,9 +1,10 @@
 .chart-container {
-  width: 100%;
-  padding: 20px;
-  height: 100%;
-  background-color: #fff;
   border: 1px solid #c5c5c5;
+  margin: auto;
+  width: -webkit-fill-available;
+  padding: 20px;
+  /* height: 100%; */
+  background-color: #fff;
   border-radius: 10px;
 }
 
@@ -16,6 +17,7 @@
 }
 
 .chart-title {
+  width: 100%;
   font-size: 18px;
   font-weight: bold;
   color: #333;

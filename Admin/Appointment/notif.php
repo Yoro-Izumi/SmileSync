@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<body>
 
   <!-- Right Panel for Notifications -->
   <div id="rightPanel" class="right-panel">
@@ -43,6 +40,4 @@
     </div>
 
     
-  </div>
-</body>
-</html>
+</div>
