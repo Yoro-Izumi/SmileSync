@@ -1,9 +1,9 @@
 <?php 
 $connect_accounts = connect_accounts($servername, $username, $password);
-$statusAccount = "Active";
+$statusAccount = "Deactivated";
 
 // Prepare and execute the query
-$stmtAdminAccounts = "SELECT * FROM smilesync_admin_accounts WHERE account_status = ?";
+$stmtAdminAccounts = "SELECT * FROM smilesync_admin_accounts WHERE account_status != ?";
 $prepareAdminAccounts = mysqli_prepare($connect_accounts, $stmtAdminAccounts);
 mysqli_stmt_bind_param($prepareAdminAccounts, "s", $statusAccount);
 mysqli_stmt_execute($prepareAdminAccounts);
@@ -22,6 +22,11 @@ if ($resultsAdminAccounts) {
         $adminID = $adminAccounts['admin_account_id'];
         $adminFullName = $adminLastName . ", " . $adminFirstName . " " . $adminMiddleName;
         $dateOfCreation = $adminAccounts['date_of_creation'] ?? "";
+        $status = $adminAccounts['account_status'] ?? "";
+        $dateTime = $adminAccounts['date_time_of_creation'] ?? "";
+        if ($dateTime !== "") {
+            $dateOfCreation = formatDateTime($dateTime);
+        }
 ?>
 
         <tr>
@@ -30,7 +35,7 @@ if ($resultsAdminAccounts) {
             <td data-label="ADMIN NAME"><?php echo htmlspecialchars($adminFullName); ?></td>
             <td data-label="APPROVER">--</td>
             <td data-label="Date of Creation"><?php echo htmlspecialchars($dateOfCreation); ?></td>
-            <td data-label="STATUS" class="status"><?php echo htmlspecialchars($statusAccount); ?></td>
+            <td data-label="STATUS" class="status"><?php echo htmlspecialchars($status); ?></td>
             <td data-label="ACTIONS">
                 <div class="actions">
                     <div class="dropdown">

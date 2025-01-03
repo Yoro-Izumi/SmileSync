@@ -1,4 +1,5 @@
 <?php
+include "../client_global_files/set_sesssion_dir.php";
 // Start session and set timezone
 session_start();
 date_default_timezone_set('Asia/Manila');
@@ -15,37 +16,38 @@ $patientsConn = connect_patient($servername, $username, $password);
 $appointmentsConn = connect_appointment($servername, $username, $password);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Sanitize and encrypt input data
-    $firstName = encryptData(sanitize_input($_POST['firstName'] ?? "", $patientsConn), $key);
-    $lastName = encryptData(sanitize_input($_POST['lastName'] ?? "", $patientsConn), $key);
-    $middleName = encryptData(sanitize_input($_POST['middleName'] ?? "", $patientsConn), $key);
-    $suffix = encryptData(sanitize_input($_POST['suffix'] ?? "", $patientsConn), $key);
-    $sex = encryptData(sanitize_input($_POST['sex'] ?? "", $patientsConn), $key);
-    $phoneNumber = encryptData(sanitize_input($_POST['phoneNumber'] ?? "", $patientsConn), $key);
-    $birthday = sanitize_input($_POST['birthday'] ?? date("Y-m-d"), $patientsConn);
+// Sanitize and encrypt input data
+$firstName = isset($_POST['firstName']) ? encryptData(sanitize_input($_POST['firstName'], $patientsConn), $key) : "";
+$lastName = isset($_POST['lastName']) ? encryptData(sanitize_input($_POST['lastName'], $patientsConn), $key) : "";
+$middleName = isset($_POST['middleName']) ? encryptData(sanitize_input($_POST['middleName'], $patientsConn), $key) : "";
+$suffix = isset($_POST['suffix']) ? encryptData(sanitize_input($_POST['suffix'], $patientsConn), $key) : "";
+$sex = isset($_POST['sex']) ? encryptData(sanitize_input($_POST['sex'], $patientsConn), $key) : "";
+$phoneNumber = isset($_POST['phoneNumber']) ? encryptData(sanitize_input($_POST['phoneNumber'], $patientsConn), $key) : "";
+$birthday = isset($_POST['birthday']) ? sanitize_input($_POST['birthday'], $patientsConn) : date("Y-m-d");
 
-    $bodyTemp = sanitize_input($_POST['bodyTemp'] ?? 0, $appointmentsConn);
-    $answerOne = sanitize_input($_POST['visited'] === "no" ? $_POST['visited'] : ($_POST['infectedAddress'] ?? ""), $appointmentsConn);
-    $answerTwo = sanitize_input($_POST['gathering'] ?? "", $appointmentsConn);
-    $answerThree = sanitize_input($_POST['contact'] ?? "", $appointmentsConn);
-    $answerFour = sanitize_input($_POST['pui'] ?? "", $appointmentsConn);
-    $answerFive = sanitize_input($_POST['pum'] ?? "", $appointmentsConn);
-    $answerSix = sanitize_input($_POST['symptoms'] ?? "", $appointmentsConn);
-    $answerSeven = sanitize_input($_POST['medical'] ?? "", $appointmentsConn);
-    $answerEight = sanitize_input($_POST['emergency'] ?? "", $appointmentsConn);
-    $answerNine = sanitize_input($_POST['hmo'] === "no" ? $_POST['hmo'] : ($_POST['hmoID'] ?? ""), $appointmentsConn);
+$bodyTemp = isset($_POST['bodyTemp']) ? sanitize_input($_POST['bodyTemp'], $appointmentsConn) : 0;
+$answerOne = isset($_POST['visited']) && $_POST['visited'] === "no" ? sanitize_input($_POST['visited'], $appointmentsConn) : (isset($_POST['infectedAddress']) ? sanitize_input($_POST['infectedAddress'], $appointmentsConn) : "");
+$answerTwo = isset($_POST['gathering']) ? sanitize_input($_POST['gathering'], $appointmentsConn) : "";
+$answerThree = isset($_POST['contact']) ? sanitize_input($_POST['contact'], $appointmentsConn) : "";
+$answerFour = isset($_POST['pui']) ? sanitize_input($_POST['pui'], $appointmentsConn) : "";
+$answerFive = isset($_POST['pum']) ? sanitize_input($_POST['pum'], $appointmentsConn) : "";
+$answerSix = isset($_POST['symptoms']) ? sanitize_input($_POST['symptoms'], $appointmentsConn) : "";
+$answerSeven = isset($_POST['medical']) ? sanitize_input($_POST['medical'], $appointmentsConn) : "";
+$answerEight = isset($_POST['emergency']) ? sanitize_input($_POST['emergency'], $appointmentsConn) : "";
+$answerNine = isset($_POST['hmo']) && $_POST['hmo'] === "no" ? sanitize_input($_POST['hmo'], $appointmentsConn) : (isset($_POST['hmoID']) ? sanitize_input($_POST['hmoID'], $appointmentsConn) : "");
 
-    $email = encryptData(sanitize_input($_POST['email'] ?? "", $accountConn), $key);
-    $password = sanitize_input($_POST['password'] ?? "", $accountConn);
-    $confirmPassword = sanitize_input($_POST['confirmPassword'] ?? "", $accountConn);
-    $status = 'Pending';
-    $dateOfCreation = date('Y-m-d');
-    $dateTimeOfCreation = date('Y-m-d H:i:s');
+$email = isset($_POST['email']) ? encryptData(sanitize_input($_POST['email'], $accountConn), $key) : "";
+$password = isset($_POST['password']) ? sanitize_input($_POST['password'], $accountConn) : "";
+$confirmPassword = isset($_POST['confirmPassword']) ? sanitize_input($_POST['confirmPassword'], $accountConn) : "";
+$status = 'Pending';
+$dateOfCreation = date('Y-m-d');
+$dateTimeOfCreation = date('Y-m-d H:i:s');
 
-    $appointmentDateTime = isset($_POST['time'], $_POST['cal-day']) ?
-        sanitize_input($_POST['cal-day'], $appointmentsConn) . " " . sanitize_input($_POST['time'], $appointmentsConn) :
-        date('Y-m-d H:i:s');
-    $appointmentReason = sanitize_input($_POST['appointmentReason'] ?? "", $appointmentsConn);
+$appointmentDateTime = isset($_POST['time'], $_POST['cal-day']) ? 
+    sanitize_input($_POST['cal-day'], $appointmentsConn) . " " . sanitize_input($_POST['time'], $appointmentsConn) : 
+    date('Y-m-d H:i:s');
+$appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services'], $appointmentsConn) : "";
+
 
     // Password confirmation validation
     if ($password !== $confirmPassword) {
@@ -62,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
 
     // Insert patient information
-    $qryInsertPatientInfo = "INSERT INTO `smilesync_patient_information`(`patient_info_id`, `patient_first_name`, `patient_last_name`, `patient_middle_name`, `patient_sufix`, `patient_sex`, `patient_phone_number`, `patient_address`, `patient_birthday`)
+    $qryInsertPatientInfo = "INSERT INTO `smilesync_patient_information`(`patient_info_id`, `patient_first_name`, `patient_last_name`, `patient_middle_name`, `patient_suffix`, `patient_sex`, `patient_phone_number`, `patient_address`, `patient_birthday`)
                              VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL, ?)";
     $stmt = mysqli_prepare($patientsConn, $qryInsertPatientInfo);
     mysqli_stmt_bind_param($stmt, 'sssssss', $firstName, $lastName, $middleName, $suffix, $sex, $phoneNumber, $birthday);
@@ -73,10 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $patientInfoID = mysqli_insert_id($patientsConn);
 
     // Insert patient account
-    $qryInsertPatientAccount = "INSERT INTO `smilesync_patient_accounts`(`patient_account_id`, `patient_info_id`, `patient_account_email`, `patient_account_password`, `date_of_creation`, `patient_account_status`)
-                               VALUES (NULL, ?, ?, ?, ?, ?)";
+    $qryInsertPatientAccount = "INSERT INTO `smilesync_patient_accounts`(`patient_account_id`, `patient_info_id`,`admin_account_id`, `patient_account_email`, `patient_account_password`, `date_time_of_creation`,  `patient_account_status`)
+                               VALUES (NULL, ?,NULL, ?, ?,current_timestamp(), ?)";
     $stmt = mysqli_prepare($accountConn, $qryInsertPatientAccount);
-    mysqli_stmt_bind_param($stmt, 'issss', $patientInfoID,$email, $hashedPassword, $dateOfCreation, $status);
+    mysqli_stmt_bind_param($stmt, 'isss', $patientInfoID,$email, $hashedPassword, $status);
 
     if (!mysqli_stmt_execute($stmt)) {
         handleError($accountConn, "Error inserting patient account");

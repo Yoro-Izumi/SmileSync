@@ -1,10 +1,13 @@
-<!--?php
+<?php
 session_start();
 date_default_timezone_set('Asia/Manila');
 include "../client_global_files/connect_database.php";
 include "../client_global_files/encrypt_decrypt.php";
 include "../client_global_files/input_sanitizing.php";
-?-->
+
+if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,3 +45,10 @@ include "../client_global_files/input_sanitizing.php";
  <script src="js/notif.js"></script>
 </body>
 </html>
+<?php
+}
+else{
+  header('location: ../LogIn-Page/Login-Page.php');
+  die();
+}
+?>

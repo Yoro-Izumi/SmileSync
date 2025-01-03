@@ -1,96 +1,147 @@
-$(document).ready(function () {
-  // Handle registration form
-  $("#registerBtn").on("click", function (e) {
-    e.preventDefault();
-
-    // Check if form has been submitted before (in the same session)
-    if (sessionStorage.getItem("registerFormSubmitted") === "true") {
-      return; // Prevent form from being submitted again
+document.addEventListener('DOMContentLoaded', function () {
+    const loginFailedModal = document.getElementById('loginFailedModal');
+    const emailExistsModal = document.getElementById('emailExistsModal');
+    const passwordMismatchModal = document.getElementById('passwordMismatchModal');
+    const successModal = document.getElementById('successModal');
+    const successRegisterModal = document.getElementById('successRegisterModal');
+    const resetPasswordModal = document.getElementById('resetPasswordModal');
+    const noEmailModal = document.getElementById('noEmailModal');
+    const privacyPolicyModal = document.getElementById('privacyPolicyModal');
+    const termServicesModal = document.getElementById('termServicesModal');
+  
+    const registerBtn = document.getElementById('registerBtn');
+    const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
+    const showLoginFailedBtn = document.getElementById('loginBtn');
+    const closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
+    const closeResetPasswordBtn = document.getElementById('cancelButton');
+    const resetPasswordLink = document.getElementById('resetPasswordLink');
+    const resetLink = document.getElementById('forgotLink');
+    const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
+    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
+    const closeExistEmailModalBtn = document.getElementById('close-emailExistModal');
+  
+    // Helper function to show modals
+    function showModal(modal) {
+      if (modal) modal.classList.add('show');
     }
-
-    // Get the form
-    var form = $("#register_form")[0];
-    var formData = new FormData(form);
-
-    // Check if form is valid before proceeding
-    if (form.checkValidity()) {
-      // Disable the button to prevent multiple clicks
-      $(this).prop("disabled", true);
-
-      $.ajax({
-        type: "POST",
-        url: "register_code.php",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-          document.getElementById('register_form').reset();
-          if (response.trim() === "error") {
-            // Show error modal
-            //$("#errorModal").modal("show");
-            console.log("error");
-          } else {
-            // Show success modal
-            $("#successRegisterModal").modal("show");
-            // Set session storage to prevent re-submission
-            sessionStorage.setItem("registerFormSubmitted", "true");
-          }
-        },
-        error: function (xhr, status, error) {
-          console.error(xhr.responseText);
-        },
-        complete: function () {
-          // Enable the button after the request completes
-          $("#registerBtn").prop("disabled", false);
-        }
-      });
-    } else {
-      form.reportValidity(); // Show validation messages
+  
+    // Helper function to hide modals
+    function hideModal(modal) {
+      if (modal) modal.classList.remove('show');
     }
-  });
-
-// Handle login form
-$("#loginBtn").on("click", function (e) {
-  e.preventDefault();
-
-  // Get the form
-  var form = $("#login_form")[0];
-  var formData = new FormData(form);
-
-  // Check if form is valid before proceeding
-  if (form.checkValidity()) {
-    // Disable the button to prevent multiple clicks during the request
-    $(this).prop("disabled", true);
-
-    $.ajax({
-      type: "POST",
-      url: "login_code.php",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        location.reload();
-        if (response.trim() === "error") {
-          // Show error modal
-          $("#loginFailedModal").modal("show");
-        } else {
-          // Show success modal or redirect
-          $("#successModal").modal("show");
-          // You can redirect to the dashboard on success if desired
-          // window.location.href = "../Dashboard/Dashboard.php";
-        }
-      },
-      error: function (xhr, status, error) {
-        console.error(xhr.responseText);
-      },
-      complete: function () {
-        // Enable the button after the request completes
-        $("#loginBtn").prop("disabled", false);
+  
+    // Close modal events
+    closeLoginFailedBtn.addEventListener('click', function () {
+      hideModal(loginFailedModal);
+    });
+  
+    closeSuccessRegisterBtn.addEventListener('click', function () {
+      hideModal(successRegisterModal);
+      const form = document.getElementById('register_form');
+      if (form) form.reset(); // Reset the form after successful registration
+    });
+  
+    closeSuccessModalBtn.addEventListener('click', function () {
+      hideModal(successModal);
+    });
+  
+    closeExistEmailModalBtn.addEventListener('click', function () {
+      hideModal(emailExistsModal);
+    });
+  
+    closeResetPasswordBtn.addEventListener('click', function () {
+      hideModal(resetPasswordModal);
+    });
+  
+    // Handle reset password link click
+    resetPasswordLink.addEventListener('click', function () {
+      hideModal(loginFailedModal);
+      showModal(resetPasswordModal);
+    });
+  
+    resetLink?.addEventListener('click', function () {
+      showModal(resetPasswordModal);
+    });
+  
+    submitResetPasswordBtn.addEventListener('click', function () {
+      hideModal(resetPasswordModal);
+      showModal(successModal);
+    });
+  
+    // Registration form submission
+    registerBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const form = document.getElementById('register_form');
+      const formData = new FormData(form);
+  
+      if (form.checkValidity()) {
+        $.ajax({
+          type: 'POST',
+          url: 'register_code.php',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            switch (response.trim()) {
+              case 'error:Email already exists':
+                showModal(emailExistsModal);
+                registerBtn.disabled = false; // Re-enable for user correction
+                break;
+              case 'error:Passwords do not match':
+                showModal(passwordMismatchModal);
+                registerBtn.disabled = false; // Re-enable for user correction
+                break;
+              case 'success':
+                showModal(successRegisterModal);
+                sessionStorage.setItem('registerFormSubmitted', 'true');
+                form.reset(); // Reset the form after successful submission
+                registerBtn.disabled = true; // Disable the button after success
+                break;
+              default:
+                registerBtn.disabled = false; // Re-enable for user correction
+            }
+          },
+          error: function (xhr) {
+            console.error(xhr.responseText);
+            registerBtn.disabled = false; // Re-enable for user correction
+          },
+        });
+      } else {
+        form.reportValidity(); // Trigger validation error messages
       }
     });
-  } else {
-    form.reportValidity(); // Show validation messages
-  }
-});
-
-});
+  
+    // Login form submission
+    showLoginFailedBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const form = document.getElementById('login_form');
+      const formData = new FormData(form);
+  
+      if (form.checkValidity()) {
+        $.ajax({
+          type: 'POST',
+          url: 'login_code.php',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            if (response.trim() === 'error') {
+              showModal(loginFailedModal);
+            } else if (response.trim() === 'success') {
+              location.reload(); // Reload the page on successful login
+            }
+          },
+          error: function (xhr) {
+            console.error(xhr.responseText);
+            showModal(loginFailedModal);
+          },
+          complete: function () {
+            showLoginFailedBtn.disabled = false; // Re-enable the button
+          },
+        });
+      } else {
+        form.reportValidity(); // Trigger HTML5 form validation
+      }
+    });
+  });
+  

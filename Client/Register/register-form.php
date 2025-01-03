@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <header>
@@ -30,12 +32,11 @@
       </div>
     </div>
 
-    <form id="multiStepForm" name="multiStepForm" action="Register-Page.php" method="POST">
+    <form id="multiStepForm" name="multiStepForm" action="register_code.php" method="POST">
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <div class="wrap-2rows">
-
-              <div class="input-wrap">
+                <div class="input-wrap">
                   <input
                     type="text"
                     maxlength="24"
@@ -63,44 +64,44 @@
 
               <div class="wrap-3rows">
 
-<div class="input-wrap">
-    <input
-      type="text"
-      minlength="1"
-      maxlength="24"
-      class="input-field"
-      autocomplete="off"
-      name="middleName"
-    />
-    <label>Middle Name</label>
-  </div>
+              <div class="input-wrap">
+                  <input
+                    type="text"
+                    minlength="1"
+                    maxlength="24"
+                    class="input-field"
+                    autocomplete="off"
+                    name="middleName"
+                  />
+                  <label>Middle Name</label>
+              </div>
 
-  <div class="input-wrap">
-    <input
-      type="text"
-      minlength="1"
-      maxlength="5"
-      class="input-field"
-      name="suffix"
-      autocomplete="off"
-    />
-    <label>Suffix</label>
-  </div>
+              <div class="input-wrap">
+                <input
+                  type="text"
+                  minlength="1"
+                  maxlength="5"
+                  class="input-field"
+                  name="suffix"
+                  autocomplete="off"
+                />
+                <label>Suffix</label>
+              </div>
 
-  <div class="input-wrap">
-  <input
-      type="date"
-      id="birthdate-picker"
-      class="input-field"
-      name="birthday"
-      autocomplete="off"
-      required
-    />
-    <label>Select Birthdate<indicator>*</indicator></label>
-  </div>
+              <div class="input-wrap">
+              <input
+                  type="date"
+                  id="birthdate-picker"
+                  class="input-field"
+                  name="birthday"
+                  autocomplete="off"
+                  required
+                />
+                <label>Select Birthdate<indicator>*</indicator></label>
+              </div>
 
-</div>
-<div class="input-wrap">
+            </div>
+            <div class="input-wrap">
                   <input
                     type="text"
                     minlength="11"
@@ -137,7 +138,7 @@
           </div>
           <script>
             function toggleAddressField() {
-              const addressField = document.getElementById("address-field");
+              const addressField = document.getElementById("infectedAddress");
               const isYesSelected = document.getElementById("visited-yes").checked;
               addressField.style.display = isYesSelected ? "block" : "none";
             }
@@ -240,8 +241,6 @@
         </div>
 
       </div>
-
-      
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
         <h2>Appointment Detail</h2>
@@ -329,16 +328,11 @@
              <label for="time">Select a Time:</label>
               <div class="time-selection"> 
                 <select id="time" name="time">
-                  <option value="10:00:00">10:00 AM</option>
-                  <option value="11:00:00">11:00 AM</option>
-                  <option value="14:00:00">2:00 PM</option>
-                  <option value="15:00:00">3:00 PM</option>
                 </select>
           </div>         
         </div>
  
       </div>
-
       <!-- Step 3: Account -->
       <div class="form-section">
         <!-- Add account setup fields here -->
@@ -393,13 +387,13 @@
           
               </div>
       </div>
-
       <!-- Form Navigation -->
       <div class="form-navigation">
         <button type="button" class="prev-btn" style="display: none;">Previous</button>
-        <button type="button" class="next-btn">Next</button>
+        <button type="button" class="next-btn">Next</button> 
+        <button type="submit" class="next-btn" id="submitButton" name="submitButton">Submit</button>
       </div>
-    </form>
+   </form>
   </div>
 
   <footer>
@@ -407,34 +401,5 @@
   </footer>
 
 <script src="js/appointment_form.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#multiStepForm').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = $(this).serialize(); // Serialize form data
-
-            $.ajax({
-                url: 'register_code.php',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                        $('#multiStepForm')[0].reset(); // Clear the form
-                    } else {
-                        alert('Error: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                }
-            });
-        });
-    });
-</script>
-        
 </body>
 </html>

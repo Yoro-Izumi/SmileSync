@@ -1,3 +1,28 @@
+<?php
+  $connect_accounts = connect_accounts($servername,$username,$password); //connect to account database
+  $userAdminID = sanitize_input($_SESSION['userAdminID'],$connect_accounts); //initialzing userAdminID with id in session variable
+  //Query to get admin information based on admin id
+  $qryGetAdminInfo = "SELECT * FROM smilesync_admin_accounts where admin_id = ?";
+  $stmt = $connect_accounts->prepare($qryGetAdminInfo);
+  $stmt->bind_param("s",$userAdminID);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $adminInfo = $result->fetch_assoc();
+  $stmt->close();
+  $connect_accounts->close();
+  
+  //admin information initialization
+  $adminID = $adminInfo['admin_id'];
+  $adminEmail = $adminInfo['admin_email'];
+  $adminFirstName = $adminInfo['admin_first_name']??'';
+  $adminLastName = $adminInfo['admin_last_name']??'';
+  $adminMiddleName = $adminInfo['admin_middle_name']??'';
+  $adminFullName = $adminFirstName.' '.$adminMiddleName.' '.$adminLastName;
+  $adminContactNumber = $adminInfo['admin_phone']??'';
+  $adminBirthdate = $adminInfo['admin_birthdate']??'';
+  $accountStatus = $adminInfo['account_status']??'';
+  $dateTimeOfCreation = $adminInfo['date_time_of_creation']??'';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,6 +47,7 @@
                     minlength="24"
                     class="input-field"
                     autocomplete="off"
+                    value = "<?php echo $adminFirstName;?>"
                     required
                   />
                   <label>First Name<indicator>*</indicator></label>
@@ -34,6 +60,7 @@
                     maxlength="24"
                     class="input-field"
                     autocomplete="off"
+                    value = "<?php echo $adminLastName;?>";
                     required
                   />
                   <label>Last Name<indicator>*</indicator></label>

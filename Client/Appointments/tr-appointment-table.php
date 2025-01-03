@@ -1,9 +1,4 @@
 <?php
-session_start();
-include "../client_global_files/connect_database.php";
-include "../client_global_files/input_sanitizing.php";
-include "../client_global_files/encrypt_decrypt.php";
-
 $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
 $user_id = $_SESSION['userID'];

@@ -73,11 +73,11 @@
   </div>
 </div>
 
-<!--Data for total number of customer per day-->
-<?php $peakDayData = [10, 20, 40, 36, 25, 28]; ?>
-<script> var peakDayData = <?php echo json_encode($peakDayData);?>; </script>
+<!--Data for total number of customer per day
+<php $peakDayData = [10, 20, 40, 36, 25, 28]; >
+<script> var peakDayData = <?php //echo json_encode($peakDayData);?>; </script>-->
 
-  <script src="js/smartChart.js"></script>
+  <script src="js/smartChart2.js"></script>
 </body>
 
 </html>

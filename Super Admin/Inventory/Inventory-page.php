@@ -1,11 +1,14 @@
 <?php
 // Start session and set timezone
+include "../admin_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
 
 include "../admin_global_files/connect_database.php";
 include "../admin_global_files/encrypt_decrypt.php";
 include "../admin_global_files/input_sanitizing.php";
+// Check if user is already logged in
+if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +23,9 @@ include "../admin_global_files/input_sanitizing.php";
     <link rel="stylesheet" href="css/inventoryToggle.css" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <!--AJAX-->
+    <script src="../admin_global_files/jquery-3.6.0.min.js"></script>
    
   </head>
 <body>
@@ -45,8 +50,18 @@ include "../admin_global_files/input_sanitizing.php";
   </div>
   </section>
   
- <script src="js/inventoryToggle.js"></script>
+ <script src="js/inventoryToggle.js"></scripts>
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
+ <script src="js/modal2.js"></script>
+ <script src="js/crud.js"></script>
+
 </body>
 </html>
+<?php
+}
+else{
+  header("location: ../../Admin/Login-page/Login_Register-Page.php");
+  exit();
+}
+?>

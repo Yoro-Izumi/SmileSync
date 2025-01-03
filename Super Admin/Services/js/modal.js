@@ -100,3 +100,117 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Function to open a modal
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'block';
+        }
+    }
+
+    // Function to close a modal
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Attach event listeners to elements with the 'data-modal' attribute
+    document.querySelectorAll('[data-modal]').forEach(element => {
+        element.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            const modalId = this.getAttribute('data-modal');
+            openModal(modalId);
+        });
+    });
+
+    // Attach event listeners to elements with the 'data-cancel-modal' attribute
+    document.querySelectorAll('[data-cancel-modal]').forEach(button => {
+        button.addEventListener('click', function () {
+            const modalId = this.getAttribute('data-cancel-modal');
+            closeModal(modalId);
+        });
+    });
+
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', function (event) {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+});
+
+$(document).ready(function() {
+    $('#addServiceForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Serialize form data
+        var formData = $(this).serialize();
+
+        // Send the form data to Service-page.php using AJAX
+        $.ajax({
+            url: 'service_crud/add_service.php', // The PHP file to handle the submission
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                // Handle the response from the PHP file (success)
+                // For example, you can display a success message
+                alert('Service added successfully!');
+                
+                // Optionally, close the modal after successful submission
+               // $('#addServiceModal').hide(); // Hide the modal (adjust with your modal ID)
+            },
+            error: function(xhr, status, error) {
+                // Handle errors (e.g., display an error message)
+                alert('There was an error adding the service. Please try again.');
+            }
+        });
+    });
+
+    // Cancel button functionality to close the modal
+    $('#cancelAddServiceBtn').on('click', function() {
+        $('#addServiceModal').hide(); // Hide the modal (adjust with your modal ID)
+    });
+});
+
+
+$(document).ready(function() {
+    $('#editServiceForm').on('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Serialize form data
+        var formData = $(this).serialize();
+
+        // Send the form data to Service-page.php using AJAX
+        $.ajax({
+            url: 'service_crud/edit_service.php', // The PHP file to handle the submission
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                // Handle the response from the PHP file (success)
+                // For example, you can display a success message
+                alert('Service added successfully!');
+                
+                // Optionally, close the modal after successful submission
+               // $('#addServiceModal').hide(); // Hide the modal (adjust with your modal ID)
+            },
+            error: function(xhr, status, error) {
+                // Handle errors (e.g., display an error message)
+                alert('There was an error adding the service. Please try again.');
+            }
+        });
+    });
+
+    // Cancel button functionality to close the modal
+    $('#cancelAddServiceBtn').on('click', function() {
+        $('#addServiceModal').hide(); // Hide the modal (adjust with your modal ID)
+    });
+});

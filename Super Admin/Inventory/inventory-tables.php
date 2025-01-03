@@ -34,7 +34,7 @@
       <table>
         <thead>
           <tr>
-            <th><input type="checkbox"></th>
+            <th><input type="checkbox" id="mainCheck"></th>
             <th>Product Name</th>
             <th>Product ID</th>
             <th>Price Sold</th>
@@ -54,8 +54,9 @@
   <a href="#" class="next">Next</a>
 </div>
 
-
+  </div>
   <script>
+
   $(document).ready(function() {
     var rowsPerPage = 5;  // Number of rows per page
     var currentPage = 1;  // Current page number

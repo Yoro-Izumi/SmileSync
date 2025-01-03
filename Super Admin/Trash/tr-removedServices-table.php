@@ -3,7 +3,7 @@ $connect_appointment = connect_appointment($servername, $username, $password);
 
 $status = "Unavailable";
 //get all items alphabetically
-$stmtServices = "SELECT * FROM smilesync_services WHERE service_status >= ? ORDER BY service_id ASC";
+$stmtServices = "SELECT * FROM smilesync_services WHERE service_status = ? ORDER BY service_id ASC";
 $prepareServices = mysqli_prepare($connect_appointment, $stmtServices);
 mysqli_stmt_bind_param($prepareServices, "i", $status);
 mysqli_stmt_execute($prepareServices);
