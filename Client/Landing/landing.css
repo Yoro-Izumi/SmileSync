@@ -118,7 +118,7 @@ body {
 .explore-button:hover{
     border-radius: 5px;
     color: #019a9c;
-    
+
 }
 
 .illustration {
@@ -376,6 +376,9 @@ a{
         display: flex;
     }
 
+    .nav{
+        gap: 0;
+    }
     
     .nav a {
         font-size: 0; /* Hide text */
