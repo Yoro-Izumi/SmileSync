@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const deleteNewProgressModal = document.getElementById('deleteNewProgressModal');
     const deleteExistingProgressModal = document.getElementById('deleteExistingProgressModal');
     const appointmentDoneModal = document.getElementById('appointmentDoneModal'); 
- 
+
     const closeDone = document.getElementById('closeDone');
  
     const newAccount = document.getElementById('newAccount');
@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Show the appointmentDoneModal
 const statusBtns = document.querySelectorAll('.appointmentStatus');
-
 statusBtns.forEach((statusBtn) => {
     statusBtn.addEventListener('click', function () {
         appointmentDoneModal.classList.add('show');
