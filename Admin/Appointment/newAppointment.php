@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <form id="newMultiStepForm" name="newMultiStepForm" action="register_code.php" method="POST">
+    <form id="newMultiStepForm" name="newMultiStepForm" action="appointment_crud/appointment_add_new.php" method="POST">
       <!-- Step 1: Personal Information -->
       <div class="new-form-section active">
         <div class="wrap-2rows">
@@ -110,22 +110,22 @@
           <div class="question-row">
             <label for="questionInput">Have you visited any infected areas within the last 30 days prior to your scheduled appointments?</label>
             <div class="answer-options">
-              <input type="radio" id="visited-yes" name="visited" value="yes" onclick="toggleAddressField()">
-              <label for="visited-yes">Yes</label>
-              <input type="radio" id="visited-no" name="visited" value="no" onclick="toggleAddressField()">
-              <label for="visited-no">No</label>
+              <input type="radio" id="new-visited-yes" name="visited" value="yes" onclick="toggleAddressField()">
+              <label for="new-visited-yes">Yes</label>
+              <input type="radio" id="new-visited-no" name="visited" value="no" onclick="toggleAddressField()">
+              <label for="new-visited-no">No</label>
             </div>
           </div>
           <div id="address-field" style="display: none;">
             <div class="input-wrap">
-              <input type="text" minlength="10" maxlength="50" class="input-field" id="infectedAddress" name="infectedAddress" autocomplete="off" />
-              <label for="infectedAddress">Please enter the address of the infected area:</label>
+              <input type="text" minlength="10" maxlength="50" class="input-field" id="new-infectedAddress" name="infectedAddress" autocomplete="off" />
+              <label for="new-infectedAddress">Please enter the address of the infected area:</label>
             </div>
           </div>
           <script>
             function toggleAddressField() {
-              const addressField = document.getElementById("infectedAddress");
-              const isYesSelected = document.getElementById("visited-yes").checked;
+              const addressField = document.getElementById("new-infectedAddress");
+              const isYesSelected = document.getElementById("new-visited-yes").checked;
               addressField.style.display = isYesSelected ? "block" : "none";
             }
           </script>
@@ -133,29 +133,29 @@
           <div class="question-row">
             <label for="questionInput">Have you attended a mass gathering reunion with relatives/friends or parties within a month prior to visit?</label>
             <div class="answer-options">
-              <input type="radio" id="attended-yes" name="gathering" value="yes">
-              <label for="attended-yes">Yes</label>
-              <input type="radio" id="attended-no" name="gathering" value="no">
-              <label for="attended-no">No</label>
+              <input type="radio" id="new-attended-yes" name="gathering" value="yes">
+              <label for="new-attended-yes">Yes</label>
+              <input type="radio" id="new-attended-no" name="gathering" value="no">
+              <label for="new-attended-no">No</label>
             </div>
           </div>
 
           <div class="question-row">
             <label for="questionInput">Have you been in close contact with a COVID-19 positive patient?</label>
             <div class="answer-options">
-              <input type="radio" id="contact-yes" name="contact" value="yes">
-              <label for="contact-yes">Yes</label>
-              <input type="radio" id="contact-no" name="contact" value="no">
-              <label for="contact-no">No</label>
+              <input type="radio" id="new-contact-yes" name="contact" value="yes">
+              <label for="new-contact-yes">Yes</label>
+              <input type="radio" id="new-contact-no" name="contact" value="no">
+              <label for="new-contact-no">No</label>
             </div>
           </div>
 
           <div class="question-row">
             <label for="questionInput">Have you been in close contact with a person under monitor (PUI)?</label>
             <div class="answer-options">
-              <input type="radio" id="pui-yes" name="pui" value="yes">
-              <label for="pui-yes">Yes</label>
-              <input type="radio" id="pui-no" name="pui" value="no">
+              <input type="radio" id="new-pui-yes" name="pui" value="yes">
+              <label for="new-pui-yes">Yes</label>
+              <input type="radio" id="new-pui-no" name="pui" value="no">
               <label for="pui-no">No</label>
             </div>
           </div>
@@ -163,62 +163,62 @@
           <div class="question-row">
             <label for="questionInput">Have you been in close contact with a person under monitoring (PUM)?</label>
             <div class="answer-options">
-              <input type="radio" id="pum-yes" name="pum" value="yes">
-              <label for="pum-yes">Yes</label>
-              <input type="radio" id="pum-no" name="pum" value="no">
-              <label for="pum-no">No</label>
+              <input type="radio" id="new-pum-yes" name="pum" value="yes">
+              <label for="new-pum-yes">Yes</label>
+              <input type="radio" id="new-pum-no" name="pum" value="no">
+              <label for="new-pum-no">No</label>
             </div>
           </div>
 
           <div class="question-row">
             <label for="questionInput">Have you had any flu-like respiratory symptoms in the last 14 days such as: fever, cough, runny nose, sore throat, headache, short of breath, chills, diarrhea, loss of taste, body ache, loss of smell?</label>
             <div class="answer-options">
-              <input type="radio" id="symptoms-yes" name="symptoms" value="yes">
-              <label for="symptoms-yes">Yes</label>
-              <input type="radio" id="symptoms-no" name="symptoms" value="no">
-              <label for="symptoms-no">No</label>
+              <input type="radio" id="new-symptoms-yes" name="symptoms" value="yes">
+              <label for="new-symptoms-yes">Yes</label>
+              <input type="radio" id="new-symptoms-no" name="symptoms" value="no">
+              <label for="new-symptoms-no">No</label>
             </div>
           </div>
 
           <div class="question-row">
             <label for="questionInput">Is there any medical health problem?</label>
             <div class="answer-options">
-              <input type="radio" id="medical-yes" name="medical" value="yes">
-              <label for="medical-yes">Yes</label>
-              <input type="radio" id="medical-no" name="medical" value="no">
-              <label for="medical-no">No</label>
+              <input type="radio" id="new-medical-yes" name="medical" value="yes">
+              <label for="new-medical-yes">Yes</label>
+              <input type="radio" id="new-medical-no" name="medical" value="no">
+              <label for="new-medical-no">No</label>
             </div>
           </div>
 
           <div class="question-row">
             <label for="questionInput">Are you currently experiencing a DENTAL EMERGENCY?</label>
             <div class="answer-options">
-              <input type="radio" id="emergency-yes" name="emergency" value="yes">
-              <label for="emergency-yes">Yes</label>
-              <input type="radio" id="emergency-no" name="emergency" value="no">
-              <label for="emergency-no">No</label>
+              <input type="radio" id="new-emergency-yes" name="emergency" value="yes">
+              <label for="new-emergency-yes">Yes</label>
+              <input type="radio" id="new-emergency-no" name="emergency" value="no">
+              <label for="new-emergency-no">No</label>
             </div>
           </div>
 
           <div class="question-row">
             <label for="questionInput">Will you be using an HMO Card?</label>
             <div class="answer-options">
-              <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleAddressField()">
-              <label for="hmo-yes">Yes</label>
-              <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleAddressField()">
-              <label for="hmo-no">No</label>
+              <input type="radio" id="new-hmo-yes" name="hmo" value="yes" onclick="toggleAddressField()">
+              <label for="new-hmo-yes">Yes</label>
+              <input type="radio" id="new-hmo-no" name="hmo" value="no" onclick="toggleAddressField()">
+              <label for="new-hmo-no">No</label>
             </div>
           </div>
           <div id="address-field" style="display: none;">
             <div class="input-wrap">
-              <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
-              <label for="hmoID">Please the HMO ID No.</label>
+              <input type="text" minlength="10" maxlength="50" class="input-field" id="new-hmoID" name="hmoID" autocomplete="off" />
+              <label for="new-hmoID">Please the HMO ID No.</label>
             </div>
           </div>
           <script>
             function toggleAddressField() {
-              const addressField = document.getElementById("hmoID");
-              const isYesSelected = document.getElementById("hmo-yes").checked;
+              const addressField = document.getElementById("new-hmoID");
+              const isYesSelected = document.getElementById("new-hmo-yes").checked;
               addressField.style.display = isYesSelected ? "block" : "none";
             }
           </script>
@@ -231,7 +231,7 @@
       <div class="new-form-section">
         <h2>Appointment Detail</h2>
         <div class="input-wrap">
-          <select class="input-field" id="services" name="services">
+          <select class="input-field" id="new-services" name="services">
             <option value="" disabled selected>Select a Service</option>
             <?php include "service_list.php";?>
           </select>
@@ -248,8 +248,8 @@
               </span>
             </div>
 
-            <div class="calendar-month" style="text-align: center;">
-              <select id="month" name="month">
+            <div class="new-calendar-month" style="text-align: center;">
+              <select id="new-month" name="month">
                 <option value="01">January</option>
                 <option value="02">February</option>
                 <option value="03">March</option>
@@ -265,7 +265,7 @@
               </select>
             </div>
 
-            <table class="newCalendar-table">
+            <table class="new-calendar-table">
               <thead>
                 <tr>
                   <th>Sun</th>
@@ -302,9 +302,9 @@
               </tbody>
             </table>
           </div>
-          <input type="hidden" id="cal-day" name="cal-day">
+          <input type="hidden" id="new-cal-day" name="cal-day">
           <!-- Recommendation Section -->
-          <div class="recommendation-container">
+          <div class="new-recommendation-container">
             <h3>Recommended Dates & Times</h3>
           </div>
           
@@ -313,7 +313,7 @@
         <div class="select-time-container">
              <label for="time">Select a Time:</label>
               <div class="time-selection"> 
-                <select id="time" name="time">
+                <select id="new-time" name="time">
                 </select>
           </div>         
         </div>
@@ -386,260 +386,282 @@
 <!--<script src="js/appointment_form2.js"></script>-->
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-  // Multi-step form navigation
+    const newForm = document.getElementById('newMultiStepForm');
     const newFormSections = document.querySelectorAll('.new-form-section');
     const newNextButton = document.getElementById('new-next-btn');
     const newPrevButton = document.getElementById('new-prev-btn');
-    const newSteps = document.querySelectorAll('.steps .step');
     const newSubmitButton = document.getElementById('newSubmitButton');
-    let currentStep = 0;
-  
-    submitButton.style.display = 'none';
-  
-    // Show the first section
-    newFormSections[currentStep].classList.add('active');
-    newSteps[currentStep].classList.add('active');
-  
-    // Event listener for next button
-    newNextButton.addEventListener('click', (e) => {
-      // Prevent form submission on intermediate steps
-      if (currentStep < newFormSections.length - 1) {
-        newFormSections[currentStep].classList.remove('active');
-        newSteps[currentStep].classList.remove('active');
-        currentStep++;
-        newFormSections[currentStep].classList.add('active');
-        newSteps[currentStep].classList.add('active');
-        newPrevButton.style.display = 'block';
-        newSubmitButton.style.display = 'none';
-  
-        // Update the button for the final step
-        if (currentStep === newFormSections.length - 1) {
-          newNextButton.style.display = 'none';
-          newSubmitButton.style.display = 'block';
-        } else {
-          newNextButton.textContent = 'Next';
-          newNextButton.type = 'button'; // Reset type to button for non-final steps
-        }
-      }
-    });
-  
-    // Event listener for previous button
-    newPrevButton.addEventListener('click', () => {
-      if (currentStep > 0) {
-        newFormSections[currentStep].classList.remove('active');
-        newSteps[currentStep].classList.remove('active');
-        currentStep--;
-        newFormSections[currentStep].classList.add('active');
-        newSteps[currentStep].classList.add('active');
-  
-        if (currentStep === 0) {
-          newPrevButton.style.display = 'none';
-        }
-  
-        newNextButton.textContent = 'Next';
-        newNextButton.type = 'button'; // Reset type to button for non-final steps
-      }
-    });
-  
-    // Hide previous button on first step
-    if (currentStep === 0) {
-      newPrevButton.style.display = 'none';
-    }
-  
-  
+    let newCurrentStep = 0;
 
-  // Generalized function to toggle address fields based on user selection
-  function toggleAddressField(fieldId, conditionId) {
-    const addressField = document.getElementById(fieldId);
-    const isYesSelected = document.getElementById(conditionId).checked;
-    addressField.style.display = isYesSelected ? "block" : "none";
-  }
-
-  // Calendar logic
-  const recommendedDates = {
-    '2024-8-3': true,
-    '2024-8-14': true,
-  };
-
-  const unavailableDates = {
-    '2024-8-7': true,
-    '2024-8-20': true,
-  };
-
-  const currentDate = new Date();
-  let currentMonth = currentDate.getMonth();
-  let currentYear = currentDate.getFullYear();
-
-  const monthSelect = document.getElementById('month');
-  const calendarTableBody = document.querySelector('.newCalendar-table tbody');
-  const calDayInput = document.getElementById('cal-day');
-  let isLoading = false;
-
-  function generateCalendar(month, year) {
-    calendarTableBody.innerHTML = '';
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-    let dayCounter = 1;
-    let week = [];
-
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      week.push('');
-    }
-
-    while (dayCounter <= daysInMonth) {
-      const dateKey = `${year}-${month + 1}-${dayCounter}`;
-      const cellData = {
-        day: dayCounter,
-        class: recommendedDates[dateKey] ? 'recommended' : unavailableDates[dateKey] ? 'unavailable' : '',
-      };
-      week.push(cellData);
-
-      if (week.length === 7 || dayCounter === daysInMonth) {
-        while (week.length < 7) {
-          week.push('');
-        }
-
-        const row = document.createElement('tr');
-        week.forEach((cell) => {
-          const cellElement = document.createElement('td');
-          if (cell) {
-            cellElement.textContent = cell.day;
-            if (cell.class) {
-              cellElement.classList.add(cell.class);
-            }
-          }
-          row.appendChild(cellElement);
-        });
-
-        calendarTableBody.appendChild(row);
-        week = [];
-      }
-      dayCounter++;
-    }
-
-    document.querySelectorAll('.newCalendar-table td').forEach((cell) => {
-      if (isLoading) {
-        cell.style.pointerEvents = 'none';
-      } else {
-        cell.style.pointerEvents = 'auto';
-      }
-
-      cell.addEventListener('click', () => {
-        if (!isLoading && !cell.classList.contains('unavailable') && cell.textContent) {
-          document.querySelectorAll('.newCalendar-table td').forEach((td) =>
-            td.classList.remove('selected-date')
-          );
-          cell.classList.add('selected-date');
-          const selected_date = `${year}-${(month + 1).toString().padStart(2, '0')}-${cell.textContent.padStart(2, '0')}`;
-          calDayInput.value = selected_date;
-
-          $.ajax({
-            url: 'save_session_date.php',
-            type: 'POST',
-            data: { selected_date: selected_date },
-            success: function (response) {
-              console.log('Session updated:', response);
-              isLoading = true;
-              fetch('pick_schedule_algo/get_appointment.php')
-                .then(response => response.json())
-                .then(data => {
-                  if (data.status === 'success') {
-                    updateRecommendationsAndDropdown(data);
-                  }
-                })
-                .catch(error => console.error('Error fetching schedule:', error))
-                .finally(() => {
-                  isLoading = false;
-                });
-            },
-            error: function (xhr, status, error) {
-              console.error('Error setting session:', error);
-            },
-          });
+    function newShowStep(newStep) {
+      // Hide all form sections
+      newFormSections.forEach((newSection, newIndex) => {
+        newSection.classList.remove('active');
+        if (newIndex === newStep) {
+          newSection.classList.add('active');
         }
       });
+
+      // Show/Hide buttons
+      if (newStep === 0) {
+        newPrevButton.style.display = 'none';
+      } else {
+        newPrevButton.style.display = 'inline-block';
+      }
+
+      if (newStep === newFormSections.length - 1) {
+        newNextButton.style.display = 'none';
+        newSubmitButton.style.display = 'inline-block';
+      } else {
+        newNextButton.style.display = 'inline-block';
+        newSubmitButton.style.display = 'none';
+      }
+    }
+
+    function newHandleNext() {
+      if (newCurrentStep < newFormSections.length - 1) {
+        newCurrentStep++;
+        newShowStep(newCurrentStep);
+      }
+    }
+
+    function newHandlePrev() {
+      if (newCurrentStep > 0) {
+        newCurrentStep--;
+        newShowStep(newCurrentStep);
+      }
+    }
+
+    // Attach event listeners to buttons
+    newNextButton.addEventListener('click', newHandleNext);
+    newPrevButton.addEventListener('click', newHandlePrev);
+
+    // Initialize the form by showing the first step
+    newShowStep(newCurrentStep);
+
+    // Calendar logic
+    const newRecommendedDates = {
+      '2024-8-3': true,
+      '2024-8-14': true,
+    };
+
+    const newUnavailableDates = {
+      '2024-8-7': true,
+      '2024-8-20': true,
+    };
+
+    const newCurrentDate = new Date();
+    let newCurrentMonth = newCurrentDate.getMonth();
+    let newCurrentYear = newCurrentDate.getFullYear();
+
+    const newMonthSelect = document.getElementById('new-month');
+    const newCalendarTableBody = document.querySelector('.new-calendar-table tbody');
+    const newCalDayInput = document.getElementById('new-cal-day');
+    let newIsLoading = false;
+
+  function newGenerateCalendar(newMonth, newYear) {
+  // Clear the calendar table
+  newCalendarTableBody.innerHTML = '';
+
+  // Days in the selected month
+  const newDaysInMonth = new Date(newYear, newMonth + 1, 0).getDate();
+
+  // First day of the month (0-6, Sunday-Saturday)
+  const newFirstDayOfMonth = new Date(newYear, newMonth, 1).getDay();
+
+  let newDayCounter = 1;
+  let newWeek = [];
+
+  // Fill empty cells for the first week
+  for (let i = 0; i < newFirstDayOfMonth; i++) {
+    newWeek.push('');
+  }
+
+  // Fill the calendar with days
+  while (newDayCounter <= newDaysInMonth) {
+    const newDateKey = `${newYear}-${newMonth + 1}-${newDayCounter}`;
+
+    const newCellData = {
+      day: newDayCounter,
+      class:
+        newRecommendedDates[newDateKey] ? 'recommended' :
+        newUnavailableDates[newDateKey] ? 'unavailable' :
+        '',
+    };
+
+    newWeek.push(newCellData);
+
+    if (newWeek.length === 7 || newDayCounter === newDaysInMonth) {
+      // Fill the remaining cells for the last week
+      while (newWeek.length < 7) {
+        newWeek.push('');
+      }
+
+      // Add the week to the table
+      const newRow = document.createElement('tr');
+      newWeek.forEach((newCell) => {
+        const newCellElement = document.createElement('td');
+        if (newCell) {
+          newCellElement.textContent = newCell.day;
+          if (newCell.class) {
+            newCellElement.classList.add(newCell.class);
+          }
+        }
+        newRow.appendChild(newCellElement);
+      });
+
+      newCalendarTableBody.appendChild(newRow);
+      newWeek = [];
+    }
+
+    newDayCounter++;
+  }
+
+  // Attach click event for date selection after table is generated
+  document.querySelectorAll('.new-calendar-table td').forEach((newCell) => {
+    // Disable clicking while loading
+    if (newIsLoading) {
+      newCell.style.pointerEvents = 'none'; // Disable clicks
+    } else {
+      newCell.style.pointerEvents = 'auto'; // Enable clicks
+    }
+
+    newCell.addEventListener('click', () => {
+      if (!newIsLoading && !newCell.classList.contains('unavailable') && newCell.textContent) {
+        document.querySelectorAll('.new-calendar-table td').forEach((newTd) =>
+          newTd.classList.remove('selected-date')
+        );
+        newCell.classList.add('selected-date');
+        // Update the input field with the selected date
+        const newSelectedDate = `${newYear}-${(newMonth + 1).toString().padStart(2, '0')}-${newCell.textContent.padStart(2, '0')}`;
+        newCalDayInput.value = newSelectedDate;
+
+        // Set the date as a PHP session value via AJAX
+        $.ajax({
+          url: 'save_session_date.php', // PHP file to handle the session
+          type: 'POST',
+          data: { newSelectedDate: newSelectedDate },
+          success: function (newResponse) {
+            console.log('Session updated:', newResponse);
+
+            // Fetch recommended schedule and available times after selecting the date
+            newIsLoading = true; // Set loading state to true
+            fetch('pick_schedule_algo/get_appointment.php')
+              .then(newResponse => {
+                if (!newResponse.ok) {
+                  throw new Error('Network response was not ok: ' + newResponse.statusText);
+                }
+                return newResponse.json();
+              })
+              .then(newData => {
+                if (newData.status !== 'success') {
+                  throw new Error('Failed to retrieve schedule data: ' + (newData.message || 'Unknown error'));
+                }
+
+                // Update the UI with the fetched data
+                newUpdateRecommendationsAndDropdown(newData);
+              })
+              .catch(newError => {
+                console.error('Error fetching schedule:', newError);
+              })
+              .finally(() => {
+                newIsLoading = false; // Reset loading state after data is loaded
+                // Re-enable date click events
+                document.querySelectorAll('.new-calendar-table td').forEach((newCell) => {
+                  newCell.style.pointerEvents = 'auto'; // Re-enable clicks
+                });
+              });
+          },
+          error: function (newXhr, newStatus, newError) {
+            console.error('Error setting session:', newError);
+          },
+        });
+      }
+    });
+  });
+}
+
+
+
+    newMonthSelect.addEventListener('change', function () {
+      newCurrentMonth = parseInt(this.value, 10) - 1;
+      newGenerateCalendar(newCurrentMonth, newCurrentYear);
+    });
+
+    newGenerateCalendar(newCurrentMonth, newCurrentYear);
+  });
+
+
+  // Function to update the recommended schedule and available times
+  function newUpdateRecommendationsAndDropdown(response) {
+    // Check for success status
+    if (response.status !== "success") {
+      console.error("Error: " + (response.message || "Unknown error"));
+      return;
+    }
+
+    // Parse the recommended schedule and available times
+    const newRecommendations = response.recommended_schedule;
+    const newAvailableTimes = response.available_times;
+    const newPredictedDurations = response.predicted_durations;
+
+    // Update the recommendation container
+    const newRecommendationContainer = document.querySelector('.new-recommendation-container');
+    let newRecommendationHTML = `<h3>Recommended Dates & Times (Predicted Duration: ${newPredictedDurations} minutes)</h3>`;
+    newRecommendations.forEach((dateTime) => {
+      const [date, time] = dateTime.split(' ');
+      newRecommendationHTML += `<p>Date: ${formatDate(date)}<br>Time: ${formatTime(time)}</p>`;
+    });
+    newRecommendationContainer.innerHTML = newRecommendationHTML;
+
+    // Update the dropdown options for available times
+    const newTimeDropdown = document.getElementById('new-time');
+    newTimeDropdown.innerHTML = ''; // Clear existing options
+    newAvailableTimes.forEach((dateTime) => {
+      const [, time] = dateTime.split(' ');
+      newTimeDropdown.innerHTML += `<option value="${time}">${formatTime(time)}</option>`;
     });
   }
 
-  monthSelect.addEventListener('change', function () {
-    currentMonth = parseInt(this.value, 10) - 1;
-    generateCalendar(currentMonth, currentYear);
-  });
-
-  generateCalendar(currentMonth, currentYear);
-});
-
-
-// Function to update the recommended schedule and available times
-function updateRecommendationsAndDropdown(response) {
-  // Check for success status
-  if (response.status !== "success") {
-    console.error("Error: " + (response.message || "Unknown error"));
-    return;
+  // Utility function to format the date
+  function formatDate(dateStr) {
+    const newOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const newDate = new Date(dateStr);
+    return newDate.toLocaleDateString(undefined, newOptions);
   }
 
-  // Parse the recommended schedule and available times
-  const recommendations = response.recommended_schedule;
-  const availableTimes = response.available_times;
-  const predictedDurations = response.predicted_durations;
+  // Utility function to format the time
+  function formatTime(timeStr) {
+    const [hour, minute] = timeStr.split(':').map(Number);
+    const newAmPm = hour >= 12 ? 'PM' : 'AM';
+    const newFormattedHour = hour % 12 || 12;
+    return `${newFormattedHour}:${minute.toString().padStart(2, '0')} ${newAmPm}`;
+  }
 
-  // Update the recommendation container
-  const recommendationContainer = document.querySelector('.recommendation-container');
-  let recommendationHTML = `<h3>Recommended Dates & Times (Predicted Duration: ${predictedDurations} minutes)</h3>`;
-  recommendations.forEach((dateTime) => {
-    const [date, time] = dateTime.split(' ');
-    recommendationHTML += `<p>Date: ${formatDate(date)}<br>Time: ${formatTime(time)}</p>`;
-  });
-  recommendationContainer.innerHTML = recommendationHTML;
+  $(document).ready(function () {
+    // Trigger form submission when the Submit button is clicked
+    $("#newSubmitButton").on("click", function (e) {
+      e.preventDefault(); // Prevent the default button behavior
 
-  // Update the dropdown options for available times
-  const timeDropdown = document.getElementById('time');
-  timeDropdown.innerHTML = ''; // Clear existing options
-  availableTimes.forEach((dateTime) => {
-    const [, time] = dateTime.split(' ');
-    timeDropdown.innerHTML += `<option value="${time}">${formatTime(time)}</option>`;
-  });
-}
+      const newForm = $("#newMultiStepForm"); // Target the form
+      const newFormData = newForm.serialize(); // Serialize all form data
 
-// Utility function to format the date
-function formatDate(dateStr) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(undefined, options);
-}
-
-// Utility function to format the time
-function formatTime(timeStr) {
-  const [hour, minute] = timeStr.split(':').map(Number);
-  const amPm = hour >= 12 ? 'PM' : 'AM';
-  const formattedHour = hour % 12 || 12;
-  return `${formattedHour}:${minute.toString().padStart(2, '0')} ${amPm}`;
-}
-
-$(document).ready(function () {
-  // Trigger form submission when the Submit button is clicked
-  $("#newSubmitButton").on("click", function (e) {
-    e.preventDefault(); // Prevent the default button behavior
-
-    const form = $("#newMultiStepForm"); // Target the form
-    const formData = form.serialize(); // Serialize all form data
-
-    $.ajax({
-      url: "appointment_crud/appointment_add_new.php", // PHP file to handle insertion
-      type: "POST",
-      data: formData,
-      success: function (response) {
-        // Handle success response
-        //alert("Appointment successfully added: " + response);
-        form[0].reset(); // Reset the form
-      },
-      error: function (xhr, status, error) {
-        // Handle error response
-        //console.error("Error: " + error);
-        //alert("An error occurred while adding the appointment.");
-      },
+      $.ajax({
+        url: "appointment_crud/appointment_add_new.php", // PHP file to handle insertion
+        type: "POST",
+        data: newFormData,
+        success: function (response) {
+          // Handle success response
+          //alert("Appointment successfully added: " + response);
+          newForm[0].reset(); // Reset the form
+        },
+        error: function (xhr, status, error) {
+          // Handle error response
+          //console.error("Error: " + error);
+          //alert("An error occurred while adding the appointment.");
+        },
+      });
     });
   });
-});
 
 </script>

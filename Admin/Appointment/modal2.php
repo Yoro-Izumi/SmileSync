@@ -210,7 +210,7 @@
     </div>
 </div>
 
-<!-- Remove Account Warning Modal -->
+<!-- Remove Account Warning Modal 
 <div class="modal" id="cancelAppointmentModal">
     <div class="modal-content">
         <div class="image-container">
@@ -225,7 +225,7 @@
         <button class="modal-button normal" id="cancelAppointmentBtn">Remove</button>
         <button class="modal-button secondary-button warning" id="cancelBtn">Cancel</button>
     </div>
-</div>
+</div>-->
 
 <!-- Success Modal 
 <div class="modal" id="appointmentSuccessModal">

@@ -13,24 +13,23 @@ include '../admin_global_files/input_sanitizing.php';
 $connect_db = connect_accounts($servername, $username, $password);
 
 
-if (isset($_POST['firstName'], $_POST['lastName'], $_POST['middleName'], $_POST['suffix'], $_POST['emailRegister'], $_POST['passwordRegister'], $_POST['confirmPasswordRegister'], $_POST['birthday'], $_POST['phoneNumber'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $message = "default"; // For modal
+    $firstName = isset($_POST['firstName'])? encryptData(sanitize_input($_POST['firstName'], $connect_db), $key):encryptData(sanitize_input(" ", $connect_db), $key);
+    $lastName = isset($_POST['lastName'])? encryptData(sanitize_input($_POST['lastName'], $connect_db), $key):encryptData(sanitize_input(" ", $connect_db), $key);
+    $middleName = isset($_POST['middleName'])? encryptData(sanitize_input($_POST['middleName'], $connect_db), $key):encryptData(sanitize_input(" ", $connect_db), $key);
+    $suffix = isset($_POST['suffix'])? encryptData(sanitize_input($_POST['suffix'], $connect_db), $key):encryptData(sanitize_input(" ", $connect_db), $key);
 
-    $firstName = encryptData(sanitize_input($_POST['firstName'], $connect_db), $key);
-    $lastName = encryptData(sanitize_input($_POST['lastName'], $connect_db), $key);
-    $middleName = encryptData(sanitize_input($_POST['middleName'], $connect_db), $key);
-    $suffix = encryptData(sanitize_input($_POST['suffix'], $connect_db), $key);
+    $email = isset($_POST['emailRegister'])? sanitize_input($_POST['emailRegister'], $connect_db):encryptData(sanitize_input(" ", $connect_db), $key);
+    $password = isset($_POST['passwordRegister'])? sanitize_input($_POST['passwordRegister'], $connect_db):sanitize_input(" ", $connect_db);
+    $confirmPassword = isset($_POST['confirmPasswordRegister'])? sanitize_input($_POST['confirmPasswordRegister'], $connect_db):sanitize_input(" ", $connect_db);
 
-    $email = sanitize_input($_POST['emailRegister'], $connect_db);
-    $password = sanitize_input($_POST['passwordRegister'], $connect_db);
-    $confirmPassword = sanitize_input($_POST['confirmPasswordRegister'], $connect_db);
-
-    $birthday = encryptData(sanitize_input($_POST['birthday'], $connect_db), $key);
-    $phoneNumber = encryptData(sanitize_input($_POST['phoneNumber'], $connect_db), $key);
+    $birthday = isset($_POST['birthday'])? encryptData(sanitize_input($_POST['birthday'], $connect_db), $key):encryptData(sanitize_input(" ", $connect_db), $key);
+    $phoneNumber = isset($_POST['phoneNumber'])? encryptData(sanitize_input($_POST['phoneNumber'], $connect_db), $key):encryptData(sanitize_input(" ", $connect_db), $key);
     $accountStatus = 'Pending';
 
-    // Check if passwords match
+    /* Check if passwords match */
     if ($password !== $confirmPassword) {
         echo "error:Passwords do not match";
         exit();
@@ -81,6 +80,6 @@ $message = "default"; // For modal
 }
 
 // If required fields are not set
-echo "error";
+//echo "error";
 exit();
 ?>

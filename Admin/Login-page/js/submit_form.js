@@ -68,48 +68,55 @@ document.addEventListener('DOMContentLoaded', function () {
       showModal(successModal);
     });
   
-    // Registration form submission
-    registerBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const form = document.getElementById('register_form');
-      const formData = new FormData(form);
-  
-      if (form.checkValidity()) {
-        $.ajax({
-          type: 'POST',
-          url: 'register_code.php',
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function (response) {
-            switch (response.trim()) {
-              case 'error:Email already exists':
-                showModal(emailExistsModal);
-                registerBtn.disabled = false; // Re-enable for user correction
-                break;
-              case 'error:Passwords do not match':
-                showModal(passwordMismatchModal);
-                registerBtn.disabled = false; // Re-enable for user correction
-                break;
-              case 'success':
-                showModal(successRegisterModal);
-                sessionStorage.setItem('registerFormSubmitted', 'true');
-                form.reset(); // Reset the form after successful submission
-                registerBtn.disabled = true; // Disable the button after success
-                break;
-              default:
-                registerBtn.disabled = false; // Re-enable for user correction
-            }
-          },
-          error: function (xhr) {
-            console.error(xhr.responseText);
-            registerBtn.disabled = false; // Re-enable for user correction
-          },
-        });
-      } else {
-        form.reportValidity(); // Trigger validation error messages
-      }
+// Registration form submission
+const form = document.getElementById('register_form');
+const regBtn = document.getElementById('register_button');
+
+// Handle form submission
+form.addEventListener('submit', function (e) {
+  e.preventDefault(); // Prevent the default form submission
+
+  const formData = new FormData(form);
+
+  if (form.checkValidity()) {
+    regBtn.disabled = true; // Disable the button during the submission process
+
+    $.ajax({
+      type: 'POST',
+      url: 'register_code.php',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        switch (response.trim()) {
+          case 'error:Email already exists':
+            showModal(emailExistsModal);
+            regBtn.disabled = false; // Re-enable for user correction
+            break;
+          case 'error:Passwords do not match':
+            showModal(passwordMismatchModal);
+            regBtn.disabled = false; // Re-enable for user correction
+            break;
+          case 'success':
+            showModal(successRegisterModal);
+            sessionStorage.setItem('registerFormSubmitted', 'true');
+            form.reset(); // Reset the form after successful submission
+            regBtn.disabled = true; // Disable the button after success
+            break;
+          default:
+            regBtn.disabled = false; // Re-enable for user correction
+        }
+      },
+      error: function (xhr) {
+        console.error(xhr.responseText);
+        regBtn.disabled = false; // Re-enable for user correction
+      },
     });
+  } else {
+    form.reportValidity(); // Trigger validation error messages
+  }
+});
+
   
     // Login form submission
     showLoginFailedBtn.addEventListener('click', function (e) {

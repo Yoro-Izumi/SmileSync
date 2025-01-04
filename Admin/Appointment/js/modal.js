@@ -125,15 +125,15 @@ const setupDynamicActions = () => {
             document.getElementById("done_appointment_id").value = itemId;
 
             // Function to fetch and populate appointment details
-            const fetchAppointmentDetails = (url, data, onSuccess) => {
+            const fetchAppointmentDetails = (url, itemId, onSuccess) => {
                 $.ajax({
                     url: url,
                     type: "POST",
-                    data: data,
+                    data: { id: itemId }, // Use itemId directly in the data object
                     dataType: "json",
                     success: (response) => {
                         if (!response.error) {
-                            onSuccess(response);
+                            onSuccess(response); // Handle success
                         } else {
                             alert(response.error); // Show error message from backend
                         }
@@ -144,6 +144,7 @@ const setupDynamicActions = () => {
                     },
                 });
             };
+
 
             // Populate and display the appointment done modal
             const populateAppointmentModal = (data) => {
@@ -160,8 +161,8 @@ const setupDynamicActions = () => {
                 modal.find(".personal-info input").eq(2).val(data.province || "N/A");
                 modal.find(".treatment-record input").eq(0).val(data.appointment_date_time || "N/A");
                 modal.find(".treatment-record input").eq(1).val(data.procedure || "N/A");
-                modal.find(".treatment-record input").eq(2).val(data.dentist || "N/A");
-                modal.find(".treatment-record input").eq(3).val(data.tooth_count || "N/A");
+                modal.find(".treatment-record input").eq(2).val(data.dentist || " ");
+                modal.find(".treatment-record input").eq(3).val(data.tooth_count || " ");
 
                 modal.fadeIn();
             };

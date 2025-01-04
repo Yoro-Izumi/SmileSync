@@ -114,7 +114,7 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 
              <div class="input-wrap">
              <input
-                 type="text"
+                 type="date"
                  id="birthdate-picker"
                  class="input-field"
                  name="birthday"

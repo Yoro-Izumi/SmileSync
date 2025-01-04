@@ -226,8 +226,11 @@
   
       
     <div class="form-navigation">
-      <button type="button" class="prev-btn" style="display: none;">Previous</button>
-      <button type="button" class="next-btn">Next</button>
+    <div class="form-navigation">
+        <button type="button" class="prev-btn" style="display: none;">Previous</button>
+        <button type="button" class="next-btn">Next</button> 
+        <button type="submit" class="next-btn" id="submitButton" name="submitButton">Submit</button>
+      </div>
     </div>
   </form>
 
@@ -236,27 +239,61 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Multi-step form navigation
   const formSections = document.querySelectorAll('.form-section');
-  const nextButton = document.querySelector('.next-btn');
-  const prevButton = document.querySelector('.prev-btn');
-  const steps = document.querySelectorAll('.steps .step');
-  let currentStep = 0;
+const nextButton = document.querySelector('.next-btn');
+const prevButton = document.querySelector('.prev-btn');
+const steps = document.querySelectorAll('.steps .step');
+const submitButton = document.getElementById('submitButton');
+let currentStep = 0;
 
-  nextButton.addEventListener('click', () => {
-    if (currentStep < formSections.length - 1) {
-      formSections[currentStep].classList.remove('active');
-      steps[currentStep].classList.remove('active');
-      currentStep++;
-      formSections[currentStep].classList.add('active');
-      steps[currentStep].classList.add('active');
-      prevButton.style.display = 'block';
-    }
+submitButton.style.display = 'none';
+
+nextButton.addEventListener('click', (e) => {
+  // Prevent form submission on intermediate steps
+  if (currentStep < formSections.length - 1) {
+    //e.preventDefault();
+    
+    formSections[currentStep].classList.remove('active');
+    steps[currentStep].classList.remove('active');
+    currentStep++;
+    formSections[currentStep].classList.add('active');
+    steps[currentStep].classList.add('active');
+    prevButton.style.display = 'block';
+    submitButton.style.display = 'none';
+
+    // Update the button for the final step
     if (currentStep === formSections.length - 1) {
-      nextButton.textContent = 'Submit';
-      nextButton.id = 'Submit';
-      nextButton.name = 'Submit';
-      nextButton.type = 'submit';
+      //nextButton.textContent = 'Submit';
+      //nextButton.id = 'Submit';
+      //nextButton.name = 'Submit';
+      //nextButton.type = 'submit';
+      nextButton.style.display = 'none';
+      submitButton.style.display = 'block';
+      
     }
-  });
+    else {
+      nextButton.textContent = 'Next';
+      nextButton.type = 'button'; // Reset type to button for non-final steps
+    }
+  }
+});
+
+prevButton.addEventListener('click', () => {
+  if (currentStep > 0) {
+    formSections[currentStep].classList.remove('active');
+    steps[currentStep].classList.remove('active');
+    currentStep--;
+    formSections[currentStep].classList.add('active');
+    steps[currentStep].classList.add('active');
+
+    if (currentStep === 0) {
+      prevButton.style.display = 'none';
+    }
+
+    nextButton.textContent = 'Next';
+    nextButton.type = 'button'; // Reset type to button for non-final steps
+  }
+});
+
 
   prevButton.addEventListener('click', () => {
     if (currentStep > 0) {
@@ -500,7 +537,7 @@ function formatTime(timeStr) {
         });
     });
 
-
+  
 
 
 

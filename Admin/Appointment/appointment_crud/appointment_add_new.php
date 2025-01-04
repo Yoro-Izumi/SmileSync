@@ -9,6 +9,7 @@ include '../../admin_global_files/connect_database.php';
 include '../../admin_global_files/encrypt_decrypt.php';
 include '../../admin_global_files/input_sanitizing.php';
 
+$adminID = $_SESSION['userAdminID'];
 
 // Connect to the databases
 $accountConn = connect_accounts($servername, $username, $password);
@@ -23,7 +24,7 @@ $middleName = isset($_POST['middleName']) ? encryptData(sanitize_input($_POST['m
 $suffix = isset($_POST['suffix']) ? encryptData(sanitize_input($_POST['suffix'], $patientsConn), $key) : "";
 $sex = isset($_POST['sex']) ? encryptData(sanitize_input($_POST['sex'], $patientsConn), $key) : "";
 $phoneNumber = isset($_POST['phoneNumber']) ? encryptData(sanitize_input($_POST['phoneNumber'], $patientsConn), $key) : "";
-$birthday = isset($_POST['birthday']) ? sanitize_input($_POST['birthday'], $patientsConn) : date("Y-m-d");
+$birthday = isset($_POST['birthday']) ? encryptData(sanitize_input($_POST['birthday'], $patientsConn),$key) : encryptData(date("Y-m-d"),$key);
 
 $bodyTemp = isset($_POST['bodyTemp']) ? sanitize_input($_POST['bodyTemp'], $appointmentsConn) : 0;
 $answerOne = isset($_POST['visited']) && $_POST['visited'] === "no" ? sanitize_input($_POST['visited'], $appointmentsConn) : (isset($_POST['infectedAddress']) ? sanitize_input($_POST['infectedAddress'], $appointmentsConn) : "");
@@ -39,7 +40,7 @@ $answerNine = isset($_POST['hmo']) && $_POST['hmo'] === "no" ? sanitize_input($_
 $email = isset($_POST['email']) ? encryptData(sanitize_input($_POST['email'], $accountConn), $key) : "";
 $password = isset($_POST['password']) ? sanitize_input($_POST['password'], $accountConn) : "";
 $confirmPassword = isset($_POST['confirmPassword']) ? sanitize_input($_POST['confirmPassword'], $accountConn) : "";
-$status = 'Pending';
+$status = 'Approved';
 $dateOfCreation = date('Y-m-d');
 $dateTimeOfCreation = date('Y-m-d H:i:s');
 
@@ -76,9 +77,9 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
 
     // Insert patient account
     $qryInsertPatientAccount = "INSERT INTO `smilesync_patient_accounts`(`patient_account_id`, `patient_info_id`,`admin_account_id`, `patient_account_email`, `patient_account_password`, `date_time_of_creation`,  `patient_account_status`)
-                               VALUES (NULL, ?,NULL, ?, ?,current_timestamp(), ?)";
+                               VALUES (NULL, ?,?, ?, ?,current_timestamp(), ?)";
     $stmt = mysqli_prepare($accountConn, $qryInsertPatientAccount);
-    mysqli_stmt_bind_param($stmt, 'isss', $patientInfoID,$email, $hashedPassword, $status);
+    mysqli_stmt_bind_param($stmt, 'iisss', $patientInfoID,$adminID,$email, $hashedPassword, $status);
 
     if (!mysqli_stmt_execute($stmt)) {
         handleError($accountConn, "Error inserting patient account");
@@ -99,13 +100,25 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
 
     // Insert appointment
     $qryInsertAppointment = "INSERT INTO `smilesync_appointments`(`appointment_id`, `patient_info_id`, `admin_id`, `covid_form_id`, `appointment_status`, `appointment_date_time`, `appointment_reason`, `emergency_contact_id`)
-                             VALUES (NULL, ?, NULL, ?, ?, ?, ?, NULL)";
+                             VALUES (NULL, ?, ?, ?, ?, ?, ?, NULL)";
     $stmt = mysqli_prepare($appointmentsConn, $qryInsertAppointment);
-    mysqli_stmt_bind_param($stmt, 'iisss', $patientInfoID, $covidFormID, $status, $appointmentDateTime, $appointmentReason);
+    mysqli_stmt_bind_param($stmt, 'iiisss', $patientInfoID, $adminID,$covidFormID, $status, $appointmentDateTime, $appointmentReason);
 
     if (!mysqli_stmt_execute($stmt)) {
         handleError($appointmentsConn, "Error inserting appointment");
     }
+
+    $appointmentID = mysqli_insert_id($appointmentsConn);
+
+    //INSERT INTO `smilesync_invoice_services`(`invoice_services_id`, `invoice_id`, `service_id`, `appointment_id`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
+    $qryInsertInvoiceService = "INSERT INTO `smilesync_invoice_services`(`invoice_services_id`, `invoice_id`, `service_id`, `appointment_id`) VALUES (NULL,NULL,?,?)";
+    $stmt = mysqli_prepare($appointmentsConn,$qryInsertInvoiceService);
+    mysqli_stmt_bind_param($stmt, 'ii' , $appointmentReason,$appointmentID);
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        handleError($appointmentsConn, "Error inserting invoice service");
+    }
+
 
     // Close connections
     mysqli_close($patientsConn);

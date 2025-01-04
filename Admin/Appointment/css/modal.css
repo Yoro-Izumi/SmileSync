@@ -1134,4 +1134,75 @@ label {
 
 }
 
+/*CSS for New Appointment Form Class*/
+/* This will hide inactive sections (New Appointment Modal)*/
+.new-form-section {
+  display: none;
+}
+
+/* Active section will be displayed (New Appointment Modal) */
+.new-form-section.active {
+  display: block;
+}
+
+
+.new-recommendation-container {
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.new-recommendation-container h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.new-recommendation-container p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+
+.new-calendar-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  text-align: center;
+}
+
+.new-calendar-table th,
+.new-calendar-table td {
+  font-weight: bold;
+}
+
+.new-calendar-table td.unavailable {
+  background-color: red;
+  color: white;
+}
+
+.new-calendar-table td.choice {
+  background-color: green;
+  color: white;
+}
+
+.new-calendar-table td.recommended {
+  background-color: blue;
+  color: white;
+}
+
+
+.new-calendar-container {
+  width: 60%;
+}
+  .new-calendar-container,
+  .new-recommendation-container {
+      width: 100%;
+      margin: 10px;
+  }
+
+
 
