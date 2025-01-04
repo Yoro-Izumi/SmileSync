@@ -18,6 +18,7 @@
 
         <!-- Personal Information -->
         <div class="section-title">Personal Information</div>
+        <input name="done_appointment_id" id="done_appointment_id"">
         <div class="personal-info2">
             <div class="form-group2">
                 <label>Patient Name:</label>

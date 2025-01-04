@@ -41,7 +41,7 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "modal2.php"; ?>
-<?php include "modal.php"; ?>
+<?php //include "modal.php"; ?>
 <?php include "loader.php"; ?>
  
   <section class="home-section">

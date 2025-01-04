@@ -15,17 +15,9 @@ if (!$connect_appointment) {
 // SQL query to get the appointment data
 $getAppointmentDetails = "
     SELECT 
-        a.patient_info_id, 
-        a.admin_id, 
-        a.appointment_date_time, 
-        a.appointment_status,
-        a.appointment_id, 
-        p.patient_first_name,
-        p.patient_middle_name,
-        p.patient_last_name, 
-        ar.admin_first_name,
-        ar.admin_middle_name,
-        ar.admin_last_name
+        a.*,
+        p.*,
+        ar.*
     FROM 
         smilesync_appointments a
     LEFT JOIN 

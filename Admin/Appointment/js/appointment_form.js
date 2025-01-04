@@ -246,7 +246,7 @@ function formatTime(timeStr) {
             const formData = $(this).serialize(); // Serialize form data
 
             $.ajax({
-                url: 'register_code.php',
+                url: 'appointment_crud/appointment_add.php',
                 type: 'POST',
                 data: formData,
                 dataType: 'json',

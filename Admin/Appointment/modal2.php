@@ -19,6 +19,7 @@
 
         <!-- Personal Information -->
         <div class="section-title">Personal Information</div>
+        <input name="done_appointment_id" id="done_appointment_id" type="hidden" >
         <div class="personal-info2">
             <div class="form-group2">
                 <label>Patient Name:</label>
@@ -244,7 +245,7 @@
 <script src="js/modal.js"></script>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
     <script>
             function toggleDropdown() {
               const dropdownMenu = document.querySelector('.dropdown-menu');

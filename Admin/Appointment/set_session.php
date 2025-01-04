@@ -1,6 +1,6 @@
 <?php
 // Start the session
-include "../client_global_files/set_sesssion_dir.php";
+include "../admin_global_files/set_sesssion_dir.php";
 session_start();
 
 // Check if a value was sent via POST
