@@ -1,9 +1,4 @@
 <?php
-//initialize servername username and password first for database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-=======
 $root_dir = $root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
 require_once $root_dir . '/vendor/autoload.php';
 
