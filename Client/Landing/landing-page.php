@@ -155,11 +155,11 @@
      
               
 
-<footer style="text-align: center; padding: 20px; background-color: #fff; font-family: Arial, sans-serif; color: #6c757d;">
+<footer>
     <div style="margin: 20px 0;">
-        <a href="#" style="margin: 0 10px; color: #6c757d;"><i class="bx bxl-facebook-circle" style="font-size: 24px;"></i></a>
-        <a href="#" style="margin: 0 10px; color: #6c757d;"><i class="bx bxl-instagram" style="font-size: 24px;"></i></a>
-        <a href="#" style="margin: 0 10px; color: #6c757d;"><i class="bx bxl-twitter" style="font-size: 24px;"></i></a>
+        <a href="#" style="margin: 0 10px; color: var(--color);"><i class="bx bxl-facebook-circle" style="font-size: 24px;"></i></a>
+        <a href="#" style="margin: 0 10px; color: var(--color)"><i class="bx bxl-instagram" style="font-size: 24px;"></i></a>
+        <a href="#" style="margin: 0 10px; color: var(--color)"><i class="bx bxl-twitter" style="font-size: 24px;"></i></a>
     </div>
     <p>&copy; 2024 SmileSync. All rights reserved.</p>
 </footer>
