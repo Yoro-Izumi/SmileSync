@@ -96,23 +96,27 @@
 
             </div>
             <div class="form-group">
-                <label>Consumed Products:</label>
-                <div class="dropdown-container">
-                    <button onclick="toggleDropdown()">Select Products</button>
-                    <div class="dropdown-menu">
-                        <label>
-                            <input type="checkbox" value="Product A" data-name="Product A">
-                            Product A
-                            <input type="number" value="1" min="1" max="99" class="number-input">
-                        </label>
-                        <label>
-                            <input type="checkbox" value="Product B" data-name="Product B">
-                            Product B
-                            <input type="number" value="1" min="1" max="99" class="number-input">
-                        </label>
-                    </div>
-                </div>
-            </div>
+    <label for="dropdownButton">Consumed Products:</label>
+    <div class="dropdown-container">
+        <button id="dropdownButton" type="button" onclick="toggleDropdown()" aria-expanded="false" aria-controls="dropdownMenu">
+            Select Products
+        </button>
+        <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+            <label>
+                <input type="checkbox" class="checkBoxItems" value="Product A" data-name="Product A" name="itemCheck[]">
+                Product A
+                <input type="number" value="1" min="1" max="99" class="number-input" data-id="1" aria-label="Quantity for Product A">
+            </label>
+            <label>
+                <input type="checkbox" class="checkBoxItems" value="Product B" data-name="Product B" name="itemCheck[]">
+                Product B
+                <input type="number" value="1" min="1" max="99" class="number-input" data-id="2" aria-label="Quantity for Product B">
+            </label>
+        </div>
+    </div>
+</div>
+
+
 
             <div class="selected-items"></div>
             <input type="hidden" id="selected-products" class="hidden-input" name="selected-products">
@@ -122,17 +126,17 @@
                 <div style="display: grid; grid-template-rows: auto auto auto; gap: 10px;">
                     <div class="form-group">
                         <label>Amount Charged:</label>
-                        <input type="text" readonly value="3000" />
+                        <input type="text"/>
                     </div>
 
                     <div class="form-group">
                         <label>Amount Paid:</label>
-                        <input type="text" readonly value="3000" />
+                        <input type="text"/>
                     </div>
 
                     <div class="form-group">
                         <label>Balance:</label>
-                        <input type="text" readonly value="0" />
+                        <input type="text" />
                     </div>
                 </div>
 
@@ -151,6 +155,11 @@
             </div></div>
         </div></div>
 </div></div>
+
+<script>
+
+    
+</script>
 
 
 <div class="modal" id="existingAccountModal">
@@ -247,60 +256,44 @@
 
 <script src="js/jquery-3.6.0.min.js"></script>
     <script>
-            function toggleDropdown() {
-              const dropdownMenu = document.querySelector('.dropdown-menu');
-              dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+function toggleDropdown() {
+    const menu = document.getElementById('dropdownMenu');
+    const button = document.getElementById('dropdownButton');
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    
+    button.setAttribute('aria-expanded', !isExpanded);
+    menu.style.display = isExpanded ? 'none' : 'block';
+}
+
+// Ensure the script runs after the DOM has fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Get all checkboxes
+    const checkBoxItems = document.querySelectorAll('.checkBoxItems');
+
+    // Iterate over each checkbox to set up event listeners
+    checkBoxItems.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            // Find the corresponding number input
+            const numberInput = checkbox.closest('label').querySelector('.number-input');
+            if (checkbox.checked) {
+                // Enable the input if the checkbox is checked
+                numberInput.disabled = false;
+            } else {
+                // Disable the input and reset its value if the checkbox is unchecked
+                numberInput.disabled = true;
+                numberInput.value = 1;
             }
+        });
+    });
 
-            $('input[type="checkbox"]').on('change', function() {
-                const isChecked = $(this).is(':checked');
-                const productName = $(this).data('name');
-                const quantity = $(this).siblings('.number-input').val();
+    // Disable all number inputs initially
+    const numberInputs = document.querySelectorAll('.number-input');
+    numberInputs.forEach(input => {
+        input.disabled = true;
+    });
+});
 
-                if (isChecked) {
-                    $('.selected-items').append(`
-                        <div class="selected-item-box" data-product="${productName}">
-                            <button class="remove-item" onclick="removeItem('${productName}')">X</button>
-                            ${productName} (Quantity: ${quantity})
-                        </div>
-                    `);
-                } else {
-                    $('.selected-item-box[data-product="${productName}"]').remove();
-                }
-                updateHiddenField();
-            });
 
-            $('.number-input').on('change', function() {
-                const productName = $(this).siblings('input[type="checkbox"]').data('name');
-                const newQuantity = $(this).val();
-
-                $('.selected-item-box[data-product="${productName}"]').html(`
-                    <button class="remove-item" onclick="removeItem('${productName}')">X</button>
-                    ${productName} (Quantity: ${newQuantity})
-                `);
-                updateHiddenField();
-            });
-
-            function removeItem(productName) {
-                $('input[data-name="${productName}"]').prop('checked', false);
-                $('.selected-item-box[data-product="${productName}"]').remove();
-                updateHiddenField();
-            }
-
-            function updateHiddenField() {
-                const selectedProducts = [];
-                $('.selected-item-box').each(function() {
-                    const product = $(this).data('product');
-                    const quantity = $(this).text().match(/\d+/)[0];
-                    selectedProducts.push({ product, quantity });
-                });
-                $('#selected-products').val(JSON.stringify(selectedProducts));
-            }
-
-          document.querySelector('.close-btn').addEventListener('click', function () {
-              alert('Modal closed');
-              // Add functionality to close modal here
-          });
       </script>
 
 

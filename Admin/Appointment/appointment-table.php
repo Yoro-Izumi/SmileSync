@@ -70,106 +70,77 @@
 
   </div>
 
- <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
     const statusFilter = document.getElementById('status');
     const searchInput = document.querySelector('.search-bar input');
     const checkAllCheckbox = document.querySelector('th input[type="checkbox"]');
     const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
     const rows = document.querySelectorAll('tbody tr');
-    const paginationLinks = document.querySelectorAll('.pagination-item');
     const rowsPerPage = 5; // Number of rows per page
     let currentPage = 1;
 
-    // Function to filter rows based on the status
+    // Function to filter rows based on the status and search input
     function filterRows() {
-  const status = statusFilter.value.toLowerCase(); // Get the selected status
-  const searchText = searchInput.value.toLowerCase().trim(); // Get the search input
+      const status = statusFilter.value.toLowerCase(); // Selected status
+      const searchText = searchInput.value.toLowerCase().trim(); // Search text
 
-  console.log("Filtering with status:", status); // Debugging: Check status filter value
-  console.log("Filtering with search text:", searchText); // Debugging: Check search input value
+      rows.forEach((row) => {
+        const statusText = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
+        const clientName = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+        const clientId = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
 
-  rows.forEach((row, index) => {
-    const statusText = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
-    const clientName = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-    const clientId = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        // Match rows based on status and search text
+        const matchesStatus = status === 'all' || statusText === status;
+        const matchesSearch =
+          !searchText || // Show all rows if search text is empty
+          clientName.includes(searchText) ||
+          clientId.includes(searchText);
 
-    console.log(`Row ${index} - Status: ${statusText}, Client Name: ${clientName}, Client ID: ${clientId}`); // Debugging
+        if (matchesStatus && matchesSearch) {
+          row.classList.remove('hidden'); // Show matching rows
+        } else {
+          row.classList.add('hidden'); // Hide non-matching rows
+        }
+      });
 
-    // Match all rows if "all" is selected or match specific status
-    const matchesStatus = status === "all" || statusText === status;
-    const matchesSearch = 
-      searchText === "" || 
-      clientName.includes(searchText) || 
-      clientId.includes(searchText);
-
-    // Debugging: Check if the row matches status and search conditions
-    console.log(`Row ${index} - Matches Status: ${matchesStatus}, Matches Search: ${matchesSearch}`);
-
-    if (matchesStatus && matchesSearch) {
-      row.classList.remove('hidden'); // Show matching rows
-    } else {
-      row.classList.add('hidden'); // Hide non-matching rows
+      currentPage = 1; // Reset to the first page
+      updatePagination(); // Update pagination
     }
-  });
 
-  currentPage = 1; // Reset to the first page when filters change
-  updatePagination(); // Update pagination
-}
+    // Pagination logic
+    function updatePagination() {
+      const visibleRows = Array.from(rows).filter((row) => !row.classList.contains('hidden'));
+      const totalPages = Math.ceil(visibleRows.length / rowsPerPage);
 
+      visibleRows.forEach((row, index) => {
+        row.style.display =
+          Math.ceil((index + 1) / rowsPerPage) === currentPage ? '' : 'none';
+      });
 
-    // Search functionality
+      // Update pagination display (if you have pagination buttons, implement their logic here)
+    }
+
+    // Event listeners
     searchInput.addEventListener('input', filterRows);
-
-    // Status filter functionality
     statusFilter.addEventListener('change', filterRows);
 
     // Checkbox "select all" functionality
-    checkAllCheckbox.addEventListener('change', function() {
-      checkboxes.forEach(checkbox => {
+    checkAllCheckbox.addEventListener('change', function () {
+      checkboxes.forEach((checkbox) => {
         checkbox.checked = checkAllCheckbox.checked;
       });
     });
 
     // Individual checkbox functionality
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener('change', function() {
-        checkAllCheckbox.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener('change', function () {
+        checkAllCheckbox.checked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
       });
     });
 
-    // Sorting functionality
-    const thElements = document.querySelectorAll('th.sortable');
-    thElements.forEach(th => {
-      th.addEventListener('click', function() {
-        const columnIndex = th.getAttribute('data-column') - 1;
-        const rowsArray = Array.from(rows);
-
-        // Determine the sorting order
-        const currentOrder = th.classList.contains('ascending') ? 'ascending' : 'descending';
-        const newOrder = currentOrder === 'ascending' ? 'descending' : 'ascending';
-
-        rowsArray.sort((rowA, rowB) => {
-          const cellA = rowA.querySelectorAll('td')[columnIndex].textContent.trim();
-          const cellB = rowB.querySelectorAll('td')[columnIndex].textContent.trim();
-
-          return currentOrder === 'ascending'
-            ? cellA > cellB ? 1 : -1
-            : cellA < cellB ? 1 : -1;
-        });
-
-        // Reorder the rows in the table
-        rowsArray.forEach(row => row.parentElement.appendChild(row));
-
-        // Toggle class to indicate sorting order
-        th.classList.toggle('ascending', newOrder === 'ascending');
-        th.classList.toggle('descending', newOrder === 'descending');
-      });
-    });
-
-    // Initial filter application on page load
+    // Apply the filter on page load
     filterRows();
   });
 </script>
-
 
