@@ -29,6 +29,7 @@
 
  
 <div class="modal" id="resetPasswordModal">
+    <form id="resetPasswordForm" name="resetPasswordForm">
     <div class="modal-content">
 
     <div class="image-container">
@@ -50,9 +51,33 @@
             />
             <label for="emailInput">Email<indicator>*</indicator></label>
         </div></div>
-        <button class="modal-button warning" id="submitResetPasswordBtn">Submit</button>
+        <button class="modal-button warning" type="submit" id="submitResetPasswordBtn">Submit</button>
         <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
     </div>
+    </form>
+
+    <script>
+    $(document).ready(function () {
+      $('#resetPasswordForm').submit(function (e) {
+        e.preventDefault(); // Prevent the form from submitting traditionally
+
+        const to = $('#emailInputReset').val();
+
+        $.ajax({
+          url: 'js/forgetPasswordEmail.js', // Your Node.js server endpoint
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify({ to, subject, text }),
+          success: function (response) {
+            alert(response.message);
+          },
+          error: function (error) {
+            alert('Error sending email: ' + error.responseJSON.message);
+          },
+        });
+      });
+    });
+  </script>
 </div>
 
 
@@ -200,7 +225,22 @@
 
 
 
+<script>
+        document.getElementById('submitResetPasswordBtn').addEventListener('click', function() {
+            // Create a new script element
+            var script = document.createElement('script');
+            script.src = 'js/forgetPasswordEmail.js';  // Replace with your actual JS file path
+            script.type = 'text/javascript';
+            script.async = true;
+
+            // Append the script tag to the document body or head
+            document.head.appendChild(script);
+        });
+    </script>
+
 
 
 </body>
 </html>
+
+

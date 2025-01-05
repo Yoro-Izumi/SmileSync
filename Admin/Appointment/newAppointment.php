@@ -1,6 +1,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
+  <script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
 
 
     <div class="steps">

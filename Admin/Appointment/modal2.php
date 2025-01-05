@@ -6,7 +6,7 @@
 <body>
 
 <div class="modal" id="appointmentDoneModal">
-
+<form id="doneAppointmentForm" name="doneAppointmentForm" method="POST" action="appointment_crud/done_appointment.php">
     <div class="done-modal">
    <div class="modal-done">
     <div class="modal-header">
@@ -19,7 +19,7 @@
 
         <!-- Personal Information -->
         <div class="section-title">Personal Information</div>
-        <input name="done_appointment_id" id="done_appointment_id" type="hidden" >
+        
         <div class="personal-info2">
             <div class="form-group2">
                 <label>Patient Name:</label>
@@ -95,27 +95,28 @@
                 </div>
 
             </div>
-            <div class="form-group">
+    <div class="form-group">
     <label for="dropdownButton">Consumed Products:</label>
+    <input name="done_appointment_id" id="done_appointment_id" type="hidden" >
     <div class="dropdown-container">
+       
         <button id="dropdownButton" type="button" onclick="toggleDropdown()" aria-expanded="false" aria-controls="dropdownMenu">
             Select Products
         </button>
         <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
-            <label>
+            <div>
                 <input type="checkbox" class="checkBoxItems" value="Product A" data-name="Product A" name="itemCheck[]">
                 Product A
                 <input type="number" value="1" min="1" max="99" class="number-input" data-id="1" aria-label="Quantity for Product A">
-            </label>
-            <label>
+            </div>
+            <div>
                 <input type="checkbox" class="checkBoxItems" value="Product B" data-name="Product B" name="itemCheck[]">
                 Product B
                 <input type="number" value="1" min="1" max="99" class="number-input" data-id="2" aria-label="Quantity for Product B">
-            </label>
+            </div>
         </div>
     </div>
 </div>
-
 
 
             <div class="selected-items"></div>
@@ -126,17 +127,17 @@
                 <div style="display: grid; grid-template-rows: auto auto auto; gap: 10px;">
                     <div class="form-group">
                         <label>Amount Charged:</label>
-                        <input type="text"/>
+                        <input type="text" readonly value="3000" />
                     </div>
 
                     <div class="form-group">
                         <label>Amount Paid:</label>
-                        <input type="text"/>
+                        <input type="text" readonly value="3000" />
                     </div>
 
                     <div class="form-group">
                         <label>Balance:</label>
-                        <input type="text" />
+                        <input type="text" readonly value="0" />
                     </div>
                 </div>
 
@@ -149,12 +150,14 @@
                 <!-- Action Buttons -->
                 <div class="button-container">
                     <button class="action-btn">Cancel</button>
-                    <button class="action-btn">Mark as Done</button>
+                    <button type="submit" class="action-btn" id="doneAppointmentBtn">Mark as Done</button>
                 </div>
 
             </div></div>
         </div></div>
-</div></div>
+</div>
+</form>
+</div>
 
 <script>
 
@@ -254,47 +257,159 @@
 <script src="js/modal.js"></script>
 
 
-<script src="js/jquery-3.6.0.min.js"></script>
-    <script>
-function toggleDropdown() {
-    const menu = document.getElementById('dropdownMenu');
-    const button = document.getElementById('dropdownButton');
-    const isExpanded = button.getAttribute('aria-expanded') === 'true';
-    
-    button.setAttribute('aria-expanded', !isExpanded);
-    menu.style.display = isExpanded ? 'none' : 'block';
-}
+<script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Dropdown toggle
+    const dropdownButton = document.getElementById('dropdownButton');
+    const dropdownMenu = document.getElementById('dropdownMenu');
 
-// Ensure the script runs after the DOM has fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Get all checkboxes
-    const checkBoxItems = document.querySelectorAll('.checkBoxItems');
+    dropdownButton.addEventListener('click', function () {
+      const isExpanded = dropdownButton.getAttribute('aria-expanded') === 'true';
+      dropdownButton.setAttribute('aria-expanded', !isExpanded);
+      dropdownMenu.style.display = isExpanded ? 'none' : 'block';
+    });
 
-    // Iterate over each checkbox to set up event listeners
-    checkBoxItems.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            // Find the corresponding number input
-            const numberInput = checkbox.closest('label').querySelector('.number-input');
-            if (checkbox.checked) {
-                // Enable the input if the checkbox is checked
-                numberInput.disabled = false;
-            } else {
-                // Disable the input and reset its value if the checkbox is unchecked
-                numberInput.disabled = true;
-                numberInput.value = 1;
+    // Add item to selected list
+    function addItemToSelected(productName, quantity) {
+      $('.selected-items').append(`
+        <div class="selected-item-box" data-product="${productName}">
+          <button class="remove-item" onclick="removeItem('${productName}')">X</button>
+          ${productName} (Quantity: ${quantity})
+        </div>
+      `);
+    }
+
+    // Remove selected item
+    window.removeItem = function (productName) {
+      const checkbox = $(`input[data-name="${productName}"]`);
+      checkbox.prop('checked', false);
+      $(`.selected-item-box[data-product="${productName}"]`).remove();
+      updateHiddenField();
+    };
+
+    // Update item quantity
+    function updateItemQuantity(productName, newQuantity) {
+      $(`.selected-item-box[data-product="${productName}"]`).html(`
+        <button class="remove-item" onclick="removeItem('${productName}')">X</button>
+        ${productName} (Quantity: ${newQuantity})
+      `);
+    }
+
+    // Update hidden field
+    function updateHiddenField() {
+      const selectedProducts = [];
+      $('.selected-item-box').each(function () {
+        const product = $(this).data('product');
+        const quantity = parseInt($(this).text().match(/\d+/)[0], 10);
+        selectedProducts.push({ product, quantity });
+      });
+      $('#selected-products').val(JSON.stringify(selectedProducts));
+    }
+
+    // Handle checkbox and quantity changes
+    $('body').on('change', 'input[type="checkbox"]', function () {
+      const checkbox = $(this);
+      const productName = checkbox.data('name');
+      const quantity = checkbox.siblings('.number-input').val();
+
+      if (checkbox.is(':checked')) {
+        if (!quantity || quantity <= 0) {
+          alert('Please enter a valid quantity.');
+          checkbox.prop('checked', false);
+          return;
+        }
+        addItemToSelected(productName, quantity);
+      } else {
+        removeItem(productName);
+      }
+      updateHiddenField();
+    });
+
+    $('body').on('change', '.number-input', function () {
+      const input = $(this);
+      const newQuantity = input.val();
+      const productName = input.siblings('input[type="checkbox"]').data('name');
+
+      if (newQuantity <= 0) {
+        alert('Quantity must be greater than 0.');
+        return;
+      }
+
+      updateItemQuantity(productName, newQuantity);
+      updateHiddenField();
+    });
+
+    // Fetch products and populate dropdown
+    function fetchProducts() {
+      const appointmentID = $('#done_appointment_id').val();
+
+      $.ajax({
+        url: 'appointment_crud/get_products.php',
+        method: 'GET',
+        data: { action: 'getProducts' },
+        dataType: 'json',
+        success: function (products) {
+          dropdownMenu.innerHTML = ''; // Clear existing dropdown content
+
+          products.forEach(product => {
+            dropdownMenu.innerHTML += `
+              <div>
+                <input 
+                  type="checkbox" 
+                  class="checkBoxItems" 
+                  data-name="${product.name}" 
+                  data-id="${product.id}">
+                ${product.name}
+                <input 
+                  type="number" 
+                  class="number-input" 
+                  value="1" 
+                  min="1" 
+                  max="99" 
+                  data-id="${product.id}">
+              </div>`;
+          });
+
+          if (appointmentID) {
+            markConsumedProducts(appointmentID);
+          }
+        },
+        error: function () {
+          alert('Failed to fetch products.');
+        }
+      });
+    }
+
+    // Mark consumed products
+    function markConsumedProducts(appointmentID) {
+      $.ajax({
+        url: 'appointment_crud/get_products.php',
+        method: 'GET',
+        data: { action: 'getConsumedProducts', appointmentID },
+        dataType: 'json',
+        success: function (consumedProducts) {
+          consumedProducts.forEach(consumed => {
+            const checkbox = $(`input[data-id="${consumed.product_id}"]`);
+            const numberInput = $(`input.number-input[data-id="${consumed.product_id}"]`);
+
+            if (checkbox.length) {
+              checkbox.prop('checked', true);
+              numberInput.val(consumed.quantity);
             }
-        });
-    });
+          });
+        },
+        error: function () {
+          alert('Failed to fetch consumed products.');
+        }
+      });
+    }
 
-    // Disable all number inputs initially
-    const numberInputs = document.querySelectorAll('.number-input');
-    numberInputs.forEach(input => {
-        input.disabled = true;
-    });
-});
+    // Initialize product fetching
+    fetchProducts();
+  });
+</script>
 
-
-      </script>
 
 
 </body>

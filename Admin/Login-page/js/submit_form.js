@@ -69,18 +69,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   
 // Registration form submission
-const form = document.getElementById('register_form');
-const regBtn = document.getElementById('register_button');
+const registerForm = document.getElementById('register_form');
 
-// Handle form submission
-form.addEventListener('submit', function (e) {
-  e.preventDefault(); // Prevent the default form submission
+registerForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const formData = new FormData(registerForm);
 
-  const formData = new FormData(form);
+  // Debug: Log form data before submission
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+  }
 
-  if (form.checkValidity()) {
-    regBtn.disabled = true; // Disable the button during the submission process
-
+  if (registerForm.checkValidity()) {
     $.ajax({
       type: 'POST',
       url: 'register_code.php',
@@ -88,34 +88,34 @@ form.addEventListener('submit', function (e) {
       processData: false,
       contentType: false,
       success: function (response) {
+        console.log(response); // Debug server response
         switch (response.trim()) {
           case 'error:Email already exists':
             showModal(emailExistsModal);
-            regBtn.disabled = false; // Re-enable for user correction
             break;
           case 'error:Passwords do not match':
             showModal(passwordMismatchModal);
-            regBtn.disabled = false; // Re-enable for user correction
             break;
           case 'success':
             showModal(successRegisterModal);
-            sessionStorage.setItem('registerFormSubmitted', 'true');
-            form.reset(); // Reset the form after successful submission
-            regBtn.disabled = true; // Disable the button after success
+            registerForm.reset();
+            break;
+          case 'error:Problem with form submission':
+            console.error('Problem with form submission');
             break;
           default:
-            regBtn.disabled = false; // Re-enable for user correction
+            console.error('Unexpected response:', response);
         }
       },
       error: function (xhr) {
-        console.error(xhr.responseText);
-        regBtn.disabled = false; // Re-enable for user correction
+        console.error(xhr.responseText); // Debug server error
       },
     });
   } else {
-    form.reportValidity(); // Trigger validation error messages
+    registerForm.reportValidity();
   }
 });
+
 
   
     // Login form submission

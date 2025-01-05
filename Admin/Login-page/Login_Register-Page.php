@@ -47,6 +47,7 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
    
    <div class="box">
      <div class="inner-box">
+      
        <div class="forms-wrap">
         <form id="register_form" name="register_form" autocomplete="off" class="sign-up-form" method="POST">   
         <div class="heading">
