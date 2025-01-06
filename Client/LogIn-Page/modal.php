@@ -36,13 +36,15 @@
         </div>
 
         <div class="modal-title warning-title">Reset Password</div>
-
+        <form id="resetPasswordForm" name="resetPasswordForm" method="POST">
         <div class="message-container">
         <div class="modal-description">To reset your password, enter your email address.</div>
         <div class="input-wrap">
+            
             <input
                 type="text"
                 id="emailInput"
+                name="emailInput"
                 minlength="4"
                 class="modal-input"
                 autocomplete="off"
@@ -50,10 +52,32 @@
             />
             <label for="emailInputReset">Email<indicator>*</indicator></label>
         </div></div>
-        <button class="modal-button warning" id="submitResetPasswordBtn">Submit</button>
+        <button class="modal-button warning" type="submit" id="submitResetPasswordBtn">Submit</button>    
         <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
+        </form>
     </div>
 </div>
+
+<script>
+        $('#resetPasswordForm').on('submit', function (e) {
+            e.preventDefault();
+
+            const email = $('#emailInput').val();
+            $.ajax({
+                url: 'js/forgetPasswordEmail.js',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ email }),
+                success: function (response) {
+                    alert('Email sent successfully!');
+                },
+                error: function (err) {
+                    alert('Error sending email: ' + err.responseText);
+                },
+            });
+        });
+    </script>
+
 
 
 <!-- Success Modal -->

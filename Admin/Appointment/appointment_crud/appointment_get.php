@@ -9,14 +9,12 @@ include "../../admin_global_files/input_sanitizing.php";
 
 $currentDate = date('Y-m-d');
 
-$id = $_POST['id']; 
-
 header('Content-Type: application/json');
 
 try {
     // Connect to the database
     $connect_appointment = connect_appointment($servername, $username, $password);
-
+    $id = isset($_SESSION['session_appointment_id'])?$_SESSION['session_appointment_id']:2; // Get the appointment ID from the POST data
     // Query to fetch patient data
     $qryGetPatientInfo = "
         SELECT 
@@ -67,7 +65,7 @@ $patientSuffix = !empty($rowGetPatientInfo['patient_suffix']) ? decryptData($row
 $patientPhoneNumber = !empty($rowGetPatientInfo['patient_phone_number']) ? decryptData($rowGetPatientInfo['patient_phone_number'], $key) : "";
 $birthday = !empty($rowGetPatientInfo['patient_birthday']) ? decryptData($rowGetPatientInfo['patient_birthday'], $key) : "";
 $patientSex = !empty($rowGetPatientInfo['patient_sex']) ? decryptData($rowGetPatientInfo['patient_sex'], $key) : "";
-$birthday = !empty($birthday) ? DateTime::createFromFormat('Y-m-d', $birthday)->format('Y-m-d') : "";
+$birthday = !empty($birthday) ? formatDate(DateTime::createFromFormat('Y-m-d', $birthday)->format('Y-m-d')) : "";
 $age = !empty($birthday) ? date_diff(date_create($birthday), date_create($currentDate))->y : 0;
 
 // Decrypt address info
@@ -110,6 +108,8 @@ $serviceId = !empty($rowGetPatientInfo['service_id']) ? $rowGetPatientInfo['serv
     }
 
     // Return the results as JSON
+    file_put_contents('debug_log.txt', print_r($patients, true)); // Log data to a file
+
     echo json_encode($patients);
 
 } catch (Exception $e) {

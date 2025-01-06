@@ -1,11 +1,11 @@
 <?php
-include "../admin_global_files/set_sesssion_dir.php";
+include ".../../admin_global_files/set_sesssion_dir.php";
 
 session_start();
 date_default_timezone_set('Asia/Manila');
-include "../admin_global_files/connect_database.php";
-include "../admin_global_files/encrypt_decrypt.php";
-include "../admin_global_files/input_sanitizing.php";
+include "../../admin_global_files/connect_database.php";
+include "../../admin_global_files/encrypt_decrypt.php";
+include "../../admin_global_files/input_sanitizing.php";
 // Database connection
 
 $connect_appointment = connect_appointment($servername, $username, $password);
@@ -15,6 +15,7 @@ $connect_inventory = connect_inventory($servername, $username, $password);
 if ($connect_inventory->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 
 // Fetch all products
 function getProducts($connect_inventory) {
@@ -69,7 +70,7 @@ function getConsumedProducts($connect_appointment, $appointmentID) {
     }
 }
 
-// Route to handle AJAX requests
+/* Route to handle AJAX requests */
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_GET['action'])) {
         if ($_GET['action'] === 'getProducts') {
@@ -85,6 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 }
 
+
 // Close connection
-$conn->close();
+$connect_appointment->close();
+$connect_inventory->close();
 ?>

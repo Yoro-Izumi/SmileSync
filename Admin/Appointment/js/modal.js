@@ -84,27 +84,19 @@ statusBtns.forEach((statusBtn) => {
         deleteNewProgressModal.classList.remove('show');
     });
 
-    // Close the deleteProgressModal for new account
-    cancelNewDeleteBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.remove('show');
-        newAccountModal.classList.add('show');
-    });
+// Close the deleteProgressModal for new account
+cancelNewDeleteBtn.addEventListener('click', function () {
+    deleteNewProgressModal.classList.remove('show'); // Hide deleteNewProgressModal
+    newAccountModal.classList.add('show'); // Restore newAccountModal
+});
 
-    // Close the deleteProgressModal for existing account
-    cancelExistingDeleteBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.remove('show');
-        existingAccountModal.classList.add('show');
-    });
+// Close the deleteProgressModal for existing account
+cancelExistingDeleteBtn.addEventListener('click', function () {
+    deleteExistingProgressModal.classList.remove('show'); // Hide deleteExistingProgressModal
+    existingAccountModal.classList.add('show'); // Restore existingAccountModal
+});
 
-    // Close all progress modals
-    deleteNewProgressBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.remove('show');
-    });
 
-    deleteExistingProgressBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.remove('show');
-
-    });
 });
 
 
@@ -123,6 +115,23 @@ const setupDynamicActions = () => {
             // Set the appointment ID in the hidden input
             document.getElementById("done_appointment_id").value = itemId;
 
+
+            //Save appointmentID as session
+            $.ajax({
+                url: 'save_session_appointment.php', // PHP script to handle the request
+                type: 'POST',
+                data: { session_appointment_id: itemId }, // Data to send to the server
+                success: function (response) {
+                    // Display success message
+                    console.log(response);
+                },
+                error: function () {
+                    $('#response').text('Error saving the value.');
+                }
+            });
+
+
+              
             // Function to fetch and populate appointment details
             const fetchAppointmentDetails = (url, itemId, onSuccess) => {
                 $.ajax({
@@ -132,7 +141,7 @@ const setupDynamicActions = () => {
                     dataType: "json",
                     success: (response) => {
                         if (!response.error) {
-                            onSuccess(response); // Handle success
+                            onSuccess(response[0]); // Handle success
                         } else {
                             alert(response.error); // Show error message from backend
                         }
@@ -148,29 +157,84 @@ const setupDynamicActions = () => {
             // Populate and display the appointment done modal
             const populateAppointmentModal = (data) => {
                 const modal = $("#appointmentDoneModal");
-
+            
                 modal.find(".personal-info2 .form-group2 span").eq(0).text(data.patient_name || "N/A");
                 modal.find(".personal-info2 .form-group2 span").eq(1).text(data.patient_phone_number || "N/A");
                 modal.find(".personal-info2 .form-group2 span").eq(2).text(data.patient_age || "N/A");
                 modal.find(".personal-info2 .form-group2 span").eq(3).text(data.patient_sex || "N/A");
                 modal.find(".personal-info2 .form-group2 span").eq(4).text(data.birth_date || "N/A");
-
+            
                 modal.find(".personal-info input").eq(0).val(data.address || "N/A");
                 modal.find(".personal-info input").eq(1).val(data.city || "N/A");
                 modal.find(".personal-info input").eq(2).val(data.province || "N/A");
                 modal.find(".treatment-record input").eq(0).val(data.appointment_date_time || "N/A");
                 modal.find(".treatment-record input").eq(1).val(data.procedure || "N/A");
-                modal.find(".treatment-record input").eq(2).val(data.dentist || " ");
-                modal.find(".treatment-record input").eq(3).val(data.tooth_count || " ");
-
+                modal.find(".treatment-record input").eq(2).val(data.dentist || "N/A");
+                modal.find(".treatment-record input").eq(3).val(data.tooth_count || "N/A");
+            
                 modal.fadeIn();
             };
+            
 
             // Fetch and display appointment details
             fetchAppointmentDetails("appointment_crud/appointment_get.php", { id: itemId }, populateAppointmentModal);
+
         }
+        
     });
 };
 
 // Initialize the dynamic button actions
 setupDynamicActions();
+
+
+
+
+
+
+// Done form submission
+const doneForm = document.getElementById('doneAppointmentForm');
+doneForm.addEventListener('click', function (e) {
+    e.preventDefault();
+});
+
+document.getElementById('doneAppointmentBtn').addEventListener('click', function (e) {
+  e.preventDefault();
+  const formData = new FormData(doneForm);
+
+  // Debug: Log form data before submission
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+  }
+
+  if (doneForm.checkValidity()) {
+    $.ajax({
+      type: 'POST',
+      url: 'appointment_crud/done_appointment.php',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        console.log(response); // Debug server response
+        switch (response.trim()) {
+          case 'success':
+            //showModal(successRegisterModal);
+            console.log('Success');
+            //registerForm.reset();
+            appointmentDoneModal.classList.remove('show');
+            break;
+          case 'error:Problem with form submission':
+            console.error('Problem with form submission');
+            break;
+          default:
+            console.error('Unexpected response:', response);
+        }
+      },
+      error: function (xhr) {
+        console.error(xhr.responseText); // Debug server error
+      },
+    });
+  } else {
+    registerForm.reportValidity();
+  }
+});

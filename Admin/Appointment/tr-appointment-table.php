@@ -61,7 +61,7 @@ foreach ($appointments as $appointment){
     $approver_last_name = decryptData($approver_last_name,$key);    
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
 
-    if($appointment_status !== 'Approved'){
+    if($appointment_status !== 'Done'){
 ?>
 <tr>
     <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
