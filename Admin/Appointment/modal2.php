@@ -2,66 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="css/modal.css">
-    <style>
-      .readonly-input {
-        font-size: 12px;
-        padding: 6px;
-        background-color:rgb(255, 255, 255);
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-top: 3px;
-        width: 100%;
-      }
-
-      /* Styling for individual dropdown items */
-.dropDownItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 5px 10px;
-  border-bottom: 1px solid #e0e0e0;
-  font-size: 14px;
-}
-
-.dropDownItem:last-child {
-  border-bottom: none;
-}
-
-.checkBoxItems {
-  flex: 0 0 5%; /* Ensure a small but fixed space for the checkbox */
-  margin-right: 10px;
-}
-
-.number-input {
-  flex: 0 0 20%; /* Ensure a fixed width for the number input */
-  margin-left: 10px;
-  text-align: center;
-}
-
-.dropDownItem span {
-  flex: 1; /* Ensures the text takes up the remaining space */
-  text-align: center;
-}
-
-/* Add hover effect for dropdown items */
-.dropDownItem:hover {
-  background-color: #f9f9f9;
-}
-
-/* Responsive styling */
-@media (max-width: 600px) {
-  .dropDownItem {
-    font-size: 12px;
-    padding: 5px;
-  }
-  .checkBoxItems {
-    flex: 0 0 10%;
-  }
-  .number-input {
-    flex: 0 0 30%;
-  }
-}
-    </style>
+    <link rel="stylesheet" href="css/dropdown_menu.css">
 </head>
 <body>
 
@@ -149,29 +90,36 @@
                   <div class="dropdown-container">
        
                   <button id="dropdownButtonProcedure" type="button" "aria-expanded="false" aria-controls="dropdownMenuProcedure">
-                  Select Products
+                  Select Procedure/s
                   </button>
                     <div id="dropdownMenuProcedure" class="dropdown-menu-procedure" style="display: none;">
                       <!--Dynamicaly updates-->
                     </div>
                   </div>
+                  <div class="selected-procedures"></div>
                 </div>
+
+                
+
 
                 <div class="form-group">
                     <label>Dentist/s:</label>
+
                     <?php
-                        $connect_appointment = connect_appointment($servername, $username, $password);
-                        $getDentistName = "SELECT `doctor_name_id` FROM smilesync_invoice";
+                        $connect_appointment = connect_patient($servername, $username, $password);
+                        $getDentistName = "SELECT * FROM smilesync_doctor_name";
                         $result = $connect_appointment->query($getDentistName);
 
+                        echo "<input type='hidden'  name='dentist_choose' id='dentist_choose' value=''>";
                         echo "<select id='dentist_select' name='dentist_select'>";
                         echo "<option selected='true' disabled='disabled'>Select a Dentist</option>";
                         echo "<option value='new_name'>Input New Name</option>";
 
                         if ($result && $result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                $dentistName = $row['doctor_name_id'];
-                                echo "<option value='" . htmlspecialchars($dentistName) . "'>$dentistName</option>";
+                                $dentistID = $row['dentist_name_id'];
+                                $dentistName = $row['dentist_name'];
+                                echo "<option value='" . $dentistID . "'>$dentistName</option>";
                             }
                         }
                         echo "</select>";
@@ -186,13 +134,14 @@
                           dentistSelect.addEventListener("change", function () {
                               if (dentistSelect.value === "new_name") {
                                   dentistNameInput.style.display = "block"; // Show input field
+                                  document.getElementById('dentist_choose').value = "input"; // Reset select field
                               } else {
                                   dentistNameInput.style.display = "none"; // Hide input field
+                                  document.getElementById('dentist_choose').value = "select";
                               }
                           });
                       });
                     </script>
-
                 </div>
 
                 <div class="form-group">
@@ -215,7 +164,11 @@
           <!--Dynamicaly updates-->
         </div>
     </div>
+ <div class="selected-items"></div>   
 </div>
+
+
+
 
             <div class="form-group">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">

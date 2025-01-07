@@ -191,60 +191,61 @@ setupDynamicActions();
 
 
 
-
-// Prevent form submission unless triggered by the specific button
 document.addEventListener('DOMContentLoaded', function () {
     const doneForm = document.getElementById('doneAppointmentForm');
     const doneButton = document.getElementById('doneAppointmentBtn');
-  
+    
     if (doneForm && doneButton) {
-      doneForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default form submission
-      });
-  
-      doneButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        // Check form validity
-        if (doneForm.checkValidity()) {
-          const formData = new FormData(doneForm);
-  
-          // Debug: Log form data before submission
-          for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-          }
-  
-          $.ajax({
-            type: 'POST',
-            url: 'appointment_crud/done_appointment.php',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-              console.log(response.trim()); // Debug server response
-              switch (response.trim()) {
-                case 'success':
-                  console.log('Success');
-                  doneForm.reset(); // Reset form on success
-                  appointmentDoneModal.classList.remove('show');
-                  break;
-                case 'error:Problem with form submission':
-                  console.error('Problem with form submission');
-                  break;
-                default:
-                  console.error('Unexpected response:', response);
-              }
-            },
-            error: function (xhr) {
-              console.error('Server error:', xhr.responseText); // Debug server error
-            },
-          });
-        } else {
-          // Display form validation errors
-          doneForm.reportValidity();
-        }
-      });
-    } else {
-      console.error('Form or button not found in the DOM.');
+        doneButton.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Enable corresponding input fields for checked checkboxes
+            const checkboxes = document.querySelectorAll('.checkBoxItems');
+            checkboxes.forEach(checkbox => {
+                const input = document.querySelector(`.number-input[data-id="${checkbox.value}"]`);
+                if (checkbox.checked && input) {
+                    input.disabled = false;
+                } else if (input) {
+                    input.disabled = true;
+                }
+            });
+
+            if (doneForm.checkValidity()) {
+                const formData = new FormData(doneForm);
+
+                // Log formData for debugging
+                for (const [key, value] of formData.entries()) {
+                    console.log(`${key}: ${value}`);
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'appointment_crud/done_appointment.php',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        console.log(response.trim());
+                        switch (response.trim()) {
+                            case 'success':
+                                doneForm.reset();
+                                location.reload();
+                                break;
+                            case 'error:Problem with form submission':
+                                console.error('Problem with form submission');
+                                break;
+                            default:
+                                console.error('Unexpected response:', response);
+                        }
+                    },
+                    error: function (xhr) {
+                        console.error('Server error:', xhr.responseText);
+                    },
+                });
+            } else {
+                doneForm.reportValidity();
+            }
+        });
     }
-  });
-  
+});
+

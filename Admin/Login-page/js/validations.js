@@ -79,6 +79,7 @@
   
   
   document.getElementById("email").addEventListener("input", validateEmail);
+  document.getElementById("emailRegister").addEventListener("input", validateEmail);
   
   
     //   Updated script for password toggle

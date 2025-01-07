@@ -107,7 +107,7 @@ $data_to_send = json_encode([
 
 // Execute the Python script via stdin
 $python_script_path = 'linear_regression2.py';
-$command = escapeshellcmd("python3 $python_script_path");
+$command = escapeshellcmd("C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe $python_script_path");
 
 // Open the process and pass the data to stdin
 $process = proc_open($command, [
@@ -154,7 +154,7 @@ $data_to_send = json_encode([
 $recommend_schedule_script = "recommend_schedule_algo2.py";
 
 // Run Recommendation algo via command line and pass data to stdin
-$command_recommend_schedule = escapeshellcmd("python3 $recommend_schedule_script");
+$command_recommend_schedule = escapeshellcmd("C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe $recommend_schedule_script");
 $process = proc_open($command_recommend_schedule, [
     0 => ['pipe', 'r'],  // stdin
     1 => ['pipe', 'w'],  // stdout

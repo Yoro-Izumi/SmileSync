@@ -8,14 +8,16 @@
 <div class="modal" id="appointmentDoneModal">
     <div class="done-modal">
    <div class="modal-done">
-    <div class="modal-header">
-                <div class="content">
-                    <h2>iMee-Toga Oli Dental Clinic</h2>
-                    <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
-                </div>
-                <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
-            </div>
 
+  <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
+        <div class="content">
+
+           <div class="modal-header">
+            <h2>iMee-Toga Oli Dental Clinic</h2>
+            <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
+             </div>         
+              
+       
         <!-- Personal Information -->
         <div class="section-title">Personal Information</div>
         <input name="done_appointment_id" id="done_appointment_id"">
@@ -141,13 +143,12 @@
                     <textarea id="remarks" style="width: 100%; height: 100%;"></textarea>
                 </div>
 
+            </div></div></div>
                 <!-- Action Buttons -->
                 <div class="button-container">
-                    <button class="action-btn">Cancel</button>
-                    <button class="action-btn">Mark as Done</button>
-                </div>
-
-            </div></div>
+                    <button class="modal-button warning">Cancel</button>
+                    <button class="modal-button second-btn">Mark as Done</button>
+                </div>            
         </div></div>
 </div></div>
 

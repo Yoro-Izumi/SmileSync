@@ -37,15 +37,17 @@ foreach ($procedures as $procedure) {
     $service_duration = $procedure['service_duration'];
     $service_price = $procedure['service_price'];
 
-    if($id === $selected_service_id){
-        echo '<div class="dropDownItem">
-        <input type="checkbox" class="checkBoxProcedure" value="' . $id . '" data-name="' . $service_name . '" name="procedureCheck[] checked onclick="disableCheckbox()"">'.$service_name.'</input>
-        </div>';
-    }else{
-        echo '<div class="dropDownItem">
-        <input type="checkbox" class="checkBoxProcedure" value="' . $id . '" data-name="' . $service_name . '" name="procedureCheck[]">'.$service_name.'</input>
-        </div>';    
-    }
+if ($id === $selected_service_id) {
+    echo '<div class="dropDownItem">
+        <input type="checkbox" class="checkBoxProcedure" value="' . $id . '" data-name="' . $service_name . '" name="procedureCheck[]" checked onclick="disableCheckbox()">
+        ' . $service_name . '
+    </div>';
+} else {
+    echo '<div class="dropDownItem">
+        <input type="checkbox" class="checkBoxProcedure" value="' . $id . '" data-name="' . $service_name . '" name="procedureCheck[]">
+        ' . $service_name . '
+    </div>';
+}
 }
 
 // Close connections

@@ -17,4 +17,140 @@ Array
             [service_id] => 1
         )
 
+    [1] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fsf
+            [service_price] => 234
+            [service_id] => 1
+        )
+
+    [2] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fljflfkdj
+            [service_price] => 2093480
+            [service_id] => 2
+        )
+
+    [3] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fsf
+            [service_price] => 234
+            [service_id] => 1
+        )
+
+    [4] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fljflfkdj
+            [service_price] => 2093480
+            [service_id] => 2
+        )
+
+    [5] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fsf
+            [service_price] => 234
+            [service_id] => 1
+        )
+
+    [6] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fljflfkdj
+            [service_price] => 2093480
+            [service_id] => 2
+        )
+
+    [7] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fsf
+            [service_price] => 234
+            [service_id] => 1
+        )
+
+    [8] => Array
+        (
+            [patient_info_id] => 1
+            [patient_name] => sldfdkj lsddfjk lsfjlkj lsdds
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 15
+            [patient_phone_number] => 2038402840820
+            [patient_sex] => 
+            [birth_date] => Sunday, July 5, 2009
+            [appointment_date_time] => Sunday, January 5, 2025 1:47 PM
+            [service_name] => fljflfkdj
+            [service_price] => 2093480
+            [service_id] => 2
+        )
+
 )

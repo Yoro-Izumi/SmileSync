@@ -329,6 +329,7 @@
                     maxlength="24"
                     class="input-field"
                     name="email"
+                    id="emailNewAppointment"
                     autocomplete="off"
                     required
                   />
@@ -385,227 +386,183 @@
 
 <!--<script src="js/appointment_form2.js"></script>-->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const newForm = document.getElementById('newMultiStepForm');
-    const newFormSections = document.querySelectorAll('.new-form-section');
-    const newNextButton = document.getElementById('new-next-btn');
-    const newPrevButton = document.getElementById('new-prev-btn');
-    const newSubmitButton = document.getElementById('newSubmitButton');
-    let newCurrentStep = 0;
+document.addEventListener('DOMContentLoaded', function () {
+  // Multi-Step Form Logic
+  const newForm = document.getElementById('newMultiStepForm');
+  const newFormSections = document.querySelectorAll('.new-form-section');
+  const newNextButton = document.getElementById('new-next-btn');
+  const newPrevButton = document.getElementById('new-prev-btn');
+  const newSubmitButton = document.getElementById('newSubmitButton');
+  let newCurrentStep = 0;
 
-    function newShowStep(newStep) {
-      // Hide all form sections
-      newFormSections.forEach((newSection, newIndex) => {
-        newSection.classList.remove('active');
-        if (newIndex === newStep) {
-          newSection.classList.add('active');
-        }
-      });
+  function newShowStep(newStep) {
+    newFormSections.forEach((newSection, newIndex) => {
+      newSection.classList.toggle('active', newIndex === newStep);
+    });
 
-      // Show/Hide buttons
-      if (newStep === 0) {
-        newPrevButton.style.display = 'none';
-      } else {
-        newPrevButton.style.display = 'inline-block';
-      }
+    newPrevButton.style.display = newStep === 0 ? 'none' : 'inline-block';
+    newNextButton.style.display = newStep === newFormSections.length - 1 ? 'none' : 'inline-block';
+    newSubmitButton.style.display = newStep === newFormSections.length - 1 ? 'inline-block' : 'none';
+  }
 
-      if (newStep === newFormSections.length - 1) {
-        newNextButton.style.display = 'none';
-        newSubmitButton.style.display = 'inline-block';
-      } else {
-        newNextButton.style.display = 'inline-block';
-        newSubmitButton.style.display = 'none';
-      }
+  function newHandleNext() {
+    if (newCurrentStep < newFormSections.length - 1) {
+      newCurrentStep++;
+      newShowStep(newCurrentStep);
     }
+  }
 
-    function newHandleNext() {
-      if (newCurrentStep < newFormSections.length - 1) {
-        newCurrentStep++;
-        newShowStep(newCurrentStep);
-      }
+  function newHandlePrev() {
+    if (newCurrentStep > 0) {
+      newCurrentStep--;
+      newShowStep(newCurrentStep);
     }
+  }
 
-    function newHandlePrev() {
-      if (newCurrentStep > 0) {
-        newCurrentStep--;
-        newShowStep(newCurrentStep);
-      }
-    }
+  newNextButton.addEventListener('click', newHandleNext);
+  newPrevButton.addEventListener('click', newHandlePrev);
+  newShowStep(newCurrentStep);
 
-    // Attach event listeners to buttons
-    newNextButton.addEventListener('click', newHandleNext);
-    newPrevButton.addEventListener('click', newHandlePrev);
+  // Calendar Logic
+  const newRecommendedDates = {
+    '2024-8-3': true,
+    '2024-8-14': true,
+  };
 
-    // Initialize the form by showing the first step
-    newShowStep(newCurrentStep);
+  const newUnavailableDates = {
+    '2024-8-7': true,
+    '2024-8-20': true,
+  };
 
-    // Calendar logic
-    const newRecommendedDates = {
-      '2024-8-3': true,
-      '2024-8-14': true,
-    };
+  const newCurrentDate = new Date();
+  let newCurrentMonth = newCurrentDate.getMonth();
+  let newCurrentYear = newCurrentDate.getFullYear();
 
-    const newUnavailableDates = {
-      '2024-8-7': true,
-      '2024-8-20': true,
-    };
-
-    const newCurrentDate = new Date();
-    let newCurrentMonth = newCurrentDate.getMonth();
-    let newCurrentYear = newCurrentDate.getFullYear();
-
-    const newMonthSelect = document.getElementById('new-month');
-    const newCalendarTableBody = document.querySelector('.new-calendar-table tbody');
-    const newCalDayInput = document.getElementById('new-cal-day');
-    let newIsLoading = false;
+  const newMonthSelect = document.getElementById('new-month');
+  const newCalendarTableBody = document.querySelector('.new-calendar-table tbody');
+  const newCalDayInput = document.getElementById('new-cal-day');
+  let newIsLoading = false;
 
   function newGenerateCalendar(newMonth, newYear) {
-  // Clear the calendar table
-  newCalendarTableBody.innerHTML = '';
+    newCalendarTableBody.innerHTML = '';
 
-  // Days in the selected month
-  const newDaysInMonth = new Date(newYear, newMonth + 1, 0).getDate();
+    const newDaysInMonth = new Date(newYear, newMonth + 1, 0).getDate();
+    const newFirstDayOfMonth = new Date(newYear, newMonth, 1).getDay();
+    let newDayCounter = 1;
+    let newWeek = [];
 
-  // First day of the month (0-6, Sunday-Saturday)
-  const newFirstDayOfMonth = new Date(newYear, newMonth, 1).getDay();
+    for (let i = 0; i < newFirstDayOfMonth; i++) {
+      newWeek.push('');
+    }
 
-  let newDayCounter = 1;
-  let newWeek = [];
+    while (newDayCounter <= newDaysInMonth) {
+      const newDateKey = `${newYear}-${newMonth + 1}-${newDayCounter}`;
 
-  // Fill empty cells for the first week
-  for (let i = 0; i < newFirstDayOfMonth; i++) {
-    newWeek.push('');
-  }
+      const newCellData = {
+        day: newDayCounter,
+        class:
+          newRecommendedDates[newDateKey] ? 'recommended' :
+          newUnavailableDates[newDateKey] ? 'unavailable' : '',
+      };
 
-  // Fill the calendar with days
-  while (newDayCounter <= newDaysInMonth) {
-    const newDateKey = `${newYear}-${newMonth + 1}-${newDayCounter}`;
+      newWeek.push(newCellData);
 
-    const newCellData = {
-      day: newDayCounter,
-      class:
-        newRecommendedDates[newDateKey] ? 'recommended' :
-        newUnavailableDates[newDateKey] ? 'unavailable' :
-        '',
-    };
-
-    newWeek.push(newCellData);
-
-    if (newWeek.length === 7 || newDayCounter === newDaysInMonth) {
-      // Fill the remaining cells for the last week
-      while (newWeek.length < 7) {
-        newWeek.push('');
-      }
-
-      // Add the week to the table
-      const newRow = document.createElement('tr');
-      newWeek.forEach((newCell) => {
-        const newCellElement = document.createElement('td');
-        if (newCell) {
-          newCellElement.textContent = newCell.day;
-          if (newCell.class) {
-            newCellElement.classList.add(newCell.class);
-          }
+      if (newWeek.length === 7 || newDayCounter === newDaysInMonth) {
+        while (newWeek.length < 7) {
+          newWeek.push('');
         }
-        newRow.appendChild(newCellElement);
-      });
 
-      newCalendarTableBody.appendChild(newRow);
-      newWeek = [];
+        const newRow = document.createElement('tr');
+        newWeek.forEach((newCell) => {
+          const newCellElement = document.createElement('td');
+          if (newCell) {
+            newCellElement.textContent = newCell.day;
+            if (newCell.class) {
+              newCellElement.classList.add(newCell.class);
+            }
+          }
+          newRow.appendChild(newCellElement);
+        });
+
+        newCalendarTableBody.appendChild(newRow);
+        newWeek = [];
+      }
+
+      newDayCounter++;
     }
 
-    newDayCounter++;
+    document.querySelectorAll('.new-calendar-table td').forEach((newCell) => {
+      newCell.style.pointerEvents = newIsLoading ? 'none' : 'auto';
+
+      newCell.addEventListener('click', () => {
+        if (!newIsLoading && !newCell.classList.contains('unavailable') && newCell.textContent) {
+          document.querySelectorAll('.new-calendar-table td').forEach((newTd) =>
+            newTd.classList.remove('selected-date')
+          );
+          newCell.classList.add('selected-date');
+          const newSelectedDate = `${newYear}-${(newMonth + 1).toString().padStart(2, '0')}-${newCell.textContent.padStart(2, '0')}`;
+          newCalDayInput.value = newSelectedDate;
+
+          $.ajax({
+            url: 'save_session_date.php',
+            type: 'POST',
+            data: { selected_date: newSelectedDate },
+            success: function (newResponse) {
+              console.log('Session updated:', newResponse);
+
+              newIsLoading = true;
+              fetch('pick_schedule_algo/get_appointment.php')
+                .then(newResponse => {
+                  if (!newResponse.ok) {
+                    throw new Error('Network response was not ok: ' + newResponse.statusText);
+                  }
+                  return newResponse.json();
+                })
+                .then(newData => {
+                  if (newData.status !== 'success') {
+                    throw new Error('Failed to retrieve schedule data: ' + (newData.message || 'Unknown error'));
+                  }
+                  newUpdateRecommendationsAndDropdown(newData);
+                })
+                .catch(newError => {
+                  console.error('Error fetching schedule:', newError);
+                })
+                .finally(() => {
+                  newIsLoading = false;
+                  document.querySelectorAll('.new-calendar-table td').forEach((newCell) => {
+                    newCell.style.pointerEvents = 'auto';
+                  });
+                });
+            },
+            error: function (newXhr, newStatus, newError) {
+              console.error('Error setting session:', newError);
+            },
+          });
+        }
+      });
+    });
   }
 
-  // Attach click event for date selection after table is generated
-  document.querySelectorAll('.new-calendar-table td').forEach((newCell) => {
-    // Disable clicking while loading
-    if (newIsLoading) {
-      newCell.style.pointerEvents = 'none'; // Disable clicks
-    } else {
-      newCell.style.pointerEvents = 'auto'; // Enable clicks
-    }
-
-    newCell.addEventListener('click', () => {
-      if (!newIsLoading && !newCell.classList.contains('unavailable') && newCell.textContent) {
-        document.querySelectorAll('.new-calendar-table td').forEach((newTd) =>
-          newTd.classList.remove('selected-date')
-        );
-        newCell.classList.add('selected-date');
-        // Update the input field with the selected date
-        const newSelectedDate = `${newYear}-${(newMonth + 1).toString().padStart(2, '0')}-${newCell.textContent.padStart(2, '0')}`;
-        newCalDayInput.value = newSelectedDate;
-
-        // Set the date as a PHP session value via AJAX
-        $.ajax({
-          url: 'save_session_date.php', // PHP file to handle the session
-          type: 'POST',
-          data: { newSelectedDate: newSelectedDate },
-          success: function (newResponse) {
-            console.log('Session updated:', newResponse);
-
-            // Fetch recommended schedule and available times after selecting the date
-            newIsLoading = true; // Set loading state to true
-            fetch('pick_schedule_algo/get_appointment.php')
-              .then(newResponse => {
-                if (!newResponse.ok) {
-                  throw new Error('Network response was not ok: ' + newResponse.statusText);
-                }
-                return newResponse.json();
-              })
-              .then(newData => {
-                if (newData.status !== 'success') {
-                  throw new Error('Failed to retrieve schedule data: ' + (newData.message || 'Unknown error'));
-                }
-
-                // Update the UI with the fetched data
-                newUpdateRecommendationsAndDropdown(newData);
-              })
-              .catch(newError => {
-                console.error('Error fetching schedule:', newError);
-              })
-              .finally(() => {
-                newIsLoading = false; // Reset loading state after data is loaded
-                // Re-enable date click events
-                document.querySelectorAll('.new-calendar-table td').forEach((newCell) => {
-                  newCell.style.pointerEvents = 'auto'; // Re-enable clicks
-                });
-              });
-          },
-          error: function (newXhr, newStatus, newError) {
-            console.error('Error setting session:', newError);
-          },
-        });
-      }
-    });
-  });
-}
-
-
-
+  if (newMonthSelect) {
+    newMonthSelect.value = newCurrentMonth + 1;
     newMonthSelect.addEventListener('change', function () {
       newCurrentMonth = parseInt(this.value, 10) - 1;
       newGenerateCalendar(newCurrentMonth, newCurrentYear);
     });
+  }
 
-    newGenerateCalendar(newCurrentMonth, newCurrentYear);
-  });
+  newGenerateCalendar(newCurrentMonth, newCurrentYear);
 
-
-  // Function to update the recommended schedule and available times
   function newUpdateRecommendationsAndDropdown(response) {
-    // Check for success status
     if (response.status !== "success") {
       console.error("Error: " + (response.message || "Unknown error"));
       return;
     }
 
-    // Parse the recommended schedule and available times
     const newRecommendations = response.recommended_schedule;
     const newAvailableTimes = response.available_times;
     const newPredictedDurations = response.predicted_durations;
 
-    // Update the recommendation container
     const newRecommendationContainer = document.querySelector('.new-recommendation-container');
     let newRecommendationHTML = `<h3>Recommended Dates & Times (Predicted Duration: ${newPredictedDurations} minutes)</h3>`;
     newRecommendations.forEach((dateTime) => {
@@ -614,23 +571,20 @@
     });
     newRecommendationContainer.innerHTML = newRecommendationHTML;
 
-    // Update the dropdown options for available times
     const newTimeDropdown = document.getElementById('new-time');
-    newTimeDropdown.innerHTML = ''; // Clear existing options
+    newTimeDropdown.innerHTML = '';
     newAvailableTimes.forEach((dateTime) => {
       const [, time] = dateTime.split(' ');
       newTimeDropdown.innerHTML += `<option value="${time}">${formatTime(time)}</option>`;
     });
   }
 
-  // Utility function to format the date
   function formatDate(dateStr) {
     const newOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     const newDate = new Date(dateStr);
     return newDate.toLocaleDateString(undefined, newOptions);
   }
 
-  // Utility function to format the time
   function formatTime(timeStr) {
     const [hour, minute] = timeStr.split(':').map(Number);
     const newAmPm = hour >= 12 ? 'PM' : 'AM';
@@ -639,29 +593,23 @@
   }
 
   $(document).ready(function () {
-    // Trigger form submission when the Submit button is clicked
     $("#newSubmitButton").on("click", function (e) {
-      e.preventDefault(); // Prevent the default button behavior
-
-      const newForm = $("#newMultiStepForm"); // Target the form
-      const newFormData = newForm.serialize(); // Serialize all form data
+      e.preventDefault();
+      const newFormData = $("#newMultiStepForm").serialize();
 
       $.ajax({
-        url: "appointment_crud/appointment_add_new.php", // PHP file to handle insertion
+        url: "appointment_crud/appointment_add_new.php",
         type: "POST",
         data: newFormData,
         success: function (response) {
-          // Handle success response
-          //alert("Appointment successfully added: " + response);
-          newForm[0].reset(); // Reset the form
+          $("#newMultiStepForm")[0].reset();
         },
-        error: function (xhr, status, error) {
-          // Handle error response
-          //console.error("Error: " + error);
-          //alert("An error occurred while adding the appointment.");
+        error: function () {
+          console.error("Error submitting appointment.");
         },
       });
     });
   });
+});
 
 </script>

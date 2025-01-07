@@ -37,12 +37,14 @@ foreach ($products as $product) {
     $consumed = getConsumedProducts($connect_appointment, $appointmentID, $id);
     $item_quantity = $product['item_quantity'] - $consumed;
 
-    echo '<div class="dropDownItem">
+    echo '
+    <div class="dropDownItem">
         <input type="checkbox" class="checkBoxItems" value="' . $id . '" data-name="' . $item_name . '" name="itemCheck[]">
         ' . $item_name . '
-        <input type="number" value="' . $consumed . '" min="1" max="'.$item_quantity.'" class="number-input" data-id="' . $id . '" aria-label="Quantity for ' . $item_name . '" name="itemQuantity[]">
+        <input value="' . $consumed . '" min="1" max="' . $item_quantity . '" class="number-input" data-id="' . $id . '" aria-label="Quantity for ' . $item_name . '" name="itemQuantity_' . $id . '">
     </div>';
 }
+
 
 // Close connections
 $connect_appointment->close();
@@ -76,6 +78,36 @@ function getConsumedProducts($connect_appointment, $appointmentID, $itemID) {
 
     $stmt->close(); // Close the statement
     return $quantity;
+}
+
+
+function getIDConsumedProduct($connect_appointment, $appointmentID, $itemID) {
+    $query = "
+                SELECT sii.item_id, SUM(sii.number_of_used_items) AS total_used_items
+                FROM smilesync_invoice_items sii
+                INNER JOIN smilesync_invoice_services sis ON sii.invoice_services_id = sis.invoice_services_id
+                WHERE sis.appointment_id = ? AND sii.item_id = ?
+                GROUP BY sii.item_id";
+
+
+    $stmt = $connect_appointment->prepare($query);
+    if (!$stmt) {
+        return 0; // Return 0 if statement preparation fails
+    }
+
+    $stmt->bind_param("ii", $appointmentID, $itemID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $id = 0;
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $id = $row['item_id'];
+        }
+    }
+
+    $stmt->close(); // Close the statement
+    return $id;
 }
 ?>
 
