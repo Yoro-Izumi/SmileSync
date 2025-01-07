@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const existingAccountModal = document.getElementById('existingAccountModal');
     const newAccountModal = document.getElementById('newAccountModal');
-
+    const proceedModal = document.getElementById('proceedModal');
     const deleteNewProgressModal = document.getElementById('deleteNewProgressModal');
     const deleteExistingProgressModal = document.getElementById('deleteExistingProgressModal');
     const appointmentDoneModal = document.getElementById('appointmentDoneModal');
@@ -19,10 +19,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const deleteExistingProgressBtn = document.getElementById('deleteExistingProgressBtn');
     const cancelExistingDeleteBtn = document.getElementById('cancelExistingDeleteBtn');
 
-
     const submitExistingBtn = document.getElementById('submitExistingBtn');
     const submitNewBtn = document.getElementById('submitNewBtn');
 
+    const getAppointmentBtn = document.getElementById('getAppointmentBtn');
+    const cancelProceedBtn = document.getElementById('cancelProceedBtn');
+
+    // For Proceed to registration modal
+    getAppointmentBtn.addEventListener('click', function () {
+        proceedModal.classList.add('show');
+    });
+
+    cancelProceedBtn.addEventListener('click', function () {
+        proceedModal.classList.remove('show');
+    });
 
     // Close the appointmentDoneModal
     closeDone.addEventListener('click', function () {
@@ -37,9 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Close the newAccountModal
     cancelSubmitNewBtn.addEventListener('click', function () {
         newAccountModal.classList.remove('show');
-
         deleteNewProgressModal.classList.add('show');
-
     });
 
     // Show the existingAccountModal
@@ -50,15 +58,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Close the existingAccountModal
     cancelSubmitExistingBtn.addEventListener('click', function () {
         existingAccountModal.classList.remove('show');
-
         deleteExistingProgressModal.classList.add('show');
-
     });
 
     // Show the appointmentSuccessModal when existingAccountModal is submitted
     submitExistingBtn.addEventListener('click', function () {
         existingAccountModal.classList.remove('show');
-
     });
 
     // Show the appointmentSuccessModal when newAccountModal is submitted
@@ -68,14 +73,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Show the deleteProgressModal for existing account
     deleteExistingProgressBtn.addEventListener('click', function () {
-       existingAccountModal.classList.remove('show');
         deleteExistingProgressModal.classList.add('show');
+        existingAccountModal.classList.remove('show');
     });
 
     // Show the deleteProgressModal for new account
     deleteNewProgressBtn.addEventListener('click', function () {
-        newAccountModal.classList.remove('show');
         deleteNewProgressModal.classList.add('show');
+        newAccountModal.classList.remove('show');
     });
 
     // Close the deleteProgressModal for new account
@@ -90,13 +95,12 @@ document.addEventListener('DOMContentLoaded', function () {
         existingAccountModal.classList.add('show');
     });
 
-    // Close all progress modals
-    deleteNewProgressBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.remove('show');
-    });
+    // Removed the duplicate event listeners for closing the deleteProgress modals
+    // deleteNewProgressBtn.addEventListener('click', function () {
+    //     deleteNewProgressModal.classList.remove('show');
+    // });
 
-    deleteExistingProgressBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.remove('show');
-
-    });
+    // deleteExistingProgressBtn.addEventListener('click', function () {
+    //     deleteExistingProgressModal.classList.remove('show');
+    // });
 });

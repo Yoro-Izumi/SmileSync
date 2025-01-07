@@ -66,8 +66,7 @@
 </li>
 
       <li class="profile">
-        < class="profile-details">
-          <img src="img/login.png"  alt="profile">
+        <div class="profile-details">
           <div class="name_job">
             <div class="name">kazumiyoro@emailcom</div>
             <div class="job">Admin</div>

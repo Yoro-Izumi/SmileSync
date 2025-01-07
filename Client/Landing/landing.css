@@ -21,12 +21,13 @@ body {
 }
 
 .container {
+    /* width: 100%; */
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 50px;
     background-color: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
 }
 
 .nav {
@@ -35,6 +36,7 @@ body {
 }
 
 .logo {
+    margin: 0 1rem;
     height: 30px;
     width: 30px;
     display: flex;
@@ -73,6 +75,7 @@ body {
 }
 
 .nav a i {
+    display: none;
     margin-right: 8px; /* Space between icon and text */
     transition: transform 0.3s ease; /* Smooth transition for icon rotation */
 }
@@ -84,7 +87,7 @@ body {
 .hero {
     display: flex;
     align-items: center;
-    padding: 50px;
+    padding: 4rem;
     background-color: white;
 }
 
@@ -127,7 +130,8 @@ body {
 }
 
 .illustration img {
-    max-width: 100%;
+    margin: 10px auto;
+    max-width: 60%;
     height: auto;
 }
 
@@ -283,7 +287,7 @@ footer p {
 
 .location-container {
     position: relative;
-    /* width: 1000px; */
+    width: 1000px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -372,12 +376,19 @@ footer p {
 a{
     text-decoration: none;
     color: white;
-    font-weight: 600px;
+    font-weight: 600;
 }
 
 @media (max-width: 768px) {
+    .illustration img{
+        display: none;
+    }
+
+    .container{
+        padding: 20px 10px;
+    }
     .imgBx {
-        margin-bottom: 50%;
+        margin-bottom: 100%;
         position: relative;
         border-radius: 5px;
         width: 800px;

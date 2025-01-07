@@ -34,21 +34,18 @@
   <h2>Appointment Details</h2>
   <div class="appointment-details">
       <div class="toggle-tabs">
-          <div class="tab active" data-content="invoices"
+          <div class="tab active" data-content="invoices">
               <p>Invoices</p>
           </div>
-          <p>|</p>
           <div class="tab" data-content="canceled-appointments">
               <p>Canceled Appointments</p>
           </div>
-          <p>|</p>
           <div class="tab" data-content="past-appointments">
               <p>Past Appointments</p>
           </div>
-          <p>|</p>
           <div class="tab" data-content="upcoming-appointments">
               <p>Upcoming Appointments</p>
-          </div>
+              </div>
       </div>
       <div class="content-area">
           <div class="content active" id="invoices"><?php include "invoice-table.php"; ?></div>

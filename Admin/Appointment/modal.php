@@ -10,14 +10,11 @@
     <div class="done-modal">
    <div class="modal-done">
     <div class="modal-header"> 
-        <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
+            </div>
         <div class="content">
+        <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
                     <h2>iMee-Toga Oli Dental Clinic</h2>
                     <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
-                </div>
-               
-            </div>
-
         <!-- Personal Information -->
         <div class="section-title">Personal Information</div>
         <div class="personal-info2">
@@ -142,14 +139,15 @@
                     <textarea id="remarks" style="width: 100%; height: 100%;"></textarea>
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="button-container">
-                    <button class="action-btn">Cancel</button>
-                    <button class="action-btn">Mark as Done</button>
-                </div>
 
             </div></div>
-        </div></div>
+        </div>
+                       <!-- Action Buttons -->
+                <div class="button-container">
+                    <button class="modal-button warning">Cancel</button>
+                    <button class="modal-button secondary-button normal">Mark as Done</button>
+                </div>
+    </div></div>
 </div></div>
 
 
