@@ -1,115 +1,140 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const dashboard_daysContainer = document.querySelector(".dashboard_days");
-    const dashboard_appointmentsTable = document.getElementById("dashboard_appointments-table");
-    const dashboard_monthNameElement = document.querySelector(".dashboard_month-name");
-    const dashboard_prevMonthButton = document.querySelector(".dashboard_prev-month");
-    const dashboard_nextMonthButton = document.querySelector(".dashboard_next-month");
+document.addEventListener('DOMContentLoaded', function () {
+    const $dashboardDaysContainer = $(".dashboard_days");
+    const $dashboardAppointmentsTable = $("#dashboard_appointments-table");
+    const $dashboardMonthNameElement = $(".dashboard_month-name");
+    const $dashboardPrevMonthButton = $(".dashboard_prev-month");
+    const $dashboardNextMonthButton = $(".dashboard_next-month");
 
-    let dashboard_currentMonth = 8; // September (0-based index)
-    let dashboard_currentYear = 2021;
+    const today = new Date();
+    let dashboardCurrentMonth = today.getMonth(); // Current month (0-11)
+    let dashboardCurrentYear = today.getFullYear(); // Current year
 
-    const dashboard_appointments = {
-        '2021-09-19': [
-            { name: 'Iruma Izuku', time: '08:30 AM - 02:00 PM' },
-            { name: 'Jonas Oli', time: '03:00 PM - 05:00 PM' }
-        ],
-        '2021-09-20': [
-            { name: 'John Doe', time: '09:00 AM - 11:00 AM' }
-        ]
-        // Add more appointments as needed
-    };
-
-    function updateDashboardCalendar() {
-        dashboard_daysContainer.innerHTML = '';
-        const dashboard_daysInMonth = new Date(dashboard_currentYear, dashboard_currentMonth + 1, 0).getDate();
-        const dashboard_firstDayIndex = new Date(dashboard_currentYear, dashboard_currentMonth, 1).getDay();
-        const dashboard_today = new Date();
-
-        dashboard_monthNameElement.textContent = new Date(dashboard_currentYear, dashboard_currentMonth).toLocaleString('default', { month: 'long', year: 'numeric' });
-
-        // Create blank days for the previous month
-        for (let i = 0; i < dashboard_firstDayIndex; i++) {
-            const dashboard_blankDay = document.createElement("span");
-            dashboard_daysContainer.appendChild(dashboard_blankDay);
-        }
-
-        // Populate days in the calendar
-        for (let dashboard_day = 1; dashboard_day <= dashboard_daysInMonth; dashboard_day++) {
-            const dashboard_dayElement = document.createElement("span");
-            dashboard_dayElement.textContent = dashboard_day;
-            const dashboard_fullDate = `${dashboard_currentYear}-${String(dashboard_currentMonth + 1).padStart(2, '0')}-${String(dashboard_day).padStart(2, '0')}`;
-
-            // Highlight the current day
-            if (dashboard_today.getFullYear() === dashboard_currentYear &&
-                dashboard_today.getMonth() === dashboard_currentMonth &&
-                dashboard_today.getDate() === dashboard_day) {
-                dashboard_dayElement.classList.add("dashboard_current-day");
-            }
-
-            dashboard_dayElement.onclick = () => {
-                document.querySelectorAll(".dashboard_days span").forEach(el => el.classList.remove("dashboard_selected"));
-                dashboard_dayElement.classList.add("dashboard_selected");
-                displayDashboardAppointments(dashboard_fullDate);
-            };
-
-            if (dashboard_fullDate === '2021-09-19') dashboard_dayElement.classList.add("dashboard_selected"); // Mark the 19th by default
-            dashboard_daysContainer.appendChild(dashboard_dayElement);
-        }
-    }
-
-    function displayDashboardAppointments(dashboard_date) {
-        dashboard_appointmentsTable.innerHTML = '';
-        const dashboard_dayAppointments = dashboard_appointments[dashboard_date] || [];
-        dashboard_dayAppointments.forEach(dashboard_appointment => {
-            const dashboard_row = document.createElement("tr");
-
-
-            // Add a clickable link for each appointment
-            dashboard_row.innerHTML = `
-                <td>${dashboard_appointment.name}</td>
-                <td>${dashboard_appointment.time}</td>
-                <td class="dashboard_arrow">
-                    <a id="detailUpcoming">
-                        &#8250;
-                    </a>
-                </td>
-            `;
-            dashboard_appointmentsTable.appendChild(dashboard_row);
+    // Fetch appointments for a specific month, year, and optional day
+    function fetchAppointments(month, year, day = null) {
+        const url = `get_appointments/get_appointments.php?month=${month + 1}&year=${year}${day ? `&day=${day}` : ""}`;
+        $.ajax({
+            url: url,
+            method: "GET",
+            dataType: "json",
+            success: function (appointments) {
+                console.log(`Appointments fetched for ${year}-${String(month + 1).padStart(2, '0')}-${day || ''}`, appointments);
+                displayDashboardAppointments(appointments);
+            },
+            error: function (xhr, status, error) {
+                console.error("Failed to fetch appointments:", error);
+            },
         });
     }
 
-    dashboard_prevMonthButton.onclick = () => {
-        dashboard_currentMonth--;
-        if (dashboard_currentMonth < 0) {
-            dashboard_currentMonth = 11;
-            dashboard_currentYear--;
+    // Update the calendar for the current month and year
+    function updateDashboardCalendar() {
+        $dashboardDaysContainer.empty();
+        const daysInMonth = new Date(dashboardCurrentYear, dashboardCurrentMonth + 1, 0).getDate();
+        const firstDayIndex = new Date(dashboardCurrentYear, dashboardCurrentMonth, 1).getDay();
+
+        // Update month and year display
+        $dashboardMonthNameElement.text(
+            new Date(dashboardCurrentYear, dashboardCurrentMonth).toLocaleString("default", { month: "long", year: "numeric" })
+        );
+
+        // Add blank spans for alignment
+        for (let i = 0; i < firstDayIndex; i++) {
+            $dashboardDaysContainer.append("<span></span>");
+        }
+
+        // Populate the days
+        for (let day = 1; day <= daysInMonth; day++) {
+            const $dayElement = $("<span>").text(day);
+            const isToday =
+                today.getFullYear() === dashboardCurrentYear &&
+                today.getMonth() === dashboardCurrentMonth &&
+                today.getDate() === day;
+
+            if (isToday) $dayElement.addClass("dashboard_current-day");
+
+            // Add click event for fetching appointments
+            $dayElement.on("click", function () {
+                $(".dashboard_days span").removeClass("dashboard_selected");
+                $dayElement.addClass("dashboard_selected");
+                fetchAppointments(dashboardCurrentMonth, dashboardCurrentYear, day);
+            });
+
+            $dashboardDaysContainer.append($dayElement);
+        }
+    }
+
+    // Display appointments in the table
+    function displayDashboardAppointments(appointments) {
+        $dashboardAppointmentsTable.empty();
+
+        if (appointments.length === 0) {
+            $dashboardAppointmentsTable.append("<tr><td colspan='3'>No appointments found</td></tr>");
+            return;
+        }
+
+        appointments.forEach((appointment) => {
+            const $row = $("<tr>");
+            $row.append($("<td>").text(appointment.name));
+            $row.append($("<td>").text(appointment.time));
+            $row.append(
+                $("<td>")
+                    .addClass("dashboard_arrow")
+                    .append(
+                        $("<a>")
+                            .addClass("appointment-detail")
+                            .attr("href", "#")
+                            .attr("data-appointment-id", appointment.id)
+                            .html("&#8250;")
+                            .on("click", function (event) {
+                                event.preventDefault();
+                                selectAppointment($(this).data("appointment-id"));
+                            })
+                    )
+            );
+            $dashboardAppointmentsTable.append($row);
+        });
+    }
+
+    // Select a specific appointment
+    function selectAppointment(appointmentId) {
+        $.ajax({
+            url: "get_appointments/get_appointments.php",
+            method: "POST",
+            data: { appointment_id: appointmentId },
+            dataType: "json",
+            success: function (response) {
+                if (response.success) {
+                    window.location.href = "http://localhost/SmileSync/Admin/Appointment/appointment-details.php?tab=upcoming-appointments";
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Failed to select appointment:", error);
+            },
+        });
+    }
+
+    // Event listeners for navigation buttons
+    $dashboardPrevMonthButton.on("click", function () {
+        dashboardCurrentMonth--;
+        if (dashboardCurrentMonth < 0) {
+            dashboardCurrentMonth = 11;
+            dashboardCurrentYear--;
         }
         updateDashboardCalendar();
-    };
-
-    dashboard_nextMonthButton.onclick = () => {
-        dashboard_currentMonth++;
-        if (dashboard_currentMonth > 11) {
-            dashboard_currentMonth = 0;
-            dashboard_currentYear++;
-        }
-        updateDashboardCalendar();
-    };
-
-    // Initialize calendar
-    updateDashboardCalendar();
-    displayDashboardAppointments('2021-09-19'); // Default to 19th of September
-
-    //New: Add event listener to the "IrumaKun" button for redirecting to the upcoming appointments tab
-    document.getElementById("detailUpcoming").addEventListener("click", function() {
-       window.location.href = "http://localhost/SmileSync/Admin/Appointment/appointment-details.php?tab=upcoming-appointments";
+        fetchAppointments(dashboardCurrentMonth, dashboardCurrentYear);
     });
 
-    // Add click event listener for the Iruma Izuku link
-   // document.addEventListener("click", function(event) {
-     //   if (event.target && event.target.id === 'irumaIzukuLink') {
-      //      // Redirect to the appointment details page for Iruma Izuku
-       //     window.location.href = "http://localhost/SmileSync/Admin/Appointment/appointment-details.php?tab=upcoming-appointments"; 
-       // }
-    //});
+    $dashboardNextMonthButton.on("click", function () {
+        dashboardCurrentMonth++;
+        if (dashboardCurrentMonth > 11) {
+            dashboardCurrentMonth = 0;
+            dashboardCurrentYear++;
+        }
+        updateDashboardCalendar();
+        fetchAppointments(dashboardCurrentMonth, dashboardCurrentYear);
+    });
+
+    // Initialize the dashboard
+    updateDashboardCalendar();
+    fetchAppointments(dashboardCurrentMonth, dashboardCurrentYear);
 });

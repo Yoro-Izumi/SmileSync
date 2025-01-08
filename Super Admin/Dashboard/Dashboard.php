@@ -33,6 +33,8 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
     <link rel="stylesheet" href="css/smartChart.css">
   <link rel="stylesheet" href="css/table.css">
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
 
@@ -102,7 +104,7 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
 
     <script src="js/app.js"></script>
     <script src="js/notif.js"></script>
-    <script src="js/smartChart.js"></script>
+    <script src="js/smartChart2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
     function redirectToUpcoming() {

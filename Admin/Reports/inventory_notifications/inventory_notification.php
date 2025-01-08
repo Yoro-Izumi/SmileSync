@@ -51,7 +51,7 @@ while ($row = mysqli_fetch_assoc($queryData)) {
 }
 
 // Step 3: Save data to a CSV file for Python
-$python_filepath = "C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe";
+$python_filepath = "python3";//"C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe";
 $csv_file = 'stock_usage.csv';
 $fp = fopen($csv_file, 'w');
 if (!$fp) {

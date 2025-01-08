@@ -1,5 +1,3 @@
-const { default: Errors } = require("undici-types/errors");
-
 document.addEventListener('DOMContentLoaded', function () {
     // Helper functions to show and hide modals
     function showModal(modalId) {
