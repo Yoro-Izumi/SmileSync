@@ -14,7 +14,7 @@
        <h3>Product Overview</h3>
       <div class="modal-actions">
        
-        <button class="table-btn" id="editServicesTable"><i class="fas fa-edit"></i>Edit</button>
+        <button class="table-btn" class="editServicesTable" id="editServicesTable"><i class="fas fa-edit"></i>Edit</button>
         <div class="dropdown">
           <button class="table-btn"><i class="fas fa-download"></i> Download</button>
           <div class="dropdown-content">
@@ -28,18 +28,26 @@
     <div class="modal-body">
       <h3>Primary Details</h3>
       <table class="modal-table">
+      <tr>
+          <td><strong>Service ID</strong></td>
+          <td>456567</td>
+        </tr>
         <tr>
           <td><strong>Service Name</strong></td>
           <td>Maggi</td>
         </tr>
         <tr>
-          <td><strong>Product ID</strong></td>
-          <td>456567</td>
+          <td><strong>Service Description</strong></td>
+          <td>Maggi</td>
+        </tr>       
+        <tr>
+          <td><strong>Service Price</strong></td>
+          <td>₱ 50.00</td>
         </tr>
         <tr>
-          <td><strong>Product Category</strong></td>
-          <td>Instant food</td>
-        </tr>
+          <td><strong>Service Duration</strong></td>
+          <td>30 minutes</td>
+        </tr>  
       </table>
     </div>
         <button id="okView" class="modal-button normal">OK</button>
@@ -55,21 +63,21 @@
         <div class="message-container">
             <div class="modal-description">
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="serviceName" required />
+                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" id="serviceName" name="serviceName" required />
                 <label>Name<indicator>*</indicator></label>
                 </div>
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="serviceDescription" required />
+                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" id="serviceDescription" name="serviceDescription" required />
                 <label>Description<indicator>*</indicator></label>
                 </div>
             </div>
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="servicePrice" required />
+                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" id="servicePrice" name="servicePrice" required />
                 <label>Price<indicator>*</indicator></label>
                 </div>
                 <div class="input-wrap">
-                    <input class="modal-input" type="number" maxlength="4" autocomplete="off" name="serviceTime" required />
-                <label>Duration<indicator>*</indicator></label>
+                    <input class="modal-input" type="text" maxlength="4" autocomplete="off" id="serviceTime" name="serviceTime" required />
+                <label>Duration (in minutes)<indicator>*</indicator></label>
                 </div>
         </div>
         <button id="addServiceBtn" class="modal-button success">Add</button>
@@ -104,20 +112,20 @@
             <div class="modal-description">
             <div class="input-wrap">
                 <input type="hidden" id="editServiceId" name="editServiceId" value="1"/>
-                <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="editServiceName" required />
+                <input class="modal-input" type="text" maxlength="24" autocomplete="off" id="editServiceName" name="editServiceName" required />
                 <label>Name<indicator>*</indicator></label>
                 </div>
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="editServiceDescription" required />
+                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" id="editServiceDescription" name="editServiceDescription" required />
                 <label>Description<indicator>*</indicator></label>
                 </div>
             </div>
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="editServicePrice" required />
+                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" id="editServicePrice" name="editServicePrice" required />
                 <label>Price<indicator>*</indicator></label>
                 </div>
                 <div class="input-wrap">
-                    <input class="modal-input" maxlength="4" autocomplete="off" name="editServiceTime" required />
+                    <input class="modal-input" maxlength="4" autocomplete="off" id="editServiceTime" name="editServiceTime" required />
                 <label>Duration<indicator>*</indicator></label>
                 </div>
         </div>
@@ -155,7 +163,24 @@
         <div class="modal-title warning-title">Service Removal</div>
         <div class="message-container">
             <div class="modal-description">
-                You are trying to remove (1) item. The item will no longer be accessed by the admin. 
+                You are trying to remove multiple services. The services will no longer be accessed by the admin and the user.  
+            </div>
+        </div>
+        <button class="modal-button normal" id="removeServicesBtn">Remove</button>
+        <button class="modal-button secondary-button warning" id="cancelRemoveServicesBtn">Cancel</button>
+    </div>
+</div>
+
+<!-- Remove Service Warning Modal -->
+<div class="modal" id="removeServiceModal">
+    <div class="modal-content">
+        <div class="image-container">
+            <img class="image" src="img/archive.png" alt="security">
+        </div>
+        <div class="modal-title warning-title">Service Removal</div>
+        <div class="message-container">
+            <div class="modal-description">
+                You are trying to remove (1) service. The item will no longer be accessed by the admin and users.
             </div>
         </div>
         <button class="modal-button normal" id="removeServiceBtn">Remove</button>
@@ -168,6 +193,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/modal.js"></script>
+<script src="js/validations.js"></script>
 <script src="js/alert.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

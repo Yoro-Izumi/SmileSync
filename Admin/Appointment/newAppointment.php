@@ -1,4 +1,14 @@
+<style>
+    .new-calendar-table td.selected-date {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 10px;
+    transform: scale(1.1);
+}
 
+
+</style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
 

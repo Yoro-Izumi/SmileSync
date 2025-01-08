@@ -13,6 +13,7 @@ $resultsServiceListing = mysqli_stmt_get_result($prepareServiceListing);
 if ($resultsServiceListing) {
     while ($service = mysqli_fetch_assoc($resultsServiceListing)) {
         // Fetch necessary data
+        $serviceName = $service['service_name'] ?? "Unknown";
         $serviceDescription = $service['service_description'] ?? "No Description";
         $serviceID = $service['service_id'];
         $servicePrice = $service['service_price'] ?? "0.00";
@@ -21,7 +22,7 @@ if ($resultsServiceListing) {
 
         <tr>
             <td><input type="checkbox" value="<?php echo $serviceID; ?>"></td>
-            <td data-label="Description"><?php echo $serviceDescription; ?></td>
+            <td data-label="Description"><?php echo $serviceName; ?></td>
             <td data-label="ID"><?php echo $serviceID; ?></td>
             <td data-label="Price"><?php echo number_format($servicePrice, 2); ?></td>
             <td data-label="Duration"><?php echo $serviceDuration; ?></td>
@@ -31,7 +32,7 @@ if ($resultsServiceListing) {
                         <button>⋮</button>
                         <div class="dropdown-content">
                             <a href="#" class="removeServiceTable" data-modal="removeServicesModal" data-id="<?php echo $serviceID; ?>">Delete Service</a>
-                            <a href="#" class="editServiceTable" data-modal="removeServicesModal" data-id="<?php echo $serviceID; ?>">Edit Service</a>
+                            <a href="#" class="viewServices" data-modal="viewServicesModal" data-id="<?php echo $serviceID; ?>">View Service</a>
                         </div>
                     </div>
                 </div>
