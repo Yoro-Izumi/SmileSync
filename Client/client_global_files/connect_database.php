@@ -1,11 +1,21 @@
 <?php
 
 //initialize servername username and password first for database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-// Functions to connect to specific databases
-$key = "SmileSync";
+
+$root_dir = $root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
+require_once $root_dir . '/vendor/autoload.php';
+
+// Load the .env file
+if (!file_exists($root_dir . '/.env')) {
+    die("Environment configuration file is missing!");
+}
+$dotenv = Dotenv\Dotenv::createImmutable($root_dir);
+$dotenv->load();
+
+// Initialize servername, username, and password
+$servername = $_ENV['DB_SERVERNAME'] ?? null;
+$username = $_ENV['DB_USERNAME'] ?? null;
+$password = $_ENV['DB_PASSWORD'] ?? null;
 
 function connect_appointment($servername, $username, $password) {
     $dbname = "smilesync_appointments";
