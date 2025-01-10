@@ -83,8 +83,9 @@ $(document).ready(function () {
             type: 'POST',
             data: formData,
             success: function () {
-                alert('Service added successfully!');
+                //alert('Service added successfully!');
                 $('#addServiceModal').removeClass('show');
+                location.reload();
             },
             error: function () {
                 alert('Error adding the service. Please try again.');
@@ -108,6 +109,7 @@ $('#confirmEditBtn').on('click', function () {
         success: function () {
             //alert('Service edited successfully!');
             $('#editModal').removeClass('show'); // Close the modal on success
+            location.reload();
         },
         error: function () {
             //alert('Error editing the service. Please try again.');
@@ -204,4 +206,163 @@ $(document).ready(function () {
         $('#viewServiceModal').fadeOut();
     });
 });
+
+$(document).ready(function () {
+    // Listen for clicks on buttons with a specific class
+    $('.removeServiceTable').on('click', function () {
+        // Get the data-id from the button
+        const serviceId = $(this).data('id');
+        document.getElementById('editServiceId').value = serviceId;
+
+        // Check if serviceId is valid
+        if (!serviceId) {
+            alert('Invalid service ID.');
+            return;
+        }
+        //Make an AJAX to save serviceId in session
+        $.ajax({
+            url: 'service_crud/save_session_service.php', // Replace with your PHP file path
+            type: 'POST',
+            data: { selected_service_edit: serviceId }, // Send the data-id as POST data
+            success: function (response) {
+                // Handle the response from the PHP file
+                console.log('Success:', response);
+            },
+            error: function (xhr, status, error) {
+                // Handle any errors
+                console.error('Error:', error);
+            }
+        });
+
+        // Make an AJAX request to retrieve service details
+        $.ajax({
+            url: 'service_crud/get_service_details.php', // Replace with your PHP file path
+            type: 'GET',
+            data: { id: serviceId }, // Send the service ID as a GET parameter
+            dataType: 'json',
+            success: function (response) {
+                // Check if response contains valid data
+                if (response.success) {
+                    // Populate the modal with data
+                    $('#viewServiceModal .modal-table').html(`
+                        <tr>
+                            <td><strong>Service ID</strong></td>
+                            <td>${response.data.service_id}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Name</strong></td>
+                            <td>${response.data.service_name}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Description</strong></td>
+                            <td>${response.data.service_description}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Price</strong></td>
+                            <td>${response.data.service_price}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Service Duration</strong></td>
+                            <td>${response.data.service_duration}</td>
+                    `);
+
+                    //Populate the edit form
+                    document.getElementById('editServiceName').value = response.data.service_name;
+                    document.getElementById('editServiceDescription').value = response.data.service_description;
+                    document.getElementById('editServicePrice').value = response.data.service_price;
+                    document.getElementById('editServiceTime').value = response.data.service_duration;
+
+                    // Show the modal
+                    //$('#viewServiceModal').fadeIn();
+                } else {
+                    alert('Failed to retrieve service details.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching service details.');
+            }
+        });
+
+    });
+
+    // Hide the modal when clicking the OK button
+    $('#okView').on('click', function () {
+        $('#viewServiceModal').fadeOut();
+    });
+});
+
+//service deletions
+
+$(document).ready(function () {
+    // Handle single item deletion
+    $('removeServiceBtn').on('click', function (event) {
+        event.preventDefault();
+        const serviceID = $(this).data('id');
+
+        // Confirm before deletion
+        if (confirm(`Are you sure you want to delete service with ID: ${serviceID}?`)) {
+            $.ajax({
+                url: 'service_crud/delete_service.php',
+                type: 'POST',
+                data: { service_id: serviceID },
+                success: function (response) {
+                    const data = JSON.parse(response);
+                    if (data.success) {
+                        alert('Service deleted successfully.');
+                        // Remove the corresponding row from the table
+                        $(`.removeServiceTable[data-id="${serviceID}"]`).closest('tr').remove();
+                    } else {
+                        alert(`Failed to delete service: ${data.error}`);
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while deleting the service.');
+                }
+            });
+        }
+    });
+
+    // Handle multiple items deletion
+    $('#removeServicesBtn').on('click', function (event) {
+        event.preventDefault();
+
+        // Get all checked checkboxes
+        const selectedServices = $('input[type="checkbox"]:checked')
+            .map(function () {
+                return $(this).val();
+            })
+            .get();
+
+        if (selectedServices.length === 0) {
+            alert('Please select at least one service to delete.');
+            return;
+        }
+
+        // Confirm before deletion
+        if (confirm(`Are you sure you want to delete ${selectedServices.length} services?`)) {
+            $.ajax({
+                url: 'service_crud/delete_service.php',
+                type: 'POST',
+                data: { service_ids: JSON.stringify(selectedServices) },
+                success: function (response) {
+                    const data = JSON.parse(response);
+                    if (data.success) {
+                        alert(`${selectedServices.length} services deleted successfully.`);
+                        // Remove the corresponding rows from the table
+                        selectedServices.forEach(function (id) {
+                            $(`input[value="${id}"]`).closest('tr').remove();
+                        });
+                    } else {
+                        alert(`Failed to delete services: ${data.error}`);
+                    }
+                },
+                error: function () {
+                    alert('An error occurred while deleting the services.');
+                }
+            });
+        }
+    });
+});
+
 
