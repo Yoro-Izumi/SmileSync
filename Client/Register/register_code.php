@@ -51,7 +51,7 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
 
     // Password confirmation validation
     if ($password !== $confirmPassword) {
-        echo '<script>alert("Passwords do not match!")</script>';
+        echo "error:Passwords do not match";
         exit();
     }
 
@@ -71,6 +71,8 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
 
     if (!mysqli_stmt_execute($stmt)) {
         handleError($patientsConn, "Error inserting patient info");
+        echo "error:There was a problem inserting data";
+        die;
     }
     $patientInfoID = mysqli_insert_id($patientsConn);
 
@@ -81,7 +83,8 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
     mysqli_stmt_bind_param($stmt, 'isss', $patientInfoID,$email, $hashedPassword, $status);
 
     if (!mysqli_stmt_execute($stmt)) {
-        handleError($accountConn, "Error inserting patient account");
+        echo "error:There was a problem inserting data";
+        die;
     }
 
     $patientAccountID = mysqli_insert_id($accountConn);
@@ -93,7 +96,8 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
     mysqli_stmt_bind_param($stmt, 'idssssssssss', $patientInfoID, $bodyTemp, $answerOne, $answerTwo, $answerThree, $answerFour, $answerFive, $answerSix, $answerSeven, $answerEight, $answerNine, $dateTimeOfCreation);
 
     if (!mysqli_stmt_execute($stmt)) {
-        handleError($appointmentsConn, "Error inserting COVID form");
+        echo "error:There was a problem inserting data";
+        die;
     }
     $covidFormID = mysqli_insert_id($appointmentsConn);
 
@@ -104,7 +108,8 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
     mysqli_stmt_bind_param($stmt, 'iisss', $patientInfoID, $covidFormID, $status, $appointmentDateTime, $appointmentReason);
 
     if (!mysqli_stmt_execute($stmt)) {
-        handleError($appointmentsConn, "Error inserting appointment");
+        echo "error:There was a problem inserting data";
+        die;
     }
 
     $appointmentID = mysqli_insert_id($appointmentsConn);
@@ -115,7 +120,8 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
     mysqli_stmt_bind_param($stmt, 'ii' , $appointmentReason,$appointmentID);
     
     if (!mysqli_stmt_execute($stmt)) {
-        handleError($appointmentsConn, "Error inserting invoice service");
+        echo "error:There was a problem inserting data";
+        die;
     }
 
     // Close connections
@@ -123,7 +129,10 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
     mysqli_close($accountConn);
     mysqli_close($appointmentsConn);
 
-    echo '<script>alert("Registration successful!")</script>';
+    echo "success";
+}
+else{
+    echo "error";
 }
 
 /**

@@ -15,7 +15,7 @@ $current_date_time = date('Y-m-d H:i:s');
 // SQL query to select appointments that need to be canceled (where date_time is in the past)
 $sql = "SELECT `appointment_id`, `patient_info_id`, `admin_id`, `covid_form_id`, `appointment_status`, `appointment_date_time`, `appointment_reason`, `emergency_contact_id`
         FROM `smilesync_appointments`
-        WHERE `appointment_date_time` < '$current_date_time' AND `appointment_status` != 'Cancelled'";
+        WHERE `appointment_date_time` < '$current_date_time' AND `appointment_status` = 'Pending'";
 
 // Execute the query
 $result = $conn->query($sql);

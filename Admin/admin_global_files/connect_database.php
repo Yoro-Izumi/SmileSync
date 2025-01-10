@@ -1,5 +1,5 @@
 <?php
-//initialize servername username and password first for database connection
+/*initialize servername username and password first for database connection
 
 $root_dir = $root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
 require_once $root_dir . '/vendor/autoload.php';
@@ -9,12 +9,15 @@ if (!file_exists($root_dir . '/.env')) {
     die("Environment configuration file is missing!");
 }
 $dotenv = Dotenv\Dotenv::createImmutable($root_dir);
-$dotenv->load();
+$dotenv->load(); */
 
 // Initialize servername, username, and password
-$servername = $_ENV['DB_SERVERNAME'] ?? null;
-$username = $_ENV['DB_USERNAME'] ?? null;
-$password = $_ENV['DB_PASSWORD'] ?? null;
+$servername =  "localhost";
+//$_ENV['DB_SERVERNAME'];
+$username = "root";
+//$_ENV['DB_USERNAME'];
+$password = " ";
+//$_ENV['DB_PASSWORD'];
 
 if (!$servername || !$username || !$password) {
     die("Database credentials are missing from the environment variables.");

@@ -286,14 +286,18 @@ $(document).ready(function () {
       type: "POST",
       data: formData,
       success: function (response) {
-        // Handle success response
-        //alert("Appointment successfully added: " + response);
-        form[0].reset(); // Reset the form
+        if (response.trim() === 'error') {
+          console.log(response);
+        } else if (response.trim() === 'success') {
+          location.reload(); // Reload the page on successful login
+          showModal(successRegisterModal);
+        }
+        else{
+          console.log(response);
+        }
       },
-      error: function (xhr, status, error) {
-        // Handle error response
-        //console.error("Error: " + error);
-        //alert("An error occurred while adding the appointment.");
+      error: function (xhr) {
+        console.error(xhr.responseText);
       },
     });
   });
