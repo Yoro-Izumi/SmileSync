@@ -96,16 +96,15 @@ checkbox{
   }
 
   .buttons .btn.new {
+    font-weight: 700;
+    color: white;
     background-color: #30CE88;
   }
 
-  .buttons .btn:hover {
-    background-color: #2bbb7a;
+  .buttons .btn.new:hover {
+    background-color: #30644d;
   }
 
-  .buttons .btn.new:hover {
-    background-color: #2bbb7a;
-  }
 
   .table-container {
     padding: 0 2rem;

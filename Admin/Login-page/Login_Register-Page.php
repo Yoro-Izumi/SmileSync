@@ -38,7 +38,6 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     <script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
 </head>
 
-
 <body>
      <?php include "modal.php"; ?>
      <?php include "loader.php"; ?>
@@ -139,9 +138,10 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
                  required
                />
                <label>Phone Number<indicator>*</indicator></label>
-             </div>
+               <span class="error-message" id="phoneNumberError"></span>
+               </div>
 
-             <div class="input-wrap">
+               <div class="input-wrap">
                <input
                  type="email"
                  minlength="1"
@@ -152,9 +152,10 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
                  required
                />
                <label>Email Address<indicator>*</indicator></label>
-             </div>
+               <span class="error-message" id="emailRegisterError"></span>
+               </div>
 
-             <div class="input-wrap">
+               <div class="input-wrap">
                <input
                  type="password"
                  minlength="1"
@@ -165,21 +166,26 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
                  required
                />
                <label>Password<indicator>*</indicator></label>
-             </div>
+               <span class="error-message" id="passwordRegisterError"></span>
+               </div>
 
-             <div class="input-wrap">
-             <input type="password" 
-               class="input-field"
-               name="confirmPasswordRegister"
-               autocomplete="off"
-             required>
-         <label>Confirm Password<indicator>*</indicator></label>
-     </div>
+               <div class="input-wrap">
+               <input 
+                 type="password" 
+                 class="input-field"
+                 name="confirmPasswordRegister"
+                 autocomplete="off"
+                 required
+               />
+               <label>Confirm Password<indicator>*</indicator></label>
+               <span class="error-message" id="confirmPasswordRegisterError"></span>
+               </div>
+
 
              <input type="submit" value="Sign Up" class="sign-btn" id="registerBtn" name="registerBtn"/>
-      <!-- #region -->
+          <!-- #region -->
 
-      <div class="text-wrap">
+          <div class="text-wrap">
              <p class="text">
                By signing up, I agree to the
                <a href="#" id="termServices">Terms of Services</a> |
@@ -206,40 +212,41 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
            </div>
 
            <div class="actual-form">
-             <div class="input-wrap">
-               <input
-                 type="text"
-                 maxlength="24"
-                 class="input-field"
-                 name="email"
-                 autocomplete="off"
-                 required
-               />
-               <label>Email<indicator>*</indicator></label>
-             </div>
 
-             <div class="input-wrap">
-               <input
-                 type="password"
-                 maxlength="24"
-                 class="input-field"
-                 id="signup-password"
-                 name="password"
-                 autocomplete="off"
-                 required
-               />
-               <label>Password<indicator>*</indicator></label>
-               <div class="fa fa-eye icon" id="signup-show-password"></div>
-               
-             </div>
+           <div class="input-wrap">
+  <input
+    type="text"
+    maxlength="24"
+    class="input-field"
+    name="email"
+    autocomplete="off"
+    required
+  />
+  <label>Email<indicator>*</indicator></label>
+  <span class="error-message" id="emailError"></span>
+</div>
 
+<div class="input-wrap">
+  <input
+    type="password"
+    maxlength="24"
+    class="input-field"
+    id="signup-password"
+    name="password"
+    autocomplete="off"
+    required
+  />
+  <label>Password<indicator>*</indicator></label>
+  <div class="fa fa-eye icon" id="signup-show-password"></div>
+  <span class="error-message" id="passwordError"></span>
+</div>
 
-          <div class="text-wrap">
-             <div class="remember-me-wrap">
-                 <input type="checkbox" id="rememberMe" class="remember-me-checkbox">
-                 <p for="rememberMe">Remember Me</p>
-             </div>
-
+<div class="text-wrap">
+  <div class="remember-me-wrap">
+    <input type="checkbox" id="rememberMe" class="remember-me-checkbox">
+    <p for="rememberMe">Remember Me</p>
+  </div>
+  <span class="error-message" id="rememberMeError"></span>
                <p class="text">
                <a href="#" id="forgotLink"> Forgotten your password?</a>
              </p>
@@ -247,8 +254,7 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 
              <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
 
-             
-           </div>
+              </div>
          </form>
        </div>
 
@@ -263,8 +269,10 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
  </main>
 
     <!-- Javascript file -->
+
     <script src="js/app.js"></script>
     <script src="js/submit_form.js"></script>
     <script src="js/validations.js"></script>
+
 </body>
 </html>

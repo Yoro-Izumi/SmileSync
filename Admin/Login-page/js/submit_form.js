@@ -6,9 +6,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const successRegisterModal = document.getElementById('successRegisterModal');
     const resetPasswordModal = document.getElementById('resetPasswordModal');
     const noEmailModal = document.getElementById('noEmailModal');
+
+   
     const privacyPolicyModal = document.getElementById('privacyPolicyModal');
     const termServicesModal = document.getElementById('termServicesModal');
-  
+
+    const termServices = document.getElementById('termServices');
+    const closetermServicesBtn = document.getElementById('closetermServicesBtn');
+
+    const privacyPolicy = document.getElementById('privacyPolicy');
+    const closePrivacyPolicyBtn = document.getElementById('closePrivacyPolicyBtn');
+   
+    const okNoEmailBtn = document.getElementById('okNoEmailBtn');
     const registerBtn = document.getElementById('registerBtn');
     const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
     const showLoginFailedBtn = document.getElementById('loginBtn');
@@ -20,6 +29,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
     const closeExistEmailModalBtn = document.getElementById('close-emailExistModal');
   
+
+//close No Email Notif modal
+   okNoEmailBtn.addEventListener('click', function () {
+    noEmailModal.classList.remove('show');
+   });
+
+    closetermServicesBtn.addEventListener('click', function() {
+      termServicesModal.classList.remove('show');
+  });
+
+
+  termServices.addEventListener('click', function() {
+      termServicesModal.classList.add('show');
+  });
+
+  privacyPolicy.addEventListener('click', function() {
+      privacyPolicyModal.classList.add('show');
+  });
+
+  closePrivacyPolicyBtn.addEventListener('click', function() {
+      privacyPolicyModal.classList.remove('show');
+  });
+
+
     // Helper function to show modals
     function showModal(modal) {
       if (modal) modal.classList.add('show');

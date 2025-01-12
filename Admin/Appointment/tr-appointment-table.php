@@ -78,6 +78,7 @@ foreach ($appointments as $appointment){
                     <a href="appointment-details.php">View Details</a>
                     <a href="#">Download</a>
                     <a href="#" class="appointmentStatus" data-id="<?php echo $appointment_id;?>">Done Appointment</a>
+                    <a href="#" id="openCancelAppointmentModal">Cancel Appointment</a>
                 </div>
             </div>
         </div>

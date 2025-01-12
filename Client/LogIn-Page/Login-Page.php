@@ -48,8 +48,8 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
           <div class="heading">
                 <h2>Welcome,</h2>
                 <h2>Log in to your account.</h2>
-                <h4>Don't have an account?
-                <a href="../Register/Register-Page.php">Sign up</a></h4>
+                <h4>New Patient?
+                <a href="#" id="getAppointmentBtn">Get Appointment</a></h4>
               </div>
               <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
               <div class="actual-form">

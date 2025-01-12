@@ -80,8 +80,8 @@
     }
 
     .loading-logo {
-      width: 2vw;
-      height: 4vh;
+      width: 5vw;
+      height: 10vh;
       margin: 0 auto;
       animation: bounce 1.5s infinite ease-in-out;
     }

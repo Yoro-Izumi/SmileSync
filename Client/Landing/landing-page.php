@@ -39,7 +39,7 @@
             <button class="explore-button"><a  href="../Register/Register-Page.php">Set Appointment</a></button>
         </div>
         <div class="illustration">
-            <!--img src="scooter-delivery.png" alt="Delivery Illustration"-->
+            <img src="img/dentist.png" alt="Delivery Illustration">
         </div>
     </div>
 
@@ -157,7 +157,7 @@
 
 <footer>
     <div style="margin: 20px 0;">
-        <a href="#" style="margin: 0 10px; color: var(--color);"><i class="bx bxl-facebook-circle" style="font-size: 24px;"></i></a>
+        <a href="#" style="margin: 0 10px; color: var(--color);"><i class="bx bxl-facebook-circle" alt="FB" style="font-size: 24px;"></i></a>
         <a href="#" style="margin: 0 10px; color: var(--color)"><i class="bx bxl-instagram" style="font-size: 24px;"></i></a>
         <a href="#" style="margin: 0 10px; color: var(--color)"><i class="bx bxl-twitter" style="font-size: 24px;"></i></a>
     </div>
