@@ -208,10 +208,114 @@
 </form>
 </div>
 
-<script>
 
-    
-</script>
+<div class="modal" id="approvalAppointmentModal">
+    <form id="approveAppointmentForm" name="approveAppointmentForm" method="POST" action="appointment_crud/approve_appointment.php">
+        <div class="done-modal">
+            <div class="modal-done">
+                <div class="modal-header">
+                    <div class="content">
+                        <h2>iMee-Toga Oli Dental Clinic</h2>
+                        <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
+                    </div>
+                    <button class="close-btn"><a href="#" id="closeApprove">&times;</a></button>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="section-title">Personal Information</div>
+                <input name="approval_appointment_id" id="approval_appointment_id" type="hidden">
+                <div class="personal-info2">
+                    <div class="form-group2">
+                        <label>Patient Name:</label>
+                        <span></span>
+                    </div>
+                    <div class="form-group2">
+                        <label>Phone Number:</label>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="personal-info2">
+                    <div class="form-group2">
+                        <label>Age:</label>
+                        <span></span>
+                    </div>
+                    <div class="form-group2">
+                        <label>Sex:</label>
+                        <span></span>
+                    </div>
+                    <div class="form-group2">
+                        <label>Birth Date:</label>
+                        <span></span>
+                    </div>
+                </div>
+
+                <div class="personal-info">
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input type="text" readonly value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>City:</label>
+                        <input type="text" readonly value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Province:</label>
+                        <input type="text" readonly value="" />
+                    </div>
+                </div>
+
+                <div class="section-title">Emergency Contact</div>
+                <div class="personal-info">
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input type="text" readonly value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Relationship:</label>
+                        <input type="text" readonly value="" />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number:</label>
+                        <input type="text" id="phoneNumberApprove" name="phoneNumberApprove" readonly value="" />
+                    </div>
+                </div>
+
+                <!-- Treatment Record -->
+                <div class="treatment-record">
+                    <div class="section-title">Treatment Record</div>
+                    <div class="personal-info2">
+                        <div class="form-group">
+                            <label>Date of Appointment:</label>
+                            <input type="text" readonly value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" readonly value="" />
+                        </div>
+                       <!-- <div class="form-group">
+                            <label for="dropdownButtonProcedure">Procedure/s:</label>
+                            <div class="dropdown-container">
+                                <button id="dropdownButtonProcedureApproval" type="button" aria-expanded="false" aria-controls="dropdownMenuProcedure">
+                                    Select Procedure/s
+                                </button>
+                                <div id="dropdownMenuProcedureAppoval" class="dropdown-menu-procedure" style="display: none;">
+                                    <!-- Dynamically updates -->
+                                </div>
+                            </div>
+                            <div class="selected-procedures-approval"></div>
+                        </div> -->
+                    </div>
+                    <!-- Action Buttons -->
+                            <div class="button-container">
+                                <button class="action-btn">Cancel</button>
+                                <button type="submit" class="action-btn" id="approveAppointmentBtn">Approve Appointment</button>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
 
 
 <div class="modal" id="existingAccountModal">
@@ -271,7 +375,7 @@
     </div>
 </div>
 
-<!-- Remove Account Warning Modal 
+<!-- Remove Account Warning Modal -->
 <div class="modal" id="cancelAppointmentModal">
     <div class="modal-content">
         <div class="image-container">
@@ -286,9 +390,9 @@
         <button class="modal-button normal" id="cancelAppointmentBtn">Remove</button>
         <button class="modal-button secondary-button warning" id="cancelBtn">Cancel</button>
     </div>
-</div>-->
+</div>
 
-<!-- Success Modal 
+<!-- Success Modal -->
 <div class="modal" id="appointmentSuccessModal">
     <div class="modal-content">
         <div class="modal-title success-title">Appointment Added Successfully!</div>
@@ -299,11 +403,10 @@
         </div>
         <button id="closeAppointmentSuccessBtn" class="modal-button success">OK</button>
     </div>
-</div> -->
+</div> 
 
 <div id="alertContainer"></div>
 <script src="js/alert.js"></script>
-<script src="js/modal.js"></script>
 <script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
 <script src="js/modal2.js"></script>
 

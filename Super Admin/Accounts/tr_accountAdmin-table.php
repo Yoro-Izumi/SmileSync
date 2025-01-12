@@ -24,7 +24,7 @@ if ($resultsAdminAccounts) {
                 $adminLastName = $adminAccounts['admin_last_name'];
                 $adminLastName = decryptData($adminLastName, $key);
                 $adminID = $adminAccounts['admin_account_id'];
-                $adminFullName = $adminFirstName . " ," . $adminMiddleName." ,".$adminLastName;
+                $adminFullName = trim($adminFirstName . " " . $adminMiddleName." ".$adminLastName);
                 $dateOfCreation = $adminAccounts['date_of_creation'] ?? "";
                 $status = $adminAccounts['account_status'] ?? "";
                 $dateTime = $adminAccounts['date_time_of_creation'] ?? "";

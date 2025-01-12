@@ -1,91 +1,94 @@
 <?php
 
+// Databases
 $patients_db = "smilesync_patient_management";
 $approvers_db = "smilesync_accounts";
-$appointment_status = "Cancelled";
+$appointment_status_cancelled = "Cancelled";
+$appointment_status_done = "Done";
 
 // Create a connection
 $connect_appointment = connect_appointment($servername, $username, $password);
 
-// Check connection
 if (!$connect_appointment) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// SQL query to get the appointment data, filtering for appointments that are equal to or greater than the current date
+// SQL query to get the appointment data
 $getAppointmentDetails = "
     SELECT 
-        a.patient_info_id, 
-        a.admin_id, 
-        a.appointment_date_time, 
-        a.appointment_status, 
-        p.patient_first_name,
-        p.patient_middle_name,
-        p.patient_last_name, 
-        ar.admin_first_name,
-        ar.admin_middle_name,
-        ar.admin_last_name
+        a.*,
+        p.*,
+        ar.*
     FROM 
         smilesync_appointments a
     LEFT JOIN 
-        $patients_db.smilesync_patient_information p ON a.patient_info_id = p.patient_info_id
+        $patients_db.smilesync_patient_information p 
+        ON a.patient_info_id = p.patient_info_id
     LEFT JOIN 
-        $approvers_db.smilesync_admin_accounts ar ON a.admin_id = ar.admin_account_id
+        $approvers_db.smilesync_admin_accounts ar 
+        ON a.admin_id = ar.admin_account_id
     WHERE 
-        a.appointment_status != '$appointment_status' 
-        AND a.appointment_date_time >= CURDATE()  -- Filters for appointments equal to or greater than today's date
+        a.appointment_status NOT IN ('$appointment_status_cancelled', '$appointment_status_done')
+        AND a.appointment_date_time >= CURDATE()
 ";
 
 $result = mysqli_query($connect_appointment, $getAppointmentDetails);
 
-// Process results
+if (!$result) {
+    error_log("SQL error: " . mysqli_error($connect_appointment)); // Log error
+    die("An error occurred while retrieving appointments.");
+}
+
 $appointments = [];
-if ($result && mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $appointments[] = $row;
-    }
+while ($row = mysqli_fetch_assoc($result)) {
+    $appointments[] = $row;
 }
 
 foreach ($appointments as $appointment) {
-    $patient_id = $appointment['patient_info_id'];
-    $admin_id = $appointment['admin_id'];
+    $patient_id = sanitize_input($appointment['patient_info_id'], $connect_appointment);
+    $admin_id = sanitize_input($appointment['admin_id'], $connect_appointment);
     $appointment_date_time = formatDateTime($appointment['appointment_date_time']);
     $appointment_status = $appointment['appointment_status'];
+    $appointment_id = sanitize_input($appointment['appointment_id'], $connect_appointment);
 
-    $patient_first_name = $appointment['patient_first_name'] ?? "";
-    $patient_first_name = decryptData($patient_first_name,$key);
-    $patient_middle_name = $appointment['patient_middle_name'] ?? "";
-    $patient_middle_name = decryptData($patient_middle_name,$key);
-    $patient_last_name = $appointment['patient_last_name'] ?? "";
-    $patient_last_name = decryptData($patient_last_name,$key);
+    // Decrypt patient names
+    $patient_first_name = decryptData($appointment['patient_first_name'] ?? "", $key);
+    $patient_middle_name = decryptData($appointment['patient_middle_name'] ?? "", $key);
+    $patient_last_name = decryptData($appointment['patient_last_name'] ?? "", $key);
     $patient_name = trim("$patient_first_name $patient_middle_name $patient_last_name");
 
-    $approver_first_name = $appointment['admin_first_name'] ?? "";
-    $approver_first_name = decryptData($approver_first_name,$key);
-    $approver_middle_name = $appointment['admin_middle_name'] ?? "";
-    $approver_middle_name = decryptData($approver_middle_name,$key);
-    $approver_last_name = $appointment['admin_last_name'] ?? "";
-    $approver_last_name = decryptData($approver_last_name,$key);
+    // Decrypt approver names
+    $approver_first_name = decryptData($appointment['admin_first_name'] ?? "", $key);
+    $approver_middle_name = decryptData($appointment['admin_middle_name'] ?? "", $key);
+    $approver_last_name = decryptData($appointment['admin_last_name'] ?? "", $key);
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
-?>
-<tr>
-    <td><input type="checkbox"></td>
-    <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id, $connect_appointment); ?></td>
-    <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name, $connect_appointment); ?></td>
-    <td data-label="APPROVER"><?php echo sanitize_input($approver_name, $connect_appointment); ?></td>
-    <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time, $connect_appointment); ?></td>
-    <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status, $connect_appointment); ?></td>
-    <td data-label="ACTIONS">
-        <div class="actions">
-            <div class="dropdown">
-                <button>⋮</button>
-                <div class="dropdown-content">
-                    <a href="appointment-details.php">View Details</a>
-                    <a href="#">Download</a>
-                    <a href="#" id="appointmentStatus">Done Appointment</a>
+
+    // Output rows based on status
+    ?>
+    <tr>
+        <td><input type="checkbox" value="<?php echo htmlspecialchars($appointment_id); ?>"></td>
+        <td data-label="PATIENT ID"><?php echo htmlspecialchars($patient_id); ?></td>
+        <td data-label="PATIENT NAME"><?php echo htmlspecialchars($patient_name); ?></td>
+        <td data-label="APPROVER"><?php echo htmlspecialchars($approver_name); ?></td>
+        <td data-label="APPOINTMENT"><?php echo htmlspecialchars($appointment_date_time); ?></td>
+        <td data-label="STATUS" class="status"><?php echo htmlspecialchars($appointment_status); ?></td>
+        <td data-label="ACTIONS">
+            <div class="actions">
+                <div class="dropdown">
+                    <button>⋮</button>
+                    <div class="dropdown-content">
+                        <a href="appointment-details.php">View Details</a>
+                        <?php if ($appointment_status === 'Approved') { ?>
+                            <a href="#">Download</a>
+                            <a href="#" class="appointmentStatus" data-id="<?php echo htmlspecialchars($appointment_id); ?>">Done Appointment</a>
+                        <?php } elseif ($appointment_status === 'Pending') { ?>
+                            <a href="#" class="appointmentApprove" data-id="<?php echo htmlspecialchars($appointment_id); ?>">Approve Appointment</a>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
-        </div>
-    </td>
-</tr>
-<?php } ?>
+        </td>
+    </tr>
+    <?php
+}
+?>

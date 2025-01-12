@@ -40,8 +40,8 @@
         <thead>
           <tr>
             <th><input type="checkbox"></th>
-            <th>CLIENT ID</th>
-            <th>CLIENT NAME</th>
+            <th>PATIENT ID</th>
+            <th>PATIENT NAME</th>
             <th>APPROVER</th>
             <th>APPOINTMENT</th>
             <th>STATUS</th>

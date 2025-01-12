@@ -67,7 +67,7 @@
                 <label>Name<indicator>*</indicator></label>
                 </div>
             <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" id="serviceDescription" name="serviceDescription" required />
+                    <input class="modal-input" type="text" maxlength="50" autocomplete="off" id="serviceDescription" name="serviceDescription" required />
                 <label>Description<indicator>*</indicator></label>
                 </div>
             </div>

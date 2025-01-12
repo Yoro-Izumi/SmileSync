@@ -23,7 +23,7 @@ $middleName = isset($_POST['middleName']) ? encryptData(sanitize_input($_POST['m
 $suffix = isset($_POST['suffix']) ? encryptData(sanitize_input($_POST['suffix'], $patientsConn), $key) : "";
 $sex = isset($_POST['sex']) ? encryptData(sanitize_input($_POST['sex'], $patientsConn), $key) : "";
 $phoneNumber = isset($_POST['phoneNumber']) ? encryptData(sanitize_input($_POST['phoneNumber'], $patientsConn), $key) : "";
-$birthday = isset($_POST['birthday']) ? sanitize_input($_POST['birthday'], $patientsConn) : date("Y-m-d");
+$birthday = isset($_POST['birthday']) ? encryptData(sanitize_input($_POST['birthday'], $patientsConn),$key) : encryptData(date("Y-m-d"),$key);
 
 $bodyTemp = isset($_POST['bodyTemp']) ? sanitize_input($_POST['bodyTemp'], $appointmentsConn) : 0;
 $answerOne = isset($_POST['visited']) && $_POST['visited'] === "no" ? sanitize_input($_POST['visited'], $appointmentsConn) : (isset($_POST['infectedAddress']) ? sanitize_input($_POST['infectedAddress'], $appointmentsConn) : "");

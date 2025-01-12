@@ -293,42 +293,59 @@ $(document).ready(function () {
 });
 
 //service deletions
-
 $(document).ready(function () {
-    // Handle single item deletion
-    $('removeServiceBtn').on('click', function (event) {
-        event.preventDefault();
-        const serviceID = $(this).data('id');
-
-        // Confirm before deletion
-        if (confirm(`Are you sure you want to delete service with ID: ${serviceID}?`)) {
+    // Handle single item deletion using event delegation
+    $(document).ready(function () {
+        let serviceID = null; // Store the service ID globally within this scope
+    
+        // Handle click on .removeServiceTable to set the serviceID
+        $(document).on('click', '.removeServiceTable', function (event) {
+            event.preventDefault();
+            serviceID = $(this).data('id'); // Store the data-id of the clicked element
+            $('#removeServiceBtn').data('id', serviceID); // Optionally pass it to the button
+        });
+    
+        // Handle click on the confirmDelete button to perform the deletion
+        $(document).on('click', '#removeServiceBtn', function () {
+            if (!serviceID) {
+                alert('No service selected for deletion.');
+                return;
+            }
+    
+            // Perform deletion via AJAX
             $.ajax({
                 url: 'service_crud/delete_service.php',
                 type: 'POST',
                 data: { service_id: serviceID },
                 success: function (response) {
-                    const data = JSON.parse(response);
-                    if (data.success) {
-                        alert('Service deleted successfully.');
-                        // Remove the corresponding row from the table
-                        $(`.removeServiceTable[data-id="${serviceID}"]`).closest('tr').remove();
-                    } else {
-                        alert(`Failed to delete service: ${data.error}`);
+                    try {
+                        const data = JSON.parse(response);
+                        if (data.success) {
+                            alert('Service deleted successfully.');
+                            // Remove the corresponding row from the table
+                            $(`.removeServiceTable[data-id="${serviceID}"]`).closest('tr').remove();
+                        } else {
+                            alert(`Failed to delete service: ${data.error}`);
+                        }
+                    } catch (error) {
+                        alert('Invalid response received from the server.');
                     }
+                    $('#confirmModal').modal('hide'); // Hide the modal after action
                 },
                 error: function () {
                     alert('An error occurred while deleting the service.');
+                    $('#confirmModal').modal('hide'); // Hide the modal even on error
                 }
             });
-        }
+        });
     });
-
+    
     // Handle multiple items deletion
     $('#removeServicesBtn').on('click', function (event) {
         event.preventDefault();
 
-        // Get all checked checkboxes
-        const selectedServices = $('input[type="checkbox"]:checked')
+        // Get all checked checkboxes with the class "serviceCheckbox"
+        const selectedServices = $('.serviceCheckbox:checked')
             .map(function () {
                 return $(this).val();
             })
@@ -346,15 +363,19 @@ $(document).ready(function () {
                 type: 'POST',
                 data: { service_ids: JSON.stringify(selectedServices) },
                 success: function (response) {
-                    const data = JSON.parse(response);
-                    if (data.success) {
-                        alert(`${selectedServices.length} services deleted successfully.`);
-                        // Remove the corresponding rows from the table
-                        selectedServices.forEach(function (id) {
-                            $(`input[value="${id}"]`).closest('tr').remove();
-                        });
-                    } else {
-                        alert(`Failed to delete services: ${data.error}`);
+                    try {
+                        const data = JSON.parse(response);
+                        if (data.success) {
+                            alert(`${selectedServices.length} services deleted successfully.`);
+                            // Remove the corresponding rows from the table
+                            selectedServices.forEach(function (id) {
+                                $(`.serviceCheckbox[value="${id}"]`).closest('tr').remove();
+                            });
+                        } else {
+                            alert(`Failed to delete services: ${data.error}`);
+                        }
+                    } catch (error) {
+                        alert('Invalid response received from the server.');
                     }
                 },
                 error: function () {
@@ -364,5 +385,3 @@ $(document).ready(function () {
         }
     });
 });
-
-

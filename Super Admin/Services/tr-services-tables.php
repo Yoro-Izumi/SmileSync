@@ -21,7 +21,7 @@ if ($resultsServiceListing) {
 ?>
 
         <tr>
-            <td><input type="checkbox" value="<?php echo $serviceID; ?>"></td>
+            <td><input class="serviceCheckbox" type="checkbox" value="<?php echo $serviceID; ?>"></td>
             <td data-label="Description"><?php echo $serviceName; ?></td>
             <td data-label="ID"><?php echo $serviceID; ?></td>
             <td data-label="Price"><?php echo number_format($servicePrice, 2); ?></td>

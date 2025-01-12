@@ -29,7 +29,7 @@ if ($resultsPatientAccounts) {
             $patientLastName = $patientAccounts['patient_last_name'];
             $patientLastName = decryptData($patientLastName, $key);
             $patientID = $patientAccounts['patient_account_id'];
-            $patientFullName = $patientLastName . ", " . $patientFirstName . " " . $patientMiddleName;
+            $patientFullName = trim(  $patientFirstName . " ".$patientLastName . " " . $patientMiddleName);
             $patient_info_id = $patientAccounts[ 'patient_info_id' ]?? " ";
             $status = $patientAccounts['patient_account_status'] ?? "";
             $dateTime = $patientAccounts['date_time_of_creation'] ?? "";

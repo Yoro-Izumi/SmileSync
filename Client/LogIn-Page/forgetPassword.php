@@ -1,8 +1,33 @@
-<!DOCTYPE html>
+<?php
+include "../client_global_files/connect_database.php";
+include "../client_global_files/encrypt_decrypt.php";
+
+$root_dir = $_SERVER['DOCUMENT_ROOT'] . '/SmileSync';
+require_once $root_dir . '/vendor/autoload.php';
+
+use GuzzleHttp\Client;
+
+// Get email from POST data, default to "yoroizumi@gmail.com"
+$email = isset($_POST['email']) ? $_POST['email'] : "kazumiyoro29@gmail.com";
+
+// Debugging - Check if email is captured correctly
+echo "Email to be sent: " . $email;  // This will help you see the email value
+
+// Reset link
+$resetLink = "http://localhost/SmileSync/Client/Forgot%20Password/forgotPassword-page.php?email=" . urlencode($email);
+
+// Prepare email content
+$client = new Client();
+$data = [
+    'to' => $email,
+    'subject' => 'Forget Password Link',
+    'html' => "
+    <!DOCTYPE html>
     <html lang='en'>
     <head>
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Reset Password</title>
     </head>
     <body style='margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f0f8ff; text-align: center;'>
         <table width='100%' cellpadding='0' cellspacing='0' border='0' style='background: linear-gradient(135deg, #6A5ACD, #4682B4); text-align: center; color: white; padding: 20px;'>
@@ -43,3 +68,30 @@
         </table>
     </body>
     </html>
+    ",
+];
+
+try {
+    // Log the data to verify the payload
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+
+    // Send email using Guzzle HTTP client
+    $response = $client->post('http://localhost:3000/send-email', [
+        'json' => $data,
+    ]);
+
+    // Check if the request was successful
+    if ($response->getStatusCode() === 200) {
+        echo "success: Email sent successfully!";
+    } else {
+        echo "error: Failed to send email. Status: " . $response->getStatusCode();
+    }
+} catch (\GuzzleHttp\Exception\RequestException $e) {
+    echo "Request Error: " . $e->getMessage();
+    if ($e->hasResponse()) {
+        echo "<br>Response: " . $e->getResponse()->getBody();
+    }
+}
+?>

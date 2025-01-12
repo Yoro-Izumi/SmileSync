@@ -82,8 +82,6 @@ foreach ($appointments as $appointment){
                 <button>⋮</button>
                 <div class="dropdown-content">
                     <a href="appointment-details.php">View Details</a>
-                    <a href="#">Download</a>
-                    <a href="#" id="appointmentStatus">Done Appointment</a>
                 </div>
             </div>
         </div>

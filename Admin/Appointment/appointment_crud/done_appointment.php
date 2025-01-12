@@ -12,7 +12,7 @@ $connect_patient_management = connect_patient($servername,$username,$password);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $adminID = $_SESSION['userAdminID'] ?? 0;
-    $appointmentID = $_POST['done_appointment_id'] ?? 2;
+    $appointmentID = $_POST['done_appointment_id'] ?? 1;
     $patient_id = getPatientID($appointmentID, $connect_appointment);
     $newStatus = "Done";
 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doctor_remarks = $_POST['doctor_remarks'] ?? " ";
     $request = " ";
     $hmo_verification = "None";
-    $invoice_status = "Pending";
+    $invoice_status = $invoice_amount_paid >= $invoice_amount_charged? "Paid":"Pending";
     $invoice_date_time = date('Y-m-d H:i:s');
     $unique_id = generateRandomString(10);
     
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $qryInsertInvoice = "INSERT INTO `smilesync_invoice`(`invoice_id`, `patient_info_id`, `appointment_id`, `invoice_unique_id`, `hmo_verification`, `amount_due`, `amount_paid`, `balance`, `invoice_remarks`, `request`, `invoice_status`, `number_of_tooth`, `invoice_date_time`, `dentist_name_id`) 
                          VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $prepareInsertInvoice = mysqli_prepare($connect_appointment, $qryInsertInvoice);
-    mysqli_stmt_bind_param($prepareInsertInvoice, 'iissdddsssisi', $patient_id, $appointmentID, $invoice_unique_id, $hmo_verification, $invoice_amount_charged, $invoice_amount_paid, $invoice_balance, $doctor_remarks, $request, $newStatus, $number_of_tooth, $invoice_date_time, $dentist_select);
+    mysqli_stmt_bind_param($prepareInsertInvoice, 'iissdddsssisi', $patient_id, $appointmentID, $invoice_unique_id, $hmo_verification, $invoice_amount_charged, $invoice_amount_paid, $invoice_balance, $doctor_remarks, $request, $invoice_status, $number_of_tooth, $invoice_date_time, $dentist_select);
     mysqli_stmt_execute($prepareInsertInvoice);
 
     $invoice_id = mysqli_insert_id($connect_appointment);
@@ -102,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = mysqli_prepare($connect_appointment, $qryUpdateDoneAppointment);
     mysqli_stmt_bind_param($stmt, 'si', $newStatus, $appointmentID);
     mysqli_stmt_execute($stmt);
+    echo "success";
 }
 
 function getPatientID($appointmentID, $connect_appointment) {

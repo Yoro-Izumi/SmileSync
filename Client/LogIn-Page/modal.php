@@ -27,56 +27,87 @@
 </div>
 
 
-
 <div class="modal" id="resetPasswordModalClient">
     <div class="modal-content">
-
-    <div class="image-container">
+        <div class="image-container">
             <img class="image" src="img/warning.png" alt="security">
         </div>
 
         <div class="modal-title warning-title">Reset Password</div>
         <form id="resetPasswordForm" name="resetPasswordForm" method="POST">
-        <div class="message-container">
-        <div class="modal-description">To reset your password, enter your email address.</div>
-        <div class="input-wrap">
-            
-            <input
-                type="text"
-                id="emailInput"
-                name="emailInput"
-                minlength="4"
-                class="modal-input"
-                autocomplete="off"
-                required
-            />
-            <label for="emailInputReset">Email<indicator>*</indicator></label>
-        </div></div>
-        <button class="modal-button warning" type="submit" id="submitResetPasswordBtn">Submit</button>    
-        <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
+            <div class="message-container">
+                <div class="modal-description">To reset your password, enter your email address.</div>
+                <div class="input-wrap">
+                    <input
+                        type="text"
+                        id="emailInput"
+                        name="emailInputPassword"
+                        minlength="4"
+                        class="modal-input"
+                        autocomplete="off"
+                        required
+                    />
+                    <label for="emailInputReset">Email<indicator>*</indicator></label>
+                </div>
+            </div>
+            <button type="button" class="modal-button warning" id="submitResetPasswordBtn">Submit</button>    
+            <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
         </form>
     </div>
 </div>
 
 <script>
-        $('#resetPasswordForm').on('submit', function (e) {
-            e.preventDefault();
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("resetPasswordForm");
+  const submitButton = document.getElementById("submitResetPasswordBtn");
+  const cancelButton = document.getElementById("cancelButton");
 
-            const email = $('#emailInput').val();
-            $.ajax({
-                url: 'js/forgetPasswordEmail.js',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ email }),
-                success: function (response) {
-                    alert('Email sent successfully!');
-                },
-                error: function (err) {
-                    alert('Error sending email: ' + err.responseText);
-                },
-            });
-        });
-    </script>
+  // Prevent default form submission
+  form.addEventListener("submit", (e) => e.preventDefault());
+
+  // Handle Submit button click
+  submitButton.addEventListener("click", () => {
+    const emailInput = document.getElementById("emailInput");
+
+    // Validate email input
+    if (emailInput.value.trim() === "") {
+      alert("Please enter your email address.");
+      return;
+    }
+
+    // AJAX submission
+    const formData = new FormData();
+    formData.append("email", emailInput.value.trim());
+
+    fetch("forgetPassword.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.text())
+      .then((responseText) => {
+        console.log("Server Response:", responseText);
+
+        // Parse server response
+        if (responseText.includes("success:Email sent successfully!")) {
+          $('#resetSuccessModal').show();
+        } else {
+          alert("Error: Unable to send email. " + responseText);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred while sending the email. Please try again later.");
+      });
+  });
+
+  // Optional: Cancel button behavior
+  cancelButton.addEventListener("click", () => {
+    form.reset(); // Clears the form
+    $('#resetPasswordModalClient').hide();
+  });
+});
+
+</script>
 
 
 
