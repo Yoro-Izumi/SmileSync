@@ -32,7 +32,10 @@
             height: 120px; /* Increased size for roundness */
             width: 120px; /* Increased size for roundness */
             position: relative;
+            background: url(../img/logo.png) center center no-repeat;
+            background-size: cover;
         }
+
 
         .spinner::before,
         .spinner::after {
@@ -63,21 +66,11 @@
             left: 10%; /* Adjusted for smaller size */
             right: 10%; /* Adjusted for smaller size */
         }
-
-        .spinner img {
-            position: absolute;
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Adjust position to center */
-            width: 40px; /* Size of the image */
-            height: 40px; /* Size of the image */
-        }
     </style>
 </head>
 <body>
     <div class="loading-screen" id="loading-screen">
         <div class="spinner">
-            <img src="img/logo.png" alt="Loading..."> <!-- Replace with your image URL -->
         </div>
     </div>
 

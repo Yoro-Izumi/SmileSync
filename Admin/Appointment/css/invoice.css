@@ -1,123 +1,117 @@
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.header h1 {
+  font-size: 20px;
+  margin: 5px 0;
+}
+.header p {
+  font-size: 14px;
+  margin: 2px 0;
+}
+.info {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.info .row {
+  display: flex;
+  justify-content: space-between;
+}
+.info .row span {
+  font-weight: bold;
+}
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.form-group label {
+  flex: 2;
+  font-size: 14px;
+}
+.form-group input[type="text"] {
+  flex: 1;
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: right;
+}
+.form-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+.remarks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.remarks textarea {
+  flex: 1;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  resize: none;
+}
+.footer {
+  margin-top: 20px;
+}
+.footer .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.footer .row span {
+  font-weight: bold;
+}
+.footer .row input {
+  flex: 1;
+  text-align: right;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #fff;
+}
+.actions .update {
+  background-color: #007bff;
+}
+.actions .delete {
+  background-color: #dc3545;
+}
+.upper-right-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 0;
-      border-bottom: 2px solid #E8E8E8;
-    }
-
-    button.btn {
-      margin: auto;
-      background: white;
-      border-radius: 5px;
-      padding: 6px;
-  }
-
-    .header h2 {
-      color: #1A73E8;
-      font-size: 24px;
-    }
-
-    .controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      margin-top: 2rem;
-    }
-
-    #new-invoice {
-      background-color: #4CAF50;
-      color: white;
-      padding: 5px 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #new-invoice:hover {
-      background-color: #45a049;
-    }
-
-    p{
-        padding: 20px;
-        font: 1em sans-serif;
-    }
-
-    .place{
-        padding: 20px;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font: 1em sans-serif;
-    }
-
-    /* Table section */
-    .table-and-details {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .invoice-table {
-      width: 60%;
-      border-collapse: collapse;
-      margin-right: 20px;
-      background-color: #fff;
-    }
-
-    .invoice-table th, .invoice-table td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-      height: 40px; /* Fixed row height */
-      color: #4D4D4D;
-    }
-
-    .invoice-table tr:hover {
-        background-color: #E8F0FE;
-        cursor: pointer;
-    }
-
-    .invoice-table .selected {
-        background-color: #E8F0FE;
-        color: #FFFFFF;
-    }
-
-    .invoice-details {
-      width: 40%;
-      padding: 20px;
-      margin: 10px;
-      border: 1px solid #ddd;
-      background-color: #f9f9f9;
-      border-radius: 10px;
-    }
-
-    .invoice-details h3 {
-      margin-top: 0;
-    }
-
-    .pagination {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .pagination button {
-      padding: 8px 16px;
-      margin: 0 4px;
-      border: 1px solid #ffffff;
-      background-color: #f9f9f9;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .pagination button.active {
-      background-color: #1A73E8;
-      color: white;
-      border: 1px solid #1A73E8;
-    }
-
-    .pagination button:hover {
-      background-color: #ddd;
-    }
+.invoice-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+}

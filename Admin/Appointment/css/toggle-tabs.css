@@ -6,7 +6,7 @@
 
 .toggle-tabs {
   display: flex;
- /*justify-content: space-around;*/
+  justify-content: space-around;
   margin-top: 20px;
   border-bottom: 2px solid #d2e3ee;
   flex-wrap: wrap;

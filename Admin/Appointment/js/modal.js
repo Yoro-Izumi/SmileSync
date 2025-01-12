@@ -1,106 +1,140 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const existingAccountModal = document.getElementById('existingAccountModal');
-    const newAccountModal = document.getElementById('newAccountModal');
-    const proceedModal = document.getElementById('proceedModal');
-    const deleteNewProgressModal = document.getElementById('deleteNewProgressModal');
-    const deleteExistingProgressModal = document.getElementById('deleteExistingProgressModal');
-    const appointmentDoneModal = document.getElementById('appointmentDoneModal');
-
-    const closeDone = document.getElementById('closeDone');
- 
-    const newAccount = document.getElementById('newAccount');
-    const cancelSubmitNewBtn = document.getElementById('cancelSubmitNewBtn');
-
-    const deleteNewProgressBtn = document.getElementById('deleteNewProgressBtn');
-    const cancelNewDeleteBtn = document.getElementById('cancelNewDeleteBtn');
-
-    const existingAccount = document.getElementById('existingAccount');
-    const cancelSubmitExistingBtn = document.getElementById('cancelSubmitExistingBtn');
-    const deleteExistingProgressBtn = document.getElementById('deleteExistingProgressBtn');
-    const cancelExistingDeleteBtn = document.getElementById('cancelExistingDeleteBtn');
-
-    const submitExistingBtn = document.getElementById('submitExistingBtn');
-    const submitNewBtn = document.getElementById('submitNewBtn');
-
-    const getAppointmentBtn = document.getElementById('getAppointmentBtn');
-    const cancelProceedBtn = document.getElementById('cancelProceedBtn');
-
-    // For Proceed to registration modal
-    getAppointmentBtn.addEventListener('click', function () {
-        proceedModal.classList.add('show');
+    const cancelAppointmentModal = document.getElementById('cancelAppointmentModal');
+    const openModalBtn = document.getElementById('openCancelAppointmentModal');
+    const closeModal = document.getElementById('closeCancelAppointmentModal');
+    const otherReasonContainer = document.getElementById('otherReasonContainer');
+    const reasonRadios = document.querySelectorAll('input[name="reason"]');
+  
+    // Show the modal
+    openModalBtn.addEventListener('click', function () {
+      cancelAppointmentModal.style.display = 'block';
     });
-
-    cancelProceedBtn.addEventListener('click', function () {
-        proceedModal.classList.remove('show');
+  
+    // Hide the modal
+    closeModal.addEventListener('click', function () {
+      cancelAppointmentModal.style.display = 'none';
     });
-
-    // Close the appointmentDoneModal
-    closeDone.addEventListener('click', function () {
-        appointmentDoneModal.classList.remove('show');
+  
+    // Toggle "Other Reasons" input field
+    reasonRadios.forEach((radio) => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'other') {
+          otherReasonContainer.style.display = 'block';
+        } else {
+          otherReasonContainer.style.display = 'none';
+          document.getElementById('otherReason').value = ''; // Clear input
+        }
+      });
     });
-
-    // Show the newAccountModal
-    newAccount.addEventListener('click', function () {
-        newAccountModal.classList.add('show');
-    });
-
-    // Close the newAccountModal
-    cancelSubmitNewBtn.addEventListener('click', function () {
-        newAccountModal.classList.remove('show');
-        deleteNewProgressModal.classList.add('show');
-    });
-
-    // Show the existingAccountModal
-    existingAccount.addEventListener('click', function () {
-        existingAccountModal.classList.add('show');
-    });
-
-    // Close the existingAccountModal
-    cancelSubmitExistingBtn.addEventListener('click', function () {
-        existingAccountModal.classList.remove('show');
-        deleteExistingProgressModal.classList.add('show');
-    });
-
-    // Show the appointmentSuccessModal when existingAccountModal is submitted
-    submitExistingBtn.addEventListener('click', function () {
-        existingAccountModal.classList.remove('show');
-    });
-
-    // Show the appointmentSuccessModal when newAccountModal is submitted
-    submitNewBtn.addEventListener('click', function () {
-        newAccountModal.classList.remove('show');
-    });
-
-    // Show the deleteProgressModal for existing account
-    deleteExistingProgressBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.add('show');
-        existingAccountModal.classList.remove('show');
-    });
-
-    // Show the deleteProgressModal for new account
-    deleteNewProgressBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.add('show');
-        newAccountModal.classList.remove('show');
-    });
-
-    // Close the deleteProgressModal for new account
-    cancelNewDeleteBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.remove('show');
-        newAccountModal.classList.add('show');
-    });
-
-    // Close the deleteProgressModal for existing account
-    cancelExistingDeleteBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.remove('show');
-        existingAccountModal.classList.add('show');
-    });
-
-    // Removed the duplicate event listeners for closing the deleteProgress modals
-    // deleteNewProgressBtn.addEventListener('click', function () {
-    //     deleteNewProgressModal.classList.remove('show');
-    // });
-
-    // deleteExistingProgressBtn.addEventListener('click', function () {
-    //     deleteExistingProgressModal.classList.remove('show');
-    // });
-});
+  
+    // Additional modal logic for other modals
+    const modals = {
+      existingAccountModal: document.getElementById('existingAccountModal'),
+      newAccountModal: document.getElementById('newAccountModal'),
+      proceedModal: document.getElementById('proceedModal'),
+      deleteNewProgressModal: document.getElementById('deleteNewProgressModal'),
+      deleteExistingProgressModal: document.getElementById('deleteExistingProgressModal'),
+      appointmentDoneModal: document.getElementById('appointmentDoneModal'),
+    };
+  
+    const buttons = {
+      closeDone: document.getElementById('closeDone'),
+      newAccount: document.getElementById('newAccount'),
+      cancelSubmitNewBtn: document.getElementById('cancelSubmitNewBtn'),
+      deleteNewProgressBtn: document.getElementById('deleteNewProgressBtn'),
+      cancelNewDeleteBtn: document.getElementById('cancelNewDeleteBtn'),
+      existingAccount: document.getElementById('existingAccount'),
+      cancelSubmitExistingBtn: document.getElementById('cancelSubmitExistingBtn'),
+      deleteExistingProgressBtn: document.getElementById('deleteExistingProgressBtn'),
+      cancelExistingDeleteBtn: document.getElementById('cancelExistingDeleteBtn'),
+      submitExistingBtn: document.getElementById('submitExistingBtn'),
+      submitNewBtn: document.getElementById('submitNewBtn'),
+      getAppointmentBtn: document.getElementById('getAppointmentBtn'),
+      cancelProceedBtn: document.getElementById('cancelProceedBtn'),
+    };
+  
+    if (buttons.getAppointmentBtn) {
+      buttons.getAppointmentBtn.addEventListener('click', function () {
+        modals.proceedModal.style.display = 'block';
+      });
+    }
+  
+    if (buttons.cancelProceedBtn) {
+      buttons.cancelProceedBtn.addEventListener('click', function () {
+        modals.proceedModal.style.display = 'none';
+      });
+    }
+  
+    if (buttons.closeDone) {
+      buttons.closeDone.addEventListener('click', function () {
+        modals.appointmentDoneModal.style.display = 'none';
+      });
+    }
+  
+    if (buttons.newAccount) {
+      buttons.newAccount.addEventListener('click', function () {
+        modals.newAccountModal.style.display = 'block';
+      });
+    }
+  
+    if (buttons.cancelSubmitNewBtn) {
+      buttons.cancelSubmitNewBtn.addEventListener('click', function () {
+        modals.newAccountModal.style.display = 'none';
+        modals.deleteNewProgressModal.style.display = 'block';
+      });
+    }
+  
+    if (buttons.existingAccount) {
+      buttons.existingAccount.addEventListener('click', function () {
+        modals.existingAccountModal.style.display = 'block';
+      });
+    }
+  
+    if (buttons.cancelSubmitExistingBtn) {
+      buttons.cancelSubmitExistingBtn.addEventListener('click', function () {
+        modals.existingAccountModal.style.display = 'none';
+        modals.deleteExistingProgressModal.style.display = 'block';
+      });
+    }
+  
+    if (buttons.submitExistingBtn) {
+      buttons.submitExistingBtn.addEventListener('click', function () {
+        modals.existingAccountModal.style.display = 'none';
+      });
+    }
+  
+    if (buttons.submitNewBtn) {
+      buttons.submitNewBtn.addEventListener('click', function () {
+        modals.newAccountModal.style.display = 'none';
+      });
+    }
+  
+    if (buttons.deleteNewProgressBtn) {
+      buttons.deleteNewProgressBtn.addEventListener('click', function () {
+        modals.deleteNewProgressModal.style.display = 'block';
+        modals.newAccountModal.style.display = 'none';
+      });
+    }
+  
+    if (buttons.deleteExistingProgressBtn) {
+      buttons.deleteExistingProgressBtn.addEventListener('click', function () {
+        modals.deleteExistingProgressModal.style.display = 'block';
+        modals.existingAccountModal.style.display = 'none';
+      });
+    }
+  
+    if (buttons.cancelNewDeleteBtn) {
+      buttons.cancelNewDeleteBtn.addEventListener('click', function () {
+        modals.deleteNewProgressModal.style.display = 'none';
+        modals.newAccountModal.style.display = 'block';
+      });
+    }
+  
+    if (buttons.cancelExistingDeleteBtn) {
+      buttons.cancelExistingDeleteBtn.addEventListener('click', function () {
+        modals.deleteExistingProgressModal.style.display = 'none';
+        modals.existingAccountModal.style.display = 'block';
+      });
+    }
+  });
+  
