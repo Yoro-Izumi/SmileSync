@@ -95,6 +95,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         handleError($appointmentsConn, "Error inserting appointment.");
     }
 
+    $appointmentID = mysqli_insert_id($appointmentsConn);
+
+    //INSERT INTO `smilesync_invoice_services`(`invoice_services_id`, `invoice_id`, `service_id`, `appointment_id`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
+    $qryInsertInvoiceService = "INSERT INTO `smilesync_invoice_services`(`invoice_services_id`, `invoice_id`, `service_id`, `appointment_id`) VALUES (NULL,NULL,?,?)";
+    $stmt = mysqli_prepare($appointmentsConn,$qryInsertInvoiceService);
+    mysqli_stmt_bind_param($stmt, 'ii' , $appointmentReason,$appointmentID);
+    
+    if (!mysqli_stmt_execute($stmt)) {
+        handleError($appointmentsConn, "Error inserting invoice service");
+    }
+
+
     // Close connections
     mysqli_close($appointmentsConn);
 

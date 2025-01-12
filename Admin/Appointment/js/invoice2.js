@@ -8,7 +8,7 @@ const invoices = [
   ];
   
   // Pagination setup
-  const rowsPerPage = 2;
+  const rowsPerPage = 5;
   let currentPage = 1;
   
   // Function to populate the table

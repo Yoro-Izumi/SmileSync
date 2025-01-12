@@ -249,7 +249,6 @@ body {
 }
 
 label {
-  width: 150px; /* Set a fixed width for the label */
   font-weight: bold;
 }
 

@@ -66,7 +66,9 @@
 </li>
 
       <li class="profile">
+
         <div class="profile-details">
+
           <div class="name_job">
             <div class="name">kazumiyoro@emailcom</div>
             <div class="job">Admin</div>

@@ -2,7 +2,7 @@
   $connect_accounts = connect_accounts($servername,$username,$password); //connect to account database
   $userAdminID = sanitize_input($_SESSION['userAdminID'],$connect_accounts); //initialzing userAdminID with id in session variable
   //Query to get admin information based on admin id
-  $qryGetAdminInfo = "SELECT * FROM smilesync_admin_accounts where admin_id = ?";
+  $qryGetAdminInfo = "SELECT * FROM smilesync_admin_accounts where admin_account_id = ?";
   $stmt = $connect_accounts->prepare($qryGetAdminInfo);
   $stmt->bind_param("s",$userAdminID);
   $stmt->execute();
@@ -12,14 +12,21 @@
   $connect_accounts->close();
   
   //admin information initialization
-  $adminID = $adminInfo['admin_id'];
+  $adminID = $adminInfo['admin_account_id'];
   $adminEmail = $adminInfo['admin_email'];
+  $adminEmail = decryptData($adminEmail,$key);
   $adminFirstName = $adminInfo['admin_first_name']??'';
+  $adminFirstName = decryptData($adminFirstName,$key);
   $adminLastName = $adminInfo['admin_last_name']??'';
+  $adminLastName = decryptData($adminLastName,$key);
   $adminMiddleName = $adminInfo['admin_middle_name']??'';
+  $adminMiddleName = decryptData($adminMiddleName,$key);
   $adminFullName = $adminFirstName.' '.$adminMiddleName.' '.$adminLastName;
   $adminContactNumber = $adminInfo['admin_phone']??'';
+  $adminContactNumber = decryptData($adminContactNumber,$key);  
   $adminBirthdate = $adminInfo['admin_birthdate']??'';
+  $adminBirthdate = decryptData($adminBirthdate,$key);
+  $adminBirthdate = date('Y-m-d',strtotime($adminBirthdate));
   $accountStatus = $adminInfo['account_status']??'';
   $dateTimeOfCreation = $adminInfo['date_time_of_creation']??'';
 ?>
@@ -194,6 +201,63 @@
     </div>
    
     <script src="js/input-field.js"></script>
+    <script>
+      // Handle Personal Information Update
+$('#personalInfoForm').on('submit', function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    $.ajax({
+        url: 'update_personal_info.php',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert(response); // Display success or error message
+        },
+        error: function (xhr) {
+            alert('Error: ' + xhr.responseText);
+        }
+    });
+});
+
+// Handle Password Update
+$('#passwordForm').on('submit', function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    $.ajax({
+        url: 'update_password.php',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert(response); // Display success or error message
+        },
+        error: function (xhr) {
+            alert('Error: ' + xhr.responseText);
+        }
+    });
+});
+
+// Handle Account Deactivation
+$('#deactivateAccountBtn').on('click', function () {
+    if (confirm('Are you sure you want to deactivate your account?')) {
+        $.ajax({
+            url: 'deactivate_account.php',
+            type: 'POST',
+            success: function (response) {
+                alert(response); // Display success or error message
+                window.location.href = 'logout.php'; // Log out user
+            },
+            error: function (xhr) {
+                alert('Error: ' + xhr.responseText);
+            }
+        });
+    }
+});
+
+    </script>
   
 </body>
 </html>

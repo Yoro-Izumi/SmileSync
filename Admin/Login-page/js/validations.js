@@ -3,6 +3,109 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to handle form validation
   function validateForm(form) {
     let isValid = true;
+
+(() => {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+  
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+  
+  
+  //   For trimming whitespaces
+  function handleInput(event) {
+    const inputValue = event.target.value;
+    event.target.value = inputValue.trim(); // Remove leading and trailing whitespaces
+  }
+  
+  
+  // For first names that it wont accept any numeric and special characters
+  function validateName(event) {
+    const regex = /^[A-Za-z\s]*$/; // Allow only alphabetic characters and spaces
+    if (!regex.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^A-Za-z\s]/g, '');
+    }
+  }
+  
+  // For username
+  function validateUsername(event) {
+    const regex = /^[a-zA-Z0-9._%+-]*$/; // Allow only alphabetic characters and spaces
+    if (!regex.test(event.target.value)) {
+      event.target.value = event.target.value.replace(/[^a-zA-Z0-9._%+-]/g, '');
+    }
+  }
+  
+  
+  //For Contact Number
+  function validateContactNumber(event) {
+    const input = event.target;
+    const value = input.value;
+  
+    // Allow only numeric characters
+    input.value = value.replace(/[^0-9]/g, '');
+  
+    // Check if the length is exactly 11 and starts with '09'
+    if (input.value.length === 11 && input.value.startsWith('09')) {
+      input.setCustomValidity(''); // Valid input
+    } else {
+      input.setCustomValidity('Please provide a valid contact number (11 digits, starts with 09).');
+    }
+  }
+  
+  //For Email 
+  function validateEmail(event) {
+    var emailInput = event.target.value;
+  
+    event.target.value = emailInput.replace(/\s+/g, '');
+  
+    emailInput = event.target.value.trim();
+  
+    var isValid = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput);
+  
+    if (!isValid) {
+      document.getElementById("emailError").style.display = "block";
+      event.target.setCustomValidity("Please enter a valid email address.");
+    } else {
+      document.getElementById("emailError").style.display = "none";
+      event.target.setCustomValidity("");
+    }
+  }
+  
+  
+  document.getElementById("email").addEventListener("input", validateEmail);
+  document.getElementById("emailRegister").addEventListener("input", validateEmail);
+  
+  
+    //   Updated script for password toggle
+    document.addEventListener("DOMContentLoaded", function() {
+      const togglePassword1 = document.querySelector("#password-toggle-1");
+      const passwordInput1 = document.querySelector("#password");
+      const eyeIcon1 = togglePassword1.querySelector("i");
+    
+      togglePassword1.addEventListener("click", function() {
+        const type =
+          passwordInput1.getAttribute("type") === "password" ?
+          "text" :
+          "password";
+        passwordInput1.setAttribute("type", type);
+    
+        // Toggle eye icon classes
+        eyeIcon1.classList.toggle("fa-eye-slash");
+        eyeIcon1.classList.toggle("fa-eye");
+      });
+
     
     // Input fields and their validation rules
     const fields = [

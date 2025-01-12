@@ -15,17 +15,9 @@ if (!$connect_appointment) {
 // SQL query to get the appointment data
 $getAppointmentDetails = "
     SELECT 
-        a.patient_info_id, 
-        a.admin_id, 
-        a.appointment_date_time, 
-        a.appointment_status,
-        a.appointment_id, 
-        p.patient_first_name,
-        p.patient_middle_name,
-        p.patient_last_name, 
-        ar.admin_first_name,
-        ar.admin_middle_name,
-        ar.admin_last_name
+        a.*,
+        p.*,
+        ar.*
     FROM 
         smilesync_appointments a
     LEFT JOIN 
@@ -68,6 +60,8 @@ foreach ($appointments as $appointment){
     $approver_last_name = $appointment['admin_last_name'] ?? "";
     $approver_last_name = decryptData($approver_last_name,$key);    
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
+
+    if($appointment_status !== 'Done'){
 ?>
 <tr>
     <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
@@ -83,11 +77,31 @@ foreach ($appointments as $appointment){
                 <div class="dropdown-content">
                     <a href="appointment-details.php">View Details</a>
                     <a href="#">Download</a>
+                    <a href="#" class="appointmentStatus" data-id="<?php echo $appointment_id;?>">Done Appointment</a>
                     <a href="#" id="openCancelAppointmentModal">Cancel Appointment</a>
-                    <a href="#" id="appointmentStatus">Done Appointment</a>
                 </div>
             </div>
         </div>
     </td>
 </tr>
-<?php } ?>
+<?php }else{ ?>
+    <tr>
+    <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
+    <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
+    <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
+    <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
+    <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
+    <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
+    <td data-label="ACTIONS">
+        <div class="actions">
+            <div class="dropdown">
+                <button>⋮</button>
+                <div class="dropdown-content">
+                    <a href="appointment-details.php">View Details</a>
+                    <a href="#">Download</a>
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>
+<?php }} ?>

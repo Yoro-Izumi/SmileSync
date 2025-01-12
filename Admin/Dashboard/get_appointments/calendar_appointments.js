@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function fetchDashboardAppointments(dashboard_date) {
         // Use fetch to get appointments from the database via the PHP endpoint
-        fetch(`get_appointments.php?date=${dashboard_date}`)
+        fetch(`get_appointments/get_appointments.php?date=${dashboard_date}`)
             .then(response => response.json())
             .then(data => displayDashboardAppointments(data))
             .catch(error => console.error('Error fetching appointments:', error));

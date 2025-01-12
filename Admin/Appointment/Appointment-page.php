@@ -40,7 +40,8 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <?php include "sidebar-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
-<?php include "../Appointment/modal.php"; ?>
+<?php include "modal2.php"; ?>
+<?php //include "modal.php"; ?>
 <?php include "loader.php"; ?>
  
   <section class="home-section">
@@ -61,6 +62,8 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
  <script src="js/appointment-table.js"></script>
 <!-- Tabs in View Tables -->
  <script src="js/toggle-tabs.js"></script>
+<!-- Validations -->
+<script src="js/validations.js"></script> 
 
 </body>
 </html>

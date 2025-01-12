@@ -101,48 +101,55 @@ document.addEventListener('DOMContentLoaded', function () {
       showModal(successModal);
     });
   
-    // Registration form submission
-    registerBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      const form = document.getElementById('register_form');
-      const formData = new FormData(form);
-  
-      if (form.checkValidity()) {
-        $.ajax({
-          type: 'POST',
-          url: 'register_code.php',
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function (response) {
-            switch (response.trim()) {
-              case 'error:Email already exists':
-                showModal(emailExistsModal);
-                registerBtn.disabled = false; // Re-enable for user correction
-                break;
-              case 'error:Passwords do not match':
-                showModal(passwordMismatchModal);
-                registerBtn.disabled = false; // Re-enable for user correction
-                break;
-              case 'success':
-                showModal(successRegisterModal);
-                sessionStorage.setItem('registerFormSubmitted', 'true');
-                form.reset(); // Reset the form after successful submission
-                registerBtn.disabled = true; // Disable the button after success
-                break;
-              default:
-                registerBtn.disabled = false; // Re-enable for user correction
-            }
-          },
-          error: function (xhr) {
-            console.error(xhr.responseText);
-            registerBtn.disabled = false; // Re-enable for user correction
-          },
-        });
-      } else {
-        form.reportValidity(); // Trigger validation error messages
-      }
+// Registration form submission
+const registerForm = document.getElementById('register_form');
+
+registerForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const formData = new FormData(registerForm);
+
+  // Debug: Log form data before submission
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+  }
+
+  if (registerForm.checkValidity()) {
+    $.ajax({
+      type: 'POST',
+      url: 'register_code.php',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        console.log(response); // Debug server response
+        switch (response.trim()) {
+          case 'error:Email already exists':
+            showModal(emailExistsModal);
+            break;
+          case 'error:Passwords do not match':
+            showModal(passwordMismatchModal);
+            break;
+          case 'success':
+            showModal(successRegisterModal);
+            registerForm.reset();
+            break;
+          case 'error:Problem with form submission':
+            console.error('Problem with form submission');
+            break;
+          default:
+            console.error('Unexpected response:', response);
+        }
+      },
+      error: function (xhr) {
+        console.error(xhr.responseText); // Debug server error
+      },
     });
+  } else {
+    registerForm.reportValidity();
+  }
+});
+
+
   
     // Login form submission
     showLoginFailedBtn.addEventListener('click', function (e) {

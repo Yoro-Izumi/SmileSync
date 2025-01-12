@@ -1,16 +1,13 @@
 <?php
-$root_dir = $root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
-require_once $root_dir . '/vendor/autoload.php';
+// code to encrypt data before inserting in database
+$root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
+require_once $root_dir.'/vendor/autoload.php';
 
 // Load the .env file
-if (!file_exists($root_dir . '/.env')) {
-    die("Environment configuration file is missing!");
-}
 $dotenv = Dotenv\Dotenv::createImmutable($root_dir);
 $dotenv->load();
 
-// Initialize servername, username, and password
-$key = $_ENV['ENCRYPTION_KEY'] ?? null;
+$key = $_ENV['ENCRYPTION_KEY'];
 
 //this is the encryption function
 function encryptData($data, $key) {

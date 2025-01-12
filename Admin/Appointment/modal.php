@@ -6,13 +6,14 @@
 <body>
 
 <div class="modal" id="appointmentDoneModal">
-
     <div class="done-modal">
    <div class="modal-done">
+
     <div class="modal-header"> 
             </div>
             <?php include "done-appointment.php"; ?>
 </div>
+
 </div></div>
 
 
@@ -91,7 +92,7 @@
     </div>
 </div>
 
-<!-- Success Modal 
+<!-- Success Modal -->
 <div class="modal" id="appointmentSuccessModal">
     <div class="modal-content">
         <div class="modal-title success-title">Appointment Added Successfully!</div>
@@ -102,7 +103,7 @@
         </div>
         <button id="closeAppointmentSuccessBtn" class="modal-button success">OK</button>
     </div>
-</div> -->
+</div> 
 
 
 

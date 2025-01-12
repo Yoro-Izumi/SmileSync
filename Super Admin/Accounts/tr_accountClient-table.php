@@ -22,11 +22,11 @@ if ($resultsPatientAccounts) {
             $patientLastName = $patientAccounts['patient_last_name'] = "";
             $patient_info_id = $patientAccounts['patient_info_id'] = "";
         } else {
-            $patientFirstName = $patientAccounts['patient_first_name'] ?? "";
+            $patientFirstName = $patientAccounts['patient_first_name'];
             $patientFirstName = decryptData($patientFirstName, $key);
-            $patientMiddleName = $patientAccounts['patient_middle_name'] ?? "";
+            $patientMiddleName = $patientAccounts['patient_middle_name'];
             $patientMiddleName = decryptData($patientMiddleName, $key);
-            $patientLastName = $patientAccounts['patient_last_name'] ?? "";
+            $patientLastName = $patientAccounts['patient_last_name'];
             $patientLastName = decryptData($patientLastName, $key);
             $patientID = $patientAccounts['patient_account_id'];
             $patientFullName = $patientLastName . ", " . $patientFirstName . " " . $patientMiddleName;

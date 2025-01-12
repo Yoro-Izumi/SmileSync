@@ -81,6 +81,6 @@ $message = "default"; // For modal
 }
 
 // If required fields are not set
-echo "error";
+echo "error:Problem with form submission";
 exit();
 ?>
