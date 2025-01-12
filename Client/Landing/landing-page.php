@@ -14,6 +14,7 @@
 
 </head>
 <body>
+<?php include "chatbot.php"; ?>
 <div class="container">
     <div class="logo">
         <img src="img/logo.png" alt="logo">

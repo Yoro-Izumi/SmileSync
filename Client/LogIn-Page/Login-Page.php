@@ -31,8 +31,9 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
 
 
 <body>
-<?php include "modal.php"; ?>
-<?php include "loader.php"; ?>
+  <?php include "chatbot.php"; ?>
+  <?php include "modal.php"; ?>
+  <?php include "loader.php"; ?>
 
     <main> 
       <div class="box">

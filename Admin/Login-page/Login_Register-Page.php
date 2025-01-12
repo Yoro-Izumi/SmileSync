@@ -39,8 +39,9 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 </head>
 
 <body>
-     <?php include "modal.php"; ?>
-     <?php include "loader.php"; ?>
+    <?php include "chatbot.php"; ?>
+    <?php include "modal.php"; ?>
+    <?php include "loader.php"; ?>
 
      <main>
    
