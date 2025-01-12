@@ -34,9 +34,6 @@
     </table>
 
     <div class="invoice-details" id="invoice-details">
-      <h3>    
-      Details
-    </h3>
       <p class="place">
             <img src="img/archive.png" alt="security">
         </p>

@@ -163,24 +163,8 @@
         <div class="modal-title warning-title">Service Removal</div>
         <div class="message-container">
             <div class="modal-description">
-                You are trying to remove multiple services. The services will no longer be accessed by the admin and the user.  
-            </div>
-        </div>
-        <button class="modal-button normal" id="removeServicesBtn">Remove</button>
-        <button class="modal-button secondary-button warning" id="cancelRemoveServicesBtn">Cancel</button>
-    </div>
-</div>
+                You are trying to remove an item. The service will no longer be accessed by the admin. 
 
-<!-- Remove Service Warning Modal -->
-<div class="modal" id="removeServiceModal">
-    <div class="modal-content">
-        <div class="image-container">
-            <img class="image" src="img/archive.png" alt="security">
-        </div>
-        <div class="modal-title warning-title">Service Removal</div>
-        <div class="message-container">
-            <div class="modal-description">
-                You are trying to remove (1) service. The item will no longer be accessed by the admin and users.
             </div>
         </div>
         <button class="modal-button normal" id="removeServiceBtn">Remove</button>
@@ -188,6 +172,22 @@
     </div>
 </div>
 
+<!-- Remove Service Warning Modal -->
+<div class="modal" id="massRemoveServicesModal">
+    <div class="modal-content">
+        <div class="image-container">
+            <img class="image" src="img/archive.png" alt="security">
+        </div>
+        <div class="modal-title warning-title">Service Removal</div>
+        <div class="message-container">
+            <div class="modal-description">
+                You are trying to remove (1) item. The service will no longer be accessed by the admin. 
+            </div>
+        </div>
+        <button class="modal-button normal" id="massRemoveServiceBtn">Remove</button>
+        <button class="modal-button secondary-button warning" id="cancelMassRemoveServiceBtn">Cancel</button>
+    </div>
+</div>
 
 <div id="alertContainer"></div>
 

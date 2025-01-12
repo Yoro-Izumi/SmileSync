@@ -127,12 +127,13 @@ form.sign-up-form {
 }
 
 img {
+    height: 90vh;
     margin-right: 0.3rem;
 }
 
 
 .logo img {
-    height: 24px;
+    height: 25px;
 }
 
 .heading h2 {
@@ -284,6 +285,20 @@ input[type="date"] {
     box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
+.error-message {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .input-wrap.error .error-message {
+    display: block;
+  }
+  .input-wrap.error .input-field {
+    border-color: red;
+  }
+  
 .remember-me-wrap {
     display: flex;
     align-items: center;
@@ -417,23 +432,24 @@ main.sign-up-mode .carousel {
 
 .carousel {
     position: absolute;
-    height: 95vh;
-    width: 45%; /* Adjusted to 25% */
-    left: 55%; /* Adjusted to match the width of forms */
+    height: 100vh;
+    width: 45%;
+    left: 55%;
     top: 0;
-    background-color: #C1E4F8;
-    border-radius: 15px; /* Remove border-radius if you want full coverage */
-    overflow: hidden;
-    display: flex; /* Use flex to control alignment */
-    justify-content: center; /* Center images horizontally */
-    align-items: center; /* Center images vertically */
+    /* background-color: #C1E4F8; */
+    border-radius: 15px;
+    /* overflow: hidden; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: 0.8s ease-in-out;
 }
-
+ 
 
 .carousel .images-wrapper {
-    height: 100%; /* Set height to fill the parent */
-    width: 100%; /* Set width to fill the parent */
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

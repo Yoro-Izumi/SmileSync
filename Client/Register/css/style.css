@@ -195,6 +195,20 @@ indicator{
   border: 2px solid red;
 }
 
+.error-message {
+  display: none;
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.input-wrap.error .error-message {
+  display: block;
+}
+.input-wrap.error .input-field {
+  border-color: red;
+}
+
 
 .remember-me-wrap {
   display: flex;

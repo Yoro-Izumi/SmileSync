@@ -57,11 +57,11 @@
 
   .toggle-tabs {
     font-size: 1rem;
-    justify-content: space-between; /* Adjust spacing for larger screens */
+    /* justify-content: space-between; //Adjust spacing for larger screens */
   }
 
   .tab {
-    flex-basis: auto; /* Allows tabs to take their natural width */
+    flex-basis: min-content; /* Allows tabs to take their natural width */
   }
 
   .content-area {
