@@ -7,6 +7,26 @@ include "../client_global_files/encrypt_decrypt.php";
 include "../client_global_files/input_sanitizing.php";
 
 if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
+  $connect_accounts = connect_accounts($servername,$username,$password);
+  $userID = $_SESSION['userID'];
+  $qryGetPatientInfo = "SELECT * FROM smilesync_patient_accounts 
+                        LEFT JOIN smilesync_patient_management.smilesync_patient_information 
+                        ON smilesync_patient_accounts.patient_info_id = smilesync_patient_management.smilesync_patient_information.patient_info_id
+                        WHERE smilesync_patient_accounts.patient_account_id = ? ";
+  $stmtGetPatientInfo = $connect_accounts->prepare($qryGetPatientInfo);
+  $stmtGetPatientInfo->bind_param('i',$userID);
+  $stmtGetPatientInfo->execute();
+  $resultGetPatientInfo = $stmtGetPatientInfo->get_result();
+  $rowGetPatientInfo = $resultGetPatientInfo->fetch_assoc();
+  $patientFirstName = decryptData($rowGetPatientInfo['patient_first_name'],$key);
+  $patientLastName = decryptData($rowGetPatientInfo['patient_last_name'],$key);
+  $patientMiddleName = decryptData($rowGetPatientInfo['patient_middle_name'],$key);
+  $patientSuffix = decryptData($rowGetPatientInfo['patient_suffix'],$key);
+  $patientBirthdate = decryptData($rowGetPatientInfo['patient_birthday'],$key);
+  $patientBirthdate = date('Y-m-d',strtotime($patientBirthdate));
+  $patientPhoneNumber = decryptData($rowGetPatientInfo['patient_phone_number'],$key);
+  $patientEmail = decryptData($rowGetPatientInfo['patient_account_email'],$key);
+  $stmtGetPatientInfo->close();
 ?>
 
 <!DOCTYPE html>

@@ -66,10 +66,10 @@
 </li>
 
 <li class="profile">
-        < class="profile-details">
+        <class="profile-details">
           <img src="img/login.png"  alt="profile">
           <div class="name_job">
-            <div class="name">kazumiyoro@emailcom</div>
+            <div class="name"><?php echo $adminEmail;?></div>
             <div class="job">Admin</div>
           </div>
             <a href="../admin_global_files/log_out.php">

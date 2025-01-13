@@ -12,6 +12,21 @@ if (!$connect_appointment) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$connect_accounts = connect_accounts($servername,$username,$password);
+$userID = $user_id;
+$qryGetPatientInfo = "SELECT * FROM smilesync_patient_accounts 
+                      LEFT JOIN smilesync_patient_management.smilesync_patient_information 
+                      ON smilesync_patient_accounts.patient_info_id = smilesync_patient_management.smilesync_patient_information.patient_info_id
+                      WHERE smilesync_patient_accounts.patient_account_id = ? ";
+$stmtGetPatientInfo = $connect_accounts->prepare($qryGetPatientInfo);
+$stmtGetPatientInfo->bind_param('i',$userID);
+$stmtGetPatientInfo->execute();
+$resultGetPatientInfo = $stmtGetPatientInfo->get_result();
+$rowGetPatientInfo = $resultGetPatientInfo->fetch_assoc();
+$patientID = $rowGetPatientInfo['patient_info_id'];
+
+
+
 // SQL query to get the appointment data
 $getAppointmentDetails = "
     SELECT 
@@ -33,7 +48,7 @@ $getAppointmentDetails = "
     LEFT JOIN 
         $approvers_db.smilesync_admin_accounts ar ON a.admin_id = ar.admin_account_id
     WHERE 
-        a.patient_info_id = '$user_id'
+        a.patient_info_id = '$patientID'
 ";
 
 $result = mysqli_query($connect_appointment, $getAppointmentDetails);

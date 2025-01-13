@@ -27,7 +27,7 @@
             <div class="dropdown">
                 <i class="fa fa-user-circle dropdown-toggle"></i>
                 <div class="dropdown-content">
-                    <a href="#"><i class="fa fa-user-circle"></i>email@email.com</a>
+                    <a href="#"><i class="fa fa-user-circle"></i><?php echo $patientEmail;?></a>
                     <a href="../Settings/Settings-page.php"><i class='bx bxs-cog'></i>Settings</a>
                     <a href="../client_global_files/logout.php"><i class='bx bx-log-out' id="log_out"></i>Logout</a>
                 </div>

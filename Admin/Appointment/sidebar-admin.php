@@ -70,7 +70,7 @@
         <div class="profile-details">
 
           <div class="name_job">
-            <div class="name">kazumiyoro@emailcom</div>
+            <div class="name"><?php echo $adminEmail;?></div>
             <div class="job">Admin</div>
           </div>
             <a href="../admin_global_files/log_out.php">

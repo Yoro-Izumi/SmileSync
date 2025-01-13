@@ -45,13 +45,13 @@
 
 <div class="container">
     
-    <form >
+    <form id="personalInfoForm" name="personalInfoForm">
         <h3>Personal Information</h3>
      <div class="wrap-2rows">
         <div class="input-wrap">
                   <input
                     type="text"
-                    minlength="24"
+                    maxlength="24"
                     class="input-field"
                     autocomplete="off"
                     value = "<?php echo $adminFirstName;?>"
@@ -116,6 +116,7 @@
                     type="date"
                     id="birthdate-picker"
                     class="input-field"
+                    value="<?php echo $adminBirthdate;?>"
                     autocomplete="off"
                     required
                   />
@@ -130,6 +131,7 @@
                     type="text"
                     minlength="11"
                     class="input-field"
+                    value="<?php echo $adminContactNumber;?>"
                     autocomplete="off"
                     required
                   />
@@ -142,6 +144,7 @@
                     minlength="5"
                     maxlength="24"
                     class="input-field"
+                    value="<?php echo $adminEmail;?>"
                     autocomplete="off"
                     required
                   />
@@ -149,8 +152,8 @@
                 </div>
 
                 <button type="submit" class="btn">Save Changes</button>
-
-
+</form>
+                <form id="passwordForm" name="passwordForm">
                 <div class="input-wrap">
                   <input
                     type="password"
@@ -233,6 +236,10 @@ $('#passwordForm').on('submit', function (e) {
         contentType: false,
         success: function (response) {
             alert(response); // Display success or error message
+            if(response.trim() == "Password updated successfully."){
+              window.location.replace('../client_global_files/logout.php');
+            }
+            
         },
         error: function (xhr) {
             alert('Error: ' + xhr.responseText);
