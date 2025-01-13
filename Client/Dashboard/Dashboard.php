@@ -19,7 +19,7 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
     <link rel="stylesheet" href="css/style.css" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
     <!-- Table -->
     <link rel="stylesheet" href="css/table.css">
   
