@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = 143;
+const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -78,7 +78,7 @@ app.post('/send-email', async (req, res) => {
   try {
     await transporter.sendMail({
       from: 'smilesyncco@gmail.com',
-      to: 'laskjdflafsjd@gmail.com',
+      to: 'yoroizumi@gmail.com',
       subject: 'Reset Your Password',
       html: htmlContent,
     });
@@ -89,8 +89,8 @@ app.post('/send-email', async (req, res) => {
   }
 });
 
-// Start the server
+/* Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-});
+});*/
 

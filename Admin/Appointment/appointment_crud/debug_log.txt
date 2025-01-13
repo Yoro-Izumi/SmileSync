@@ -11,10 +11,10 @@ Array
             [patient_phone_number] => 0298430923439
             [patient_sex] => 
             [birth_date] => Wednesday, October 10, 2001
-            [appointment_date_time] => Sunday, January 12, 2025 1:12 AM
-            [service_name] => Hetalia
-            [service_price] => 200
-            [service_id] => 1
+            [appointment_date_time] => Friday, January 17, 2025 1:12 AM
+            [service_name] => 
+            [service_price] => 
+            [service_id] => 
         )
 
 )

@@ -28,7 +28,7 @@
       </div>
       <div class="buttons">
         <button class="btn new" id="newAccount">+New Appointment</button>
-        <button class="btn" id="existingAccount">+Existing Account</button>
+        <button class="btn new" id="existingAccount">+Existing Account</button>
       </div>
     </div>
 
@@ -69,7 +69,6 @@
     </div>
 
   </div>
-
   <script>
   document.addEventListener('DOMContentLoaded', function () {
     const statusFilter = document.getElementById('status');
@@ -121,9 +120,25 @@
       // Update pagination display (if you have pagination buttons, implement their logic here)
     }
 
-    // Event listeners
-    searchInput.addEventListener('input', filterRows);
+    // Show all rows initially
+    function showAllRowsOnPageLoad() {
+      rows.forEach((row) => {
+        row.classList.remove('hidden'); // Make all rows visible
+        row.style.display = ''; // Reset display property
+      });
+
+      updatePagination(); // Apply pagination to visible rows
+    }
+
+    // Trigger filtering logic only when the dropdown value changes
     statusFilter.addEventListener('change', filterRows);
+
+    // Trigger filtering logic only when search input value changes
+    searchInput.addEventListener('input', function () {
+      if (searchInput.value.trim()) {
+        filterRows();
+      }
+    });
 
     // Checkbox "select all" functionality
     checkAllCheckbox.addEventListener('change', function () {
@@ -139,8 +154,10 @@
       });
     });
 
-    // Apply the filter on page load
-    filterRows();
+    // Show all rows on page load
+    showAllRowsOnPageLoad();
   });
 </script>
+
+
 

@@ -1,4 +1,4 @@
-<!--?php
+<?php
 include "../admin_global_files/set_sesssion_dir.php";
 
 session_start();
@@ -9,7 +9,7 @@ include "../admin_global_files/input_sanitizing.php";
 
 // Check if user is already logged in
 if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
-?-->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +41,6 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "modal2.php"; ?>
-<?php //include "modal.php"; ?>
 <?php include "loader.php"; ?>
  
   <section class="home-section">
@@ -59,7 +58,7 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <!-- Notifications -->
  <script src="js/notif.js"></script>
 <!-- Appointment Tables -->
- <script src="js/appointment-table.js"></script>
+
 <!-- Tabs in View Tables -->
  <script src="js/toggle-tabs.js"></script>
 <!-- Validations -->
@@ -67,10 +66,10 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 
 </body>
 </html>
-<!--?php
+<?php
 }
 else{
   header('location: ../Login-page');
   exit();
 }
-?-->
+?>

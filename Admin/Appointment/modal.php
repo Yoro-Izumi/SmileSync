@@ -291,29 +291,19 @@
                         <div class="form-group">
                             <input type="text" readonly value="" />
                         </div>
-                       <!-- <div class="form-group">
-                            <label for="dropdownButtonProcedure">Procedure/s:</label>
-                            <div class="dropdown-container">
-                                <button id="dropdownButtonProcedureApproval" type="button" aria-expanded="false" aria-controls="dropdownMenuProcedure">
-                                    Select Procedure/s
-                                </button>
-                                <div id="dropdownMenuProcedureAppoval" class="dropdown-menu-procedure" style="display: none;">
-                                    <!-- Dynamically updates -->
                                 </div>
                             </div>
                             <div class="selected-procedures-approval"></div>
-                        </div> -->
+                        </div> 
                     </div>
                     <!-- Action Buttons -->
                             <div class="button-container">
                                 <button class="action-btn">Cancel</button>
                                 <button type="submit" class="action-btn" id="approveAppointmentBtn">Approve Appointment</button>
                             </div>
+                       </form>     
                 </div>
-            </div>
-        </div>
-    </form>
-</div>
+
 
 
 
@@ -351,22 +341,6 @@
     </div>
 </div>
 
-<!-- Remove Account Warning Modal -->
-<div class="modal" id="cancelAppointmentModal">
-    <div class="modal-content">
-        <div class="image-container">
-            <img class="image" src="img/archive.png" alt="security">
-        </div>
-        <div class="modal-title warning-title">Appointment Removal</div>
-        <div class="message-container">
-            <div class="modal-description">
-                You are trying to remove (1) appointment. The item will no longer be accessed by the admin. 
-            </div>
-        </div>
-        <button class="modal-button normal" id="cancelAppointmentBtn">Remove</button>
-        <button class="modal-button secondary-button warning" id="cancelBtn">Cancel</button>
-    </div>
-</div>
 
 <!-- Success Modal -->
 <div class="modal" id="appointmentSuccessModal">

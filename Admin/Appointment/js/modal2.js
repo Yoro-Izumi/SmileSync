@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const appointmentDoneModal = document.getElementById('appointmentDoneModal');
 
     const approvalAppointmentModal = document.getElementById('approvalAppointmentModal');
+    const cancelAppointmentModal = document.getElementById('cancelAppointmentModal');
 
     const closeDone = document.getElementById('closeDone');
 
@@ -22,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const cancelExistingDeleteBtn = document.getElementById('cancelExistingDeleteBtn');
 
     const submitExistingBtn = document.getElementById('submitExistingBtn');
-    //const submitNewBtn = document.getElementById('submitNewBtn');
 
     // Show the appointmentDoneModal
     const statusBtns = document.querySelectorAll('.appointmentStatus');
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         appointmentDoneModal.classList.remove('show');
     });
 
-    // Show the approvealAppointmentModal
+    // Show the approvalAppointmentModal
     const approveBtns = document.querySelectorAll('.appointmentApprove');
     approveBtns.forEach((approveBtn) => {
         approveBtn.addEventListener('click', function () {
@@ -45,9 +45,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Close the approvealAppointmentModal
+    // Close the approvalAppointmentModal
     closeDone.addEventListener('click', function () {
         approvalAppointmentModal.classList.remove('show');
+    });
+
+    // Show the newAccountModal
+    newAccount.addEventListener('click', function () {
+        newAccountModal.classList.add('show');
+    });
+
+    // Close the newAccountModal
+    cancelSubmitNewBtn.addEventListener('click', function () {
+        newAccountModal.classList.remove('show');
+        deleteNewProgressModal.classList.add('show');
+    });
+
+    // Show the existingAccountModal
+    existingAccount.addEventListener('click', function () {
+        existingAccountModal.classList.add('show');
+    });
+
+    // Close the existingAccountModal
+    cancelSubmitExistingBtn.addEventListener('click', function () {
+        existingAccountModal.classList.remove('show');
+        deleteExistingProgressModal.classList.add('show');
     });
 
     // Show the deleteProgressModal for existing account
@@ -64,18 +86,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Close the deleteProgressModal for new account
     cancelNewDeleteBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.remove('show'); // Hide deleteNewProgressModal
-        newAccountModal.classList.add('show'); // Restore newAccountModal
+        deleteNewProgressModal.classList.remove('show');
+        newAccountModal.classList.add('show');
     });
 
     // Close the deleteProgressModal for existing account
     cancelExistingDeleteBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.remove('show'); // Hide deleteExistingProgressModal
-        existingAccountModal.classList.add('show'); // Restore existingAccountModal
+        deleteExistingProgressModal.classList.remove('show');
+        existingAccountModal.classList.add('show');
+    });
+
+    // Open the cancelAppointmentModal
+    const openCancelAppointmentBtns = document.querySelectorAll('.openCancelAppointmentModal');
+    openCancelAppointmentBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
+            cancelAppointmentModal.classList.add('show');
+        });
+    });
+
+    // Close the cancelAppointmentModal
+    const closeCancelAppointmentBtn = document.getElementById('closeCancelAppointmentModal');
+    closeCancelAppointmentBtn.addEventListener('click', function () {
+        cancelAppointmentModal.classList.remove('show');
     });
 });
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const modals = document.querySelectorAll(".modal");
@@ -266,6 +300,37 @@ const setupDynamicActionsApprove = () => {
 // Initialize the dynamic button actions
 setupDynamicActionsApprove();
 
+//set up dynamics for for cancel appointment
+// Handle Dynamic Button Actions for approve appointment
+const setupDynamicActionsCancel = () => {
+    document.body.addEventListener("click", (event) => {
+        // Handle Appointment Approve Button Click
+        if (event.target.closest(".openCancelAppointmentModal")) {
+            const itemElement = event.target.closest(".openCancelAppointmentModal");
+            const itemId = itemElement.dataset.id;
+
+            // Set the appointment ID in the hidden input
+            document.getElementById("approval_appointment_id").value = itemId;
+
+            // Save appointmentID as a session variable
+            $.ajax({
+                url: 'save_session_appointment.php', // PHP script to handle the request
+                type: 'POST',
+                data: { session_appointment_id: itemId }, // Data to send to the server
+                success: function (response) {
+                    console.log("Session saved:", response);
+                },
+                error: function () {
+                    $('#response').text('Error saving the value.');
+                }
+            });
+        }
+    });
+};
+
+// Initialize the dynamic button actions
+setupDynamicActionsCancel();
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const doneForm = document.getElementById('doneAppointmentForm');
@@ -391,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+// Get products for drop downn
 document.addEventListener('DOMContentLoaded', function () {
 //disableCheckbox
     let selectedItems = {}; // Store selected items and their quantities
@@ -616,7 +681,7 @@ dropdownButtonProcedure.addEventListener('click', function () {
 });
 
 
-// appointmnet approve
+// get products for approval form
 
 document.addEventListener('DOMContentLoaded', function () {
     let selectedProcedures = [];
@@ -739,4 +804,41 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.selected-procedures-approval').css('display', 'block');
     });
 });
+
+
+// cancel appointment ajax
+
+document.querySelector('.cancel-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+  
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
+  
+    // Check if the "Other Reasons" input is required and valid
+    const otherReasonInput = document.querySelector('#otherReason');
+    const reasonValue = formData.get('reason');
+    if (reasonValue === 'other' && !otherReasonInput.value.trim()) {
+      alert('Please specify the reason for cancellation.');
+      return;
+    }
+  
+    fetch('appointment_crud/cancel_appointment.php', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Appointment cancelled successfully.');
+          // Optionally redirect or update the UI
+        } else {
+          alert('Failed to cancel the appointment: ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your request.');
+      });
+  });
+  
 

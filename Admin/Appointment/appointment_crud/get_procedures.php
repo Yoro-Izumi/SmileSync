@@ -9,12 +9,14 @@ include "../../admin_global_files/input_sanitizing.php";
 
 // Database connections
 $connect_appointment = connect_appointment($servername, $username, $password);
+if (!$connect_appointment) {
+    die("Database connection failed.");
+}
 
-$appointmentID = isset($_SESSION['session_appointment_id']) ? $_SESSION['session_appointment_id'] : 2;
+$appointmentID = isset($_SESSION['session_appointment_id']) ? intval($_SESSION['session_appointment_id']) : 2;
 
 // Fetch all products
 $query = "SELECT `service_id`, `service_name`, `service_description`, `service_duration`, `service_price`, `service_status` FROM `smilesync_services`";
-
 $result = $connect_appointment->query($query);
 
 $procedures = [];
@@ -22,11 +24,12 @@ if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $procedures[] = [
             'id' => $row['service_id'],
-            'service_name' => htmlspecialchars($row['service_name']), // Escape HTML entities
-            'service_duration' => htmlspecialchars($row['service_duration']), // Escape HTML entities
-            'service_price' => htmlspecialchars($row['service_price']), // Escape HTML entities
+            'service_name' => htmlspecialchars($row['service_name'], ENT_QUOTES),
+            'service_duration' => htmlspecialchars($row['service_duration'], ENT_QUOTES),
+            'service_price' => htmlspecialchars($row['service_price'], ENT_QUOTES),
         ];
     }
+    $result->free();
 }
 
 // Generate HTML
@@ -34,20 +37,12 @@ foreach ($procedures as $procedure) {
     $id = $procedure['id'];
     $service_name = $procedure['service_name'];
     $selected_service_id = getSelectedService($connect_appointment, $appointmentID);
-    $service_duration = $procedure['service_duration'];
-    $service_price = $procedure['service_price'];
 
-if ($id === $selected_service_id) {
+    $checked = ($id === $selected_service_id) ? 'checked' : '';
     echo '<div class="dropDownItem">
-        <input type="checkbox" class="checkBoxProcedure" value="' . $id . '" data-name="' . $service_name . '" name="procedureCheck[]" checked onclick="disableCheckbox()">
+        <input type="checkbox" class="checkBoxProcedure" value="' . $id . '" data-name="' . $service_name . '" name="procedureCheck[]" ' . $checked . ' onclick="disableCheckbox()">
         ' . $service_name . '
     </div>';
-} else {
-    echo '<div class="dropDownItem">
-        <input type="checkbox" class="checkBoxProcedure" value="' . $id . '" data-name="' . $service_name . '" name="procedureCheck[]">
-        ' . $service_name . '
-    </div>';
-}
 }
 
 // Close connections
@@ -55,8 +50,9 @@ $connect_appointment->close();
 
 // Fetch consumed products for a specific appointment
 function getSelectedService($connect_appointment, $appointmentID) {
-    $query = "SELECT sv.service_id FROM `smilesync_invoice_services` sis INNER JOIN smilesync_services sv ON sis.service_id = sv.service_id WHERE appointment_id = ?";
-
+    $query = "SELECT sv.service_id FROM `smilesync_invoice_services` sis 
+              INNER JOIN smilesync_services sv ON sis.service_id = sv.service_id 
+              WHERE appointment_id = ? LIMIT 1";
 
     $stmt = $connect_appointment->prepare($query);
     if (!$stmt) {
@@ -67,15 +63,12 @@ function getSelectedService($connect_appointment, $appointmentID) {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    $quantity = 0;
+    $id = 0; // Initialize the ID
     if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $id = $row['service_id'];
-        }
+        $id = $result->fetch_assoc()['service_id'];
     }
 
-    $stmt->close(); // Close the statement
+    $stmt->close();
     return $id;
 }
 ?>
-

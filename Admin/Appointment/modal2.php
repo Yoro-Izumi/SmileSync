@@ -291,7 +291,7 @@
                         <div class="form-group">
                             <input type="text" readonly value="" />
                         </div>
-                       <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="dropdownButtonProcedure">Procedure/s:</label>
                             <div class="dropdown-container">
                                 <button id="dropdownButtonProcedureApproval" type="button" aria-expanded="false" aria-controls="dropdownMenuProcedure">
@@ -302,11 +302,10 @@
                                 </div>
                             </div>
                             <div class="selected-procedures-approval"></div>
-                        </div> -->
+                        </div>
                     </div>
                     <!-- Action Buttons -->
                             <div class="button-container">
-                                <button class="action-btn">Cancel</button>
                                 <button type="submit" class="action-btn" id="approveAppointmentBtn">Approve Appointment</button>
                             </div>
                 </div>
@@ -375,22 +374,78 @@
     </div>
 </div>
 
-<!-- Remove Account Warning Modal -->
-<div class="modal" id="cancelAppointmentModal">
+ <!-- Modal -->
+ <div class="modal" id="cancelAppointmentModal">
     <div class="modal-content">
-        <div class="image-container">
-            <img class="image" src="img/archive.png" alt="security">
+      <span class="closebtn" id="closeCancelAppointmentModal">&times;</span>
+      <div class="modal-title normal-title">Cancel Appointment</div>
+      <div class="modal-description">
+      <p>
+        Oh no! We're sorry if there were any inconvenience on our part. 
+        Please select reasons why you need to cancel your appointment:
+      </p>
+      <form>
+        <div class='label'>
+          <input type="radio" name="reason" value="busy" required>
+          Too busy, my schedule does not align with appointment.
         </div>
-        <div class="modal-title warning-title">Appointment Removal</div>
-        <div class="message-container">
-            <div class="modal-description">
-                You are trying to remove (1) appointment. The item will no longer be accessed by the admin. 
-            </div>
+        <div class='label'>
+          <input type="radio" name="reason" value="emergency">
+          Family emergency
         </div>
-        <button class="modal-button normal" id="cancelAppointmentBtn">Remove</button>
-        <button class="modal-button secondary-button warning" id="cancelBtn">Cancel</button>
+        <div class='label'>
+          <input type="radio" name="reason" value="other">
+          Other Reasons
+        </div>
+        <div class="other-reason" id="otherReasonContainer">
+          <label for="otherReason">Please specify the reason: *</label>
+          <input type="text" id="otherReason" name="otherReason">
+        </div>
+        <button type="submit" class="cancel-btn">Cancel Appointment</button>
+      </form>
+        </div>   
     </div>
-</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+  const radioButtons = document.querySelectorAll('input[name="reason"]');
+  const otherReasonContainer = document.getElementById("otherReasonContainer");
+  const otherReasonInput = document.getElementById("otherReason");
+
+  // Hide the "Other Reason" input field initially
+  otherReasonContainer.style.display = "none";
+
+  // Add event listeners to the radio buttons
+  radioButtons.forEach((radio) => {
+    radio.addEventListener("change", () => {
+      if (radio.value === "other") {
+        otherReasonContainer.style.display = "block";
+        otherReasonInput.setAttribute("required", "required");
+      } else {
+        otherReasonContainer.style.display = "none";
+        otherReasonInput.removeAttribute("required");
+        otherReasonInput.value = ""; // Clear the input field
+      }
+    });
+  });
+
+  // Handle the form submission
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (e) => {
+    const selectedReason = document.querySelector('input[name="reason"]:checked');
+    if (!selectedReason) {
+      e.preventDefault();
+      alert("Please select a reason for canceling your appointment.");
+    }
+    if (selectedReason && selectedReason.value === "other" && otherReasonInput.value.trim() === "") {
+      e.preventDefault();
+      alert("Please specify the reason in the 'Other Reasons' field.");
+    }
+  });
+});
+
+    </script>
+  </div>
+
 
 <!-- Success Modal -->
 <div class="modal" id="appointmentSuccessModal">

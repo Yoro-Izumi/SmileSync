@@ -99,11 +99,10 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <!-- Notifications -->
  <script src="js/notif.js"></script>
 <!-- Appointment Tables -->
- <script src="js/appointment-table.js"></script>
 <!-- Tabs in View Tables -->
  <script src="js/toggle-tabs.js"></script>
 <!-- Invoice -->
- <script src="js/invoice.js"></script>
+ <script src="js/invoice2.js"></script>
 </body>
 </html>
 <?php

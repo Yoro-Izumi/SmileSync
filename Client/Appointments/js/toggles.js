@@ -1,8 +1,8 @@
-document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', function() {
-        // Remove active class from all tabs
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        // Add active class to the clicked tab
+document.querySelectorAll('.tab').forEach(item => {
+    item.addEventListener('click', function() {
+        // Remove active class from all items
+        document.querySelectorAll('.tab').forEach(i => i.classList.remove('active'));
+        // Add active class to the clicked item
         this.classList.add('active');
 
         // Hide all content areas

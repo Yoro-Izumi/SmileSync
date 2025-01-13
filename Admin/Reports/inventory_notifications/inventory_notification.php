@@ -1,10 +1,12 @@
 <?php
 // Start session and set timezone
-include "../../admin_global_files/set_sesssion_dir.php";
+date_default_timezone_set('Asia/Manila');
+$root_dir = (PHP_OS === 'WINNT') ? 'C:/xampp/htdocs/SmileSync' : '/var/www/html/SmileSync';
+include $root_dir."/Admin/admin_global_files/set_sesssion_dir.php";
 session_start();
 date_default_timezone_set('Asia/Manila');
-include "../../admin_global_files/connect_database.php";
-include "../../admin_global_files/input_sanitizing.php";
+include $root_dir."/Admin/admin_global_files/connect_database.php";
+include $root_dir."/Admin/admin_global_files/input_sanitizing.php";
 
 $current_date = date("Y-m-d");
 
@@ -21,11 +23,8 @@ $default = 0;
 // Query the usage and inventory data
 $query = "
     SELECT 
-        i.item_id, 
-        i.item_name, 
-        i.item_quantity, 
-        u.quantity_used, 
-        u.date_of_usage
+        i.*, 
+        u.*
     FROM smilesync_inventory_usage u
     JOIN smilesync_inventory_items i ON u.item_id = i.item_id
     ORDER BY i.item_id
@@ -52,13 +51,13 @@ while ($row = mysqli_fetch_assoc($queryData)) {
 
 // Step 3: Save data to a CSV file for Python
 $python_filepath = "python3";//"C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe";
-$csv_file = 'stock_usage.csv';
+$csv_file = $root_dir.'/Admin/Reports/inventory_notifications/stock_usage.csv';
 $fp = fopen($csv_file, 'w');
 if (!$fp) {
     die("Failed to open file: $csv_file");
 }
 
-fputcsv($fp, ['item_id', 'item_name', 'item_quantity', 'current_stock', 'quantity_used', 'date_of_usage']); // Header row
+fputcsv($fp, ['item_id', 'item_name', 'item_quantity', 'current_stock','reorder_level', 'quantity_used', 'date_of_usage']); // Header row
 foreach ($queryDataArray as $row) {
     $item_id = $row['item_id'];
     fputcsv($fp, [
@@ -73,16 +72,16 @@ foreach ($queryDataArray as $row) {
 fclose($fp);
 
 // Step 4: Call Python script to forecast stock levels
-$python_script = 'inventory_forecast2.py'; // Replace with your Python script
+$python_script = $root_dir.'/Admin/Reports/inventory_notifications/inventory_forecast2.py'; // Replace with your Python script
 $output = [];
 $return_var = 0;
-exec("$python_filepath $python_script $csv_file stock_forecast.csv", $output, $return_var);
+exec("$python_filepath $python_script $csv_file $root_dir.'/Admin/Reports/inventory_notifications/stock_forecast.csv", $output, $return_var);
 if ($return_var !== 0) {
     die("Python script failed to execute: " . implode("\n", $output));
 }
 
 // Step 5: Load the forecast data
-$forecast_file = 'stock_forecast.csv';
+$forecast_file = $root_dir.'/Admin/Reports/inventory_notifications/stock_forecast.csv';
 if (!file_exists($forecast_file) || filesize($forecast_file) === 0) {
     die("Forecast file is empty or missing.");
 }
@@ -150,4 +149,6 @@ foreach ($out_of_stock_notifications as $date => $items) {
     insert_notification($connect_accounts, $notification_message, $current_date, 'smilesync_admin_notifications');
     insert_notification($connect_accounts, $notification_message, $current_date, 'smilesync_super_admin_notifications');
 }
+
+sleep(50);
 ?>

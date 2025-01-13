@@ -1,81 +1,145 @@
-<?php
-include "../admin_global_files/set_sesssion_dir.php";
-
-session_start();
-date_default_timezone_set('Asia/Manila');
-include "../admin_global_files/connect_database.php";
-include "../admin_global_files/encrypt_decrypt.php";
-include "../admin_global_files/input_sanitizing.php";
-
-// Database connections
-$connect_appointment = connect_appointment($servername, $username, $password);
-$connect_inventory = connect_inventory($servername, $username, $password);
-
-$appointmentID = isset($_SESSION['selected_appointment']) ? $_SESSION['selected_appointment'] : 2;
-
-// Fetch all products
-$query = "SELECT item_id, item_name, item_description, item_quantity, item_unit_price, expiry_date, item_status 
-          FROM smilesync_inventory_items";
-
-$result = $connect_inventory->query($query);
-
-$products = [];
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $products[] = [
-            'id' => $row['item_id'],
-            'item_name' => htmlspecialchars($row['item_name']), // Escape HTML entities
-            'item_quantity' => htmlspecialchars($row['item_quantity']), // Escape HTML entities
-        ];
-    }
-}
-
-// Generate HTML
-foreach ($products as $product) {
-    $id = $product['id'];
-    $item_name = $product['item_name'];
-    $consumed = getConsumedProducts($connect_appointment, $appointmentID, $id);
-    $item_quantity = $product['item_quantity'] - $consumed;
-
-    echo '<div>
-        <input type="checkbox" class="checkBoxItems" value="' . $id . '" data-name="' . $item_name . '" name="itemCheck[]">
-        ' . $item_name . '
-        <input type="number" value="' . $consumed . '" min="1" max="'.$item_quantity.'" class="number-input" data-id="' . $id . '" aria-label="Quantity for ' . $item_name . '">
-    </div>';
-}
-
-// Close connections
-$connect_appointment->close();
-$connect_inventory->close();
-
-// Fetch consumed products for a specific appointment
-function getConsumedProducts($connect_appointment, $appointmentID, $itemID) {
-    $query = "
-                SELECT sii.item_id, SUM(sii.number_of_used_items) AS total_used_items
-                FROM smilesync_invoice_items sii
-                INNER JOIN smilesync_invoice_services sis ON sii.invoice_services_id = sis.invoice_services_id
-                WHERE sis.appointment_id = ? AND sii.item_id = ?
-                GROUP BY sii.item_id";
-
-
-    $stmt = $connect_appointment->prepare($query);
-    if (!$stmt) {
-        return 0; // Return 0 if statement preparation fails
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Payment Slip</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
     }
 
-    $stmt->bind_param("ii", $appointmentID, $itemID);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $quantity = 0;
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $quantity = $row['total_used_items'];
-        }
+    .invoice-slip-payment-slip {
+      width: 400px;
+      border: 2px solid black;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
-    $stmt->close(); // Close the statement
-    return $quantity;
-}
-?>
+    .invoice-slip-header {
+      text-align: center;
+      font-weight: bold;
+    }
 
+    .invoice-slip-clinic-info {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .invoice-slip-section {
+      margin-top: 15px;
+    }
+
+    .invoice-slip-label {
+      display: inline-block;
+      width: 100px;
+    }
+
+    .invoice-slip-field {
+      border: 1px solid black;
+      padding: 5px;
+      display: inline-block;
+      width: calc(100% - 110px);
+      box-sizing: border-box;
+    }
+
+    .invoice-slip-table {
+      margin-top: 10px;
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .invoice-slip-table th,
+    .invoice-slip-table td {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: left;
+    }
+
+    .invoice-slip-remarks {
+      border: 1px solid black;
+      min-height: 60px;
+      padding: 5px;
+    }
+
+    .invoice-slip-footer {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-slip-payment-slip">
+    <div class="invoice-slip-header">IMEE TOGA DENTAL CLINIC</div>
+    <div class="invoice-slip-clinic-info">General Dentistry and Orthodontics<br>#53 National Highway, Banlic, Cabuyao, Laguna<br>0917 587 4263 / (049) 254 4603</div>
+    <div class="invoice-slip-header invoice-slip-section">PAYMENT SLIP</div>
+
+    <div class="invoice-slip-section">
+      <span class="invoice-slip-label">Date:</span> <span class="invoice-slip-field"></span><br>
+      <span class="invoice-slip-label">Name:</span> <span class="invoice-slip-field"></span><br>
+      <span class="invoice-slip-label">HMO verification:</span> <span class="invoice-slip-field"></span><br>
+      <span class="invoice-slip-label">No.:</span> <span class="invoice-slip-field"></span>
+    </div>
+
+    <div class="invoice-slip-section">
+      <table class="invoice-slip-table">
+        <tr>
+          <th>Service</th>
+          <th>PHP</th>
+        </tr>
+        <tr>
+          <td>Oral Prophylaxis</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Restoration LC/TF</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Extraction</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Prosthodontic</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Surgery</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Endodontic</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Orthodontic</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>X-ray</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Others</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="invoice-slip-section">
+      <span class="invoice-slip-label">TOTAL:</span> <span class="invoice-slip-field"></span><br>
+      <span class="invoice-slip-label">REQUEST:</span> <span class="invoice-slip-field"></span><br>
+    </div>
+
+    <div class="invoice-slip-section invoice-slip-footer">
+      <span class="invoice-slip-label">AMOUNT PAID:</span> <span class="invoice-slip-field"></span><br>
+      <span class="invoice-slip-label">BALANCE:</span> <span class="invoice-slip-field"></span>
+    </div>
+
+    <div class="invoice-slip-section">
+      <span class="invoice-slip-label">REMARKS:</span>
+      <div class="invoice-slip-remarks"></div>
+    </div>
+  </div>
+</body>
+</html>

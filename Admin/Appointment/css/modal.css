@@ -1241,3 +1241,11 @@ label {
     transform: scale(1.1);
 }
 
+    /* Form div class labels */
+   .label {
+      display: block;
+      margin: 15px 0 5px;
+      font-size: 16px;
+      text-align: left;
+    }
+

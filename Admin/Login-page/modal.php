@@ -36,7 +36,7 @@
             <img class="image" src="img/warning.png" alt="security">
         </div>
 
-        <div class="modal-title normal-title">Reset Password</div>
+        <div class="modal-title warning-title">Reset Password</div>
 
         <div class="message-container">
         <div class="modal-description">To reset your password, enter your email address.</div>
@@ -110,7 +110,19 @@
             Please try entering an existing SmileSync account or
             href="#" id="registerLink">Register</a>
         </div>
-        <button class="modal-button normal" id="okNoEmailBtn">Submit</button>
+        <div class="input-wrap">
+            <input
+                type="text"
+                id="emailInput"
+                minlength="4"
+                class="modal-input"
+                autocomplete="off"
+                required
+            />
+            <label for="emailInput">Email<indicator>*</indicator></label>
+        </div></div>
+        <button class="modal-button warning" id="submitResetPasswordBtn">Submit</button>
+        <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
     </div>
 </div>
 
@@ -128,7 +140,7 @@
             .Your information was successfully saved and is now undergoing review from the admin.
             Please wait for a confirmation to be sent to your email address.
         </div></div>
-        <button id="closeSuccessRegisterBtn" class="modal-button success">OK</button>
+        <button id="closeSuccessRegisterBtn" class="modal-button success" onclick="sendEmailRegistered()">OK</button>
     </div>
 </div>
 
@@ -195,12 +207,12 @@
              Continued use of our services following any changes indicates your acceptance of the new terms.
         </span>
         <br>
-      .l  </div>
+        </div>
         <button id="closetermServicesBtn" class="modal-button normal">OK</button>
     </div>
 </div>
 
-<!-- Email Already Exists Modal
+<!-- Email Already Exists Modal -->
 <div id="emailExistsModal" class="modal">
   <div class="modal-content">
     <h4>Email Already Exists</h4>
@@ -210,25 +222,8 @@
   </div>
   </div>
 </div>
- -->
-<!-- Proceed Modal -->
-<div class="modal" id="proceedModal">
-    <div class="modal-content">
-        <div class="modal-title success-title"">Register New Acccount</div>
-        <div class="message-container">
-        <div class="modal-description">
-        Upon registering for a new account , user<br> must be informed of the information needed in order to register:
-        <br>
-        Personal Information
-        <br>
-        Health Information
-        <br>
-        If user agrees to the terms, you may now proceed to Registration.</br>
-        </div></div>
-        <button id="cancelProceedBtn" class="modal-button warning">Cancel</button>
-        <button class="modal-button warning"><a  href="../Register/Register-Page.php">Cancel</a></button>
-    </div>
-</div>
+
+
 
 <script>
         document.getElementById('submitResetPasswordBtn').addEventListener('click', function() {

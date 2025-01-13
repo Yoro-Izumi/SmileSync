@@ -189,17 +189,6 @@ $conn = connect_inventory($servername, $username, $password);
 
     <div class="wrap-2rows">
         <div class="input-wrap">
-            <input class="modal-input" type="number" maxlength="11" autocomplete="off" name="EditProductQuantity" required />
-        <label>Product Quantity<indicator>*</indicator></label>
-        </div>
-        <div class="input-wrap">
-            <input class="modal-input" type="date" autocomplete="off" name="EditBatchDate" required />
-        <label>Batch Date<indicator>*</indicator></label>
-        </div>
-    </div>
-
-    <div class="wrap-2rows">
-        <div class="input-wrap">
             <input class="modal-input" type="text" maxlength="11" autocomplete="off" name="EditOrderValue" placeholder="00.00" required />
         <label>Order Value<indicator>*</indicator></label>
         </div>

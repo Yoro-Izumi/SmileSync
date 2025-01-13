@@ -14,12 +14,11 @@
           <tr>
             <th>Name</th>
             <th>Service</th>
-            <th>Date</th>
-            <th>Time</th>
+            <th>Date and Time</th>
           </tr>
         </thead>
         <tbody>
-
+          <?php include "tr-dashboard-table.php";?>
         </tbody>
       </table>
 
@@ -29,37 +28,4 @@
     </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function () {
-    function fetchAppointments() {
-      $.ajax({
-        url: 'get_appointments.php', // The PHP file that fetches the data
-        type: 'GET',
-        success: function (response) {
-          // Parse the JSON response and populate the table
-          const appointments = JSON.parse(response);
-          let tableBody = '';
-          appointments.forEach(appointment => {
-            tableBody += `
-              <tr>
-                <td data-label="Name">${appointment.patient_name}</td>
-                <td data-label="Service">${appointment.appointment_reason}</td>
-                <td data-label="Date">${appointment.appointment_date}</td>
-                <td data-label="Time">${appointment.appointment_time}</td>
-              </tr>
-            `;
-          });
-          $('tbody').html(tableBody);
-        },
-        error: function (xhr) {
-          alert('Error fetching appointments: ' + xhr.responseText);
-        }
-      });
-    }
-
-    // Fetch appointments when the page loads
-    fetchAppointments();
-  });
-</script>
-
 

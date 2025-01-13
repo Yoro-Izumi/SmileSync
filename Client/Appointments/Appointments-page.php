@@ -1,6 +1,3 @@
-
-
-
 <?php
 include "../client_global_files/set_sesssion_dir.php";
 
@@ -35,25 +32,24 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "top-navbar.php"; ?>
+
 <div class="Container">
   
   <div class="appointment-details">
   <div class="toggle-tabs">
-          <div class="tab active" data-content="invoices">
-              <p>Appointment Details</p>
-          </div>
-          <div class="tab" data-content="canceled-appointments">
-              <p>Invoice</p>
-          </div>
+          <div class="tab active" data-content="appointments">Appointment Details</div>
+          <div class="tab" data-content="invoices">Invoice</div>
       </div>
-      <div class="content-area">
-          <div class="content active" id="invoices"><?php include "appointment-table.php"; ?></div>
-          <div class="content" id="canceled-appointments" style="display: none;"><?php include "invoice-table.php"; ?></div>
+  <div class="content-area">
+          <div class="content active" id="appointments"><?php include "appointment-table.php"; ?></div>
+          <div class="content" id="invoices" style="display: none;"><?php include "invoice-table.php"; ?></div>
       </div>
   </div>
 </div>
 
-  
+</div>
+
+
 
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>

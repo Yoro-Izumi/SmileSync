@@ -36,7 +36,7 @@ $reservations_query = "
     INNER JOIN 
         smilesync_appointments a ON sis.appointment_id = a.appointment_id
     WHERE 
-        DATE(a.appointment_date_time) = '$selected_date'
+        DATE(a.appointment_date_time) = '$selected_date' AND appointment_status != 'Cancelled'
     GROUP BY 
         a.appointment_date_time;
 ";
