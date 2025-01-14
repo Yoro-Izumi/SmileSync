@@ -10,10 +10,11 @@
     <!--Icon8's stylesheet -->
     <link href="https://cdn.icon8.com/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- landing page style -->
-    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="css/landing.css">
 
 </head>
 <body>
+<?php include "modal.php" ?>
 <?php include "chatbot.php"; ?>
 <div class="container">
     <div class="logo">
@@ -37,7 +38,7 @@
               Adjust services to your health needs and make sure you undergo treatment with our highly qualified doctors.
               You can consult with us with which type of service is suitable for your health!
                </p>
-            <button class="explore-button"><a  href="../Register/Register-Page.php">Set Appointment</a></button>
+            <button id="setAppointmentBtn" class="explore-button">Set Appointment</button>
         </div>
         <div class="illustration">
             <img src="img/dentist.png" alt="Delivery Illustration">

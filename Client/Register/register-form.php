@@ -10,7 +10,7 @@
   <header>
     <div class="topbar">
       <div class="logo"><img src="img/logo.png" alt="Logo">SmileSync</div>
-      <div class="return-link"><a href="../LogIn-Page/Login-Page.php">Return to login</a></div>
+      <div class="return-link"><a href="https://smilesync.site/SmileSync/Client/LogIn-Page/Login-Page.php">Go to login</a></div>
     </div>
   </header>
 
@@ -29,6 +29,10 @@
       <div class="step">
         <span class="step-icon">🔒</span>
         <span class="step-label">Account</span>
+      </div>
+      <div class="step">
+        <span class="step-icon">🛈</span>
+        <span class="step-label">Confirmation</span>
       </div>
     </div>
 
@@ -101,6 +105,71 @@
               </div>
 
             </div>
+
+                <div class="input-wrap">
+                <select class="input-field" id="services" name="services">
+                  <option value="" disabled selected>-- Select --</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Prefer not to say</option>
+              </select>
+                </div>
+
+              <div class="wrap-3rows">
+              <div class="input-wrap">
+    <input
+        type="text"
+        minlength="1"
+        maxlength="100"
+        class="input-field"
+        name="region"
+        autocomplete="off"
+        required
+    />
+    <label>Region<indicator>*</indicator></label>
+</div>
+
+<div class="input-wrap">
+    <input
+        type="text"
+        minlength="1"
+        maxlength="100"
+        class="input-field"
+        name="city"
+        autocomplete="off"
+        required
+    />
+    <label>City<indicator>*</indicator></label>
+</div>
+
+<div class="input-wrap">
+    <input
+        type="text"
+        minlength="1"
+        maxlength="100"
+        class="input-field"
+        name="barangay"
+        autocomplete="off"
+        required
+    />
+    <label>Barangay<indicator>*</indicator></label>
+</div>
+
+              </div>
+   <div class="input-wrap">
+    <input
+        type="text"
+        minlength="1"
+        maxlength="200"
+        class="input-field"
+        name="street_address"
+        autocomplete="off"
+        required
+    />
+    <label>Street Address<indicator>*</indicator></label>
+</div>
+
+
             <div class="input-wrap">
                   <input
                     type="text"
@@ -243,7 +312,48 @@
       </div>
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
-        <h2>Appointment Detail</h2>
+      <h3>Emergency Contacts</h3>
+        <div class="input-wrap">
+          <input
+              type="text"
+              minlength="1"
+              maxlength="100"
+              class="input-field"
+              name="emergencyContact"
+              autocomplete="off"
+              required
+            />
+        <label>In Case of Emergency<indicator>*</indicator></label>
+      </div>
+
+      <div class="input-wrap">
+          <input
+              type="text"
+              minlength="11"
+              maxlength="11"
+              class="input-field"
+              name="emergencyContactNumber"
+              autocomplete="off"
+              required
+            />
+        <label>Phone Number<indicator>*</indicator></label>
+      </div>
+
+      <div class="input-wrap">
+          <input
+              type="text"
+              minlength="1"
+              maxlength="100"
+              class="input-field"
+              name="emergencyContactRelationship"
+              autocomplete="off"
+              required
+            />
+        <label>Relationship<indicator>*</indicator></label>
+      </div>
+
+
+        <h3>Appointment Detail</h3>
         <div class="input-wrap">
           <select class="input-field" id="services" name="services">
             <option value="" disabled selected>Select a Service</option>
@@ -387,6 +497,36 @@
           
               </div>
       </div>
+
+      <!-- Step 4: Confirmation -->
+      <div class="form-section">
+        <div class="validation-section">
+          <h3>Personal Information</h3>
+          <div><span>Patient Name:</span> Dimaculangan, Chorlyn L.</div>
+          <div><span>Age:</span> xx</div>
+          <div><span>Sex:</span> Female</div>
+          <div><span>Address:</span> Brgy. Sinalhan, Purok 7, Santa Rosa, Laguna</div>
+          <div><span>Phone Number:</span> 0912345678</div>
+          <div><span>Birth Date:</span> 01/03/2024</div>
+    </div>
+      <div class="validation-section">
+          <h3>Emergency Contact</h3>
+          <div><span>In case of emergency, please contact:</span> Valera, Arwen Grace C.</div>
+          <div><span>Phone Number:</span> 0912345678</div>
+          <div><span>Relationship:</span> Grandmother</div>
+    </div>
+    <div class="validation-section">
+          <h3>Appointment Details</h3>
+          <div><span>Appointment Date:</span> 01/03/2024</div>
+          <div><span>Procedure/s:</span> Prothodontics</div>
+          <div><span>Dentist:</span> Dr. Oli</div>
+          <div><span>Amount Charge:</span> 3000</div>
+    </div>
+
+
+      </div>
+
+
       <!-- Form Navigation -->
       <div class="form-navigation">
         <button type="button" class="prev-btn" style="display: none;">Previous</button>

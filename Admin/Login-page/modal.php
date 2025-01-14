@@ -137,7 +137,7 @@
         <div class="modal-title success-title">Registration Complete!</div>
         <div class="message-container">
         <div class="modal-description">
-            .Your information was successfully saved and is now undergoing review from the admin.
+            Your information was successfully saved and is now undergoing review from the admin.
             Please wait for a confirmation to be sent to your email address.
         </div></div>
         <button id="closeSuccessRegisterBtn" class="modal-button success" onclick="sendEmailRegistered()">OK</button>

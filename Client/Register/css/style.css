@@ -394,6 +394,19 @@ indicator{
 }
 
 
+.validation-section {
+  margin-bottom: 20px;
+}
+.validation-section div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.validation-section span {
+  font-weight: bold;
+}
+
+
 
 .question-form {
   border: 1px solid black; /* Border for the form container */

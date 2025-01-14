@@ -1,58 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const loginFailedModal = document.getElementById('loginFailedModalClient');
-    const resetPasswordModal = document.getElementById('resetPasswordModalClient');
-    const successModal = document.getElementById('resetSuccessModal');
+document.addEventListener('DOMContentLoaded', () => {
 
-    
-    const showLoginFailedBtnn = document.getElementById('loginClientBtn');
-    const closeLoginFailedBtnn = document.getElementById('closeLoginFailedBtnn');
-
-    const resetPasswordLinkk = document.getElementById('resetPasswordLink');
-    const resetLink = document.getElementById('forgotPassword');
-    const closeResetPasswordBtn = document.getElementById('cancelButton');
-
-    const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
-    const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
-
-    // Show the login failed modal
-    //showLoginFailedBtnn.addEventListener('click', function() {
-    //    loginFailedModal.classList.add('show');
-    //});
-
-
-    // Close the terms and services modal
-    closeLoginFailedBtnn.addEventListener('click', function() {
-        loginFailedModal.classList.remove('show');
+    // Open the modal when "Set Appointment" is clicked
+    document.getElementById('getAppointmentBtn').addEventListener('click', () => {
+        document.getElementById('registerModal').style.display = 'flex';
+      });
+      
+      // Close the modal when "Cancel" is clicked
+      document.querySelector('.btn.cancel').addEventListener('click', () => {
+        document.getElementById('registerModal').style.display = 'none';
+      });
+      
+      // Redirect to a URL when "Proceed" is clicked
+      document.querySelector('.btn.proceed').addEventListener('click', () => {
+        const targetUrl = 'https://smilesync.site/SmileSync/Client/Register/Register-Page.php'; // Replace with your desired URL
+        window.location.href = targetUrl;
+      });
+      
+      // Optional: Close the modal if clicked outside the modal content
+      window.addEventListener('click', (e) => {
+        const modal = document.getElementById('registerModal');
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+      
     });
-
-    // Show the reset password modal when clicking the reset password link
-    resetPasswordLinkk.addEventListener('click', function(event) {
-        
-        loginFailedModal.classList.remove('show');
-        resetPasswordModal.classList.add('show');
-    });
-
-    // Close the reset password modal (Cancel button)
-    closeResetPasswordBtn.addEventListener('click', function() {
-
-        resetPasswordModal.classList.remove('show');
-    });
-
-    // Show the reset password modal when clicking the reset password link
-    resetLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
-        resetPasswordModal.classList.add('show');
-    });
-
-    // Handle submit action
-    submitResetPasswordBtn.addEventListener('click', function() {
-    
-        resetPasswordModal.classList.remove('show');
-        successModal.classList.add('show'); // Show success modal after submitting
-    });
-
-    // Close the success modal
-    closeSuccessModalBtn.addEventListener('click', function() {
-        successModal.classList.remove('show');
-    });
-});
