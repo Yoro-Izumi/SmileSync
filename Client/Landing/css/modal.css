@@ -16,7 +16,7 @@
 .modal-content {
   background: white;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 90%;
   max-width: 400px; /* Ensure the modal doesn't grow too wide */
   max-height: 80%; /* Limit modal height to 80% of the viewport */

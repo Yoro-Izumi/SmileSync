@@ -89,6 +89,6 @@
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
 
     <!-- Linking custom script -->
-    <script src="js/chatbot.js"></script>
+    <script src="chatbot.js"></script>
   </body>
 </html>
