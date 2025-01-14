@@ -238,7 +238,6 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     required
   />
   <label>Password<indicator>*</indicator></label>
-  <div class="fa fa-eye icon" id="signup-show-password"></div>
   <span class="error-message" id="passwordError"></span>
 </div>
 

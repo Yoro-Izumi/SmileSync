@@ -110,19 +110,8 @@
             Please try entering an existing SmileSync account or
             href="#" id="registerLink">Register</a>
         </div>
-        <div class="input-wrap">
-            <input
-                type="text"
-                id="emailInput"
-                minlength="4"
-                class="modal-input"
-                autocomplete="off"
-                required
-            />
-            <label for="emailInput">Email<indicator>*</indicator></label>
-        </div></div>
-        <button class="modal-button warning" id="submitResetPasswordBtn">Submit</button>
-        <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
+</div>
+        <button class="modal-button warning" id="submitResetPasswordBtn">Okay</button>
     </div>
 </div>
 

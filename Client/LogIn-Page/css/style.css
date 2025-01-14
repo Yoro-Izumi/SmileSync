@@ -80,7 +80,6 @@ main {
 .inner-box form {
     max-width: 100%;
     width: 100%;
-    margin: 0 20px;
     height: 100%;  
     display: flex;
     flex-direction: column;
@@ -284,6 +283,25 @@ input[type="date"] {
     cursor: pointer;
     box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
+
+
+
+.toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.toggle-btn:focus {
+    outline: none;
+}
+
 
 .error-message {
     display: none;

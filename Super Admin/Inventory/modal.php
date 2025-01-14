@@ -1,4 +1,4 @@
-<?php
+<div?php
 $connect_inventory = connect_inventory($servername,$username,$password);
 
 $qryGetItemCategories = "SELECT * FROM smilesync_inventory_categories";
@@ -281,6 +281,40 @@ $conn = connect_inventory($servername, $username, $password);
         <button class="modal-button secondary-button warning" id="cancelRemoveItemBtnSolo">Cancel</button>
     </div>
 </div>
+<!-- Remove Account Success Modal-->
+<div class="modal" id="removeItemSuccessModal">
+    <div class="modal-content">
+        <div class="modal-title warning-title">Item Removed</div>
+        <div class="message-container">
+            <div class="modal-description">
+                Item/s has been successfully removed. You may view the removed account in Trash.
+            </div>
+        </div>
+        <button id="okRemoveItem" class="modal-button success">OK</button>
+    </div>
+</div> 
+
+<!-- Remove Account Warning Modal -->
+<div class="modal" id="itemAlertModal">
+    <div class="modal-content">
+        <div class="image-container">
+            <img class="image" src="img/warning.png" alt="security">
+        </div>
+        <div class="modal-title warning-title">Inventory Alert</div>
+        <div class="message-container">
+            <div class="modal-description">
+              Dear Admin,<br>
+                This is a friendly reminder that your inventory for the following items are running low:<br>
+
+              <!--Add Inventory Item Here-->
+
+            <br>To ensure you don’t run out, please consider restocking soon.
+            </div>
+        </div>
+        <button class="modal-button normal" id="okInventoryAlert">Ok</button>
+    </div>
+</div>
+
 <!-- Remove Account Success Modal-->
 <div class="modal" id="removeItemSuccessModal">
     <div class="modal-content">

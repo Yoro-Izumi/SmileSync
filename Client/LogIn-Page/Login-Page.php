@@ -67,19 +67,19 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
                 </div>
 
                 <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="1"
-                    class="input-field"
-                    id="signup-password"
-                    name="password"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Password<indicator>*</indicator></label>
-                  <div class="fa fa-eye icon" id="signup-show-password"></div>
-                  
-                </div>
+  <input
+    type="password"
+    minlength="1"
+    class="input-field"
+    id="signup-password"
+    name="password"
+    autocomplete="off"
+    required
+  />
+  <label for="signup-password">Password <span class="indicator">*</span></label> <!-- Corrected label usage -->
+
+</div>
+
 
 
              <div class="text-wrap">
@@ -105,7 +105,7 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
           <div class="carousel">
             <div class="images-wrapper">
               <img src="img/signup.png" alt="image">
-          </div></div
+          </div></div>
 
         </div>
       </div>
@@ -118,19 +118,8 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <!-- AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script scr="js/password-toggle.js"></script>
 <script>
-
-$('.icon').click(function () {
-  if ($('#password').attr('type') == 'text') {
-    $('#password').attr('type', 'password');
-    $('#show-password').removeClass('fa-eye-slash').addClass('fa-eye');
-  } else {
-    $('#password').attr('type', 'text');
-    $('#show-password').removeClass('fa-eye').addClass('fa-eye-slash');
-  }
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     const loginFailedModal = document.getElementById('loginFailedModalClient');
     const resetPasswordModal = document.getElementById('resetPasswordModalClient');

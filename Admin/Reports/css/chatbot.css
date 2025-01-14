@@ -73,26 +73,28 @@ body.show-chatbot #chatbot-toggler span:last-child {
 
 
 .chatbot-popup {
+  z-index: 9999;
   position: fixed;
-  right: -450px; /* Start position off the screen to the right */
+  right: 35px;
   bottom: 90px;
   width: 420px;
   overflow: hidden;
   background: #fff;
-  border: 1px solid white;
-  border-radius: 25px;
+  border-radius: 15px;
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.3s ease, opacity 0.3s ease, right 0.3s ease;
+  transform: scale(0.2);
+  transform-origin: bottom right;
+  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease;
 }
 
 body.show-chatbot .chatbot-popup {
   opacity: 1;
   pointer-events: auto;
-  right: 35px; /* Final position on the screen */
+  transform: scale(1);
 }
-
-
 
 .chat-header {
   display: flex;

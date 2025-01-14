@@ -73,6 +73,7 @@ body.show-chatbot #chatbot-toggler span:last-child {
 
 
 .chatbot-popup {
+  z-index: 9999;
   position: fixed;
   right: 35px;
   bottom: 90px;
