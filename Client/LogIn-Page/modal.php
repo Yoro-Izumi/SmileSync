@@ -56,7 +56,7 @@
 
 
 
-    <div class="modal" id="noEmailModal">
+    <div class="modal" style="display: none;" id="noEmailModal">
     <div class="modal-content">
 
         <div class="modal-title warning-title">EMAIL NOT FOUND</div>
@@ -64,7 +64,7 @@
         <div class="message-container">
         <div class="modal-description">We are sorry but the email address you entered was not found.
             Please try entering an existing SmileSync account or
-            href='https://smilesync.site/SmileSync/Client/Register/Register-Page.php'>Register</a>
+            <a href='https://smilesync.site/SmileSync/Client/Register/Register-Page.php'>Register</a>
         </div></div>
         <button class="modal-button warning" id="closeNoEmailModal">Ok</button>
     </div>
