@@ -55,29 +55,8 @@
         <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
     </div>
     </form>
-
-    <script>
-    $(document).ready(function () {
-      $('#resetPasswordForm').submit(function (e) {
-        e.preventDefault(); // Prevent the form from submitting traditionally
-
-        const to = $('#emailInputReset').val();
-
-        $.ajax({
-          url: 'js/email/forgetPasswordEmail.js', // Your Node.js server endpoint
-          method: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ to, subject, text }),
-          success: function (response) {
-            alert(response.message);
-          },
-          error: function (error) {
-            alert('Error sending email: ' + error.responseJSON.message);
-          },
-        });
-      });
-    });
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
+    <script src="js/email/forgetPasswordEmail.js"></script>
 </div>
 
 
@@ -212,24 +191,6 @@
   </div>
 </div>
 
-
-
-<script>
-        document.getElementById('submitResetPasswordBtn').addEventListener('click', function() {
-            // Create a new script element
-            var script = document.createElement('script');
-            script.src = 'js/forgetPasswordEmail.js';  // Replace with your actual JS file path
-            script.type = 'text/javascript';
-            script.async = true;
-
-            // Append the script tag to the document body or head
-            document.head.appendChild(script);
-        });
-    </script>
-
-
-
 </body>
 </html>
-
 

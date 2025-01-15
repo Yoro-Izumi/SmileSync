@@ -1,20 +1,15 @@
-const nodemailer = require("nodemailer");
-
-// Configure the transporter
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "smilesyncco@gmail.com", // Your email
-        pass: "nyks nagm psxp abzv", // App password from Google
-    },
-});
-
-// Email options
-const mailOptions = {
-    from: "smilesyncco@gmail.com",
-    to: "kazumiyoro29@gmail.com",
-    subject: "Welcome to SmileSync!",
-    html: `
+$(document).ready(function () {
+    $('#resetPasswordForm').submit(function (e) {
+      e.preventDefault(); // Prevent the form from submitting traditionally
+  
+      const email = $('#emailInputReset').val(); // Get email input dynamically
+      const SERVER_URL = "http://localhost:4000/send-email"; // Replace with your server's URL
+  
+      // Email details
+      const emailData = {
+        to: email, 
+        subject: "Welcome to SmileSync!",
+        html:`
 
 
 <!DOCTYPE html>
@@ -69,17 +64,25 @@ With Smile Sync, creating and approving dental appointments has never been made 
 </body>
 </html>
 
-
-
-
-`
-        ,
-};
-
-// Send the email
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.error("Error:", error);
-    }
-    console.log("Email sent:", info.response);
-});
+`,
+      };
+  
+      // Function to send email
+      const sendEmail = async () => {
+        try {
+          const response = await axios.post(SERVER_URL, emailData, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          alert("Email sent successfully: " + response.data.message);
+        } catch (error) {
+          alert("Error sending email: " + (error.response?.data?.message || error.message));
+        }
+      };
+  
+      // Call sendEmail when form is submitted
+      sendEmail();
+    });
+  });
+  

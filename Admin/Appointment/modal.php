@@ -410,7 +410,7 @@
 <div id="alertContainer"></div>
 <script src="js/alert.js"></script>
 <script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
-<script src="js/modal2.js"></script>
+<script src="js/modal.js"></script>
 
 
 </body>

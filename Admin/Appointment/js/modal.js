@@ -44,26 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
         approvalAppointmentModal.classList.remove('show');
     });
 
-    // Show the deleteProgressModal for new account
-    deleteNewProgressBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.add('show');
-    });
-
-    // Close the deleteProgressModal for new account
-    cancelNewDeleteBtn.addEventListener('click', function () {
-        deleteNewProgressModal.classList.remove('show');
-    });
-
-    // Show the deleteProgressModal for existing account
-    deleteExistingProgressBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.add('show');
-    });
-
-    // Close the deleteProgressModal for existing account
-    cancelExistingDeleteBtn.addEventListener('click', function () {
-        deleteExistingProgressModal.classList.remove('show');
-    });
-
+    // Remove newAccountModal and existingAccountModal related logic
     // Open the cancelAppointmentModal
     openCancelAppointmentBtns.forEach((btn) => {
         btn.addEventListener('click', function () {
@@ -89,6 +70,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const modals = document.querySelectorAll(".modal");
+    const closeButtons = document.querySelectorAll(".close-btn, .closebtn");
+
+    // Hide modals when close buttons are clicked
+    closeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const modal = button.closest(".modal");
+            modal.classList.remove("show");
+        });
+    });
+
+    const deleteBtn = document.getElementById("deleteExistingProgressBtn");
+    const deleteModal = document.getElementById("deleteExistingProgressModal");
+
+    deleteBtn.addEventListener("click", function () {
+        console.log("Delete button clicked!");
+        deleteModal.classList.remove("show");
+    });
+});
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const modals = document.querySelectorAll(".modal");
@@ -110,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteModal.classList.remove("show");
     });
 });
+
 
 
 
