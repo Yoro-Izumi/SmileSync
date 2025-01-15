@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
 const app = express();
-const PORT = 143;
+const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -24,8 +24,8 @@ app.post('/send-email', async (req, res) => {
   if (!email) {
     return res.status(400).send('Email is required.');
   }
-
-  const resetLink = `http://localhost/SmileSync/Admin/Forgot%20Password/forgotPassword-page.php?email=${encodeURIComponent(email)}`;
+ 
+  const resetLink = `https://smilesync.site/SmileSync/Client/Forgot%20Password/forgotPassword-page.php?email=${encodeURIComponent(email)}`;
   const htmlContent = `
         <!DOCTYPE html>
         <html lang="en">
