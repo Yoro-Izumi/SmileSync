@@ -10,15 +10,15 @@
     <ul class="nav-list">
       <li class="nav-title">Home</li> 
 
-      <li class="active">
-      <a href="Dashboard.php">
+      <li>
+      <a href="../Dashboard/Dashboard.php">
           <i class='bx bx-bar-chart-square'></i>
           <span class="links_name">Dashboard</span>
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
-      <li>
-        <a href="../Appointment/Appointment-page.php">
+      <li class="active">
+        <a href="Appointment-page.php">
           <i class='bx bx-calendar' ></i>
           <span class="links_name">Appointment</span>
         </a>
@@ -53,7 +53,7 @@
           <i class='bx bx-message-alt' ></i>
           <span class="links_name">Chat</span>
         </a>
-        <span class="tooltip">Chat</span>  
+        <span class="tooltip">Chat</span>
       </li>
 
 
@@ -66,16 +66,16 @@
 </li>
 
       <li class="profile">
+
         <div class="profile-details">
-          <img src="img/login.png"  alt="profile">
+
           <div class="name_job">
-            <div class="name">kazumiyoro@emailcom</div>
+            <div class="name"><?php echo $adminEmail;?></div>
             <div class="job">Admin</div>
           </div>
             <a href="../admin_global_files/log_out.php">
-              <i class='bx bx-log-out' id="log_out" ></i>
-              <span class="tooltip">Logout</span>
-            </a>
+            <i class='bx bx-log-out' id="log_out" ></i></a>
+            <span class="tooltip">Logout</span>
         </div>
       </li>  
         

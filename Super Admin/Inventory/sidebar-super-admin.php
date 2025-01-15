@@ -18,7 +18,7 @@
         <span class="tooltip">Dashboard</span>
       </li>
       <li class="active">
-        <a href="Inventory-page.php">
+        <a href="../Inventory/Inventory-page.php">
           <i class='bx bx-package' ></i>
           <span class="links_name">Inventory</span>
         </a>
@@ -30,6 +30,13 @@
           <span class="links_name">Reports and Analytics</span>
         </a>
         <span class="tooltip">Reports and Analytics</span>
+      </li>
+      <li>
+        <a href="../Appointment/Appointment-page.php">
+          <i class='bx bx-calendar' ></i>
+          <span class="links_name">Appointment</span>
+        </a>
+        <span class="tooltip">Appointment</span>
       </li>
       <li>
         <a href="../Accounts/Accounts-page.php">

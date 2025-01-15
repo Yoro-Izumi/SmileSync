@@ -109,7 +109,7 @@
 
 
 <!-- Login Failed Modal -->
-<div class="modal" id="loginFailedModalClient" >
+<div class="modal" style="display: none;" id="loginFailedModalClient" >
     <div class="modal-content">
         <b class="modal-title normal-title">Login Failed</b>
 
@@ -127,7 +127,7 @@
 
 
 
-<div class="modal" id="resetPasswordModalClient">
+<div class="modal" style="display: none;" id="resetPasswordModalClient">
     <div class="modal-content">
 
     <div class="image-container">
@@ -156,7 +156,7 @@
 
 
 <!-- Success Modal -->
-<div class="modal" id="resetSuccessModal">
+<div class="modal" style="display: none" id="resetSuccessModal">
     <div class="modal-content">
     <div class="image-container">
             <img class="image" src="img/check.png" alt="security">
@@ -173,7 +173,7 @@
 </div>
 
 <!-- Email Already Exists Modal -->
-<div id="emailExistsModal" class="modal">
+<div id="emailExistsModal" style="display: none" class="modal">
   <div class="modal-content">
     <h4>Email Already Exists</h4>
     <p>The email you entered is already registered. Please use a different email.</p>

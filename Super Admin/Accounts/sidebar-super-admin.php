@@ -31,8 +31,15 @@
         </a>
         <span class="tooltip">Reports and Analytics</span>
       </li>
+      <li>
+        <a href="../Appointment/Appointment-page.php">
+          <i class='bx bx-calendar' ></i>
+          <span class="links_name">Appointment</span>
+        </a>
+        <span class="tooltip">Appointment</span>
+      </li>
       <li class="active">
-        <a href="Accounts-page.php">
+        <a href="../Accounts/Accounts-page.php">
           <i class='bx bx-calendar' ></i>
           <span class="links_name">Accounts</span>
         </a>

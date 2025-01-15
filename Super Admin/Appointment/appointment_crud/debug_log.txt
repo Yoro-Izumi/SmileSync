@@ -1,0 +1,20 @@
+Array
+(
+    [0] => Array
+        (
+            [patient_info_id] => 2
+            [patient_name] => Yuri  Romlet
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 23
+            [patient_phone_number] => 0298430923439
+            [patient_sex] => 
+            [birth_date] => Wednesday, October 10, 2001
+            [appointment_date_time] => Wednesday, January 15, 2025 2:06 AM
+            [service_name] => 
+            [service_price] => 
+            [service_id] => 
+        )
+
+)

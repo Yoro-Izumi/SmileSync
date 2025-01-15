@@ -11,7 +11,7 @@
       <li class="nav-title">Home</li> 
 
       <li class="active">
-      <a href="Dashboard.php">
+      <a href="../Dashboard/Dashboard.php">
           <i class='bx bx-bar-chart-square'></i>
           <span class="links_name">Dashboard</span>
         </a>
@@ -32,6 +32,13 @@
         <span class="tooltip">Reports and Analytics</span>
       </li>
       <li>
+        <a href="../Appointment/Appointment-page.php">
+          <i class='bx bx-calendar' ></i>
+          <span class="links_name">Appointment</span>
+        </a>
+        <span class="tooltip">Appointment</span>
+      </li>
+      <li>
         <a href="../Accounts/Accounts-page.php">
           <i class='bx bx-calendar' ></i>
           <span class="links_name">Accounts</span>
@@ -44,13 +51,6 @@
           <span class="links_name">Services</span>
         </a>
         <span class="tooltip">Services</span>
-      </li>
-      <li>
-        <a href="../Trash/Trash-page.php">
-          <i class='bx bx-trash' ></i>
-          <span class="links_name">Trash</span>
-        </a>
-        <span class="tooltip">Trash</span>
       </li>
 
       <li class="nav-title">Others</li> 
@@ -73,6 +73,14 @@
 </li>
 
 <li class="profile">
+<li>
+        <a href="../Trash/Trash-page.php">
+          <i class='bx bx-trash' ></i>
+          <span class="links_name">Trash</span>
+        </a>
+        <span class="tooltip">Trash</span>
+      </li>
+
         <div class="profile-details">
           <img src="img/login.png"  alt="profile">
           <div class="name_job">
