@@ -1,186 +1,116 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Main modal elements
-    const cancelAppointmentModal = document.getElementById('cancelAppointmentModal');
-    const cancelAppointmentModalReason = document.getElementById('cancelAppointmentModalReason');
-    const closeCancelAppointmentModal = document.getElementById('closeCancelAppointmentModal');
-    const closeCancelAppointmentModalReason = document.getElementById('closeCancelAppointmentModalReason');
-    const otherReasonContainer = document.getElementById('otherReasonContainer');
-    const reasonRadios = document.querySelectorAll('input[name="reason"]');
-    const cancelAppointmentBtn = document.getElementById('cancelAppointmentBtn');
-    const cancelBtn = document.getElementById('cancelBtn');
-
-    // Other modals
-    const existingAccountModal = document.getElementById('existingAccountModal');
-    const newAccountModal = document.getElementById('newAccountModal');
+document.addEventListener('DOMContentLoaded', function () {
     const deleteNewProgressModal = document.getElementById('deleteNewProgressModal');
     const deleteExistingProgressModal = document.getElementById('deleteExistingProgressModal');
     const appointmentDoneModal = document.getElementById('appointmentDoneModal');
     const approvalAppointmentModal = document.getElementById('approvalAppointmentModal');
-
-    // Buttons
+    const cancelAppointmentModal = document.getElementById('cancelAppointmentModal');
+    const reschedAccountModal = document.getElementById('reschedAccountModal');
     const closeDone = document.getElementById('closeDone');
-    const closeApprove = document.getElementById('closeApprove');
-    const newAccount = document.getElementById('newAccount');
-    const cancelSubmitNewBtn = document.getElementById('cancelSubmitNewBtn');
+    const closeRescheduleButton = document.getElementById('closeRescheduleButton');
+    const closeCancelAppointmentBtn = document.getElementById('closeCancelAppointmentModal');
     const deleteNewProgressBtn = document.getElementById('deleteNewProgressBtn');
     const cancelNewDeleteBtn = document.getElementById('cancelNewDeleteBtn');
-    const existingAccount = document.getElementById('existingAccount');
-    const cancelSubmitExistingBtn = document.getElementById('cancelSubmitExistingBtn');
     const deleteExistingProgressBtn = document.getElementById('deleteExistingProgressBtn');
     const cancelExistingDeleteBtn = document.getElementById('cancelExistingDeleteBtn');
-    const submitExistingBtn = document.getElementById('submitExistingBtn');
-    const submitNewBtn = document.getElementById('submitNewBtn');
-
-    // Show/hide modals
-    function toggleModal(modal, state) {
-        if (modal) {
-            modal.style.display = state ? 'block' : 'none';
-        }
-    }
-
-    // Close modal on clicking outside
-    function closeModalOnOutsideClick(modal) {
-        window.addEventListener('click', function (event) {
-            if (event.target === modal) {
-                toggleModal(modal, false);
-            }
-        });
-    }
-
-    // Cancel Appointment Reason Modal
-    if (cancelAppointmentBtn) {
-        cancelAppointmentBtn.addEventListener('click', function () {
-            toggleModal(cancelAppointmentModalReason, true);
-            toggleModal(cancelAppointmentModal, false);
-        });
-    }
-
-    if (closeCancelAppointmentModalReason) {
-        closeCancelAppointmentModalReason.addEventListener('click', function () {
-            toggleModal(cancelAppointmentModalReason, false);
-        });
-    }
-
-    if (cancelBtn) {
-        cancelBtn.addEventListener('click', function () {
-            toggleModal(cancelAppointmentModal, false);
-        });
-    }
-
-    // Close cancelAppointmentModalReason on outside click
-    closeModalOnOutsideClick(cancelAppointmentModalReason);
-    closeModalOnOutsideClick(cancelAppointmentModal);
-
-    // Toggle "Other Reasons" input field
-    reasonRadios.forEach((radio) => {
-        radio.addEventListener('change', function () {
-            if (this.value === 'other') {
-                otherReasonContainer.style.display = 'block';
-            } else {
-                otherReasonContainer.style.display = 'none';
-                document.getElementById('otherReason').value = ''; // Clear input
-            }
-        });
-    });
-
-    // Appointment Done Modal
     const statusBtns = document.querySelectorAll('.appointmentStatus');
+    const approveBtns = document.querySelectorAll('.appointmentApprove');
+    const openCancelAppointmentBtns = document.querySelectorAll('.openCancelAppointmentModal');
+    const openReschedAppointmentBtns = document.querySelectorAll('.openReschedAppointmentModal');
+    const closeButtons = document.querySelectorAll(".close-btn, .closebtn");
+
+    // Show the appointmentDoneModal
     statusBtns.forEach((statusBtn) => {
         statusBtn.addEventListener('click', function () {
             appointmentDoneModal.classList.add('show');
         });
     });
 
-    if (closeDone) {
-        closeDone.addEventListener('click', function () {
-            appointmentDoneModal.classList.remove('show');
+    // Close modals using close buttons
+    closeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const modal = button.closest(".modal");
+            modal.classList.remove("show");
         });
-    }
+    });
 
-    // Approval Appointment Modal
-    const approveBtns = document.querySelectorAll('.appointmentApprove');
+    // Show and close the approvalAppointmentModal
     approveBtns.forEach((approveBtn) => {
         approveBtn.addEventListener('click', function () {
             approvalAppointmentModal.classList.add('show');
         });
     });
 
-    if (closeApprove) {
-        closeApprove.addEventListener('click', function () {
-            approvalAppointmentModal.classList.remove('show');
-        });
-    }
+    closeDone.addEventListener('click', function () {
+        approvalAppointmentModal.classList.remove('show');
+    });
 
-    // New Account Modal
-    if (newAccount) {
-        newAccount.addEventListener('click', function () {
-            toggleModal(newAccountModal, true);
-        });
-    }
+    // Show the deleteProgressModal for new account
+    deleteNewProgressBtn.addEventListener('click', function () {
+        deleteNewProgressModal.classList.add('show');
+    });
 
-    if (cancelSubmitNewBtn) {
-        cancelSubmitNewBtn.addEventListener('click', function () {
-            toggleModal(newAccountModal, false);
-            toggleModal(deleteNewProgressModal, true);
-        });
-    }
+    // Close the deleteProgressModal for new account
+    cancelNewDeleteBtn.addEventListener('click', function () {
+        deleteNewProgressModal.classList.remove('show');
+    });
 
-    // Existing Account Modal
-    if (existingAccount) {
-        existingAccount.addEventListener('click', function () {
-            toggleModal(existingAccountModal, true);
-        });
-    }
+    // Show the deleteProgressModal for existing account
+    deleteExistingProgressBtn.addEventListener('click', function () {
+        deleteExistingProgressModal.classList.add('show');
+    });
 
-    if (cancelSubmitExistingBtn) {
-        cancelSubmitExistingBtn.addEventListener('click', function () {
-            toggleModal(existingAccountModal, false);
-            toggleModal(deleteExistingProgressModal, true);
-        });
-    }
+    // Close the deleteProgressModal for existing account
+    cancelExistingDeleteBtn.addEventListener('click', function () {
+        deleteExistingProgressModal.classList.remove('show');
+    });
 
-    // Delete Progress Modals
-    if (deleteExistingProgressBtn) {
-        deleteExistingProgressBtn.addEventListener('click', function () {
-            toggleModal(deleteExistingProgressModal, true);
-            toggleModal(existingAccountModal, false);
+    // Open the cancelAppointmentModal
+    openCancelAppointmentBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
+            cancelAppointmentModal.classList.add('show');
         });
-    }
+    });
 
-    if (deleteNewProgressBtn) {
-        deleteNewProgressBtn.addEventListener('click', function () {
-            toggleModal(deleteNewProgressModal, true);
-            toggleModal(newAccountModal, false);
-        });
-    }
+    // Close the cancelAppointmentModal
+    closeCancelAppointmentBtn.addEventListener('click', function () {
+        cancelAppointmentModal.classList.remove('show');
+    });
 
-    if (cancelNewDeleteBtn) {
-        cancelNewDeleteBtn.addEventListener('click', function () {
-            toggleModal(deleteNewProgressModal, false);
-            toggleModal(newAccountModal, true);
+    // Show the reschedAccountModal
+    openReschedAppointmentBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
+            reschedAccountModal.classList.add('show');
         });
-    }
+    });
 
-    if (cancelExistingDeleteBtn) {
-        cancelExistingDeleteBtn.addEventListener('click', function () {
-            toggleModal(deleteExistingProgressModal, false);
-            toggleModal(existingAccountModal, true);
-        });
-    }
-
-    // Submit modals
-    if (submitNewBtn) {
-        submitNewBtn.addEventListener('click', function () {
-            toggleModal(newAccountModal, false);
-        });
-    }
-
-    if (submitExistingBtn) {
-        submitExistingBtn.addEventListener('click', function () {
-            toggleModal(existingAccountModal, false);
-        });
-    }
+    // Close the reschedAccountModal
+    closeRescheduleButton.addEventListener('click', function () {
+        reschedAccountModal.classList.remove('show');
+    });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modals = document.querySelectorAll(".modal");
+    const closeButtons = document.querySelectorAll(".close-btn, .closebtn");
+
+    // Hide modals when close buttons are clicked
+    closeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const modal = button.closest(".modal");
+            modal.classList.remove("show");
+        });
+    });
+
+    const deleteBtn = document.getElementById("deleteExistingProgressBtn");
+    const deleteModal = document.getElementById("deleteExistingProgressModal");
+
+    deleteBtn.addEventListener("click", function () {
+        console.log("Delete button clicked!");
+        deleteModal.classList.remove("show");
+    });
+});
+
 
 
 //disableCheckbox
@@ -236,9 +166,6 @@ const fetchAppointmentDetails = (url, itemId, onSuccess) => {
         },
     });
 };
-
-
-
             // Populate and display the appointment done modal
             const populateAppointmentModal = (data) => {
                 const modal = $("#appointmentDoneModal");
@@ -259,11 +186,8 @@ const fetchAppointmentDetails = (url, itemId, onSuccess) => {
             
                 modal.fadeIn();
             };
-            
-
             // Fetch and display appointment details
             fetchAppointmentDetails("appointment_crud/appointment_get.php", { id: itemId }, populateAppointmentModal);
-
         }
         
     });
@@ -347,6 +271,105 @@ const setupDynamicActionsApprove = () => {
 
 // Initialize the dynamic button actions
 setupDynamicActionsApprove();
+
+//set up dynamics for for cancel appointment
+// Handle Dynamic Button Actions for cancel appointment
+const setupDynamicActionsCancel = () => {
+    document.body.addEventListener("click", (event) => {
+        // Handle Appointment Approve Button Click
+        if (event.target.closest(".openCancelAppointmentModal")) {
+            const itemElement = event.target.closest(".openCancelAppointmentModal");
+            const itemId = itemElement.dataset.id;
+
+            // Set the appointment ID in the hidden input
+            document.getElementById("approval_appointment_id").value = itemId;
+
+            // Save appointmentID as a session variable
+            $.ajax({
+                url: 'save_session_appointment.php', // PHP script to handle the request
+                type: 'POST',
+                data: { session_appointment_id: itemId }, // Data to send to the server
+                success: function (response) {
+                    console.log("Session saved:", response);
+                },
+                error: function () {
+                    $('#response').text('Error saving the value.');
+                }
+            });
+        }
+    });
+};
+
+// Initialize the dynamic button actions
+setupDynamicActionsCancel();
+
+
+// Handle Dynamic Button Actions for cancel appointment
+const setupDynamicActionsResched = () => {
+    document.body.addEventListener("click", (event) => {
+        // Handle Appointment Approve Button Click
+        if (event.target.closest(".openReschedAppointmentModal")) {
+            const itemElement = event.target.closest(".openReschedAppointmentModal");
+            const itemId = itemElement.dataset.id;
+
+            // Set the appointment ID in the hidden input
+            document.getElementById("approval_appointment_id").value = itemId;
+
+            // Save appointmentID as a session variable
+            $.ajax({
+                url: 'save_session_appointment.php', // PHP script to handle the request
+                type: 'POST',
+                data: { session_appointment_id: itemId }, // Data to send to the server
+                success: function (response) {
+                    console.log("Session saved:", response);
+                },
+                error: function () {
+                    $('#response').text('Error saving the value.');
+                }
+            });
+// Fetch and display appointment details
+const fetchAppointmentDetailsResched = (url, itemId, onSuccess) => {
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({ id: itemId }), // Ensure proper data format
+        contentType: "application/json", // Specify JSON content type
+        dataType: "json",
+        success: (response) => {
+            if (response && !response.error) {
+                onSuccess(response[0]);
+            } else {
+                alert(response.error || "Unknown error occurred");
+            }
+        },
+        error: (xhr, status, error) => {
+            console.error("AJAX Error:", xhr.responseText, status, error);
+            alert("An error occurred while fetching appointment details.");
+        },
+    });
+};
+            // Populate and display the appointment done modal
+            const populateAppointmentModalResched = (data) => {
+                const modal = $("#reschedAccountModal");
+            
+                document.getElementById('nameResched').value(data.patient_name || "N/A");
+                document.getElementById('patientIDResched').value(data.patient_info_id || "N/A");
+                document.getElementById('MedicalHistory').value(data.service_name || "N/A");
+            
+                modal.fadeIn();
+            };
+            // Fetch and display appointment details
+            fetchAppointmentDetailsResched("appointment_crud/appointment_get.php", { id: itemId }, populateAppointmentModalResched);
+
+
+        }
+    });
+};
+
+// Initialize the dynamic button actions
+setupDynamicActionsResched();
+
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -473,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+// Get products for drop downn
 document.addEventListener('DOMContentLoaded', function () {
 //disableCheckbox
     let selectedItems = {}; // Store selected items and their quantities
@@ -698,7 +721,7 @@ dropdownButtonProcedure.addEventListener('click', function () {
 });
 
 
-// appointmnet approve
+// get products for approval form
 
 document.addEventListener('DOMContentLoaded', function () {
     let selectedProcedures = [];
@@ -821,4 +844,114 @@ document.addEventListener('DOMContentLoaded', function () {
         $('.selected-procedures-approval').css('display', 'block');
     });
 });
+
+
+// cancel appointment ajax
+$(document).ready(function () {
+    const otherReasonContainer = $("#otherReasonContainer");
+    const otherReasonInput = $("#otherReason");
+
+    // Hide the "Other Reason" input field initially
+    otherReasonContainer.hide();
+
+    // Toggle the visibility of the "Other Reason" input field based on selected radio button
+    $('input[name="reasonCancel"]').change(function () {
+      if ($(this).val() === "other") {
+        otherReasonContainer.show();
+        otherReasonInput.attr("required", "required");
+      } else {
+        otherReasonContainer.hide();
+        otherReasonInput.removeAttr("required").val("");
+      }
+    });
+
+    // Handle form submission with AJAX
+    $("#cancelForm").on("submit", function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      // Serialize form data
+      const formData = $(this).serialize();
+
+      // AJAX request
+      $.ajax({
+        url: "appointment_crud/cancel_appointment.php",
+        type: "POST",
+        data: formData,
+        dataType: "json", // Expect JSON response
+        success: function (response) {
+            if (response.success) {
+                console.log("Your appointment has been successfully canceled.");
+                $("#cancelAppointmentModal").hide();
+                $("#cancelForm")[0].reset();
+                otherReasonContainer.hide();
+            } else {
+                console.log(response.message || "Failed to cancel the appointment. Please try again.");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error canceling the appointment:", xhr.responseText || error);
+            console.log("An error occurred while canceling your appointment. Please try again.");
+        },
+    });
+    
+
+    });
+  });
+
+// Reschedule appointment AJAX
+$(document).ready(function () {
+    const otherReasonContainer = $("#resched-otherReasonContainer");
+    const otherReasonInput = $("#resched-otherReason");
+
+    // Hide the "Other Reason" input field initially
+    otherReasonContainer.hide();
+
+    // Toggle the visibility of the "Other Reason" input field based on selected radio button
+    $('input[name="reasonResched"]').change(function () {
+        if ($(this).val() === "other") {
+            otherReasonContainer.show();
+            otherReasonInput.attr("required", "required");
+        } else {
+            otherReasonContainer.hide();
+            otherReasonInput.removeAttr("required").val(""); // Clear the input field
+        }
+    });
+
+    // Prevent form submission by pressing Enter or other triggers
+    $("#resched-newMultiStepFormResched").on("submit", function (e) {
+        e.preventDefault();
+    });
+
+    // Handle form submission ONLY when the submit button is clicked
+    $("#resched-submitButton").on("click", function (e) {
+        e.preventDefault(); // Prevent default button action
+
+        // Serialize form data
+        const formData = $("#resched-newMultiStepFormResched").serialize();
+
+        // AJAX request
+        $.ajax({
+            url: "appointment_crud/resched_appointment.php",
+            type: "POST",
+            data: formData,
+            dataType: "json", // Expect JSON response
+            success: function (response) {
+                if (response.success) {
+                    console.log("Your appointment has been successfully rescheduled.");
+                    $("#reschedAccountModal").hide(); // Close the modal
+                    $("#resched-newMultiStepFormResched")[0].reset(); // Reset the form
+                    otherReasonContainer.hide(); // Hide the "Other Reason" container
+                    otherReasonInput.removeAttr("required").val(""); // Clear the input field for other reason
+                } else {
+                    console.log(response.message || "Failed to reschedule the appointment. Please try again.");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error rescheduling the appointment:", xhr.responseText || error);
+                alert("An error occurred while rescheduling your appointment. Please try again.");
+            },
+        });
+    });
+});
+
 

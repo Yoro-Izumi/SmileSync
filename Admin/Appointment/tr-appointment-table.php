@@ -120,7 +120,7 @@ foreach ($appointments as $appointment){
                 <button>⋮</button>
                 <div class="dropdown-content">
                     <a href="appointment-details.php">View Details</a>
-                    <a href="#" class="appointmentApprove" data-id="<?php echo $appointment_id;?>">Approve Appointment</a>
+                    <a href="#" class="appointmentStatus" data-id="<?php echo $appointment_id;?>">Done Appointment</a>
                 </div>
             </div>
         </div>

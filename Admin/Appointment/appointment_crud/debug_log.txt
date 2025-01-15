@@ -11,7 +11,7 @@ Array
             [patient_phone_number] => 0298430923439
             [patient_sex] => 
             [birth_date] => Wednesday, October 10, 2001
-            [appointment_date_time] => Wednesday, January 15, 2025 5:52 AM
+            [appointment_date_time] => Wednesday, January 15, 2025 2:06 AM
             [service_name] => 
             [service_price] => 
             [service_id] => 

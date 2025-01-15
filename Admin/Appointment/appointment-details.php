@@ -102,7 +102,7 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <!-- Tabs in View Tables -->
  <script src="js/toggle-tabs.js"></script>
 <!-- Invoice -->
- <script src="js/invoice2.js"></script>
+ <script src="js/invoice.js"></script>
    <!-- External Libraries -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.min.js"></script>
