@@ -119,7 +119,6 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
 <!-- AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
-<script scr="js/password-toggle.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const loginFailedModal = document.getElementById('loginFailedModalClient');
