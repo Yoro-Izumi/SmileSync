@@ -64,7 +64,7 @@
         const to = $('#emailInputReset').val();
 
         $.ajax({
-          url: 'js/forgetPasswordEmail.js', // Your Node.js server endpoint
+          url: 'js/email/forgetPasswordEmail.js', // Your Node.js server endpoint
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify({ to, subject, text }),
