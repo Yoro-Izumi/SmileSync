@@ -149,6 +149,7 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
                  maxlength="24"
                  class="input-field"
                  name="emailRegister"
+                 id="emailRegister"
                  autocomplete="off"
                  required
                />
@@ -250,7 +251,7 @@ else if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
                <p class="text">
                <a href="#" id="forgotLink"> Forgotten your password?</a>
              </p>
-             </div >
+             </div>
 
              <input type="submit" value="Sign In" class="sign-btn" id="loginBtn"/>
 
