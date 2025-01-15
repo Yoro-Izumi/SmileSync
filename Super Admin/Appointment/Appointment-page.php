@@ -53,7 +53,7 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <body>
 
 <div class="overlay"></div>
-<?php include "sidebar-admin.php"; ?>
+<?php include "sidebar-super-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
 <?php include "modal2.php"; ?>

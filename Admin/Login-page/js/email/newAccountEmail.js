@@ -11,6 +11,7 @@ $(document).ready(function () {
         subject: "Welcome to SmileSync!",
         html:`
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,9 +24,9 @@ $(document).ready(function () {
         <tr>
             <td>
                 <h1 style="font-size: 24px; margin: 0;">Welcome to SmileSync!</h1>
-                <p style="font-size: 16px; margin: 10px 0;">Say goodbye to scheduling stress and hello to effortless dental care! 🦷✨
+                <p style="font-size: 16px; margin: 10px 0;">Your account has been successfully approved by our admin. 🎉
 
-With Smile Sync, booking your dental appointments has never been easier.</p>
+With Smile Sync, creating and approving dental appointments has never been made easier. Get ready to experience easier scheduling for your dental! 🦷✨</p>
             </td>
         </tr>
     </table>
@@ -42,9 +43,9 @@ With Smile Sync, booking your dental appointments has never been easier.</p>
                                     <td align="center" style="font-size: 24px; color: #89CFF0; line-height: 100px;">🦷</td>
                                 </tr>
                             </table>
-                            <h2 style="font-size: 20px; color: #4682B4; margin: 20px 0 10px;">See your dental appointment now with Smile Sync</h2>
-                            <p style="font-size: 14px; color: #333333; margin: 0 0 20px;">Be the first to book an appointment early. Click below to dive into action now!</p>
-                            <a href="http://localhost/SmileSync/Client/LogIn-Page/Login-Page.php" style="display: inline-block; padding: 12px 20px; background-color: #4682B4; color: #ffffff; text-decoration: none; border-radius: 25px; font-size: 16px; font-weight: bold;">Visit SmileSync</a>
+                            <h2 style="font-size: 20px; color: #4682B4; margin: 20px 0 10px;">Your SmileSync Account is Ready!</h2>
+                            <p style="font-size: 14px; color: #333333; margin: 0 0 20px;">You can now use your admin account with SmileSync Click below to get started!</p>
+                            <a href="https://smilesync.site/SmileSync/Admin/Login-page/Login_Register-Page.php" style="display: inline-block; padding: 12px 20px; background-color: #4682B4; color: #ffffff; text-decoration: none; border-radius: 25px; font-size: 16px; font-weight: bold;">Visit SmileSync</a>
                         </td>
                     </tr>
                 </table>

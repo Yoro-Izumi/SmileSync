@@ -17,13 +17,6 @@
         </a>
         <span class="tooltip">Dashboard</span>
       </li>
-      <li class="active">
-        <a href="Appointment-page.php">
-          <i class='bx bx-calendar' ></i>
-          <span class="links_name">Appointment</span>
-        </a>
-        <span class="tooltip">Appointment</span>
-      </li>
       <li>
         <a href="../Inventory/Inventory-page.php">
           <i class='bx bx-package' ></i>
@@ -38,12 +31,26 @@
         </a>
         <span class="tooltip">Reports and Analytics</span>
       </li>
-      <li>
-        <a href="../Settings/Settings-page.php">
-          <i class='bx bxs-cog' ></i>
-          <span class="links_name">Settings</span>
+      <li  class="active">
+        <a href="../Appointment/Appointment-page.php">
+          <i class='bx bx-calendar' ></i>
+          <span class="links_name">Appointment</span>
         </a>
-        <span class="tooltip">Settings</span>
+        <span class="tooltip">Appointment</span>
+      </li>
+      <li>
+        <a href="../Accounts/Accounts-page.php">
+          <i class='bx bx-calendar' ></i>
+          <span class="links_name">Accounts</span>
+        </a>
+        <span class="tooltip">Accounts</span>
+      </li>
+      <li>
+        <a href="../Services/Services-page.php">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="links_name">Services</span>
+        </a>
+        <span class="tooltip">Services</span>
       </li>
 
       <li class="nav-title">Others</li> 
@@ -58,30 +65,37 @@
 
 
       <li>
-  <a href="#" id="notificationBtn">
-    <i class='bx bx-bell'></i>
+  <a href="#" id="notificationLink">
+    <i class='bx bx-cog'></i>
     <span class="links_name">Notifications</span>
   </a>
   <span class="tooltip">Notifications</span>
 </li>
 
-      <li class="profile">
+<li class="profile">
+<li>
+        <a href="../Trash/Trash-page.php">
+          <i class='bx bx-trash' ></i>
+          <span class="links_name">Trash</span>
+        </a>
+        <span class="tooltip">Trash</span>
+      </li>
 
         <div class="profile-details">
-
+          <img src="img/login.png"  alt="profile">
           <div class="name_job">
-            <div class="name"><?php echo $adminEmail;?></div>
-            <div class="job">Admin</div>
+            <div class="job">Super Admin</div>
           </div>
             <a href="../admin_global_files/log_out.php">
             <i class='bx bx-log-out' id="log_out" ></i></a>
             <span class="tooltip">Logout</span>
         </div>
-      </li>  
+      </li>
+
+      
         
     </ul>
   </div>
-
 
 </body>
 </html>
