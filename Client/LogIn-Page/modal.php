@@ -69,29 +69,6 @@
         <button class="modal-button warning" id="closeNoEmailModal">Ok</button>
     </div>
 </div>
-
-    <script>
-    $(document).ready(function () {
-      $('#resetPasswordForm').submit(function (e) {
-        e.preventDefault(); // Prevent the form from submitting traditionally
-
-        const to = $('#emailInputReset').val();
-
-        $.ajax({
-          url: 'js/forgetPasswordEmail.js', // Your Node.js server endpoint
-          method: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ to, subject, text }),
-          success: function (response) {
-            alert(response.message);
-          },
-          error: function (error) {
-            alert('Error sending email: ' + error.responseJSON.message);
-          },
-        });
-      });
-    });
-  </script>
 </div>
 
 

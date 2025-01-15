@@ -104,6 +104,26 @@ foreach ($appointments as $appointment){
         </div>
     </td>
 </tr>
+<?php }else if($appointment_status === 'Ongoing'){ ?>
+    <tr>
+    <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
+    <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
+    <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
+    <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
+    <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
+    <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
+    <td data-label="ACTIONS">
+        <div class="actions">
+            <div class="dropdown">
+                <button>⋮</button>
+                <div class="dropdown-content">
+                    <a href="appointment-details.php">View Details</a>
+                    <a href="#" class="appointmentApprove" data-id="<?php echo $appointment_id;?>">Approve Appointment</a>
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>
 <?php }else{ ?>
     <tr>
     <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>

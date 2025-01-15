@@ -4,6 +4,8 @@ session_start();
 include "../../admin_global_files/connect_database.php";
 include "../../admin_global_files/input_sanitizing.php";
 
+$adminID = $_SESSION['userAdminID'];
+
 header('Content-Type: application/json'); // Ensure JSON header
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $reason = sanitize_input($_POST['reasonCancel'],$conn);
-    $otherReason = !empty($_POST['otherReason']) ? sanitize_input($_POST['otherReason'],$conn) : '';
+    $reason = sanitize_input($_POST['reasonResched'],$conn);
+    $otherReason = !empty($_POST['otherReasonResched']) ? sanitize_input($_POST['otherReasonResched'],$conn) : '';
 
     if ($reason === 'other' && !empty($otherReason)) {
         $reason = $otherReason;
@@ -27,11 +29,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    //get post values
+// Get post values
+$appointmentDate = isset($_POST['cal-day']) && !empty($_POST['cal-day']) ? sanitize_input($_POST['cal-day'], $conn) : date('Y-m-d');
+$appointmentTime = isset($_POST['time']) && !empty($_POST['time']) ? sanitize_input($_POST['time'], $conn) : date('H:i:s');
+
+$appointmentDateTime = $appointmentDate . " " . $appointmentTime;
+
+    $services = isset($_POST['services']) ? sanitize_input($_POST['services'], $conn) : "";
+
+
+
+
+
     $stmt = $conn->prepare("UPDATE `smilesync_appointments` 
-                            SET `appointment_status` = ?, `appointment_reason` = ? 
+                            SET `appointment_status` = ?, `appointment_reason` = ?, appointment_date_time = ?, admin_id = ? 
                             WHERE `appointment_id` = ?");
-    $status = 'Cancelled';
-    $stmt->bind_param("sss", $status, $reason, $appointmentId);
+    $status = 'Approved';
+    $stmt->bind_param("sssii", $status, $reason,$appointmentDateTime,$adminID, $appointmentId);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);

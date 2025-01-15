@@ -1,51 +1,52 @@
 document.addEventListener('DOMContentLoaded', function () {
     const existingAccountModal = document.getElementById('existingAccountModal');
     const newAccountModal = document.getElementById('newAccountModal');
-
     const deleteNewProgressModal = document.getElementById('deleteNewProgressModal');
     const deleteExistingProgressModal = document.getElementById('deleteExistingProgressModal');
     const appointmentDoneModal = document.getElementById('appointmentDoneModal');
-
     const approvalAppointmentModal = document.getElementById('approvalAppointmentModal');
     const cancelAppointmentModal = document.getElementById('cancelAppointmentModal');
-
+    const reschedAccountModal = document.getElementById('reschedAccountModal');
     const closeDone = document.getElementById('closeDone');
-
+    const closeRescheduleButton = document.getElementById('closeRescheduleButton');
+    const closeCancelAppointmentBtn = document.getElementById('closeCancelAppointmentModal');
     const newAccount = document.getElementById('newAccount');
     const cancelSubmitNewBtn = document.getElementById('cancelSubmitNewBtn');
-
     const deleteNewProgressBtn = document.getElementById('deleteNewProgressBtn');
     const cancelNewDeleteBtn = document.getElementById('cancelNewDeleteBtn');
-
     const existingAccount = document.getElementById('existingAccount');
     const cancelSubmitExistingBtn = document.getElementById('cancelSubmitExistingBtn');
     const deleteExistingProgressBtn = document.getElementById('deleteExistingProgressBtn');
     const cancelExistingDeleteBtn = document.getElementById('cancelExistingDeleteBtn');
-
     const submitExistingBtn = document.getElementById('submitExistingBtn');
-
-    // Show the appointmentDoneModal
     const statusBtns = document.querySelectorAll('.appointmentStatus');
+    const approveBtns = document.querySelectorAll('.appointmentApprove');
+    const openCancelAppointmentBtns = document.querySelectorAll('.openCancelAppointmentModal');
+    const openReschedAppointmentBtns = document.querySelectorAll('.openReschedAppointmentModal');
+    const closeButtons = document.querySelectorAll(".close-btn, .closebtn");
+    
+    // Show the appointmentDoneModal
     statusBtns.forEach((statusBtn) => {
         statusBtn.addEventListener('click', function () {
             appointmentDoneModal.classList.add('show');
         });
     });
 
-    // Close the appointmentDoneModal
-    closeDone.addEventListener('click', function () {
-        appointmentDoneModal.classList.remove('show');
+    // Close modals using close buttons
+    closeButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const modal = button.closest(".modal");
+            modal.classList.remove("show");
+        });
     });
 
-    // Show the approvalAppointmentModal
-    const approveBtns = document.querySelectorAll('.appointmentApprove');
+    // Show and close the approvalAppointmentModal
     approveBtns.forEach((approveBtn) => {
         approveBtn.addEventListener('click', function () {
             approvalAppointmentModal.classList.add('show');
         });
     });
 
-    // Close the approvalAppointmentModal
     closeDone.addEventListener('click', function () {
         approvalAppointmentModal.classList.remove('show');
     });
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newAccountModal.classList.add('show');
     });
 
-    // Close the newAccountModal
+    // Close the newAccountModal and open the deleteNewProgressModal
     cancelSubmitNewBtn.addEventListener('click', function () {
         newAccountModal.classList.remove('show');
         deleteNewProgressModal.classList.add('show');
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         existingAccountModal.classList.add('show');
     });
 
-    // Close the existingAccountModal
+    // Close the existingAccountModal and open the deleteExistingProgressModal
     cancelSubmitExistingBtn.addEventListener('click', function () {
         existingAccountModal.classList.remove('show');
         deleteExistingProgressModal.classList.add('show');
@@ -84,20 +85,19 @@ document.addEventListener('DOMContentLoaded', function () {
         newAccountModal.classList.remove('show');
     });
 
-    // Close the deleteProgressModal for new account
+    // Close the deleteProgressModal for new account and return to newAccountModal
     cancelNewDeleteBtn.addEventListener('click', function () {
         deleteNewProgressModal.classList.remove('show');
         newAccountModal.classList.add('show');
     });
 
-    // Close the deleteProgressModal for existing account
+    // Close the deleteProgressModal for existing account and return to existingAccountModal
     cancelExistingDeleteBtn.addEventListener('click', function () {
         deleteExistingProgressModal.classList.remove('show');
         existingAccountModal.classList.add('show');
     });
 
     // Open the cancelAppointmentModal
-    const openCancelAppointmentBtns = document.querySelectorAll('.openCancelAppointmentModal');
     openCancelAppointmentBtns.forEach((btn) => {
         btn.addEventListener('click', function () {
             cancelAppointmentModal.classList.add('show');
@@ -105,31 +105,43 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Close the cancelAppointmentModal
-    const closeCancelAppointmentBtn = document.getElementById('closeCancelAppointmentModal');
     closeCancelAppointmentBtn.addEventListener('click', function () {
         cancelAppointmentModal.classList.remove('show');
     });
+
+    // Show the reschedAccountModal
+    openReschedAppointmentBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
+            reschedAccountModal.classList.add('show');
+        });
+    });
+
+    // Close the reschedAccountModal
+    closeRescheduleButton.addEventListener('click', function () {
+        reschedAccountModal.classList.remove('show');
+    });
 });
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const modals = document.querySelectorAll(".modal");
-    const closeButtons = document.querySelectorAll(".close-btn");
+    const closeButtons = document.querySelectorAll(".close-btn, .closebtn");
 
     // Hide modals when close buttons are clicked
     closeButtons.forEach((button) => {
         button.addEventListener("click", function () {
             const modal = button.closest(".modal");
-            modal.style.display = "none";
+            modal.classList.remove("show");
         });
     });
 
-    // Specific handler for deleteExistingProgressBtn
     const deleteBtn = document.getElementById("deleteExistingProgressBtn");
     const deleteModal = document.getElementById("deleteExistingProgressModal");
 
     deleteBtn.addEventListener("click", function () {
         console.log("Delete button clicked!");
-        deleteModal.style.display = "none";
+        deleteModal.classList.remove("show");
     });
 });
 
@@ -188,9 +200,6 @@ const fetchAppointmentDetails = (url, itemId, onSuccess) => {
         },
     });
 };
-
-
-
             // Populate and display the appointment done modal
             const populateAppointmentModal = (data) => {
                 const modal = $("#appointmentDoneModal");
@@ -211,11 +220,8 @@ const fetchAppointmentDetails = (url, itemId, onSuccess) => {
             
                 modal.fadeIn();
             };
-            
-
             // Fetch and display appointment details
             fetchAppointmentDetails("appointment_crud/appointment_get.php", { id: itemId }, populateAppointmentModal);
-
         }
         
     });
@@ -301,7 +307,7 @@ const setupDynamicActionsApprove = () => {
 setupDynamicActionsApprove();
 
 //set up dynamics for for cancel appointment
-// Handle Dynamic Button Actions for approve appointment
+// Handle Dynamic Button Actions for cancel appointment
 const setupDynamicActionsCancel = () => {
     document.body.addEventListener("click", (event) => {
         // Handle Appointment Approve Button Click
@@ -330,6 +336,74 @@ const setupDynamicActionsCancel = () => {
 
 // Initialize the dynamic button actions
 setupDynamicActionsCancel();
+
+
+// Handle Dynamic Button Actions for cancel appointment
+const setupDynamicActionsResched = () => {
+    document.body.addEventListener("click", (event) => {
+        // Handle Appointment Approve Button Click
+        if (event.target.closest(".openReschedAppointmentModal")) {
+            const itemElement = event.target.closest(".openReschedAppointmentModal");
+            const itemId = itemElement.dataset.id;
+
+            // Set the appointment ID in the hidden input
+            document.getElementById("approval_appointment_id").value = itemId;
+
+            // Save appointmentID as a session variable
+            $.ajax({
+                url: 'save_session_appointment.php', // PHP script to handle the request
+                type: 'POST',
+                data: { session_appointment_id: itemId }, // Data to send to the server
+                success: function (response) {
+                    console.log("Session saved:", response);
+                },
+                error: function () {
+                    $('#response').text('Error saving the value.');
+                }
+            });
+// Fetch and display appointment details
+const fetchAppointmentDetailsResched = (url, itemId, onSuccess) => {
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: JSON.stringify({ id: itemId }), // Ensure proper data format
+        contentType: "application/json", // Specify JSON content type
+        dataType: "json",
+        success: (response) => {
+            if (response && !response.error) {
+                onSuccess(response[0]);
+            } else {
+                alert(response.error || "Unknown error occurred");
+            }
+        },
+        error: (xhr, status, error) => {
+            console.error("AJAX Error:", xhr.responseText, status, error);
+            alert("An error occurred while fetching appointment details.");
+        },
+    });
+};
+            // Populate and display the appointment done modal
+            const populateAppointmentModalResched = (data) => {
+                const modal = $("#reschedAccountModal");
+            
+                document.getElementById('nameResched').value(data.patient_name || "N/A");
+                document.getElementById('patientIDResched').value(data.patient_info_id || "N/A");
+                document.getElementById('MedicalHistory').value(data.service_name || "N/A");
+            
+                modal.fadeIn();
+            };
+            // Fetch and display appointment details
+            fetchAppointmentDetailsResched("appointment_crud/appointment_get.php", { id: itemId }, populateAppointmentModalResched);
+
+
+        }
+    });
+};
+
+// Initialize the dynamic button actions
+setupDynamicActionsResched();
+
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -807,38 +881,111 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // cancel appointment ajax
+$(document).ready(function () {
+    const otherReasonContainer = $("#otherReasonContainer");
+    const otherReasonInput = $("#otherReason");
 
-document.querySelector('.cancel-btn').addEventListener('click', function (e) {
-    e.preventDefault();
-  
-    const form = document.querySelector('form');
-    const formData = new FormData(form);
-  
-    // Check if the "Other Reasons" input is required and valid
-    const otherReasonInput = document.querySelector('#otherReason');
-    const reasonValue = formData.get('reason');
-    if (reasonValue === 'other' && !otherReasonInput.value.trim()) {
-      alert('Please specify the reason for cancellation.');
-      return;
-    }
-  
-    fetch('appointment_crud/cancel_appointment.php', {
-      method: 'POST',
-      body: formData,
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert('Appointment cancelled successfully.');
-          // Optionally redirect or update the UI
-        } else {
-          alert('Failed to cancel the appointment: ' + data.message);
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while processing your request.');
-      });
+    // Hide the "Other Reason" input field initially
+    otherReasonContainer.hide();
+
+    // Toggle the visibility of the "Other Reason" input field based on selected radio button
+    $('input[name="reasonCancel"]').change(function () {
+      if ($(this).val() === "other") {
+        otherReasonContainer.show();
+        otherReasonInput.attr("required", "required");
+      } else {
+        otherReasonContainer.hide();
+        otherReasonInput.removeAttr("required").val("");
+      }
+    });
+
+    // Handle form submission with AJAX
+    $("#cancelForm").on("submit", function (e) {
+      e.preventDefault(); // Prevent default form submission
+
+      // Serialize form data
+      const formData = $(this).serialize();
+
+      // AJAX request
+      $.ajax({
+        url: "appointment_crud/cancel_appointment.php",
+        type: "POST",
+        data: formData,
+        dataType: "json", // Expect JSON response
+        success: function (response) {
+            if (response.success) {
+                console.log("Your appointment has been successfully canceled.");
+                $("#cancelAppointmentModal").hide();
+                $("#cancelForm")[0].reset();
+                otherReasonContainer.hide();
+            } else {
+                console.log(response.message || "Failed to cancel the appointment. Please try again.");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error canceling the appointment:", xhr.responseText || error);
+            console.log("An error occurred while canceling your appointment. Please try again.");
+        },
+    });
+    
+
+    });
   });
-  
+
+// Reschedule appointment AJAX
+$(document).ready(function () {
+    const otherReasonContainer = $("#resched-otherReasonContainer");
+    const otherReasonInput = $("#resched-otherReason");
+
+    // Hide the "Other Reason" input field initially
+    otherReasonContainer.hide();
+
+    // Toggle the visibility of the "Other Reason" input field based on selected radio button
+    $('input[name="reasonResched"]').change(function () {
+        if ($(this).val() === "other") {
+            otherReasonContainer.show();
+            otherReasonInput.attr("required", "required");
+        } else {
+            otherReasonContainer.hide();
+            otherReasonInput.removeAttr("required").val(""); // Clear the input field
+        }
+    });
+
+    // Prevent form submission by pressing Enter or other triggers
+    $("#resched-newMultiStepFormResched").on("submit", function (e) {
+        e.preventDefault();
+    });
+
+    // Handle form submission ONLY when the submit button is clicked
+    $("#resched-submitButton").on("click", function (e) {
+        e.preventDefault(); // Prevent default button action
+
+        // Serialize form data
+        const formData = $("#resched-newMultiStepFormResched").serialize();
+
+        // AJAX request
+        $.ajax({
+            url: "appointment_crud/resched_appointment.php",
+            type: "POST",
+            data: formData,
+            dataType: "json", // Expect JSON response
+            success: function (response) {
+                if (response.success) {
+                    console.log("Your appointment has been successfully rescheduled.");
+                    $("#reschedAccountModal").hide(); // Close the modal
+                    $("#resched-newMultiStepFormResched")[0].reset(); // Reset the form
+                    otherReasonContainer.hide(); // Hide the "Other Reason" container
+                    otherReasonInput.removeAttr("required").val(""); // Clear the input field for other reason
+                } else {
+                    console.log(response.message || "Failed to reschedule the appointment. Please try again.");
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error rescheduling the appointment:", xhr.responseText || error);
+                alert("An error occurred while rescheduling your appointment. Please try again.");
+            },
+        });
+    });
+});
+
 

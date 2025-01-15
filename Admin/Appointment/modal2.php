@@ -7,15 +7,15 @@
 <body>
 
 <div class="modal" id="appointmentDoneModal">
+<div class="appointment-content">
 <form id="doneAppointmentForm" name="doneAppointmentForm" method="POST" action="appointment_crud/done_appointment.php">
     <div class="done-modal">
-   <div class="modal-done">
     <div class="modal-header">
                 <div class="content">
                     <h2>iMee-Toga Oli Dental Clinic</h2>
                     <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
                 </div>
-                <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
+                <span class="closebtn"><a href="#" id="closeDone">&times;</a></span>
             </div>
 
         <!-- Personal Information -->
@@ -203,9 +203,9 @@
                 </div>
 
             </div></div>
-        </div></div>
-</div>
-</form>
+        </div>
+                    </div>
+</form></div>
 </div>
 
 
@@ -218,7 +218,7 @@
                         <h2>iMee-Toga Oli Dental Clinic</h2>
                         <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
                     </div>
-                    <button class="close-btn"><a href="#" id="closeApprove">&times;</a></button>
+                    <span class="closebtn"><a href="#" id="closeApprove">&times;</a></span>
                 </div>
 
                 <!-- Personal Information -->
@@ -306,7 +306,7 @@
                     </div>
                     <!-- Action Buttons -->
                             <div class="button-container">
-                                <button type="submit" class="action-btn" id="approveAppointmentBtn">Approve Appointment</button>
+                                <button type="submit" class="action-btn" id="reschedAppointmentBtn">Approve Appointment</button>
                             </div>
                 </div>
             </div>
@@ -318,8 +318,8 @@
 
 
 <div class="modal" id="existingAccountModal">
-    <div class="modal-content">
-    <button class="close-btn"  id="cancelSubmitExistingBtn">&times;</button>
+    <div class="appointment-content">
+    <span class="closebtn"  id="cancelSubmitExistingBtn">&times;</span>
         <div class="modal-title normal-title">Add Existing Account</div>
         <div class="modal-description">
         <?php include "existingAppointment.php"; ?>
@@ -330,8 +330,8 @@
 
 
 <div class="modal" id="newAccountModal">
-    <div class="modal-content">
-    <button class="close-btn"  id="cancelSubmitNewBtn">&times;</button>
+    <div class="appointment-content">
+    <span class="closebtn"  id="cancelSubmitNewBtn">&times;</span>
         <div class="modal-title normal-title">Add New Account</div>
         <div class="modal-description">
         <?php include "newAppointment.php"; ?>
@@ -384,66 +384,28 @@
         Oh no! We're sorry if there were any inconvenience on our part. 
         Please select reasons why you need to cancel your appointment:
       </p>
-      <form>
-        <div class='label'>
-          <input type="radio" name="reason" value="busy" required>
-          Too busy, my schedule does not align with appointment.
-        </div>
-        <div class='label'>
-          <input type="radio" name="reason" value="emergency">
-          Family emergency
-        </div>
-        <div class='label'>
-          <input type="radio" name="reason" value="other">
-          Other Reasons
-        </div>
-        <div class="other-reason" id="otherReasonContainer">
-          <label for="otherReason">Please specify the reason: *</label>
-          <input type="text" id="otherReason" name="otherReason">
-        </div>
-        <button type="submit" class="cancel-btn">Cancel Appointment</button>
-      </form>
+      <form id="cancelForm" method="post">
+  <div class='label'>
+    <input type="radio" name="reasonCancel" value="busy" required>
+    Too busy, my schedule does not align with appointment.
+  </div>
+  <div class='label'>
+    <input type="radio" name="reasonCancel" value="emergency">
+    Family emergency
+  </div>
+  <div class='label'>
+    <input type="radio" name="reasonCancel" value="other">
+    Other Reasons
+  </div>
+  <div class="other-reason" id="otherReasonContainer" style="display: none;">
+    <label for="otherReason">Please specify the reason: *</label>
+    <input type="text" id="otherReason" name="otherReason">
+  </div>
+  <button type="submit" class="cancel-btn">Cancel Appointment</button>
+</form>
+
         </div>   
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-  const radioButtons = document.querySelectorAll('input[name="reason"]');
-  const otherReasonContainer = document.getElementById("otherReasonContainer");
-  const otherReasonInput = document.getElementById("otherReason");
-
-  // Hide the "Other Reason" input field initially
-  otherReasonContainer.style.display = "none";
-
-  // Add event listeners to the radio buttons
-  radioButtons.forEach((radio) => {
-    radio.addEventListener("change", () => {
-      if (radio.value === "other") {
-        otherReasonContainer.style.display = "block";
-        otherReasonInput.setAttribute("required", "required");
-      } else {
-        otherReasonContainer.style.display = "none";
-        otherReasonInput.removeAttribute("required");
-        otherReasonInput.value = ""; // Clear the input field
-      }
-    });
-  });
-
-  // Handle the form submission
-  const form = document.querySelector("form");
-  form.addEventListener("submit", (e) => {
-    const selectedReason = document.querySelector('input[name="reason"]:checked');
-    if (!selectedReason) {
-      e.preventDefault();
-      alert("Please select a reason for canceling your appointment.");
-    }
-    if (selectedReason && selectedReason.value === "other" && otherReasonInput.value.trim() === "") {
-      e.preventDefault();
-      alert("Please specify the reason in the 'Other Reasons' field.");
-    }
-  });
-});
-
-    </script>
   </div>
 
 
@@ -459,6 +421,16 @@
         <button id="closeAppointmentSuccessBtn" class="modal-button success">OK</button>
     </div>
 </div> 
+
+<div class="modal" id="reschedAccountModal">
+    <div class="appointment-content">
+    <span class="closebtn"  id="closeRescheduleButton">&times;</span>
+        <div class="modal-title normal-title">Reschedule Appointment</div>
+        <div class="modal-description">
+        <?php include "reschedule-appointment.php"; ?>
+        </div>
+     </div>
+</div>
 
 <div id="alertContainer"></div>
 <script src="js/alert.js"></script>

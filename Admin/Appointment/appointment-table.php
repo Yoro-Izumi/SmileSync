@@ -70,7 +70,7 @@
 
   </div>
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  /*document.addEventListener('DOMContentLoaded', function () {
     const statusFilter = document.getElementById('status');
     const searchInput = document.querySelector('.search-bar input');
     const checkAllCheckbox = document.querySelector('th input[type="checkbox"]');
@@ -156,7 +156,7 @@
 
     // Show all rows on page load
     showAllRowsOnPageLoad();
-  });
+  }); */
 </script>
 
 

@@ -102,7 +102,7 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
 <!-- Tabs in View Tables -->
  <script src="js/toggle-tabs.js"></script>
 <!-- Invoice -->
- <script src="js/invoice2.js"></script>
+ <script src="js/invoice.js"></script>
 </body>
 </html>
 <?php

@@ -1,18 +1,28 @@
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
   let searchBtn = document.querySelector(".bx-search");
-  const inputs = document.querySelectorAll(".input-field");
 
-inputs.forEach((inp) => {
-  inp.addEventListener("focus", () => {
-    inp.classList.add("active");
-  });
-  inp.addEventListener("blur", () => {
-    if (inp.value != "") return;
-    inp.classList.remove("active");
-  });
-});
+  const inputs = document.querySelectorAll(".modal-input");
 
+  inputs.forEach((input) => {
+    // When input gains focus
+    input.addEventListener("focus", () => {
+      input.classList.add("active");
+    });
+  
+    // When input loses focus
+    input.addEventListener("blur", () => {
+      if (input.value.trim() === "") {
+        input.classList.remove("active");
+      }
+    });
+  
+    // Check pre-filled values (e.g., on page load or after a modal is opened)
+    if (input.value.trim() !== "") {
+      input.classList.add("active");
+    }
+  });
+  
 
   closeBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
@@ -32,5 +42,3 @@ inputs.forEach((inp) => {
      closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
    }
   }
-
-

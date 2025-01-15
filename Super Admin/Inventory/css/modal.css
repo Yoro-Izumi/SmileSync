@@ -298,6 +298,17 @@
     background-color: #fff;
 }
 
+.modal-input:focus + label,
+.modal-input.active + label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #000;
+    top: -5px;
+    left: 10px;
+    background-color: #fff;
+}
+
+
 label {
     position: absolute;
     left: 5px;
@@ -318,7 +329,7 @@ label {
 }
 
 /* Additional styling for select element */
-select.input-field {
+select.modal-input {
     background-color: #fff;
     cursor: pointer;
 }

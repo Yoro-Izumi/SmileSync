@@ -11,7 +11,7 @@
 <div class="modal" id="viewServiceModal">
 <div class="modal-content medium">
      <div class="modal-header">
-       <h3>Product Overview</h3>
+       <h3>Service Overview</h3>
       <div class="modal-actions">
        
         <button class="table-btn" class="editServicesTable" id="editServicesTable"><i class="fas fa-edit"></i>Edit</button>
@@ -106,7 +106,7 @@
 <!-- Edit Modal -->
 <div class="modal" id="editModal" >
 <div class="modal-content">
-        <b class="modal-title normal-title">Edit Item</b>
+        <b class="modal-title normal-title">Edit Service</b>
         <form id="editServiceForm" name="editServiceForm" action="Service-page.php" method="POST">
         <div class="message-container">
             <div class="modal-description">

@@ -104,7 +104,7 @@ indicator{
 .input-field+label {
   position: absolute;
   left: 5px;
-  top: 50%;
+  top: 10%;
   transform: translateY(-50%);
   font-size: 0.9rem;
   color: #bbb;
@@ -118,8 +118,8 @@ indicator{
   font-size: 0.7rem;
   font-weight: bold;
   color: #000;
-  top: 0;
-  left: 10px;
+  left: 15px;
+  top: -40%;
   background-color: #fff;
 }
 
@@ -680,20 +680,45 @@ footer {
 
 /* Popup animation */
 .modal-content {
-    /* overflow-y: scroll; */
-    position: relative;
-    border-radius: 25px;
-    background-color: #fff;
-    width: 80%;
-    margin: 50px;
-    padding: 20px;
-    text-align: center;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    transform: scale(0.7);
-    animation: popup 0.3s ease forwards;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  /* overflow: hidden; */
+  /* scroll-padding: 2px; */
+  /* overflow-x: hidden; */
+  overflow-y: auto;
+  position: relative;
+  border-radius: 25px;
+  background-color: #fff;
+  margin: 50px;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transform: scale(0.7);
+  animation: popup 0.3s ease forwards;
 }
 
+/* Popup animation */
+.appointment-content {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  /* overflow: hidden; */
+  /* scroll-padding: 2px; */
+  /* overflow-x: hidden; */
+  overflow-y: auto;
+  position: relative;
+  border-radius: 25px;
+  background-color: #fff;
+  height: 80vh;
+  width: 50%;
+  margin: 50px;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transform: scale(0.7);
+  animation: popup 0.3s ease forwards;
+}
 
 .modal-header {
     display: flex;
@@ -1123,6 +1148,10 @@ label {
         width: 100vw;
     }
 
+    .appointment-content {
+      width: 100vw;
+  }
+
 
     label {
         font-size: 1rem;
@@ -1151,10 +1180,6 @@ label {
 
     .modal-input:focus + label {
         font-size: 0.9rem;
-    }
-
-    .modal-content {
-        width: 50vw;
     }
 
     label {
@@ -1241,6 +1266,91 @@ label {
     transform: scale(1.1);
 }
 
+
+/*Resched form*/
+/* Active section will be displayed (Reschedule Appointment Modal) */
+
+.resched-form-section {
+  display: none;
+}
+.resched-form-section.active {
+  display: block;
+}
+
+
+.resched-recommendation-container {
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.resched-recommendation-container h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.resched-recommendation-container p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.resched-calendar-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  text-align: center;
+}
+
+.resched-calendar-table th,
+.resched-calendar-table td {
+  font-weight: bold;
+}
+
+.resched-calendar-table td.unavailable {
+  background-color: red;
+  color: white;
+}
+
+.resched-calendar-table td.choice {
+  background-color: green;
+  color: white;
+}
+
+.resched-calendar-table td.recommended {
+  background-color: blue;
+  color: white;
+}
+
+.resched-calendar-container {
+  width: 60%;
+}
+
+.resched-calendar-container,
+.resched-recommendation-container {
+  width: 100%;
+  margin: 10px;
+}
+
+.resched-calendar-table td.selected-date {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  transform: scale(1.1);
+}
+
+.resched-choice resched-selected-date{
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+  transform: scale(1.1);
+}
+
     /* Form div class labels */
    .label {
       display: block;
@@ -1248,4 +1358,15 @@ label {
       font-size: 16px;
       text-align: left;
     }
+
+    .input-as-text {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      pointer-events: none; /* Prevents editing */
+      font-size: inherit;   /* Inherits parent font size */
+      color: inherit;       /* Inherits parent text color */
+      padding: 0;
+    }
+    
 

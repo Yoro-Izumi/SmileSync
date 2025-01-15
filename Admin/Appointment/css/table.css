@@ -19,7 +19,7 @@ checkbox{
   }
 
   .header {
-    display: flex;
+   /* display: flex;*/
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -116,6 +116,11 @@ checkbox{
     /* width: 90%; */
     overflow-y: auto;
   }
+
+  .table-and-details {
+    display: flex;
+  }
+
 
   table {
     width: 100%;

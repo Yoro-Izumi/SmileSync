@@ -15,7 +15,7 @@
                     <h2>iMee-Toga Oli Dental Clinic</h2>
                     <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
                 </div>
-                <button class="close-btn"><a href="#" id="closeDone">&times;</a></button>
+                <span class="closebtn"><a href="#" id="closeDone">&times;</a></span>
             </div>
 
         <!-- Personal Information -->
@@ -218,7 +218,7 @@
                         <h2>iMee-Toga Oli Dental Clinic</h2>
                         <p>788 Rizal Blvd. Poblacion Brgy. Market Area, Santa Rosa Laguna</p>
                     </div>
-                    <button class="close-btn"><a href="#" id="closeApprove">&times;</a></button>
+                    <span class="closebtn"><a href="#" id="closeApprove">&times;</a></span>
                 </div>
 
                 <!-- Personal Information -->
@@ -392,9 +392,9 @@
 
 
 
-  <div class="modal" id="newAccountModal">
+  <div class="modal" id="reschedAccountModal">
     <div class="modal-content">
-    <button class="close-btn"  id="closeRescheduleButton">&times;</button>
+    <span class="closebtn"  id="closeRescheduleButton">&times;</span>
         <div class="modal-title normal-title">Reschedule Appointment</div>
         <div class="modal-description">
         <?php include "reschedule-appointment.php"; ?>

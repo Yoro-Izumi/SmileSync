@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <form id="newMultiStepForm" name="newMultiStepForm" action="appointment_crud/appointment_add_new.php" method="POST">
+    <form id="newMultiStepFormResched" name="newMultiStepFormResched"  method="POST">
       <!-- Step 1: Personal Information -->
       <div class="new-form-section active">
         <div class="wrap-2rows">
