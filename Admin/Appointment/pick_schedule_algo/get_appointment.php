@@ -15,7 +15,7 @@ $end_of_day = "$selected_date 17:00:00";
 $leeway = 30;
 $default_value = 30;
 
-$python_path = 'C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe';
+$python_path = 'python3';//'C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe';
 
 
 if ($service_id < 0) {
