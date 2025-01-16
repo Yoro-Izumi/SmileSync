@@ -70,8 +70,8 @@
         <form action="#" class="chat-form">
           <textarea placeholder="Type Here..." class="message-input" required></textarea>
           <div class="chat-controls">
-            <button type="button" id="emoji-picker" class="material-symbols-outlined">sentiment_satisfied</button>
-            <div class="file-upload-wrapper">
+            <button type="button" id="emoji-picker" style="display: none;" class="material-symbols-outlined">sentiment_satisfied</button>
+            <div class="file-upload-wrapper" style="display: none;">
               <input type="file" accept="image/*" id="file-input" hidden />
               <img src="#" />
               <button type="button" id="file-upload" class="material-symbols-rounded">attach_file</button>
@@ -79,7 +79,6 @@
             </div>
             <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
           </div>
-          
         </form>
         
       </div>
@@ -90,6 +89,6 @@
     <script src="https://cdn.jsdelivr.net/npm/emoji-mart@latest/dist/browser.js"></script>
 
     <!-- Linking custom script -->
-    <script src="chatbot.js"></script>
+    <script src="js/chatbot.js"></script>
   </body>
 </html>
