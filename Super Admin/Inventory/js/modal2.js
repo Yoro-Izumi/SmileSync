@@ -178,26 +178,34 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('exportPDF')?.addEventListener('click', () => exportToFile('pdf'));
     document.getElementById('exportWord')?.addEventListener('click', () => exportToFile('word'));
 
-    // Form Submission: Add Item
-    $('#addItemForm').on('submit', function (event) {
-        event.preventDefault();
-        const formData = $(this).serialize();
+// Form Submission: Add Item
+$('#addItemForm').on('submit', function (event) {
+    event.preventDefault();
 
-        ajaxRequest(
-            'modal_crud/inventory_add.php',
-            'POST',
-            formData,
-            (response) => {
-                if (response.success) {
-                    //alert(response.message);
-                    $('#addItemForm')[0].reset();
-                    location.reload();
-                } else {
-                    alert('Error: ' + response.message);
-                }
+    // Check if the submission was triggered by the "cancelAddItemBtn"
+    const triggeredBy = $(document.activeElement).attr('id');
+    if (triggeredBy !== 'cancelAddItemBtn') {
+        return; // Do nothing if not triggered by the cancel button
+    }
+
+    const formData = $(this).serialize();
+
+    ajaxRequest(
+        'modal_crud/inventory_add.php',
+        'POST',
+        formData,
+        (response) => {
+            if (response.success) {
+                // alert(response.message);
+                $('#addItemForm')[0].reset();
+                location.reload();
+            } else {
+                alert('Error: ' + response.message);
             }
-        );
-    });
+        }
+    );
+});
+
 
     // Form Submission: Edit Item
     $('#editItemForm').on('submit', function (event) {

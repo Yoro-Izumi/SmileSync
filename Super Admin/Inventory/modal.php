@@ -1,14 +1,3 @@
-<?php
-$connect_inventory = connect_inventory($servername,$username,$password);
-
-$qryGetItemCategories = "SELECT * FROM smilesync_inventory_categories";
-$stmtGetItemCategories = $connect_inventory->prepare($qryGetItemCategories);
-$stmtGetItemCategories->execute();
-$resultGetItemCategories = $stmtGetItemCategories->get_result();
-
-$currentDate = date('Y-m-d');
-$conn = connect_inventory($servername, $username, $password);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,70 +66,70 @@ $conn = connect_inventory($servername, $username, $password);
 
 <!-- Add Modal -->
 <div class="modal" id="addModal">
-<form id="addItemForm" name="addItemForm" class="modal-form" action="try.php" method="POST">
- <div class="modal-content">
-        <b class="modal-title normal-title">New Item</b>
+    <form id="addItemForm" name="addItemForm" class="modal-form" method="POST">
+        <div class="modal-content">
+            <b class="modal-title normal-title">New Item</b>
 
-        <div class="message-container">
-            <div class="wrap-2rows">
-                <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="ProductName" required />
-                <label>Product Name<indicator>*</indicator></label>
+            <div class="message-container">
+                <div class="wrap-2rows">
+                    <div class="input-wrap">
+                        <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="ProductName" required />
+                        <label>Product Name<indicator>*</indicator></label>
+                    </div>
+                    <div class="input-wrap">
+                        <!-- Avoid duplicate "class" attribute -->
+                        <select class="modal-input" name="ProductType">
+                            <option value="NULL">Select Product Type</option>
+                            <?php
+                            foreach ($categories as $rowAdd) {
+                                echo '<option value="'.$rowAdd['category_id'].'">'.$rowAdd['category_name'].'</option>';
+                            }
+                            ?>
+                        </select>
+                        <label>Product Type<indicator>*</indicator></label>
+                    </div>
                 </div>
-                <div class="input-wrap">
-                   <!-- <input  class="modal-input" class="modal-input" type="text" maxlength="24" autocomplete="off" name="ProductType" required /-->
-                   <select class="modal-input" name="ProductType">
-                        <option value="NULL">Select Product Type</option>
-                        <?php
-                        while($row = $resultGetItemCategories->fetch_assoc()) {
-                            echo '<option value="'.$row['category_id'].'">'.$row['category_name'].'</option>';
-                        }
-                        //$stmtGetItemCategories->close();
-                        ?>
-                    </select>
-                <label>Product Type<indicator>*</indicator></label>
+
+                <!-- Other inputs -->
+                <div class="wrap-2rows">
+                    <div class="input-wrap">
+                        <input class="modal-input" type="number" maxlength="11" autocomplete="off" name="ProductQuantity" required />
+                        <label>Product Quantity<indicator>*</indicator></label>
+                    </div>
+                    <div class="input-wrap">
+                        <input class="modal-input" type="date" autocomplete="off" name="BatchDate" required />
+                        <label>Batch Date<indicator>*</indicator></label>
+                    </div>
+                </div>
+                <div class="wrap-2rows">
+                    <div class="input-wrap">
+                        <input class="modal-input" type="text" maxlength="11" autocomplete="off" name="OrderValue" placeholder="00.00" required />
+                        <label>Order Value<indicator>*</indicator></label>
+                    </div>
+                    <div class="input-wrap">
+                        <input class="modal-input" type="text" maxlength="11" autocomplete="off" name="BuyingPrice" placeholder="00.00" required />
+                        <label>Buying Price<indicator>*</indicator></label>
+                    </div>
+                </div>
+                <div class="wrap-2rows">
+                    <div class="input-wrap">
+                        <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="ProductBrand" required />
+                        <label>Product Brand<indicator>*</indicator></label>
+                    </div>
+                    <div class="input-wrap">
+                        <input class="modal-input" type="date" maxlength="24" autocomplete="off" name="ExpiryDate" required />
+                        <label>Expiry Date<indicator>*</indicator></label>
+                    </div>
                 </div>
             </div>
+            <button type="submit" id="addItemBtn" class="modal-button success">Add</button>
+    </form>
+    <button class="modal-button secondary-button warning" id="cancelAddItemBtn">Cancel</button>
+    </div> <!-- Closing modal-content -->
+</div> <!-- Closing modal -->
 
-            <div class="wrap-2rows">
-                <div class="input-wrap">
-                    <input class="modal-input" type="number" maxlength="11" autocomplete="off" name="ProductQuantity" required />
-                <label>Product Quantity<indicator>*</indicator></label>
-                </div>
-                <div class="input-wrap">
-                    <input class="modal-input" type="date" autocomplete="off" name="BatchDate" required />
-                <label>Batch Date<indicator>*</indicator></label>
-                </div>
-            </div>
 
-            <div class="wrap-2rows">
-                <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="11" autocomplete="off" name="OrderValue" placeholder="00.00" required />
-                <label>Order Value<indicator>*</indicator></label>
-                </div>
-                <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="11" autocomplete="off" name="BuyingPrice" placeholder="00.00" required />
-                <label>Buying Price<indicator>*</indicator></label>
-                </div>
-            </div>
-
-            <div class="wrap-2rows">
-                <div class="input-wrap">
-                    <input class="modal-input" type="text" maxlength="24" autocomplete="off" name="ProductBrand" required />
-                <label>Product Brand<indicator>*</indicator></label>
-                </div>
-                <div class="input-wrap">
-                    <input class="modal-input" type="date" maxlength="24" autocomplete="off" name="ExpiryDate" required />
-                <label>Expiry Date<indicator>*</indicator></label>
-                </div>
-            </div>
-        </div>
-        <button type="submit" id="addItemBtn" class="modal-button success">Add</button>
-</form>
-        <button class="modal-button secondary-button warning" id="cancelAddItemBtn">Cancel</button>
-    </div>
-
-                    </>
+ 
 
 <div class="modal" id="deleteProgressModal">
     <div class="modal-content">
@@ -177,10 +166,9 @@ $conn = connect_inventory($servername, $username, $password);
             <select class="modal-input" name="EditProductType">
                 <option value="NULL">Select Product Type</option>
                 <?php
-                        while($row = $resultGetItemCategories->fetch_assoc()) {
-                            echo '<option value="'.$row['category_id'].'">'.$row['category_name'].'</option>';
-                        }
-                        //$stmtGetItemCategories->close();
+                   foreach ($categories as $row) {
+                    echo '<option value="'.$row['category_id'].'">'.$row['category_name'].'</option>';
+                }                
                 ?>
             </select>
         <label>Product Type<indicator>*</indicator></label>
@@ -339,5 +327,5 @@ $conn = connect_inventory($servername, $username, $password);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pptxgenjs/3.12.0/pptxgen.bundle.js"></script>
 
-</>
+
 </html>

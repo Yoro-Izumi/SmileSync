@@ -9,6 +9,20 @@ include "../admin_global_files/encrypt_decrypt.php";
 include "../admin_global_files/input_sanitizing.php";
 // Check if user is already logged in
 if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
+$connect_inventory = connect_inventory($servername,$username,$password);
+
+$qryGetItemCategories = "SELECT * FROM smilesync_inventory_categories";
+$stmtGetItemCategories = $connect_inventory->prepare($qryGetItemCategories);
+$stmtGetItemCategories->execute();
+$resultGetItemCategories = $stmtGetItemCategories->get_result();
+
+$currentDate = date('Y-m-d');
+$conn = connect_inventory($servername, $username, $password);
+$categories = [];
+while ($row = $resultGetItemCategories->fetch_assoc()) {
+    $categories[] = $row;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

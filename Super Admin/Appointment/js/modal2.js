@@ -399,6 +399,7 @@ const fetchAppointmentDetailsResched = (url, itemId, onSuccess) => {
                 document.getElementById('nameResched').value(data.patient_name || "N/A");
                 document.getElementById('patientIDResched').value(data.patient_info_id || "N/A");
                 document.getElementById('MedicalHistory').value(data.service_name || "N/A");
+                
             
                 modal.fadeIn();
             };

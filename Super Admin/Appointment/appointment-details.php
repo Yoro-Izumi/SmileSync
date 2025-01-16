@@ -34,10 +34,10 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
   </head>
 <body>
 <div class="overlay"></div>
-<?php include "sidebar-admin.php"; ?>
+<?php include "sidebar-super-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
-<?php include "modal.php"; ?>
+<?php include "modal2.php"; ?>
 <?php include "loader.php"; ?>
 
 
@@ -102,7 +102,7 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
 <!-- Tabs in View Tables -->
  <script src="js/toggle-tabs.js"></script>
 <!-- Invoice -->
- <script src="js/invoice.js"></script>
+ <script src="js/invoice_test.js"></script>
    <!-- External Libraries -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.min.js"></script>
