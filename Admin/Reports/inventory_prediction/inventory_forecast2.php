@@ -1,6 +1,5 @@
 <div class="patient-volume-header">
   <h2 class="chart-title">Inventory Forecast</h2>
-  <?php include "dropdownWeek.php"; ?>
 </div>
 <?php
 

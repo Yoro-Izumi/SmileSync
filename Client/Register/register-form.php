@@ -286,9 +286,9 @@
           <div class="question-row">
             <label for="questionInput">Will you be using an HMO Card?</label>
             <div class="answer-options">
-              <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleAddressField()">
+              <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleHMOField()">
               <label for="hmo-yes">Yes</label>
-              <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleAddressField()">
+              <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleHMOField()">
               <label for="hmo-no">No</label>
             </div>
           </div>
@@ -299,7 +299,7 @@
             </div>
           </div>
           <script>
-            function toggleAddressField() {
+            function toggleHMOField() {
               const addressField = document.getElementById("hmoID");
               const isYesSelected = document.getElementById("hmo-yes").checked;
               addressField.style.display = isYesSelected ? "block" : "none";
