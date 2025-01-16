@@ -32,11 +32,11 @@
         <span class="tooltip">Reports and Analytics</span>
       </li>
       <li>
-        <a href="../Reports/ReportAndAnalytics-page.php">
-          <i class='bx bx-pie-chart-alt-2' ></i>
-          <span class="links_name">Reports and Analytics</span>
+        <a href="../Appointment/Appointment-page.php">
+          <i class='bx bx-calendar' ></i>
+          <span class="links_name">Appointment</span>
         </a>
-        <span class="tooltip">Reports and Analytics</span>
+        <span class="tooltip">Appointment</span>
       </li>
       <li>
         <a href="../Accounts/Accounts-page.php">

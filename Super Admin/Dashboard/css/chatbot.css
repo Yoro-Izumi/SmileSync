@@ -72,51 +72,26 @@ body.show-chatbot #chatbot-toggler span:last-child {
 }
 
 
-/* Chatbot Popup */
 .chatbot-popup {
-  z-index: 9999;
   position: fixed;
-  right: 35px;
+  right: -450px; /* Start position off the screen to the right */
   bottom: 90px;
   width: 420px;
   overflow: hidden;
   background: #fff;
-  border-radius: 15px;
+  border: 1px solid white;
+  border-radius: 25px;
   opacity: 0;
   pointer-events: none;
-  transform: translateX(100%); /* Hidden off-screen */
-  transform-origin: bottom right;
-  box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 0 32px 64px -48px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, right 0.3s ease;
 }
 
-/* Show Chatbot - Slide In */
 body.show-chatbot .chatbot-popup {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(0); /* Slides in */
+  right: 35px; /* Final position on the screen */
 }
 
-/* Close Button */
-.chat-header #close-chatbot {
-  border: none;
-  color: #fff;
-  height: 40px;
-  width: 40px;
-  font-size: 1.9rem;
-  margin-left: -10px; /* Move to the left */
-  padding-top: 2px;
-  cursor: pointer;
-  border-radius: 50%;
-  background: none;
-  transition: 0.3s ease;
-}
-
-/* Hover Effect */
-.chat-header #close-chatbot:hover {
-  background: #03253A;
-  transform: translateX(-5px); /* Slight slide on hover */
-}
 
 
 .chat-header {
@@ -150,7 +125,23 @@ body.show-chatbot .chatbot-popup {
   letter-spacing: 0.02rem;
 }
 
+.chat-header #close-chatbot {
+  border: none;
+  color: #fff;
+  height: 40px;
+  width: 40px;
+  font-size: 1.9rem;
+  margin-right: -10px;
+  padding-top: 2px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: none;
+  transition: 0.2s ease;
+}
 
+.chat-header #close-chatbot:hover {
+  background: #03253A; /* Changed to #03253A */
+}
 
 .chat-body {
     padding: 25px 22px;

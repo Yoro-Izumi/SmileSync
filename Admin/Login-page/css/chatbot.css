@@ -146,6 +146,7 @@ body.show-chatbot .chatbot-popup {
 }
 
 .chat-body {
+<<<<<<< HEAD
     padding: 25px 22px;
     gap: 20px;
     display: flex;
@@ -155,6 +156,17 @@ body.show-chatbot .chatbot-popup {
     flex-direction: column;
     scrollbar-width: thin;
     scrollbar-color: #ccccf5 transparent;
+=======
+  padding: 25px 22px;
+  gap: 20px;
+  display: flex;
+  height: 50vh;
+  overflow-y: auto;
+  margin-bottom: 200px;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: #ccccf5 transparent;
+>>>>>>> parent of 7571011 (chatbot)
 }
 
 .chat-body,

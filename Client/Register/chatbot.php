@@ -12,11 +12,6 @@
     <link rel="stylesheet" href="css/chatbot.css" />
   </head>
   <body>
-    <!-- Chatbot Toggler -->
-    <button id="chatbot-toggler">
-      <span class="material-symbols-rounded">mode_comment</span>
-      <span class="material-symbols-rounded">close</span>
-    </button>
 
     <div class="chatbot-popup">
       <!-- Chatbot Header -->
@@ -35,7 +30,7 @@
           </svg>
           <h2 class="logo-text">Faq Bot</h2>
         </div>
-        <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_down</button>
+        <button id="close-chatbot" class="material-symbols-rounded">keyboard_arrow_right</button>
       </div>
 
       <!-- Chatbot Body -->
@@ -71,7 +66,7 @@
           <textarea placeholder="Type Here..." class="message-input" required></textarea>
           <div class="chat-controls">
             <button type="button" id="emoji-picker" style="display: none;" class="material-symbols-outlined">sentiment_satisfied</button>
-            <div class="file-upload-wrapper" style="display: none;">
+            <div class="file-upload-wrapper" style="display: none;" >
               <input type="file" accept="image/*" id="file-input" hidden />
               <img src="#" />
               <button type="button" id="file-upload" class="material-symbols-rounded">attach_file</button>
