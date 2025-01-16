@@ -36,8 +36,8 @@ const chatHistory = [
       { text: `Answer: Yes we are from Imee Toga Dental` },
       { text: `Question: Do I need to go to the register page to get appointment when I already have an account?` },
       { text: `Answer: No, you do not have to go to the register page, you can simply book an appointment inside your SmileSync account.` },
-      { text: `Question: Can I directly talk to a person here in this chatbot?` },
-      { text: `Answer: Unfortunately, you can only interact with the chatbot. ` },
+      { text: `Question: Can I directly talk to a human here?` },
+      { text: `Answer: Unfortunately, you can only interact with me. ` },
       //{ text: `Question:` }
       //{ text: `Answer:` }
       // { text: `` }//never leave an empty parameter 

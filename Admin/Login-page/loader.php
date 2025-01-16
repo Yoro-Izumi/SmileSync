@@ -32,10 +32,7 @@
             height: 120px; /* Increased size for roundness */
             width: 120px; /* Increased size for roundness */
             position: relative;
-            background: url(../img/logo.png) center center no-repeat;
-            background-size: cover;
         }
-
 
         .spinner::before,
         .spinner::after {
@@ -65,6 +62,16 @@
             bottom: 10%; /* Adjusted for smaller size */
             left: 10%; /* Adjusted for smaller size */
             right: 10%; /* Adjusted for smaller size */
+        }
+
+        .spinner img {
+            text-align: center;
+            position: absolute;
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Adjust position to center */
+            width: 40px; /* Size of the image */
+            height: 40px; /* Size of the image */
         }
     </style>
 </head>

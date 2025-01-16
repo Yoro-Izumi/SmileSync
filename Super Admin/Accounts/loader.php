@@ -65,6 +65,7 @@
         }
 
         .spinner img {
+            text-align: center;
             position: absolute;
             top: 50%; /* Center vertically */
             left: 50%; /* Center horizontally */
@@ -77,7 +78,6 @@
 <body>
     <div class="loading-screen" id="loading-screen">
         <div class="spinner">
-            <img src="your-image-url-here.png" alt="Loading..."> <!-- Replace with your image URL -->
         </div>
     </div>
 
