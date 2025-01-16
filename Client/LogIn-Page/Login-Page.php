@@ -246,13 +246,6 @@ document.getElementById('closeSuccessModalBtn').addEventListener('click', () => 
 
 
 
-
-
-
-
-
-
-
 // Prevent form submission by pressing Enter or other means
 $("#login_form").on("submit", function (e) {
     e.preventDefault();
@@ -265,7 +258,7 @@ $("#loginClientBtn").on("click", function (e) {
     var formData = new FormData($("#login_form")[0]);
 
     // Disable the button to prevent multiple clicks
-    $("#loginClientBtn").prop("disabled", true);
+    $("#loginClientBtn").prop("disabled", false);
 
     $.ajax({
         type: "POST",
@@ -274,8 +267,7 @@ $("#loginClientBtn").on("click", function (e) {
         processData: false,
         contentType: false,
         success: function (response) {
-            response = JSON.parse(response); // Parse the JSON response
-
+            //response = JSON.parse(response); // Parse the JSON response
             if (response.status === 'success') {
                 location.reload();
             } else {

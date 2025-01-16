@@ -9,6 +9,7 @@ include '../client_global_files/connect_database.php';
 include '../client_global_files/encrypt_decrypt.php';
 include '../client_global_files/input_sanitizing.php';
 
+
 // Connect to the accounts database
 $connect_db = connect_accounts($servername, $username, $password);
 
@@ -18,13 +19,16 @@ $lockout_time = 5 * 60 * 60; // 5 hours in seconds
 $current_time = time();
 $response = []; // Initialize response array
 
+header('Content-Type: application/json'); // Set response header to JSON
+
 // Check if both email and password are posted
 if (isset($_POST['email']) && isset($_POST['password'])) {
-
     // Check if CSRF token is valid
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        $response['status'] = 'error';
-        $response['message'] = 'Invalid CSRF token.';
+        $response = [
+            'status' => 'error',
+            'message' => 'Invalid CSRF token.'
+        ];
         echo json_encode($response);
         exit();
     }
@@ -42,22 +46,36 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     while ($userAccount = mysqli_fetch_assoc($resultUser)) {
         $decryptedEmail = decryptData($userAccount['patient_account_email'], $key);
         if ($decryptedEmail === $username) {
-            handle_login_attempts($connect_db, $userAccount['patient_account_id'], 'user', $password, $userAccount['patient_account_password']);
-            $user_found = true; // User found, break loop
+            handle_login_attempts(
+                $connect_db, 
+                $userAccount['patient_account_id'], 
+                $password, 
+                $userAccount['patient_account_password']
+            );
+            $user_found = true;
             break;
         }
     }
 
     if (!$user_found) {
-        $response['status'] = 'error';
-        $response['message'] = 'Invalid email or password.';
+        $response = [
+            'status' => 'error',
+            'message' => 'Invalid email or password.'
+        ];
         echo json_encode($response);
     }
+} else {
+    // Handle missing email or password
+    $response = [
+        'status' => 'error',
+        'message' => 'Email and password are required.'
+    ];
+    echo json_encode($response);
 }
 
 // Function to handle login attempts for user accounts
-function handle_login_attempts($connect_db, $user_id, $user_type, $password, $stored_password) {
-    global $max_attempts, $lockout_time, $current_time, $response;
+function handle_login_attempts($connect_db, $user_id, $password, $stored_password) {
+    global $max_attempts, $lockout_time, $current_time;
 
     $attempts_table = 'smilesync_patient_attempts';
     $id_column = 'patient_account_id';
@@ -75,8 +93,10 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
 
         if ($login_attempt[$number_of_attempts] >= $max_attempts && $time_since_first_attempt <= $lockout_time) {
             $remaining_lockout = ceil(($lockout_time - $time_since_first_attempt) / 60); // Convert to minutes
-            $response['status'] = 'error';
-            $response['message'] = "You have exceeded the maximum login attempts. Please try again after $remaining_lockout minutes.";
+            $response = [
+                'status' => 'error',
+                'message' => "You have exceeded the maximum login attempts. Please try again after $remaining_lockout minutes."
+            ];
             echo json_encode($response);
             exit();
         } elseif ($time_since_first_attempt > $lockout_time) {
@@ -87,13 +107,17 @@ function handle_login_attempts($connect_db, $user_id, $user_type, $password, $st
     if (password_verify($password, $stored_password)) {
         $_SESSION['userID'] = $user_id;
         reset_attempts($connect_db, $user_id);
-        $response['status'] = 'success';
-        $response['message'] = 'Login successful.';
-        $response['redirect'] = '../Dashboard/UserDashboard.php'; // Redirect URL to send to JavaScript
+        $response = [
+            'status' => 'success',
+            'message' => 'Login successful.',
+            'redirect' => '../Dashboard/UserDashboard.php' // Redirect URL
+        ];
         echo json_encode($response);
     } else {
-        $response['status'] = 'error';
-        $response['message'] = 'Invalid email or password.';
+        $response = [
+            'status' => 'error',
+            'message' => 'Invalid email or password.'
+        ];
         increment_attempts($connect_db, $user_id);
         echo json_encode($response);
     }
@@ -124,4 +148,8 @@ function increment_attempts($connect_db, $user_id) {
         mysqli_stmt_execute($stmtInsert);
     }
 }
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ?>
