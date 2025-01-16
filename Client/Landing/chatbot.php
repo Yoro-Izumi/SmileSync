@@ -79,6 +79,7 @@
             </div>
             <button type="submit" id="send-message" class="material-symbols-rounded">arrow_upward</button>
           </div>
+          
         </form>
         
       </div>

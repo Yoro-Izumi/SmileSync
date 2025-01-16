@@ -146,15 +146,15 @@ body.show-chatbot .chatbot-popup {
 }
 
 .chat-body {
-    padding: 25px 22px;
-    gap: 20px;
-    display: flex;
-    height: 40vh;
-    overflow-y: auto;
-    margin-bottom: 160px;
-    flex-direction: column;
-    scrollbar-width: thin;
-    scrollbar-color: #ccccf5 transparent;
+  padding: 25px 22px;
+  gap: 20px;
+  display: flex;
+  height: 50vh;
+  overflow-y: auto;
+  margin-bottom: 200px;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: #ccccf5 transparent;
 }
 
 .chat-body,
