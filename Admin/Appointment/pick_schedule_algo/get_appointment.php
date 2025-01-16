@@ -1,11 +1,11 @@
 <?php
-include "../../client_global_files/set_sesssion_dir.php";
+include "../../admin_global_files/set_sesssion_dir.php";
 session_start();
 
 //getting the values for recommend_schedule algo start
 
 // Include database connection
-include "../../client_global_files/connect_database.php";
+include "../../admin_global_files/connect_database.php";
 
 $selected_date = $_SESSION['selected_date'] ?? "2024-12-04";
 $service_id = $_SESSION['service_id'] ?? 0;

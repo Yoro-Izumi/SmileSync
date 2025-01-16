@@ -11,13 +11,13 @@ Array
             [patient_phone_number] => 0298430923439
             [patient_sex] => 
             [birth_date] => Wednesday, October 10, 2001
-            [appointment_date_time] => Friday, January 17, 2025 10:00 AM
+            [appointment_date_time] => Wednesday, January 15, 2025 5:53 AM
             [service_name] => 
             [service_price] => 
             [service_id] => 
             [emergency_contact_name] => 
-            [emergency_phone] => 
-            [emergency_relationship] => 
+            [emergency_contact_number] => 
+            [relationship] => 
         )
 
 )

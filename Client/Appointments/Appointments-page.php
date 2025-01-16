@@ -26,7 +26,7 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
   $patientBirthdate = date('Y-m-d',strtotime($patientBirthdate));
   $patientPhoneNumber = decryptData($rowGetPatientInfo['patient_phone_number'],$key);
   $patientEmail = decryptData($rowGetPatientInfo['patient_account_email'],$key);
-  $stmtGetPatientInfo->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +47,7 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
 <body>
 
 <?php include "loader.php"; ?>
-  
+<?php include "resched/modal.php";?>
 <div class="body-container"  id="body-container">
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
@@ -74,6 +74,7 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
  <script src="js/app.js"></script>
  <script src="js/notif.js"></script>
  <script src="js/toggles.js"></script>
+ <script src="resched/modal.js"></script>
 </body>
 </html>
 <?php

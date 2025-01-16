@@ -60,7 +60,6 @@ if ($result && mysqli_num_rows($result) > 0) {
         $appointments[] = $row;
     }
 }
-mysqli_close($connect_appointment);
 
 foreach ($appointments as $appointment){
     $patient_id = $appointment['patient_info_id'];
@@ -84,25 +83,72 @@ foreach ($appointments as $appointment){
     $approver_last_name = $appointment['admin_last_name'] ?? "";
     $approver_last_name = decryptData($approver_last_name,$key);
     $approver_name = trim("$approver_first_name $approver_middle_name $approver_last_name");
-?>
-    <tr>
-        <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
-        <td data-label="CLIENT ID"><?php echo $appointment_id;?></td>
-        <td data-label="CLIENT NAME"><?php echo $patient_name;?></td>
-        <td data-label="APPROVER"><?php echo $approver_name;?></td>
-        <td data-label="APPOINTMENT"><?php echo $appointment_date_time;?></td>
-        <td data-label="STATUS" class="status"><?php echo $appointment_status;?></td>
-        <td data-label="ACTIONS">
-        <div class="actions">
-            <div class="dropdown">
-                <button>⋮</button>
-                <div class="dropdown-content">
-                    <a href="appointment-details.php">View Details</a>
-                    <a href="#">Download</a>
-                    <a href="#" id="appointmentStatus">Done Appointment</a>
+    if($appointment_status === 'Approved' ){
+        ?>
+        <tr>
+            <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
+            <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
+            <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
+            <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
+            <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
+            <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
+            <td data-label="ACTIONS">
+                <div class="actions">
+                    <div class="dropdown">
+                        <button>⋮</button>
+                        <div class="dropdown-content">
+                            <a href="#" class="openCancelAppointmentModal" data-id="<?php echo $appointment_id;?>">Cancel Appointment</a>
+                            <a href="#" class="openReschedAppointmentModal" data-id="<?php echo $appointment_id;?>">Resched Appointment</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        </td>
-    </tr>
-<?php } ?>
+            </td>
+        </tr>
+        <?php }else if($appointment_status === 'Pending'){ ?>
+            <tr>
+            <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
+            <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
+            <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
+            <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
+            <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
+            <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
+            <td data-label="ACTIONS">
+                <div class="actions">
+                    <div class="dropdown">
+                        <button>⋮</button>
+                        <div class="dropdown-content">
+                            <a href="#" class="openCancelAppointmentModal" data-id="<?php echo $appointment_id;?>">Cancel Appointment</a>
+                            <a href="#" class="openReschedAppointmentModal" data-id="<?php echo $appointment_id;?>">Resched Appointment</a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <?php }else if($appointment_status === 'Ongoing'){ ?>
+            <tr>
+            <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
+            <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
+            <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
+            <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
+            <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
+            <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
+            <td data-label="ACTIONS">
+                <div class="actions">
+                </div>
+            </td>
+        </tr>
+        <?php }else{ ?>
+            <tr>
+            <td><input type="checkbox" value="<?php echo $appointment_id;?>"></td>
+            <td data-label="PATIENT ID"><?php echo sanitize_input($patient_id,$connect_appointment); ?></td>
+            <td data-label="PATIENT NAME"><?php echo sanitize_input($patient_name,$connect_appointment); ?></td>
+            <td data-label="APPROVER"><?php echo sanitize_input($approver_name,$connect_appointment); ?></td>
+            <td data-label="APPOINTMENT"><?php echo sanitize_input($appointment_date_time,$connect_appointment); ?></td>
+            <td data-label="STATUS" class="status"><?php echo sanitize_input($appointment_status,$connect_appointment); ?></td>
+            <td data-label="ACTIONS">
+                <div class="actions">
+                </div>
+            </td>
+        </tr>
+        <?php }} ?>
+        

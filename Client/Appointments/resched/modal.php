@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="css/modal.css">
-    <link rel="stylesheet" href="css/dropdown_menu.css">
+    <link rel="stylesheet" href="resched/modal.css">
+    <link rel="stylesheet" href="resched/dropdown_menu.css">
 </head>
 <body>
 
@@ -408,9 +408,6 @@
 </div>
 
 <div id="alertContainer"></div>
-<script src="js/alert.js"></script>
-<script src="../admin_global_files/js/jquery-3.6.0.min.js"></script>
-<script src="js/modal.js"></script>
 
 
 </body>

@@ -37,7 +37,7 @@ if (isset($_SESSION['userSuperAdminID']) && !empty($_SESSION['csrf_token'])) {
 <?php include "sidebar-super-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
-<?php include "modal2.php"; ?>
+<?php include "modal.php"; ?>
 <?php include "loader.php"; ?>
 
 

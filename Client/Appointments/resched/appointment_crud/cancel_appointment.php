@@ -1,10 +1,13 @@
 <?php
-include "../../admin_global_files/set_sesssion_dir.php";
+include "../../../client_global_files/set_sesssion_dir.php";
+// Start session and set timezone
 session_start();
-include "../../admin_global_files/connect_database.php";
-include "../../admin_global_files/input_sanitizing.php";
+date_default_timezone_set('Asia/Manila');
 
-$adminID = NULL;
+// Include necessary files
+include '../../../client_global_files/connect_database.php';
+include '../../../client_global_files/encrypt_decrypt.php';
+include '../../../client_global_files/input_sanitizing.php';
 
 header('Content-Type: application/json'); // Ensure JSON header
 
@@ -16,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $reason = sanitize_input($_POST['reasonResched'],$conn);
-    $otherReason = !empty($_POST['otherReasonResched']) ? sanitize_input($_POST['otherReasonResched'],$conn) : '';
+    $reason = sanitize_input($_POST['reasonCancel'],$conn);
+    $otherReason = !empty($_POST['otherReason']) ? sanitize_input($_POST['otherReason'],$conn) : '';
 
     if ($reason === 'other' && !empty($otherReason)) {
         $reason = $otherReason;
@@ -29,24 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    //get post values
-// Get post values
-$appointmentDate = isset($_POST['cal-day']) && !empty($_POST['cal-day']) ? sanitize_input($_POST['cal-day'], $conn) : date('Y-m-d');
-$appointmentTime = isset($_POST['time']) && !empty($_POST['time']) ? sanitize_input($_POST['time'], $conn) : date('H:i:s');
-
-$appointmentDateTime = $appointmentDate . " " . $appointmentTime;
-
-    $services = isset($_POST['services']) ? sanitize_input($_POST['services'], $conn) : "";
-
-
-
-
-
     $stmt = $conn->prepare("UPDATE `smilesync_appointments` 
-                            SET `appointment_status` = ?, `appointment_reason` = ?, appointment_date_time = ?
+                            SET `appointment_status` = ?, `appointment_reason` = ? 
                             WHERE `appointment_id` = ?");
-    $status = 'Approved';
-    $stmt->bind_param("sssi", $status, $reason,$appointmentDateTime,$appointmentId);
+    $status = 'Cancelled';
+    $stmt->bind_param("sss", $status, $reason, $appointmentId);
 
     if ($stmt->execute()) {
         echo json_encode(['success' => true]);
