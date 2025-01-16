@@ -1,9 +1,9 @@
 <?php
-include "../../admin_global_files/set_sesssion_dir.php";
+include "../../client_global_files/set_sesssion_dir.php";
 session_start();
 
 // Include database connection
-include "../../admin_global_files/connect_database.php";
+include "../../client_global_files/connect_database.php";
 
 $selected_date = $_SESSION['selected_date'] ?? "2024-12-04";
 $service_id = $_SESSION['service_id'] ?? 0;
@@ -105,7 +105,7 @@ $data_to_send = json_encode([
 
 // Execute the Python script via stdin
 $python_script_path = 'linear_regression2.py';
-$command = escapeshellcmd("python3 $python_script_path");
+$command = escapeshellcmd("C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe $python_script_path");
 
 // Open the process and pass the data to stdin
 $process = proc_open($command, [

@@ -108,7 +108,7 @@
         <div class="faq-item">
             <h3>What is a SmileSync? <span>+</span></h3>
             <p>
-              SmileSYnc is a Appointment System.
+              SmileSync is a Appointment System.
             </p>
         </div>
         <div class="faq-item">
@@ -118,7 +118,7 @@
             </p>
         </div>
         <div class="faq-item">
-            <h3>What is the use our chatbot? <span>+</span></h3>
+            <h3>What is the use of our chatbot? <span>+</span></h3>
             <p>
               Our Chatbot answers all the faq that you need to know from SmileSync!
             </p>

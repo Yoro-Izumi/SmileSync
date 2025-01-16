@@ -213,6 +213,11 @@ const fetchAppointmentDetails = (url, itemId, onSuccess) => {
                 modal.find(".personal-info input").eq(0).val(data.address || "N/A");
                 modal.find(".personal-info input").eq(1).val(data.city || "N/A");
                 modal.find(".personal-info input").eq(2).val(data.province || "N/A");
+
+                modal.find(".personal-info .form-group input").eq(3).val(data.emergency_address || "N/A");
+                modal.find(".personal-info .form-group input").eq(4).val(data.emergency_relationship || "N/A");
+                modal.find("#phoneNumberDone").val(data.emergency_phone || "N/A");
+
                 modal.find(".treatment-record input").eq(0).val(data.appointment_date_time || "N/A");
                 modal.find(".treatment-record input").eq(1).val(data.procedure || "N/A");
                 modal.find(".treatment-record input").eq(2).val(data.dentist || "N/A");
@@ -220,6 +225,7 @@ const fetchAppointmentDetails = (url, itemId, onSuccess) => {
             
                 modal.fadeIn();
             };
+
             // Fetch and display appointment details
             fetchAppointmentDetails("appointment_crud/appointment_get.php", { id: itemId }, populateAppointmentModal);
         }

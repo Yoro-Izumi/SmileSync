@@ -25,7 +25,7 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
     <link rel="stylesheet" href="css/style.css" />
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
 
 </head>
 
@@ -119,6 +119,7 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
 <!-- AJAX -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const loginFailedModal = document.getElementById('loginFailedModalClient');
@@ -209,30 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-
-
-<script>
-    $(document).ready(function () {
-      $('#resetPasswordForm').submit(function (e) {
-        e.preventDefault(); // Prevent the form from submitting traditionally
-
-        const to = $('#emailInputReset').val();
-
-        $.ajax({
-          url: 'js/forgetPasswordEmail.js', // Your Node.js server endpoint
-          method: 'POST',
-          contentType: 'application/json',
-          data: JSON.stringify({ to, subject, text }),
-          success: function (response) {
-            alert(response.message);
-          },
-          error: function (error) {
-            alert('Error sending email: ' + error.responseJSON.message);
-          },
-        });
-      });
-    });
-  </script>
+<script src="js/email/forgetPasswordEmail.js"></script>
 
 </body>
 </html>

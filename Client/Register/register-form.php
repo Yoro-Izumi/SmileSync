@@ -107,7 +107,7 @@
             </div>
 
                 <div class="input-wrap">
-                <select class="input-field" id="services" name="services">
+                <select class="input-field" id="sex" name="sex">
                   <option value="" disabled selected>-- Select --</option>
                   <option>Male</option>
                   <option>Female</option>
@@ -122,11 +122,11 @@
         minlength="1"
         maxlength="100"
         class="input-field"
-        name="region"
+        name="province"
         autocomplete="off"
         required
     />
-    <label>Region<indicator>*</indicator></label>
+    <label>Province<indicator>*</indicator></label>
 </div>
 
 <div class="input-wrap">

@@ -289,6 +289,7 @@ $(document).ready(function () {
         // Handle success response
         //alert("Appointment successfully added: " + response);
         form[0].reset(); // Reset the form
+        location.href = "https://smilesync.site/SmileSync/Client/LogIn-Page"; // Redirect to the desired page
       },
       error: function (xhr, status, error) {
         // Handle error response

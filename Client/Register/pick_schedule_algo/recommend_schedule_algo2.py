@@ -11,12 +11,12 @@ try:
     data = json.loads(input_data)
 
     # Validate input data
-    required_fields = ['reservations', 'start_of_day', 'end_of_day', 'leeway', 'predicted_durations']
+    required_fields = ['reservations', 'start_of_day', 'end_of_day', 'leeway', 'predicted_durations', 'default_value']
     if not all(field in data for field in required_fields):
         raise ValueError("Missing fields in input data")
 
     # Parse data
-    DEFAULT_DURATION = 60  # Default duration in minutes
+    DEFAULT_DURATION = int(data['default_value'])  # Use provided default duration
     reservations = [
         {"start_time": datetime.strptime(res, "%Y-%m-%d %H:%M:%S"), "duration": DEFAULT_DURATION}
         for res in data["reservations"]
@@ -36,7 +36,7 @@ creator.create("Individual", list, fitness=creator.FitnessMin)
 
 toolbox = base.Toolbox()
 
-# Step 3: Calculate available time slots (without overlapping reservations)
+# Step 3: Calculate available time slots (in 30-minute intervals)
 def get_available_slots():
     available_slots = []
     current_time = start_of_day
@@ -55,7 +55,7 @@ def get_available_slots():
         if is_available:
             available_slots.append(current_time)
 
-        current_time += timedelta(minutes=1)
+        current_time += timedelta(minutes=30)  # Step in 30-minute intervals
 
     return available_slots
 
@@ -105,7 +105,7 @@ for gen in range(20):
 # Get the top 5 individuals
 top_individuals = tools.selBest(population, k=5)
 
-# Step 6: Get available slots (without overlapping reservations)
+# Step 6: Get available slots
 available_slots = get_available_slots()
 
 # Step 7: Generate Recommendations if Slots Are Available
@@ -126,10 +126,13 @@ else:
     recommended_times = []
 
 # Step 8: Output Result as JSON
+# Ensure recommended times appear at the start of available slots
+available_slots_with_recommendations = recommended_times + [slot.strftime("%Y-%m-%d %H:%M") for slot in available_slots if slot.strftime("%Y-%m-%d %H:%M") not in recommended_times]
+
 result = {
-    "available_slots": [slot.strftime("%Y-%m-%d %H:%M") for slot in available_slots],
-    "predicted_durations": predicted_durations,
-    "recommended_times": recommended_times
+    "recommended_times": recommended_times,
+    "available_slots": available_slots_with_recommendations,
+    "predicted_durations": predicted_durations
 }
 
 print(json.dumps(result))

@@ -73,29 +73,6 @@ document.getElementById('closeSuccessModalBtn').addEventListener('click', () => 
   document.getElementById('successModal').style.display = 'none';
 });
 
-// Submit the reset password form and show the success modal
-document.getElementById('submitResetPasswordBtn').addEventListener('submit', (e) => {
-  e.preventDefault(); // Prevent default form submission
-
-  const email = document.getElementById('emailInputReset').value;
-
-  // Simulate AJAX request for sending the email
-  $.ajax({
-    url: 'js/forgetPasswordEmail.js', // Your server endpoint
-    method: 'POST',
-    contentType: 'application/json',
-    data: JSON.stringify({ email }),
-    success: function () {
-      // Hide the reset password modal and show the success modal
-      document.getElementById('resetPasswordModal').style.display = 'none';
-      document.getElementById('successModal').style.display = 'flex';
-    },
-    error: function (error) {
-      alert('Error sending email: ' + (error.responseJSON?.message || error.statusText));
-    },
-  });
-});
-
 
     // Open the modal when "Set Appointment" is clicked
     document.getElementById('getAppointmentBtn').addEventListener('click', () => {
@@ -122,8 +99,5 @@ document.getElementById('submitResetPasswordBtn').addEventListener('submit', (e)
       });
       
     });
-
-
-});
 
 

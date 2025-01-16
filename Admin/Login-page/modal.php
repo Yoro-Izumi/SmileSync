@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap">
     <link rel="stylesheet" href="css/modal.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
 </head>
 
 <body>
@@ -55,7 +56,6 @@
         <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
     </div>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
     <script src="js/email/forgetPasswordEmail.js"></script>
 </div>
 

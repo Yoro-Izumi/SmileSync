@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // Open the modal when "Set Appointment" is clicked
-  document.getElementById('getAppointmentBtn').addEventListener('click', () => {
+  document.getElementById('setAppointmentBtn').addEventListener('click', () => {
       document.getElementById('registerModal').style.display = 'flex';
     });
     
