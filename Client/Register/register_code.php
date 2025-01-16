@@ -44,7 +44,7 @@ $answerEight = isset($_POST['emergency']) ? sanitize_input($_POST['emergency'], 
 $answerNine = isset($_POST['hmo']) && $_POST['hmo'] === "no" ? sanitize_input($_POST['hmo'], $appointmentsConn) : (isset($_POST['hmoID']) ? sanitize_input($_POST['hmoID'], $appointmentsConn) : "");
 
 $email = isset($_POST['email']) ? encryptData(sanitize_input($_POST['email'], $accountConn), $key) : encryptData(" ",$key);
-$password = isset($_POST['password']) ? sanitize_input($_POST['password'], $accountConn) : " ";
+$password = isset($_POST['password']) ? sanitize_input($_POST['password'], $accountConn) : "";
 $confirmPassword = isset($_POST['confirmPassword']) ? sanitize_input($_POST['confirmPassword'], $accountConn) : "";
 $status = 'Pending';
 $dateOfCreation = date('Y-m-d');
@@ -53,7 +53,8 @@ $dateTimeOfCreation = date('Y-m-d H:i:s');
 $appointmentDateTime = isset($_POST['time'], $_POST['cal-day']) ? 
     sanitize_input($_POST['cal-day'], $appointmentsConn) . " " . sanitize_input($_POST['time'], $appointmentsConn) : 
     date('Y-m-d H:i:s');
-$appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services'], $appointmentsConn) : "";
+$appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services'], $appointmentsConn) : " ";
+$service = isset($_POST['services']) ? sanitize_input($_POST['services'], $appointmentsConn) : NULL;
 
 //emergy contact
 $emergencyContactName = isset($_POST['emergencyContact']) ? sanitize_input($_POST['emergencyContact'], $patientsConn) : "";
@@ -150,7 +151,7 @@ $relationship = isset($_POST['emergencyContactRelationship']) ? sanitize_input($
     //INSERT INTO `smilesync_invoice_services`(`invoice_services_id`, `invoice_id`, `service_id`, `appointment_id`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
     $qryInsertInvoiceService = "INSERT INTO `smilesync_invoice_services`(`invoice_services_id`, `invoice_id`, `service_id`, `appointment_id`) VALUES (NULL,NULL,?,?)";
     $stmt = mysqli_prepare($appointmentsConn,$qryInsertInvoiceService);
-    mysqli_stmt_bind_param($stmt, 'ii' , $appointmentReason,$appointmentID);
+    mysqli_stmt_bind_param($stmt, 'si' ,$service,$appointmentID);
     
     if (!mysqli_stmt_execute($stmt)) {
         handleError($appointmentsConn, "Error inserting invoice service");

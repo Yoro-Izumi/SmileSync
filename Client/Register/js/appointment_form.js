@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Multi-step form navigation
+ // Multi-step form navigation
 const formSections = document.querySelectorAll('.form-section');
 const nextButton = document.querySelector('.next-btn');
 const prevButton = document.querySelector('.prev-btn');
@@ -8,33 +8,27 @@ const submitButton = document.getElementById('submitButton');
 let currentStep = 0;
 
 submitButton.style.display = 'none';
+prevButton.style.display = 'none'; // Initially hide the previous button
 
 nextButton.addEventListener('click', (e) => {
-  // Prevent form submission on intermediate steps
   if (currentStep < formSections.length - 1) {
-    //e.preventDefault();
-    
     formSections[currentStep].classList.remove('active');
     steps[currentStep].classList.remove('active');
     currentStep++;
     formSections[currentStep].classList.add('active');
     steps[currentStep].classList.add('active');
+
+    // Show the previous button when advancing
     prevButton.style.display = 'block';
     submitButton.style.display = 'none';
 
-    // Update the button for the final step
+    // Update button visibility for the final step
     if (currentStep === formSections.length - 1) {
-      //nextButton.textContent = 'Submit';
-      //nextButton.id = 'Submit';
-      //nextButton.name = 'Submit';
-      //nextButton.type = 'submit';
       nextButton.style.display = 'none';
       submitButton.style.display = 'block';
-      
-    }
-    else {
+    } else {
       nextButton.textContent = 'Next';
-      nextButton.type = 'button'; // Reset type to button for non-final steps
+      nextButton.type = 'button';
     }
   }
 });
@@ -47,29 +41,19 @@ prevButton.addEventListener('click', () => {
     formSections[currentStep].classList.add('active');
     steps[currentStep].classList.add('active');
 
+    // Hide the previous button on the first step
     if (currentStep === 0) {
       prevButton.style.display = 'none';
     }
 
+    // Show the next button when navigating back
+    nextButton.style.display = 'block';
+    submitButton.style.display = 'none';
     nextButton.textContent = 'Next';
-    nextButton.type = 'button'; // Reset type to button for non-final steps
+    nextButton.type = 'button';
   }
 });
 
-
-  prevButton.addEventListener('click', () => {
-    if (currentStep > 0) {
-      formSections[currentStep].classList.remove('active');
-      steps[currentStep].classList.remove('active');
-      currentStep--;
-      formSections[currentStep].classList.add('active');
-      steps[currentStep].classList.add('active');
-      if (currentStep === 0) {
-        prevButton.style.display = 'none';
-      }
-    }
-    nextButton.textContent = 'Next';
-  });
 
   // Calendar logic
   const recommendedDates = {
@@ -288,8 +272,11 @@ $(document).ready(function () {
       success: function (response) {
         // Handle success response
         //alert("Appointment successfully added: " + response);
-        form[0].reset(); // Reset the form
-        location.href = "https://smilesync.site/SmileSync/Client/LogIn-Page"; // Redirect to the desired page
+        if(response.trim == "Registration successful!"){
+          alert("Appointment successfully added: " + response);
+          form[0].reset(); // Reset the form
+          location.href = "https://smilesync.site/SmileSync"; // Redirect to the desired page
+        }
       },
       error: function (xhr, status, error) {
         // Handle error response

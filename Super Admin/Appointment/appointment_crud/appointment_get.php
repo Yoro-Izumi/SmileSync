@@ -27,6 +27,10 @@ try {
             smilesync_patient_information.patient_phone_number,
             smilesync_patient_information.patient_sex,
             smilesync_patient_information.patient_birthday,
+            smilesync_emergency_contacts.emergency_contact_name,
+            smilesync_emergency_contacts.emergency_contact_id,
+            smilesync_emergency_contacts.emergency_contact_number,
+            smilesync_emergency_contacts.relationship,
             smilesync_address.street,
             smilesync_address.city,
             smilesync_address.province,
@@ -41,6 +45,8 @@ try {
             ON smilesync_appointments.patient_info_id = smilesync_patient_information.patient_info_id
         LEFT JOIN smilesync_patient_management.smilesync_address 
             ON smilesync_patient_information.patient_address = smilesync_address.address_id
+        LEFT JOIN smilesync_patient_management.smilesync_emergency_contacts 
+            ON smilesync_appointments.emergency_contact_id = smilesync_emergency_contacts.emergency_contact_id
         LEFT JOIN smilesync_invoice_services 
             ON smilesync_appointments.appointment_id = smilesync_invoice_services.appointment_id
         LEFT JOIN smilesync_services 
@@ -73,6 +79,11 @@ $address = !empty($rowGetPatientInfo['address_id']) && $rowGetPatientInfo['addre
 $city = !empty($rowGetPatientInfo['address_id']) && $rowGetPatientInfo['address_id'] !== NULL ? $rowGetPatientInfo['city'] : "";
 $province = !empty($rowGetPatientInfo['address_id']) && $rowGetPatientInfo['address_id'] !== NULL ? $rowGetPatientInfo['province'] : "";
 
+//Emergency Contact
+$emergencyContactName = !empty($rowGetPatientInfo['emergency_contact_name']) ? $rowGetPatientInfo['emergency_contact_name'] : "";
+$emergencyContactNumber = !empty($rowGetPatientInfo['emergency_contact_number']) ? $rowGetPatientInfo['emergency_contact_number'] : "";
+$relationship = !empty($rowGetPatientInfo['relationship']) ? $rowGetPatientInfo['relationship'] : "";
+
 // Appointment details
 $appointmentDateTime = !empty($rowGetPatientInfo['appointment_date_time']) ? formatDateTime($rowGetPatientInfo['appointment_date_time']) : "";
 
@@ -103,7 +114,10 @@ $serviceId = !empty($rowGetPatientInfo['service_id']) ? $rowGetPatientInfo['serv
             'appointment_date_time' => $appointmentDateTime,
             'service_name' => $serviceName,
             'service_price' => $servicePrice,
-            'service_id' => $serviceId
+            'service_id' => $serviceId,
+            'emergency_contact_name' => $emergencyContactName,
+            'emergency_contact_number' => $emergencyContactNumber,
+            'relationship' => $relationship
         ];
     }
 

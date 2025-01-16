@@ -77,7 +77,6 @@
 <body>
     <div class="loading-screen" id="loading-screen">
         <div class="spinner">
-            <img src="your-image-url-here.png" alt="Loading..."> <!-- Replace with your image URL -->
         </div>
     </div>
 

@@ -11,7 +11,7 @@ $connect_inventory = connect_inventory($servername, $username, $password);
 $connect_patient_management = connect_patient($servername,$username,$password);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $adminID = $_SESSION['userAdminID'] ?? 0;
+    $adminID = $_SESSION['userAdminID'] ?? NULL;
     $appointmentID = $_POST['done_appointment_id'] ?? 1;
     $patient_id = getPatientID($appointmentID, $connect_appointment);
     $newStatus = "Done";

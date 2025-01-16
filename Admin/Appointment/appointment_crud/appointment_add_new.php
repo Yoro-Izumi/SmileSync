@@ -37,6 +37,18 @@ $answerSeven = isset($_POST['medical']) ? sanitize_input($_POST['medical'], $app
 $answerEight = isset($_POST['emergency']) ? sanitize_input($_POST['emergency'], $appointmentsConn) : "";
 $answerNine = isset($_POST['hmo']) && $_POST['hmo'] === "no" ? sanitize_input($_POST['hmo'], $appointmentsConn) : (isset($_POST['hmoID']) ? sanitize_input($_POST['hmoID'], $appointmentsConn) : "");
 
+    //address
+    $street = isset($_POST['street_address']) ? sanitize_input($_POST['street_address'], $patientsConn) : "";
+    $city = isset($_POST['city']) ? sanitize_input($_POST['city'], $patientsConn) : "";
+    $province = isset($_POST['province']) ? sanitize_input($_POST['province'], $patientsConn) : "";
+    $barangay = isset($_POST['barangay']) ? sanitize_input($_POST['barangay'], $patientsConn) : "";
+
+    //emergy contact
+    $emergencyContactName = isset($_POST['emergencyContact']) ? sanitize_input($_POST['emergencyContact'], $patientsConn) : "";
+    $emergencyContactNumber = isset($_POST['emergencyContactNumber']) ? sanitize_input($_POST['emergencyContactNumber'], $patientsConn) : "";
+    $relationship = isset($_POST['emergencyContactRelationship']) ? sanitize_input($_POST['emergencyContactRelationship'], $patientsConn) : "";
+
+
 $email = isset($_POST['email']) ? encryptData(sanitize_input($_POST['email'], $accountConn), $key) : "";
 $password = isset($_POST['password']) ? sanitize_input($_POST['password'], $accountConn) : "";
 $confirmPassword = isset($_POST['confirmPassword']) ? sanitize_input($_POST['confirmPassword'], $accountConn) : "";
@@ -63,6 +75,32 @@ $appointmentReason = isset($_POST['services']) ? sanitize_input($_POST['services
         'threads' => 3,
     ];
     $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
+
+
+
+    //Insert Address First
+    //INSERT INTO `smilesync_address`(`address_id`, `street`, `city`, `province`, `postal_code`, `country`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')
+    $qryInsertAddress = "INSERT INTO `smilesync_address`(`address_id`, `street`, `city`, `province`, `postal_code`, `country`) VALUES (NULL,?,?,?,' ','Philippines')";
+    $stmt = mysqli_prepare($patientsConn, $qryInsertAddress);
+    mysqli_stmt_bind_param($stmt, 'sss',$street,$city,$province); 
+
+    if (!mysqli_stmt_execute($stmt)) {
+        handleError($patientsConn, "Error inserting patient address");
+    }
+    $addressID = mysqli_insert_id($patientsConn);
+
+    //Insert Emergency Contact
+    //INSERT INTO `smilesync_emergency_contacts`(`emergency_contact_id`, `emergency_contact_name`, `emergency_contact_number`, `relationship`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
+    $qryInsertEmergencyContact = "INSERT INTO `smilesync_emergency_contacts`(`emergency_contact_id`, `emergency_contact_name`, `emergency_contact_number`, `relationship`) VALUES (NULL,?,?,?)";
+    $stmt = mysqli_prepare($patientsConn, $qryInsertEmergencyContact);
+    mysqli_stmt_bind_param($stmt, 'sss',$emergencyContactName,$emergencyContactNumber,$relationship);
+
+    if (!mysqli_stmt_execute($stmt)) {
+        handleError($patientsConn, "Error inserting emergency contact");
+    }
+
+    $emergencyContactID = mysqli_insert_id($patientsConn);
+
 
     // Insert patient information
     $qryInsertPatientInfo = "INSERT INTO `smilesync_patient_information`(`patient_info_id`, `patient_first_name`, `patient_last_name`, `patient_middle_name`, `patient_suffix`, `patient_sex`, `patient_phone_number`, `patient_address`, `patient_birthday`)

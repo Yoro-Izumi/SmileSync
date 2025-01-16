@@ -9,7 +9,7 @@ include '../../admin_global_files/connect_database.php';
 include '../../admin_global_files/encrypt_decrypt.php';
 include '../../admin_global_files/input_sanitizing.php';
 
-$adminID = $_SESSION['userAdminID'];
+$adminID = NULL;
 
 // Connect to the database
 $appointmentsConn = connect_appointment($servername, $username, $password);

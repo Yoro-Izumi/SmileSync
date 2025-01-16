@@ -63,7 +63,7 @@
         <div class="section-title">Emergency Contact</div>
         <div class="personal-info">
             <div class="form-group">
-                <label>Address:</label>
+                <label>Name:</label>
                 <input type="text" readonly value="" />
             </div>
             <div class="form-group">
@@ -267,7 +267,7 @@
                 <div class="section-title">Emergency Contact</div>
                 <div class="personal-info">
                     <div class="form-group">
-                        <label>Address:</label>
+                        <label>Name:</label>
                         <input type="text" readonly value="" />
                     </div>
                     <div class="form-group">

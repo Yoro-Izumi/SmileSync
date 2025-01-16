@@ -4,7 +4,7 @@ session_start();
 include "../../admin_global_files/connect_database.php";
 include "../../admin_global_files/input_sanitizing.php";
 
-$adminID = $_SESSION['userAdminID'];
+$adminID = NULL;
 
 header('Content-Type: application/json'); // Ensure JSON header
 

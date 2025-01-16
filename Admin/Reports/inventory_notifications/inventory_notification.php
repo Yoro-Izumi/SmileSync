@@ -50,7 +50,7 @@ while ($row = mysqli_fetch_assoc($queryData)) {
 }
 
 // Step 3: Save data to a CSV file for Python
-$python_filepath = "python3";//"C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe";
+$python_filepath = "C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe";//"python3";
 $csv_file = $root_dir.'/Admin/Reports/inventory_notifications/stock_usage.csv';
 $fp = fopen($csv_file, 'w');
 if (!$fp) {
@@ -150,5 +150,9 @@ foreach ($out_of_stock_notifications as $date => $items) {
     insert_notification($connect_accounts, $notification_message, $current_date, 'smilesync_super_admin_notifications');
 }
 
-sleep(50);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+sleep(60);
 ?>

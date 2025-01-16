@@ -191,27 +191,30 @@
             <span>Health Form</span>
           </div>
           <div class="question-row">
-            <label for="questionInput">Have you visited any infected areas within the last 30 days prior to your scheduled appointments?</label>
-            <div class="answer-options">
-              <input type="radio" id="visited-yes" name="visited" value="yes" onclick="toggleAddressField()">
-              <label for="visited-yes">Yes</label>
-              <input type="radio" id="visited-no" name="visited" value="no" onclick="toggleAddressField()">
-              <label for="visited-no">No</label>
-            </div>
-          </div>
-          <div id="address-field" style="display: none;">
-            <div class="input-wrap">
-              <input type="text" minlength="10" maxlength="50" class="input-field" id="infectedAddress" name="infectedAddress" autocomplete="off" />
-              <label for="infectedAddress">Please enter the address of the infected area:</label>
-            </div>
-          </div>
-          <script>
-            function toggleAddressField() {
-              const addressField = document.getElementById("infectedAddress");
-              const isYesSelected = document.getElementById("visited-yes").checked;
-              addressField.style.display = isYesSelected ? "block" : "none";
-            }
-          </script>
+  <label for="questionInput">Have you visited any infected areas within the last 30 days prior to your scheduled appointments?</label>
+  <div class="answer-options">
+    <input type="radio" id="visited-yes" name="visited" value="yes" onclick="toggleAddressField()">
+    <label for="visited-yes">Yes</label>
+    <input type="radio" id="visited-no" name="visited" value="no" onclick="toggleAddressField()">
+    <label for="visited-no">No</label>
+  </div>
+</div>
+
+<div id="address-field" style="display: none;">
+  <div class="input-wrap">
+    <input type="text" minlength="10" maxlength="50" class="input-field" id="infectedAddress" name="infectedAddress" autocomplete="off" />
+    <label for="infectedAddress">Please enter the address of the infected area:</label>
+  </div>
+</div>
+
+<script>
+  function toggleAddressField() {
+    const addressField = document.getElementById("address-field");
+    const isYesSelected = document.getElementById("visited-yes").checked;
+    addressField.style.display = isYesSelected ? "block" : "none";
+  }
+</script>
+
 
           <div class="question-row">
             <label for="questionInput">Have you attended a mass gathering reunion with relatives/friends or parties within a month prior to visit?</label>
@@ -284,27 +287,30 @@
           </div>
 
           <div class="question-row">
-            <label for="questionInput">Will you be using an HMO Card?</label>
-            <div class="answer-options">
-              <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleHMOField()">
-              <label for="hmo-yes">Yes</label>
-              <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleHMOField()">
-              <label for="hmo-no">No</label>
-            </div>
-          </div>
-          <div id="address-field" style="display: none;">
-            <div class="input-wrap">
-              <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
-              <label for="hmoID">Please the HMO ID No.</label>
-            </div>
-          </div>
-          <script>
-            function toggleHMOField() {
-              const addressField = document.getElementById("hmoID");
-              const isYesSelected = document.getElementById("hmo-yes").checked;
-              addressField.style.display = isYesSelected ? "block" : "none";
-            }
-          </script>
+  <label for="questionInput">Will you be using an HMO Card?</label>
+  <div class="answer-options">
+    <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleHMOField()">
+    <label for="hmo-yes">Yes</label>
+    <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleHMOField()">
+    <label for="hmo-no">No</label>
+  </div>
+</div>
+
+<div id="hmo-field" style="display: none;">
+  <div class="input-wrap">
+    <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
+    <label for="hmoID">Please provide the HMO ID No.</label>
+  </div>
+</div>
+
+<script>
+  function toggleHMOField() {
+    const hmoField = document.getElementById("hmo-field");
+    const isYesSelected = document.getElementById("hmo-yes").checked;
+    hmoField.style.display = isYesSelected ? "block" : "none";
+  }
+</script>
+
 
            
         </div>

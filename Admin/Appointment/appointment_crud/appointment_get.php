@@ -46,7 +46,7 @@ try {
         LEFT JOIN smilesync_patient_management.smilesync_address 
             ON smilesync_patient_information.patient_address = smilesync_address.address_id
         LEFT JOIN smilesync_patient_management.smilesync_emergency_contacts 
-            ON smilesync_appointments.emergency_contact_id = smilesync_patient_information.emergency_contact_id
+            ON smilesync_appointments.emergency_contact_id = smilesync_emergency_contacts.emergency_contact_id
         LEFT JOIN smilesync_invoice_services 
             ON smilesync_appointments.appointment_id = smilesync_invoice_services.appointment_id
         LEFT JOIN smilesync_services 
@@ -116,8 +116,8 @@ $serviceId = !empty($rowGetPatientInfo['service_id']) ? $rowGetPatientInfo['serv
             'service_price' => $servicePrice,
             'service_id' => $serviceId,
             'emergency_contact_name' => $emergencyContactName,
-            'emergency_contact_number' => $emergencyContactNumber,
-            'relationship' => $relationship
+            'emergency_phone' => $emergencyContactNumber,
+            'emergency_relationship' => $relationship
         ];
     }
 

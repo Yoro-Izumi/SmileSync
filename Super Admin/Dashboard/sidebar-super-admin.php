@@ -53,16 +53,24 @@
         <span class="tooltip">Services</span>
       </li>
 
+      <li>
+        <a href="../Trash/Trash-page.php">
+          <i class='bx bx-trash' ></i>
+          <span class="links_name">Trash</span>
+        </a>
+        <span class="tooltip">Trash</span>
+      </li>
+
+
       <li class="nav-title">Others</li> 
 
       <li>
-        <a href="#" id="chatbotBtn">
+        <a href="#" class="chatbotBtn">
           <i class='bx bx-message-alt' ></i>
           <span class="links_name">Chat</span>
         </a>
         <span class="tooltip">Chat</span>
       </li>
-
 
       <li>
   <a href="#" id="notificationLink">
@@ -73,14 +81,6 @@
 </li>
 
 <li class="profile">
-<li>
-        <a href="../Trash/Trash-page.php">
-          <i class='bx bx-trash' ></i>
-          <span class="links_name">Trash</span>
-        </a>
-        <span class="tooltip">Trash</span>
-      </li>
-
         <div class="profile-details">
           <img src="img/login.png"  alt="profile">
           <div class="name_job">

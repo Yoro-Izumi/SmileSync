@@ -10,7 +10,7 @@ $connect_inventory = connect_inventory($servername, $username, $password);
 $connect_patient_management = connect_patient($servername, $username, $password);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $adminID = $_SESSION['userAdminID'] ?? 0;
+    $adminID = $_SESSION['userAdminID'] ?? NULL;
     $appointmentID = $_POST['approval_appointment_id'] ?? 1;
 
     // Ensure that appointmentID is valid
