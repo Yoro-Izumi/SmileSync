@@ -508,25 +508,25 @@
       <div class="form-section">
         <div class="validation-section">
           <h3>Personal Information</h3>
-          <div><span>Patient Name:</span> Dimaculangan, Chorlyn L.</div>
+          <div><span>Patient Name:</span></div>
           <div><span>Age:</span> xx</div>
-          <div><span>Sex:</span> Female</div>
-          <div><span>Address:</span> Brgy. Sinalhan, Purok 7, Santa Rosa, Laguna</div>
-          <div><span>Phone Number:</span> 0912345678</div>
-          <div><span>Birth Date:</span> 01/03/2024</div>
+          <div><span>Sex:</span></div>
+          <div><span>Address:</span> </div>
+          <div><span>Phone Number:</span></div>
+          <div><span>Birth Date:</span></div>
     </div>
       <div class="validation-section">
           <h3>Emergency Contact</h3>
-          <div><span>In case of emergency, please contact:</span> Valera, Arwen Grace C.</div>
-          <div><span>Phone Number:</span> 0912345678</div>
-          <div><span>Relationship:</span> Grandmother</div>
+          <div><span>In case of emergency, please contact:</span></div>
+          <div><span>Phone Number:</span></div>
+          <div><span>Relationship:</span></div>
     </div>
     <div class="validation-section">
           <h3>Appointment Details</h3>
-          <div><span>Appointment Date:</span> 01/03/2024</div>
-          <div><span>Procedure/s:</span> Prothodontics</div>
+          <div><span>Appointment Date:</span></div>
+          <div><span>Procedure/s:</span></div>
           <div><span>Dentist:</span> Dr. Oli</div>
-          <div><span>Amount Charge:</span> 3000</div>
+          <div><span>Amount Charge:</span></div>
     </div>
 
 
