@@ -23,25 +23,27 @@ file: {
 };
 
 const chatHistory = [
-{
-  role: "model",
-  parts: [
-    { text: `Greetings as SmileSync when greeted` },
-    { text: `Just answer the questions with specific answers` },
-    { text: `Question: Who are you?` },
-    { text: `The answer: I am SmileSync! An appointment system.` },
-    { text: `Question: Where to register?` },
-    { text: `Answer: Just click the "Set Appointment in the landing page."` },
-    { text: `Question: Are you part of iMee Toga Dental Clinic` },
-    { text: `Answer: Yes we are from Imee Toga Dental` },
-    { text: `Question: Do I need an appointment to have an official account.` },
-    { text: `Answer: You need to have an exisiting appointment or a previous one to have a SmileSync account.` },
-    //{ text: `Question:` }
-    //{ text: `Answer:` }
-    // { text: `` }//never leave an empty parameter 
-    ],
-},
-];
+  {
+    role: "model",
+    parts: [
+      { text: `Greetings as SmileSync when greeted` },
+      { text: `Just answer the questions with specific answers` },
+      { text: `Question: Who are you?` },
+      { text: `The answer: I am SmileSync! An appointment system.` },
+      { text: `Question: Where to register?` },
+      { text: `Answer: Just click the "Go to Appointment link above."` },
+      { text: `Question: Are you part of iMee Toga Dental Clinic` },
+      { text: `Answer: Yes we are from Imee Toga Dental` },
+      { text: `Question: Do I need to go to the register page to get appointment when I already have an account?` },
+      { text: `Answer: No, you do not have to go to the register page, you can simply book an appointment inside your SmileSync account.` },
+      { text: `Question: Can I directly talk to a human here?` },
+      { text: `Answer: Unfortunately, you can only interact with me. ` },
+      //{ text: `Question:` }
+      //{ text: `Answer:` }
+      // { text: `` }//never leave an empty parameter 
+      ],
+  },
+  ];
 
 const initialInputHeight = messageInput.scrollHeight;
 
