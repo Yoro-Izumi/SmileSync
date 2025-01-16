@@ -38,6 +38,7 @@
       
       <div class="patient-volume-header">
       <h2 class="chart-title">Stock Report</h2>
+      <?php include "dropdownWeek.php"; ?>
     </div>
 
 
