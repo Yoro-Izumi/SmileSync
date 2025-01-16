@@ -1,4 +1,4 @@
-<div?php
+<?php
 $connect_inventory = connect_inventory($servername,$username,$password);
 
 $qryGetItemCategories = "SELECT * FROM smilesync_inventory_categories";
@@ -140,7 +140,7 @@ $conn = connect_inventory($servername, $username, $password);
         <button class="modal-button secondary-button warning" id="cancelAddItemBtn">Cancel</button>
     </div>
 
-                    </div>
+                    </>
 
 <div class="modal" id="deleteProgressModal">
     <div class="modal-content">
