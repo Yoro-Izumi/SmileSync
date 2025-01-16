@@ -158,11 +158,7 @@
               
 
 <footer>
-    <div style="margin: 20px 0;">
-        <a href="#" style="margin: 0 10px; color: var(--color);"><i class="bx bxl-facebook-circle" alt="FB" style="font-size: 24px;"></i></a>
-        <a href="#" style="margin: 0 10px; color: var(--color)"><i class="bx bxl-instagram" style="font-size: 24px;"></i></a>
-        <a href="#" style="margin: 0 10px; color: var(--color)"><i class="bx bxl-twitter" style="font-size: 24px;"></i></a>
-    </div>
+
     <p>&copy; 2024 SmileSync. All rights reserved.</p>
 </footer>
               
