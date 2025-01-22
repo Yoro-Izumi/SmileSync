@@ -21,8 +21,6 @@
             <a href="#" id="removeProduct"><i class="fas fa-trash-alt"></i> Delete</a>
             <a href="#"><i class="fas fa-download"></i> Download</a>
             <div class="dropdown-content">
-              <a href="#" class="dropdown-option"><i class="fas fa-file-excel"></i> Excel</a>
-              <a href="#" class="dropdown-option"><i class="fas fa-file-pdf"></i> PDF</a>
               <a href="#" class="dropdown-option"><i class="fas fa-file-word"></i> Word</a>
             </div>
           </div>

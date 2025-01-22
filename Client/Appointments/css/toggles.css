@@ -1,5 +1,7 @@
 .appointment-details {
-  padding: 20px;
+  margin: 1rem;
+  background: white;
+  padding: 1rem;
   border-radius: 10px;
   font-family: 'Arial', sans-serif;
 }
@@ -48,12 +50,9 @@
   color: #007bff;
 }
 
-.content-area {
-  margin-top: 20px;
-}
-
 .content {
-  padding: 20px;
+  overflow-y: scroll;
+  /* padding: 20px; */
   display: none;
 }
 

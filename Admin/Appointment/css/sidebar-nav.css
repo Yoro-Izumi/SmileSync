@@ -178,6 +178,7 @@
 
 
 .sidebar li a {
+  margin-left: 0px;
   display: flex;
   height: 100%;
   width: 100%;

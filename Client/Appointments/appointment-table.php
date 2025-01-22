@@ -27,6 +27,7 @@
       </table>
 
     </div>
+    </div>
     <div class="pagination">
       <a href="#" class="previous">Previous</a>
       <a href="#" class="pagination-item pagination-child">1</a>
@@ -34,9 +35,5 @@
       <a href="#" class="pagination-item">3</a>
       <a href="#" class="next">Next</a>
     </div>
-
-    
-    </div>
-  </div>
 </body>
 </html>

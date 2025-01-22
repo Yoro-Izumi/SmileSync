@@ -4,7 +4,9 @@ checkbox{
   width: 24px;
 }
 
-
+.hidden {
+  display: none; /* This class hides the rows */
+}
   .container {
     /* height: 85vh; */
     width: 100%;
@@ -13,11 +15,11 @@ checkbox{
     padding: 20px;
     border-radius: 15px;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    border: 1px solid #c5c5c5;
+    /* border: 1px solid #c5c5c5;*/
   }
 
   .header {
-    display: flex;
+   /* display: flex;*/
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -94,27 +96,31 @@ checkbox{
   }
 
   .buttons .btn.new {
+    font-weight: 700;
+    color: white;
     background-color: #30CE88;
   }
 
-  .buttons .btn:hover {
-    background-color: #2bbb7a;
+  .buttons .btn.new:hover {
+    background-color: #30644d;
   }
 
-  .buttons .btn.new:hover {
-    background-color: #2bbb7a;
-  }
 
   .table-container {
     padding: 0 2rem;
     margin: auto;
     height: 60vh;
     border-radius: 15px;
-    border-top: 1px solid #c5c5c5;
-    border-bottom: 1px solid #c5c5c5;
-    /* width: 90%; */
+    /* border-top: 1px solid #c5c5c5; */
+    /* border-bottom: 1px solid #c5c5c5; */
+    width: 100%;
     overflow-y: auto;
   }
+
+  .table-and-details {
+    display: flex;
+  }
+
 
   table {
     width: 100%;

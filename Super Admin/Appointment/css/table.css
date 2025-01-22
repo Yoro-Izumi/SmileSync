@@ -15,7 +15,7 @@ checkbox{
     padding: 20px;
     border-radius: 15px;
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    border: 1px solid #c5c5c5;
+    /* border: 1px solid #c5c5c5;*/
   }
 
   .header {
@@ -111,9 +111,9 @@ checkbox{
     margin: auto;
     height: 60vh;
     border-radius: 15px;
-    border-top: 1px solid #c5c5c5;
-    border-bottom: 1px solid #c5c5c5;
-    /* width: 90%; */
+    /* border-top: 1px solid #c5c5c5; */
+    /* border-bottom: 1px solid #c5c5c5; */
+    width: 100%;
     overflow-y: auto;
   }
 

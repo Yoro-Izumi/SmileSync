@@ -35,6 +35,8 @@ if (isset($_SESSION['userID']) && !empty($_SESSION['csrf_token'])) {
     <title>Dental Form</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!-- Boxicons CDN Link -->
+    <!-- Page -->
+    <link rel="stylesheet" href="css/table.css" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>

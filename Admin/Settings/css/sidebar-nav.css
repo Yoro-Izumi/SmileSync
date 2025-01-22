@@ -178,6 +178,7 @@
 
 
 .sidebar li a {
+  margin-left: 0px;
   display: flex;
   height: 100%;
   width: 100%;
@@ -252,12 +253,13 @@
 
 
 .sidebar.open li.profile {
+  height: max-content;
   opacity: 1;
   width: 240px;
 }
 
 .sidebar li .profile-details {
-  display: flex;
+  /*display: flex;*/
   align-items: center;
   flex-wrap: nowrap;
 }
@@ -312,6 +314,7 @@
 }
 
 .sidebar.open .profile #log_out {
+  border: 1px solid white;
   width: 30px;
   background: none;
   right: 5px;
