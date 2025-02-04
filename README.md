@@ -48,6 +48,14 @@ This project is licensed under the MIT License. 📄
 
 ---
 
+👥 Team & Collaborators
+
+<a href="https://github.com/OWNER/REPO/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
+</a>
+
+---
+
 ## 📬 Contact
 - **Email**: smilesyncco@gmail.com 📧
 - **GitHub Issues**: [Report Bugs](https://github.com/yourusername/SmileSync/issues) 🐞
