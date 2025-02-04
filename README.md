@@ -50,8 +50,8 @@ This project is licensed under the MIT License. 📄
 
 👥 Team & Collaborators
 
-<a href="https://github.com/OWNER/REPO/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=OWNER/REPO" />
+<a href="https://github.com/KYCoral/SmileSync/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=KYCoral/SmileSync" />
 </a>
 
 ---
