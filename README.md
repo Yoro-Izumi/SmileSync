@@ -60,5 +60,5 @@ This project is licensed under the MIT License. 📄
 - **Email**: smilesyncco@gmail.com 📧
 - **GitHub Issues**: [Report Bugs](https://github.com/yourusername/SmileSync/issues) 🐞
 
-🚀 **Let's make scheduling, inventory, and invoicing seamless with SmileSync!** 🚀
+🚀 **Let's make scheduling, inventory, and invoicing easier with SmileSync!** 🚀
 
