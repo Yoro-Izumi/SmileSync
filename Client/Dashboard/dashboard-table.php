@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/table.css">
-</head>
-<body>
-
   <div class="container">
     
     <div class="header">
-      <h2>My Dental Appointments:</h2>
+      <h2>Ongoing Dental Appointments:</h2>
 
      <a href="../Appointments/Appointments-page.php"> <button class="btn">View History</button></a>
     </div>
@@ -21,18 +12,13 @@
       <table>
         <thead>
           <tr>
+            <th>Name</th>
             <th>Service</th>
-            <th>Schedule</th>
-            <th>STATUS</th>
+            <th>Date and Time</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td data-label="Service">Orthodontics</td>
-            <td data-label="Schedule">08-10-2024</td>
-            <td data-label="STATUS" class="status">Pending</td>
-          </tr>
-
+          <?php include "tr-dashboard-table.php";?>
         </tbody>
       </table>
 
@@ -40,6 +26,6 @@
 
 
     </div>
-  </div>
-</body>
-</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

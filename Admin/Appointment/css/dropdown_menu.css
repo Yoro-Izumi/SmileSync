@@ -1,0 +1,93 @@
+.readonly-input {
+  font-size: 12px;
+  padding: 6px;
+  background-color:rgb(255, 255, 255);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 3px;
+  width: 100%;
+}
+
+/* Styling for individual dropdown items */
+.dropDownItem {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 5px 10px;
+border-bottom: 1px solid #e0e0e0;
+font-size: 14px;
+}
+
+.dropDownItem:last-child {
+border-bottom: none;
+}
+
+.checkBoxItems {
+flex: 0 0 5%; /* Ensure a small but fixed space for the checkbox */
+margin-right: 10px;
+}
+
+.number-input {
+flex: 0 0 20%; /* Ensure a fixed width for the number input */
+margin-left: 10px;
+text-align: center;
+}
+
+.dropDownItem span {
+flex: 1; /* Ensures the text takes up the remaining space */
+text-align: center;
+}
+
+/* Add hover effect for dropdown items */
+.dropDownItem:hover {
+background-color: #f9f9f9;
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+.dropDownItem {
+font-size: 12px;
+padding: 5px;
+}
+.checkBoxItems {
+flex: 0 0 10%;
+}
+.number-input {
+flex: 0 0 30%;
+}
+}
+
+
+/*scrollable div dropdown procedure */
+.dropdown-menu-procedure {
+    max-height: 150px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
+    border: 1px solid #ccc; /* Optional: Add a border to mimic select styling */
+    padding: 5px; /* Optional: Add padding for better spacing */
+    border-radius: 4px; /* Optional: Add rounded corners */
+    background-color: #fff; /* Optional: Set a background color */
+  }
+  .dropdown-menu-procedure div {
+    padding: 5px; /* Space between options */
+    cursor: pointer; /* Mimic pointer behavior of a select input */
+  }
+  .dropdown-menu-procedure div:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+  }
+  
+  /*scrollable div dropdown items */
+  .dropdown-menu-appointment {
+    max-height: 150px; /* Set the maximum height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
+    border: 1px solid #ccc; /* Optional: Add a border to mimic select styling */
+    padding: 5px; /* Optional: Add padding for better spacing */
+    border-radius: 4px; /* Optional: Add rounded corners */
+    background-color: #fff; /* Optional: Set a background color */
+  }
+  .dropdown-menu-appointment div {
+    padding: 5px; /* Space between options */
+    cursor: pointer; /* Mimic pointer behavior of a select input */
+  }
+  .dropdown-menu-appointment div:hover {
+    background-color: #f0f0f0; /* Highlight on hover */
+  }

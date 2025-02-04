@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Inria+Sans");
 @import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
 @import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
 /* General Styles */
 * {
@@ -12,11 +14,12 @@
 }
 
 html{
-  background-color: #f0f2f5;
+  background-color: #E2ECF8;
 }
 
+
 body {
-  background-color: #f0f2f5;
+  background-color: #E2ECF8;
   /* display: flex; */
   /* justify-content: center; */
   /* align-items: center; */
@@ -24,6 +27,13 @@ body {
   margin: 0;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+
+.form-title{
+  font-family: 'Open Sans Condensed';
+  font-size: 24px;
+  text-align: center;
 }
 
 
@@ -38,25 +48,590 @@ body {
   font-family: 'Alumni Sans';
 }
 
-img {
-  margin-right: 0.3rem;
-}
 
 
 .logo img {
+  margin-top: 5px;
   height: 24px;
 }
 
 
-.home-section {
-    background: #FFFF;
-    position: absolute;
-    top: 78px;
-    height: 100%;
-    padding: 20px;
-    transition: all 0.5s ease;
+.form-container {
+  width: 70%;
+  margin: 50px auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #c5c5c5;
 }
 
+.heading h2 {
+  font-weight: 900;
+  color: #133e6d;
+}
+
+.heading h5 {
+  padding-top: 20px;
+  color: #000000;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: black;
+  font-family: "Open Sans Condensed";
+  padding: 0;
+}
+
+p {
+  color: #000000;
+  /*font-family: "Open Sans Condensed";*/
+  text-decoration: none;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+a {
+  color: #007BFF;
+  /*font-family: "Open Sans Condensed";*/
+  text-decoration: none;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #164e8a;
+  text-decoration: underline;
+}
+
+indicator{
+  color: #ff3333;
+  font-weight: bold;
+}
+
+.toggle h5 {
+  color: #007BFF;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.toggle h5:hover {
+  color: #164e8a;
+  text-decoration: underline;
+}
+
+.input-wrap {
+  position: relative;
+  height: 37px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: none;
+  outline: none;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0.9rem;
+  color: #151111;
+  transition: 0.4s;
+}
+
+.input-field.active {
+  padding-left: 2px;
+  border: 2px solid #164e8a;
+  border-radius: 5px;
+}
+
+.input-field+label {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #bbb;
+  pointer-events: none;
+  transition: 0.4s;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.input-field.active+label {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #000;
+  top: 0;
+  left: 10px;
+  background-color: #fff;
+}
+
+.input-field.error input {
+  border: 2px solid red;
+}
+
+
+.remember-me-wrap {
+  display: flex;
+  align-items: center;
+}
+
+
+.remember-me-checkbox {
+  margin-right: 10px; /* Space between checkbox and label */
+  width: 20px; /* Adjust size of checkbox */
+  height: 20px; /* Adjust size of checkbox */
+  position: relative;
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.remember-me-checkbox:checked {
+  background-color: #fff; /* Background color remains white */
+  border-color: #164e8a; /* Border color when checked */
+}
+
+.remember-me-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 16px;
+  border: solid #164e8a; /* Checkmark color */
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg) translate(-50%, -50%);
+  animation: bounce 0.6s ease forwards;
+}
+
+.remember-me-checkbox::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 16px;
+  border: solid transparent;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg) translate(-50%, -50%);
+
+}
+
+@keyframes bounce {
+  0% {
+      transform: rotate(45deg) translate(-50%, -50%) scale(0.5);
+      opacity: 0;
+  }
+  50% {
+      transform: rotate(45deg) translate(-50%, -60%) scale(1.2);
+      opacity: 1;
+  }
+  100% {
+      transform: rotate(45deg) translate(-50%, -50%) scale(1);
+  }
+}
+
+.text-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+
+.wrap-2rows{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 16px;
+}
+
+.wrap-3rows{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 16px;
+}
+
+.sign-btn {
+  display: inline-block;
+  width: 100%;
+  height: 43px;
+  background-color: #164e8a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+}
+
+.sign-btn:hover {
+  background-color: #007BFF;
+}
+
+.bold-text {
+  font-weight: 40px;
+}
+
+.text {
+  color: #bbb;
+  font-size: 1rem;
+}
+
+
+
+/* Step navigation styles */
+.steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 100px;
+  background-color: #000;
+  z-index: 0;
+}
+
+.steps .step {
+  text-align: center;
+  z-index: 1;
+  width: 33%;
+  position: relative;
+}
+
+.steps .step.active {
+  color: blue;
+  font-weight: bold;
+}
+
+.step-icon {
+  font-size: 24px;
+  display: block;
+  margin: 0 auto 5px;
+  color: #333;
+}
+
+.step.active .step-icon {
+  color: blue;
+}
+
+.steps .step-label {
+  justify-content: center;
+  font-size: 14px;
+  color: #333;
+}
+
+.steps .step.active .step-label {
+  color: blue;
+}
+
+
+/* Form Section Styling */
+.form-section {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Active form section */
+.form-section.active {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+
+
+.question-form {
+  border: 1px solid black; /* Border for the form container */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 100%;
+  margin: 15px auto;
+}
+
+.question-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc; /* Border for each question row */
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.question-row label {
+  flex: 1;
+  top: 5px;
+}
+
+/* Radio button styles */
+input[type="radio"] {
+  background-color: #4CAF50;
+  border: 2px solid #4CAF50;
+  margin: 10px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+input[type="radio"]:checked + label::before {
+  background-color: #000000;
+  border: 1px solid #000000;
+}
+
+.titles {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+/* Error message styles */
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Centered and rounded navigation styles */
+.form-navigation {
+  display: flex;
+  justify-content: center; /* Center the buttons */
+  margin-top: 20px;
+  gap: 20px; /* Add space between buttons */
+}
+
+.form-navigation button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px; /* Make buttons rounded */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Add transition for hover effect */
+}
+
+.prev-btn {
+  background-color: #ccc;
+  color: #000;
+}
+
+.next-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.form-navigation button:hover {
+  background-color: #0056b3; /* Darker shade on hover for next button */
+}
+
+/* Calendar and Recommendation Styles */
+.appointment-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.calendar-container {
+  width: 60%;
+}
+
+.calendar-header {
+  margin-bottom: 10px;
+}
+
+.calendar-header .required {
+  color: red;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.legend {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.unavailable {
+  background-color: red;
+  color: white;
+}
+
+.choice {
+  background-color: green;
+  color: white;
+}
+
+.recommended {
+  background-color: blue;
+  color: white;
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 5px;
+  text-align: center;
+}
+
+.calendar-table th,
+.calendar-table td {
+  font-weight: bold;
+}
+
+.calendar-table td.unavailable {
+  background-color: red;
+  color: white;
+}
+
+.calendar-table td.choice {
+  background-color: green;
+  color: white;
+}
+
+.calendar-table td.recommended {
+  background-color: blue;
+  color: white;
+}
+
+/* Header Style */
+.calendar-table th {
+  background-color: #ffff; /* Header color */
+  color: #000; /* White text */
+  padding: 12px; /* Padding for header */
+ border-radius: 10px; /*  Rounded corners for header */
+}
+
+/* Cell Style */
+.calendar-table td {
+  padding: 10px 0px;
+  border-radius: 10px; /* Rounded corners for cells */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for effects */
+}
+
+/* Hover Effect */
+.calendar-table td:hover {
+  background-color: #85c1ff; /* Light blue on hover */
+  transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+
+/* Selected Date Styling */
+.calendar-table td.selected-date {
+  background-color: green; /* Highlight color */
+  color: #fff; /* Text color */
+  font-weight: bold;
+  border-radius: 10px;
+  transform: scale(1.1); /* Slightly scale up the selected date */
+
+}
+
+
+
+/* Recommended Date and Time Section */
+.recommendation-container {
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.recommendation-container h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.recommendation-container p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.select-time-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;  
+}
+
+.time-selection {
+  width: 100%;
+}
+
+select{
+  border: 1px solid #000;  
+  border-radius: 5px;
+  width: 100%;
+  padding: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form-container {
+      width: 90%;
+  }
+
+  .steps .step-label {
+      font-size: 12px;
+  }
+
+  .step-icon {
+      font-size: 20px;
+  }
+
+  .appointment-container {
+      flex-direction: column;
+      gap: 20px;
+  }
+
+  .calendar-container,
+  .recommendation-container {
+      width: 100%;
+      margin: 10px;
+  }
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+}
 
 
 .home-section .text{
@@ -73,6 +648,7 @@ img {
   right: -350px; 
   width: 300px;
   height: 100%; 
+  border: 1px solid #000;
   border-radius: 15px;
   background-color: #fff;
   z-index: 99;
@@ -140,7 +716,7 @@ img {
 
 /* Panel Content */
 .panel-content {
-  background-color: #C1E4F8;
+  background-color: #FFFF;
   flex: 1; 
   overflow-y: auto;
 }
@@ -152,10 +728,10 @@ img {
 /* Notification Item */
 .notification-item {
   background-color: #fff;
+  border: 0.5px solid #000;
   border-radius: 5px;
   padding: 5px;
   margin: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
 }

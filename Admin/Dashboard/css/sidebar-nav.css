@@ -1,7 +1,12 @@
 /* Google Font Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+  
+}
 
 .sidebar {
   position: fixed;
@@ -11,13 +16,15 @@
   width: 65px;
   background: #03253A;
   padding: 6px;
-  margin: 5px;
-  border-radius: 15px;
+  margin: 0 5px;
+  border-radius: 25px;
   z-index: 99;
   transition: all 0.5s ease;
 }
 
 .sidebar.open {
+  margin: 0;
+  border-radius: 0;
   width: 250px;
 }
 
@@ -37,6 +44,7 @@
 }
 
 .sidebar .logo-details .logo_name {
+  font-family: 'Alumni Sans';
   color: #fff;
   font-size: 24px;
   opacity: 0;
@@ -72,14 +80,14 @@
 }
 
 .sidebar .nav-title {
-  margin-top: 20px;
-  color: #c5c5c5;
-  font-size: 14px;
-  padding: 10px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
+    /* margin-top: 20px; */
+    color: #c5c5c5;
+    font-size: 14px;
+    padding: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
 }
 
 .sidebar.open .nav-title {
@@ -88,7 +96,6 @@
 }
 
 .sidebar .nav-list {
-  margin-top: 15px;
   height: 100%;
 
 }
@@ -101,12 +108,11 @@
 .sidebar li .tooltip {
   position: absolute;
   top: -20px;
-  left: calc(100% + 15px);
+  left: calc(100% + 10px);
   z-index: 3;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
   padding: 6px 12px;
-  border-radius: 4px;
   font-size: 15px;
   font-weight: 400;
   opacity: 0;
@@ -136,7 +142,7 @@
   width: 100%;
   width: 50px;
   border: none;
-  border-radius: 12px;
+ 
   transition: all 0.5s ease;
   background: #1d1b31;
 }
@@ -166,12 +172,18 @@
   color: #11101d;
 }
 
+.sidebar.open li a {
+  border-radius: 0;
+}
+
+
 .sidebar li a {
+  margin-left: 0px;
   display: flex;
   height: 100%;
   width: 100%;
-  border-radius: 12px;
   align-items: center;
+  border-radius: 12px;
   text-decoration: none;
   transition: all 0.4s ease;
   background: #03253A;
@@ -198,8 +210,8 @@
   color: #fff;
   font-size: 15px;
   font-weight: 400;
-  white-space: nowrap;
-  margin-left: 2rem;
+  /*white-space: nowrap;*/
+  margin-left: 1rem;
   opacity: 0;
   pointer-events: none;
   transition: 0.4s;
@@ -224,29 +236,30 @@
 }
 
 .sidebar li.profile {
-  position: fixed;
-  height: 60px;
-  width: 50px;
-  left: 0;
-  margin: 10px;
-  bottom: -8px;
-  background: #03253A;
-  border-radius: 25px;
-  text-align: center;
-  transition: all 0.5s ease;
-  border-radius: 0px 15px 0px 15px;
-  z-index: 99;
-  overflow: hidden;
+    /* width: 50px; */
+    position: absolute;
+    height: 60px;
+    /* left: 0; */
+    margin: 10px 0;
+    bottom: 0;
+    /* background: #03253A; */
+    border-radius: 25px;
+    text-align: center;
+    transition: all 0.5s ease;
+    /* border-radius: 0px 15px 0px 15px; */
+    z-index: 99;
+    overflow: hidden;
 }
 
 
 .sidebar.open li.profile {
+  height: max-content;
   opacity: 1;
   width: 240px;
 }
 
 .sidebar li .profile-details {
-  display: flex;
+  /*display: flex;*/
   align-items: center;
   flex-wrap: nowrap;
 }
@@ -254,16 +267,17 @@
 
 .sidebar li.profile .name,
 .sidebar li.profile .job {
+  text-align: left;
+  margin: 0 15px;
   font-size: 14px;
   font-weight: 400;
   color: #fff;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
   opacity: 0;
   max-width: 55px;
   transition: 0.5s;
-  /* Smaller width when sidebar is closed */
 }
 
 .sidebar.open li.profile .name,
@@ -291,16 +305,16 @@
   opacity: 1;
   top: 50%;
   transform: translateY(-50%);
-  background: #03253A;
   width: 50px;
   height: 60px;
-  line-height: 60px;
-  border-radius: 25px;
+  /* line-height: 60px; */
+  /* border-radius: 25px; */
   color: #fff;
   transition: all 0.5s ease;
 }
 
 .sidebar.open .profile #log_out {
+  border: 1px solid white;
   width: 30px;
   background: none;
   right: 5px;
@@ -313,6 +327,9 @@
   cursor: pointer;
   border-radius: 12px;
 }
+
+
+
 
 /* Overlay default (hidden) */
 .overlay {
@@ -350,4 +367,3 @@
     z-index: 97;  /* Ensure it's below the overlay */
   }
 }
-

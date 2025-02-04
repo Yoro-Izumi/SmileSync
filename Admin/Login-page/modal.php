@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap">
     <link rel="stylesheet" href="css/modal.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Axios CDN -->
 </head>
 
 <body>
@@ -27,8 +28,9 @@
 </div>
 
 
-
+ 
 <div class="modal" id="resetPasswordModal">
+    <form id="resetPasswordForm" name="resetPasswordForm">
     <div class="modal-content">
 
     <div class="image-container">
@@ -42,7 +44,7 @@
         <div class="input-wrap">
             <input
                 type="text"
-                id="emailInput"
+                id="emailInputReset"
                 minlength="4"
                 class="modal-input"
                 autocomplete="off"
@@ -50,9 +52,11 @@
             />
             <label for="emailInput">Email<indicator>*</indicator></label>
         </div></div>
-        <button class="modal-button warning" id="submitResetPasswordBtn">Submit</button>
+        <button class="modal-button warning" type="submit" id="submitResetPasswordBtn">Submit</button>
         <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
     </div>
+    </form>
+    <script src="js/email/forgetPasswordEmail.js"></script>
 </div>
 
 
@@ -85,19 +89,8 @@
             Please try entering an existing SmileSync account or
             href="#" id="registerLink">Register</a>
         </div>
-        <div class="input-wrap">
-            <input
-                type="text"
-                id="emailInput"
-                minlength="4"
-                class="modal-input"
-                autocomplete="off"
-                required
-            />
-            <label for="emailInput">Email<indicator>*</indicator></label>
-        </div></div>
-        <button class="modal-button warning" id="submitResetPasswordBtn">Submit</button>
-        <button class="modal-button secondary-button" id="cancelButton">Cancel</button>
+</div>
+        <button class="modal-button warning" id="submitResetPasswordBtn">Okay</button>
     </div>
 </div>
 
@@ -112,10 +105,10 @@
         <div class="modal-title success-title">Registration Complete!</div>
         <div class="message-container">
         <div class="modal-description">
-            .Your information was successfully saved and is now undergoing review from the admin.
+            Your information was successfully saved and is now undergoing review from the admin.
             Please wait for a confirmation to be sent to your email address.
         </div></div>
-        <button id="closeSuccessRegisterBtn" class="modal-button success">OK</button>
+        <button id="closeSuccessRegisterBtn" class="modal-button success" onclick="sendEmailRegistered()">OK</button>
     </div>
 </div>
 
@@ -187,11 +180,17 @@
     </div>
 </div>
 
+<!-- Email Already Exists Modal -->
+<div id="emailExistsModal" class="modal">
+  <div class="modal-content">
+    <h4>Email Already Exists</h4>
+    <p>The email you entered is already registered. Please use a different email.</p>
+    <div class="modal-footer">
+    <button class="modal-close btn" id="close-emailExistModal">Close</button>
+  </div>
+  </div>
+</div>
 
-
-
-
-
-<script src=="js/modal.js"></script>
 </body>
 </html>
+

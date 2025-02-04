@@ -1,108 +1,144 @@
+<?php
+// Start session and set timezone
+include "../admin_global_files/set_sesssion_dir.php";
+session_start();
+date_default_timezone_set('Asia/Manila');
+
+// Include necessary files for dashboard
+include "../admin_global_files/connect_database.php";
+include "../admin_global_files/encrypt_decrypt.php";
+include "../admin_global_files/input_sanitizing.php";
+include "total_patients_per_day.php";
+include "total_cancelled_appointments.php";
+include "total_rescheduled_appointments.php";
+// Check if user is already logged in
+if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
+    $connect_accounts = connect_accounts($servername,$username,$password); //connect to account database
+    $userAdminID = sanitize_input($_SESSION['userAdminID'],$connect_accounts); //initialzing userAdminID with id in session variable
+    //Query to get admin information based on admin id
+    $qryGetAdminInfo = "SELECT * FROM smilesync_admin_accounts where admin_account_id = ?";
+    $stmt = $connect_accounts->prepare($qryGetAdminInfo);
+    $stmt->bind_param("s",$userAdminID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $adminInfo = $result->fetch_assoc();
+    $stmt->close();
+    $connect_accounts->close();
+    
+    //admin information initialization
+    $adminID = $adminInfo['admin_account_id'];
+    $adminEmail = $adminInfo['admin_email'];
+    $adminEmail = decryptData($adminEmail,$key);
+?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard-ADMIN</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
+     
     <!-- Sidebar -->
     <link rel="stylesheet" href="css/sidebar-nav.css"/>
     <!-- Page -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- chatbot -->
+    <link rel="stylesheet" href="css/chatbot.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      .home-section {
-        display: grid;
-        grid-template-columns: 2fr 1fr; /* Adjust the ratio as needed */
-        gap: 20px; /* Space between content and calendar */
-      }
-      .content-section {
-        /* You can style the content section here */
-      }
-      .calendar-section {
-        /* You can add additional styles for the calendar section */
-      }
-    </style>
-    <style>
-      .statistics-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-      }
+    <link rel="stylesheet" href="css/smartChart.css">
+  <link rel="stylesheet" href="css/table.css">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-      .stat-box {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        width: 30%; /* Each box takes 30% of the container width */
-        text-align: center;
-      }
+</head>
 
-      .stat-box h2 {
-        font-size: 18px;
-        color: #333;
-      }
-
-      .stat-box p {
-        font-size: 36px;
-        color: #333; /* #4CAF50; Use green or your desired color */
-        margin-top: 10px;
-      }
-
-    </style>
-  </head>
-<<<<<<< Updated upstream
 <body>
-<div class="overlay"></div>
-<?php include "sidebar-super-admin.php"; ?>
-<?php include "notif.php"; ?>
-<?php include "chatbot.php"; ?>
- 
-  <section class="home-section">
-  <h1>Welcome back!</h1>
-
-  <?php include "smartChart.php"; ?>
-  </section>
-  
-
- <script src="js/app.js"></script>
- <script src="js/notif.js"></script>
-</body>
-=======
-  <body>
     <div class="overlay"></div>
-    <?php include "sidebar-super-admin.php"; ?>
+    <?php include "sidebar-admin.php"; ?>
     <?php include "notif.php"; ?>
     <?php include "chatbot.php"; ?>
+    <?php include "loader.php"; ?>
 
     <section class="home-section">
-      <div class="content-section">
-        <h1>Welcome back!</h1>
-        <div class="statistics-container">
-          <div class="stat-box">
-            <h2>Total Patients</h2>
-            <p>47</p>
-          </div>
-          <div class="stat-box">
-            <h2>Cancelled</h2>
-            <p>19</p>
-          </div>
-          <div class="stat-box">
-            <h2>Rescheduled</h2>
-            <p>20</p>
-          </div>
-        </div>
-        <?php include "smartChart.php"; ?>
-      </div>
-      <div class="calendar-section">
-        <?php include "calendar-appointments.php"; ?>
-      </div>
+    <h1 class="welcome-message">Welcome <span class="highlight">
+        Admin!
+    </span>
+    <p>
+    As an administrator, you have the tools to manage appointments, monitor schedules, and ensure the smooth operation of our dental services.
+    Thank you for helping us create easy dental care experiences!
+</p>
+</h1>
+    <div class="row">
+      <div class="col-8">
+        <div class="content-section">
+                <div class="side-title">Overview</div>
+            <!-- Statistics Grid -->
+            <div class="row">
+            
+                <div class="col-4">
+                    <div class="stat-box">
+                        <h2>Total Patients</h2>
+                        <p><?php echo $totalPatients;?></p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="stat-box">
+                        <h2>Cancelled</h2>
+                        <p><?php echo $totalCancelledAppointments;?></p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="stat-box">
+                        <h2>Rescheduled</h2>
+                        <p><?php echo $totalRescheduledAppointments;?></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Section -->
+            <div class="side-title">Statistics</div>
+                    <div class="calendar-container">
+                    
+                        <?php include "smartChart.php"; ?>
+                    </div>
+                </div>
+          
+            </div>
+
+            <!-- SmartChart Section -->
+                <div class="col-4">
+                <div class="side-title">Appointments</div>
+                    <div class="smartchart-container">
+                      <?php include "calendar-appointments.php"; ?>  
+                    </div>
+                </div>
+     
+        </div></div>
     </section>
 
     <script src="js/app.js"></script>
     <script src="js/notif.js"></script>
-  </body>
->>>>>>> Stashed changes
+    <script src="js/smartChart2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="js/calendar-appointments2.js"></script>
+    <script>
+    function redirectToUpcoming() {
+        // Redirect to page2.html with a query parameter to show only "Upcoming" rows
+        window.location.href = 'http://localhost/SmileSync/Admin/Appointment/Appointment-page.php?status=upcoming';
+    }
+    </script>
+
+    
+    
+    
+</body>
 </html>
+<?php 
+}
+else{
+    header('location: ../Login-page');
+    exit(); 
+}
+?>

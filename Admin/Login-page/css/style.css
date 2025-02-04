@@ -9,6 +9,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-size: 20px;
 }
 
 html {
@@ -80,7 +81,7 @@ main {
 form {
     max-width: 100%;
     width: 100%;
-    margin: 0 20px;
+    /*margin: 0 20px;*/
     height: 100%;  
     display: flex;
     flex-direction: column;
@@ -254,6 +255,21 @@ label {
 }
 
 
+.error-message {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .input-wrap.error .error-message {
+    display: block;
+  }
+  .input-wrap.error .input-field {
+    border-color: red;
+  }
+  
+
 .remember-me-wrap {
     display: flex;
     align-items: center;
@@ -386,17 +402,18 @@ main.sign-up-mode .carousel {
 }
 
 .carousel {
+    margin: auto 4rem;
     position: absolute;
     height: 95vh;
-    width: 45%; /* Adjusted to 25% */
-    left: 55%; /* Adjusted to match the width of forms */
+    /* width: 30%; */
+    left: 55%;
     top: 0;
     background-color: #C1E4F8;
-    border-radius: 15px; /* Remove border-radius if you want full coverage */
-    overflow: hidden;
-    display: flex; /* Use flex to control alignment */
-    justify-content: center; /* Center images horizontally */
-    align-items: center; /* Center images vertically */
+    border-radius: 15px;
+    /* overflow: hidden; */
+    display: flex;
+    justify-content: inherit;
+    /* align-items: center; */
     transition: 0.8s ease-in-out;
 }
 

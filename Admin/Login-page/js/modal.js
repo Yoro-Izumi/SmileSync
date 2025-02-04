@@ -5,11 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const privacyPolicyModal = document.getElementById('privacyPolicyModal');
     const termServicesModal = document.getElementById('termServicesModal');
     const successRegisterModal = document.getElementById('successRegisterModal');
-    
-    
+
     const registerBtn = document.getElementById('registerBtn');
     const closeSuccessRegisterBtn = document.getElementById('closeSuccessRegisterBtn');
-
     const showLoginFailedBtn = document.getElementById('loginBtn');
     const closeLoginFailedBtn = document.getElementById('closeLoginFailedBtn');
 
@@ -26,77 +24,58 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitResetPasswordBtn = document.getElementById('submitResetPasswordBtn');
     const closeSuccessModalBtn = document.getElementById('closeSuccessModalBtn');
 
-    // Show the login failed modal
+    // Event listeners remain the same
     showLoginFailedBtn.addEventListener('click', function() {
-        event.preventDefault();
         loginFailedModal.classList.add('show');
     });
 
-    // Close the terms failed modal
     closetermServicesBtn.addEventListener('click', function() {
         termServicesModal.classList.remove('show');
     });
 
-       // Show the register modal
-       registerBtn.addEventListener('click', function() {
+    registerBtn.addEventListener('click', function() {
         successRegisterModal.classList.add('show');
     });
 
-     // Close the closeSuccessRegisterBtn modal
-     closeSuccessRegisterBtn.addEventListener('click', function() {
+    closeSuccessRegisterBtn.addEventListener('click', function() {
         successRegisterModal.classList.remove('show');
     });
 
-     // Show the terms and services modal
-     termServices.addEventListener('click', function() {
+    termServices.addEventListener('click', function() {
         termServicesModal.classList.add('show');
     });
 
-    // Close the terms and services modal
     closeLoginFailedBtn.addEventListener('click', function() {
-        event.preventDefault();
         loginFailedModal.classList.remove('show');
     });
 
-    // Show the privacy policy modal
     privacyPolicy.addEventListener('click', function() {
         privacyPolicyModal.classList.add('show');
     });
 
-    // Close the privacy policy  modal
     closePrivacyPolicyBtn.addEventListener('click', function() {
         privacyPolicyModal.classList.remove('show');
     });
 
-    // Show the reset password modal when clicking the reset password link
-    resetPasswordLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
+    resetPasswordLink.addEventListener('click', function() {
         loginFailedModal.classList.remove('show');
         resetPasswordModal.classList.add('show');
     });
 
-    // Close the reset password modal (Cancel button)
     closeResetPasswordBtn.addEventListener('click', function() {
-        event.preventDefault();
         resetPasswordModal.classList.remove('show');
     });
 
-    // Show the reset password modal when clicking the reset password link
-    resetLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
+    resetLink.addEventListener('click', function() {
         resetPasswordModal.classList.add('show');
     });
 
-    // Handle submit action
     submitResetPasswordBtn.addEventListener('click', function() {
-        event.preventDefault();
         resetPasswordModal.classList.remove('show');
-        successModal.classList.add('show'); // Show success modal after submitting
+        successModal.classList.add('show');
     });
 
-    // Close the success modal
     closeSuccessModalBtn.addEventListener('click', function() {
-        event.preventDefault();
         successModal.classList.remove('show');
     });
 });

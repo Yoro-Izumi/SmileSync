@@ -1,304 +1,364 @@
-/* General modal styles */
+/* General Modal Styling */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 9999; /* Ensures modal is above all other content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+  z-index: 1000;
+  overflow: hidden; /* Prevent background scrolling */
 }
 
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px; /* Ensure the modal doesn't grow too wide */
+  max-height: 80%; /* Limit modal height to 80% of the viewport */
+  overflow-y: auto; /* Add scrolling if content exceeds height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Heading Styling */
+h2 {
+  margin: 10px 0;
+  font-size: 1.5em;
+  color: #00c781; /* Add some color for visual appeal */
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #00c781;
+}
+
+/* List Styling */
+ul {
+  margin: 15px 0;
+  padding-left: 20px;
+  text-align: left; /* Align list items to the left */
+}
+
+ul li {
+  margin: 5px 0;
+  font-size: 1em;
+  line-height: 1.4;
+  color: #000;
+}
+
+/* Modal Buttons Styling */
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-buttons .btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-buttons .btn.proceed {
+  background-color: #00c781;
+  color: white;
+}
+
+.modal-buttons .btn.cancel {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Add Hover Effects for Buttons */
+.modal-buttons .btn:hover {
+  opacity: 0.9;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 600px) {
+  .modal-content {
+    font-size: 0.9em; /* Slightly smaller font for smaller screens */
+    padding: 15px; /* Reduce padding to fit content better */
+  }
+}
+
+
+
 .message-container {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 .longMessage-container {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    width: fit-content;
-    height: 40vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-size: 1.5rem;
-    text-align: left;
-    align-self: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: fit-content;
+  height: 40vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size: 1.5rem;
+  text-align: left;
+  align-self: center;
 }
 
 
 
 .longMessage-description {
-    font-size: 0.9rem;
-    color: #333;
-    margin: 10px;
+  font-size: 0.9rem;
+  color: #333;
+  margin: 10px;
 }
 
 
 .reset-password {
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: #007bff;
-    text-decoration: none;
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: #007bff;
+  text-decoration: none;
 }
 
 
 /* Center image in its own block */
 .image-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .image {
-    width: 100px;
-    height: auto;
+  width: 100px;
+  height: auto;
 }
 
 .modal.show {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
-
-/* Popup animation */
-.modal-content {
-    position: relative;
-    border-radius: 25px;
-    background-color: #fff;
-    width: 30vw;
-    max-width: 600px;
-    padding: 20px;
-    text-align: center;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    transform: scale(0.7);
-    animation: popup 0.3s ease forwards;
-    overflow: auto; /* Ensure that content overflow is handled */
-}
-
 
 
 @keyframes popup {
-    0% {
-        transform: scale(0.7);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+  0% {
+      transform: scale(0.7);
+      opacity: 0;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
 }
 
 .modal-title {
-    font-size: 3rem;
-    font-family: 'Open Sans Condensed', sans-serif;
-    color: #001434;
-    margin-bottom: 20px;
+  font-size: 3rem;
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: #001434;
+  margin-bottom: 20px;
 }
 
 
 /* Specific Colors for Different Modal Titles */
 .normal-title {
-    color: #001434  ; 
+  color: #001434  ; 
 }
 
 .warning-title {
-    color: #964A4A; 
+  color: #964A4A; 
 }
 
 .success-title {
-    color: #28a745; 
+  color: #28a745; 
 }
 
 /* Specific Colors for Different Modal Button */
 .normal{
-    background-color: #001434  ; 
+  background-color: #001434  ; 
 }
 
 .warning{
-    background-color: #964A4A;
+  background-color: #964A4A;
 }
 
 .success{
-    background-color: #28a745; 
+  background-color: #28a745; 
 }
 
 /* Specific Colors for Different Modal Titles */
 .modal-button.normal:hover{
-    background-color: #02245a  ; 
+  background-color: #02245a  ; 
 }
 
 .modal-button.warning:hover{
-    background-color: #c26161; 
+  background-color: #c26161; 
 }
 
 .modal-button.success:hover{
-    background-color: #31d357; 
+  background-color: #31d357; 
 }
 
 
 .modal-description {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 20px;
-    margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .input-wrap {
-    position: relative;
-    height: 37px;
-    margin-bottom: 2rem;
+  position: relative;
+  height: 37px;
+  margin-bottom: 2rem;
 }
 
 .modal-input {
-    width: 100%;
-    height: 100%;
-    background: none;
-    border: none;
-    outline: none;
-    border-bottom: 1px solid #bbb;
-    padding-left: 10;
-    font-size: 1.5rem;
-    color: #151111;
-    transition: 0.4s;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #bbb;
+  padding-left: 10;
+  font-size: 1.5rem;
+  color: #151111;
+  transition: 0.4s;
 }
 
 .modal-input:focus {
-    padding-left: 2px;
-    border: 2px solid #164e8a;
-    border-radius: 5px;
+  padding-left: 2px;
+  border: 2px solid #164e8a;
+  border-radius: 5px;
 }
 
 .modal-input:focus + label {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #000;
-    top: -5px;
-    left: 10px;
-    background-color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #000;
+  top: -5px;
+  left: 10px;
+  background-color: #fff;
 }
 
 label {
-    position: absolute;
-    left: 5px;
-    top: 45%;
-    transform: translateY(-50%);
-    font-size: 1.5rem;
-    color: #bbb;
-    pointer-events: none;
-    transition: 0.4s;
+  position: absolute;
+  left: 5px;
+  top: 45%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #bbb;
+  pointer-events: none;
+  transition: 0.4s;
 }
 
 .modal-input.error {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .indicator {
-    color: #ff3333;
-    font-weight: bold;
+  color: #ff3333;
+  font-weight: bold;
 }
 
 /* Button Styles */
 .modal-button {
-    border-radius: 25px;
-    color: #fff;
-    border: none;
-    padding: 14px 32px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 200px;
+  border-radius: 25px;
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 200px;
 
 }
 
 .modal-button.secondary-button {
-    background-color: #bbb;
+  background-color: #bbb;
 }
 
 .modal-button:hover {
-    background-color: #0000;
+  background-color: #0000;
 }
 
 .modal-button.secondary-button:hover {
-    background-color: #999;
+  background-color: #999;
 }
 
 
 
 /* Media queries for smaller screens */
 @media (max-width: 910px) {
-    .reset-password {
-        font-size: 1rem;
-    }
+  .reset-password {
+      font-size: 1rem;
+  }
 
-    .modal-title {
-        font-size: 1.5rem;
-    }
+  .modal-title {
+      font-size: 1.5rem;
+  }
 
-    .modal-description {
-        font-size: 1rem;
-    }
+  .modal-description {
+      font-size: 1rem;
+  }
 
-    .modal-input {
-        font-size: 1rem;
-    }
+  .modal-input {
+      font-size: 1rem;
+  }
 
-    .modal-input:focus + label {
-        font-size: 01rem;
-    }
-
-
-    .modal-content {
-        width: 40vw;
-    }
+  .modal-input:focus + label {
+      font-size: 01rem;
+  }
 
 
-    label {
-        font-size: 1rem;
-    }
+  .modal-content {
+      width: 40vw;
+  }
+
+
+  label {
+      font-size: 1rem;
+  }
 
 
 }
 
 @media (max-width: 480px) {
-    .reset-password {
-        font-size: 0.9rem;
-    }
+  .reset-password {
+      font-size: 0.9rem;
+  }
 
-    .modal-title {
-        font-size: 1.2rem;
-    }
+  .modal-title {
+      font-size: 1.2rem;
+  }
 
-    .modal-description {
-        font-size: 0.9rem;
-    }
+  .modal-description {
+      font-size: 0.9rem;
+  }
 
-    .modal-input {
-        font-size: 0.9rem;
-    }
+  .modal-input {
+      font-size: 0.9rem;
+  }
 
 
-    .modal-input:focus + label {
-        font-size: 0.9rem;
-    }
+  .modal-input:focus + label {
+      font-size: 0.9rem;
+  }
 
-    .modal-content {
-        width: 50vw;
-    }
+  .modal-content {
+      width: 50vw;
+  }
 
-    label {
-        font-size: 0.9rem;
-    }
+  label {
+      font-size: 0.9rem;
+  }
 
 }
 

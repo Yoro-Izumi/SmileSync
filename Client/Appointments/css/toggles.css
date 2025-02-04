@@ -1,26 +1,31 @@
 .appointment-details {
-  padding: 20px;
+  margin: 1rem;
+  background: white;
+  padding: 1rem;
   border-radius: 10px;
   font-family: 'Arial', sans-serif;
 }
 
 .toggle-tabs {
-  display: flex;
-  margin-top: 20px;
-  border-bottom: 2px solid #d2e3ee;
-  flex-wrap: wrap;
-  width: 100%;
-
+    /* margin: auto; */
+    border-radius: 50px;
+    padding: 2px;
+    display: flex;
+    /* margin-top: 20px; */
+    border: 1px solid #d2e3ee;
+    /* flex-wrap: wrap; */
+    width: 100%;
 }
 
 .tab {
-    width: 50%;
-    margin: 0 auto;
+  padding: 10px;
+  width: 50%;
+  margin: auto 0;
   text-align: center;
   cursor: pointer;
-  color: #0d3047;
+  /* color: #0d3047; */
   transition: color 0.3s ease;
-  flex-basis: 100%; /* Ensures full-width on small screens */
+  flex-basis: 100%;
 }
 
 .tab p {
@@ -29,9 +34,11 @@
 }
 
 .tab.active {
-  color: #007bff;
-  border-bottom: 4px solid #007bff;
-  padding: 0 20px;
+  background: #c5c5c5;
+  border-radius: 15px;
+  /* color: #007bff; */
+  /* border: 4px solid #007bff; */
+  padding: 10px;
 }
 
 .icon {
@@ -43,11 +50,9 @@
   color: #007bff;
 }
 
-.content-area {
-  margin-top: 20px;
-}
-
 .content {
+  overflow-y: scroll;
+  /* padding: 20px; */
   display: none;
 }
 
@@ -63,9 +68,9 @@
     justify-content: space-between; /* Adjust spacing for larger screens */
   }
 
-  .tab {
-    flex-basis: auto; /* Allows tabs to take their natural width */
-  }
+ /*  .tab {
+    flex-basis: auto; 
+  }Allows tabs to take their natural width */
 
   .content-area {
     margin-top: 30px;

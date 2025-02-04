@@ -22,44 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="CLIENT ID">00-00-001</td>
-            <td data-label="CLIENT NAME">Valera, Arwen Grace C.</td>
-            <td data-label="APPROVER">Dr. OLI, Jonas</td>
-            <td data-label="APPOINTMENT">08-10-2024</td>
-            <td data-label="STATUS" class="status">NEW</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="#" >View Details</a>
-                    <a href="#">Download</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td data-label="CLIENT ID">00-00-002</td>
-            <td data-label="CLIENT NAME">Dimaculangan, Chorlyn L.</td>
-            <td data-label="APPROVER">Dr. OLI, Jonas</td>
-            <td data-label="APPOINTMENT">08-10-2024</td>
-            <td data-label="STATUS" class="status">Rescheduled</td>
-            <td data-label="ACTIONS">
-              <div class="actions">
-                <div class="dropdown">
-                  <button>⋮</button>
-                  <div class="dropdown-content">
-                    <a href="">View Details</a>
-                    <a href="#">Download</a>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr>
+          <?php include "tr-invoice-table.php";?>
         </tbody>
       </table>
 

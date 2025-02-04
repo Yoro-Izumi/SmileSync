@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+@import url("//fonts.googleapis.com/css?family=Open+Sans+Condensed");
+@import url("https://fonts.googleapis.com/css?family=Inria+Sans");
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans");
+@import url("https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/boxicons/css/boxicons.min.css');
+
+:root {
+    --color: #1b3642;
+}
+
+*{
+    font-size: 20px;
+}
+
+body {
+    overflow-y: scroll;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #E0FFFF;
+}
+
+.container {
+    /* width: 100%; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background-color: white;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.logo {
+    margin: 0 1rem;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+    justify-content: center;
+    color: #205374;
+    text-decoration: dotted;
+    font-family: 'Alumni Sans';
+}
+
+.logo a{
+    color: var(--color);
+    display: flex;
+}
+.nav a.sign-up {
+    padding: 8px 16px;
+    border: 2px solid #00CED1;
+    border-radius: 20px;
+    color: #00CED1;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--color);
+    font-weight: 600;
+    padding: 10px 15px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    color: #00CED1; /* Change text color on hover */
+    background-color: #f9fffa; /* Light background on hover */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+}
+
+.nav a i {
+    display: none;
+    margin-right: 8px; /* Space between icon and text */
+    transition: transform 0.3s ease; /* Smooth transition for icon rotation */
+}
+
+.nav a:hover i {
+    transform: rotate(360deg); /* Rotate the icon on hover */
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    padding: 4rem;
+    background-color: white;
+}
+
+.text-content {
+    max-width: 500px;
+}
+
+.text-content h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    color: #1b3642;
+    margin: 0;
+}
+
+.text-content p {
+    font-size: 16px;
+    color: gray;
+    margin: 20px 0;
+}
+
+.explore-button {
+    padding: 12px 24px;
+    background-color: #00CED1;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.explore-button:hover{
+    border-radius: 5px;
+    color: #019a9c;
+
+}
+
+.illustration {
+    flex: 1;
+    text-align: center;
+}
+
+.illustration img {
+    margin: 10px auto;
+    max-width: 60%;
+    height: auto;
+}
+
+.our-services {
+    padding: 50px 20px;
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header h2 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.header p {
+    font-weight: 100;
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.icon img {
+    max-width: 50px;
+    height: auto;
+}
+
+.service-card h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+}
+
+.icon {
+    font-size: 50px;
+    color: #5c8af1;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.service-card:hover .icon {
+    color: #2c62d6; /* Change icon color on hover */
+}
+
+.faq {
+    padding: 50px;
+    color: #1b3642;
+    background-color: white;
+}
+
+.faq h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #444;
+    padding: 15px 0;
+}
+
+.faq-item h3 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.faq-item p {
+    display: none;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.faq-item.active p {
+    display: block;
+}
+
+footer {
+    font-weight: 600;
+    padding: 20px;
+    background-color: #fff;
+    color: var(--color);
+    text-align: center;
+}
+
+footer .social-links a {
+    margin: 0 10px;
+    color: var(--color);
+    text-decoration: none;
+}
+
+footer .social-links a:hover {
+    color: #fff;
+}
+
+footer p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.jarallax {
+    position: relative;
+    z-index: 0;
+}
+
+.jarallax > .jarallax-img {
+    position: absolute;
+    object-fit: cover;
+    font-family: 'object-fit: cover;';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.location-container {
+    position: relative;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.imgBx {
+    position: relative;
+    border-radius: 5px;
+    width: 800px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.imgBx img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content {
+    border: 1px solid var(--color);
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    max-width: 400px;
+    right: 0;
+    margin-top: 200px;
+    margin-bottom: 40px;
+    padding: 30px;
+    z-index: 1;
+    color: var(--color);
+    font-weight: 600;
+}
+
+.content ul {
+    margin-top: 10px;
+    padding-left: 0;
+}
+
+.content ul li {
+    text-align: left;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.content ul li::before {
+    content: '\1F9B7'; /* Unicode for tooth emoji */
+    font-size: 1.5em;
+    margin-right: 10px;
+    color: #4ac7ff;
+}
+
+.about-us {
+    text-align: center;
+    color: var(--color);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.box a {
+    display: inline-block;
+    padding: 1em 3.5em;
+    background-color: var(--color);
+    border: 1px solid var(--color);
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 0.3em;
+    font-weight: 700;
+    letter-spacing: .5px;
+    font-size: .875rem;
+}
+
+.box p {
+    text-align: justify;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .illustration img{
+        display: none;
+    }
+
+    .container{
+        padding: 20px 10px;
+    }
+    .imgBx {
+        margin-bottom: 100%;
+        position: relative;
+        border-radius: 5px;
+        width: 800px;
+        height: 400px;
+        overflow: hidden;
+    }
+
+    .location-container {
+        overflow: hidden;
+        position: relative;
+        width: 100vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .content {
+        border: 1px solid var(--color);
+        background-color: white;
+        border-radius: 10px;
+        position: absolute;
+        max-width: 400px;
+        right: 0;
+        /* margin-bottom: 10px; */
+        margin-top: 250px;
+        margin-left: 25%;
+        padding: 30px;
+        z-index: 1;
+        color: var(--color);
+        font-weight: 600;
+    }
+
+    .logo a{
+        display: none;
+    }
+
+    .logo img{
+        display: flex;
+    }
+
+    .nav{
+        gap: 0;
+    }
+    
+    .nav a {
+        font-size: 0; /* Hide text */
+    }
+    
+    .nav a i {
+        display: flex;
+        font-size: 24px;
+    }
+
+    /* Make the icons visible */
+    .nav.show {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}

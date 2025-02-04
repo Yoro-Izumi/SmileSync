@@ -1,0 +1,91 @@
+/* General Modal Styling */
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+  z-index: 1000;
+  overflow: hidden; /* Prevent background scrolling */
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px; /* Ensure the modal doesn't grow too wide */
+  max-height: 80%; /* Limit modal height to 80% of the viewport */
+  overflow-y: auto; /* Add scrolling if content exceeds height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Heading Styling */
+h2 {
+  margin: 10px 0;
+  font-size: 1.5em;
+  color: #00c781; /* Add some color for visual appeal */
+}
+
+h3 {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #00c781;
+}
+
+/* List Styling */
+ul {
+  margin: 15px 0;
+  padding-left: 20px;
+  text-align: left; /* Align list items to the left */
+}
+
+ul li {
+  margin: 5px 0;
+  font-size: 1em;
+  line-height: 1.4;
+  color: #000;
+}
+
+/* Modal Buttons Styling */
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-buttons .btn {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-buttons .btn.proceed {
+  background-color: #00c781;
+  color: white;
+}
+
+.modal-buttons .btn.cancel {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Add Hover Effects for Buttons */
+.modal-buttons .btn:hover {
+  opacity: 0.9;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 600px) {
+  .modal-content {
+    font-size: 0.9em; /* Slightly smaller font for smaller screens */
+    padding: 15px; /* Reduce padding to fit content better */
+  }
+}

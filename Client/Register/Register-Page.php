@@ -1,8 +1,16 @@
+<?php
+include "../client_global_files/set_sesssion_dir.php";
+session_start();
+date_default_timezone_set('Asia/Manila');
+include "../client_global_files/connect_database.php";
+include "../client_global_files/encrypt_decrypt.php";
+include "../client_global_files/input_sanitizing.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>Register-SmileSync</title>
     <link rel="icon" type="image/x-icon" href="img/logo.png">
     <!-- Page -->
     <link rel="stylesheet" href="css/style.css" />
@@ -12,15 +20,11 @@
    
   </head>
 <body>
-
-  <div class="body-container">
-      <h1>Welcome dear <span>Patient!</span></h1>
-      <?php include "register-form.php"; ?>
-    </div>
-
+<?php include "loader.php"; ?>
+<?php include "register-form.php"; ?>
   
-
- <script src="js/app.js"></script>
- <script src="js/notif.js"></script>
+<script src="js/form.js"></script>
+<script src="js/app.js"></script>
+<script src="js/notif.js"></script>
 </body>
 </html>
