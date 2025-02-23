@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
               console.log('Session updated:', newResponse);
 
               newIsLoading = true;
-              fetch('pick_schedule_algo/get_appointment.php')
+              fetch('pick_schedule_algo/get_appointment2.php')
                 .then(newResponse => {
                   if (!newResponse.ok) {
                     throw new Error('Network response was not ok: ' + newResponse.statusText);

@@ -2,22 +2,22 @@ Array
 (
     [0] => Array
         (
-            [patient_info_id] => 2
-            [patient_name] => adkf;&#039;fk lksjdflk lsakdfjlkj lskdf
-            [address] => alskdfjlkdj
-            [city] => lkjflaskj
-            [province] => lsjdf;lfj
-            [patient_age] => 5
-            [patient_phone_number] => 6339482039840
-            [patient_sex] => Prefer not to say
-            [birth_date] => Tuesday, February 4, 2020
-            [appointment_date_time] => Friday, April 4, 2025 9:00 AM
+            [patient_info_id] => 1
+            [patient_name] => 
+            [address] => 
+            [city] => 
+            [province] => 
+            [patient_age] => 0
+            [patient_phone_number] =>  
+            [patient_sex] =>  
+            [birth_date] => Monday, February 24, 2025
+            [appointment_date_time] => Monday, February 24, 2025 12:29 AM
             [service_name] => 
             [service_price] => 
             [service_id] => 
-            [emergency_contact_name] => fslksajdfl;j
-            [emergency_phone] => 94850398503
-            [emergency_relationship] => skfdasjdfasjfd
+            [emergency_contact_name] => 
+            [emergency_phone] => 
+            [emergency_relationship] => 
         )
 
 )
