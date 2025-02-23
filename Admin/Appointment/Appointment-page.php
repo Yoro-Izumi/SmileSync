@@ -48,11 +48,12 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     <link rel="stylesheet" href="css/chatbot.css">
     <!-- Table -->
     <link rel="stylesheet" href="css/table.css">
-
+    <link rel="stylesheet" href="css/modify_alert.css">
   </head>
 <body>
 
 <div class="overlay"></div>
+<div id="alertContainer"></div>
 <?php include "sidebar-admin.php"; ?>
 <?php include "notif.php"; ?>
 <?php include "chatbot.php"; ?>
@@ -82,6 +83,7 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
   <!-- External Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.min.js"></script>
+  <script src="js/modify_alert.js"></script>
 </body>
 </html>
 <?php

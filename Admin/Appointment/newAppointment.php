@@ -240,12 +240,13 @@
       <!-- Step 2: Appointment Details -->
       <div class="new-form-section">
         <h2>Appointment Detail</h2>
-        <div class="input-wrap">
-          <select class="input-field" id="new-services" name="services">
-            <option value="" disabled selected>Select a Service</option>
-            <?php include "service_list.php";?>
-          </select>
-        </div>
+        <div class="dropdown-checkbox">
+          <button class="dropdown-toggle">Select Services <span class="arrow">▼</span></button>
+          <div class="dropdown-content">
+            <?php include "service_list.php"; ?>
+          </div>
+    </div>
+
         <div class="appointment-container">
           <!-- Calendar Section -->
           <div class="calendar-container">

@@ -5,12 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
+  <style>
+    .dropdown-checkbox {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .dropdown-toggle {
+      background-color: white;
+      border-radius: 10px;
+      border: 1px solid #bbb;
+      padding: 10px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .dropdown-content {
+      display: none;
+      margin-top: 2px;
+      position: relative;
+      /* background-color: #f9f9f9; */
+      border: 1px solid #bbb;
+      border-top: none;
+      border-radius: 10px;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .arrow {
+      font-size: 12px;
+    }
+
+    .dropdown-checkbox.active .dropdown-content {
+      display: block;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="topbar">
       <div class="logo"><img src="img/logo.png" alt="Logo">SmileSync</div>
-      <div class="return-link"><a href="https://smilesync.site/SmileSync/Client/LogIn-Page/Login-Page.php">Go to login</a></div>
+      <div class="return-link"><a href="../LogIn-Page/Login-Page.php">Go to login</a></div>
     </div>
   </header>
 
@@ -177,6 +221,8 @@
                     maxlength="13"
                     class="input-field"
                     name="phoneNumber"
+                    id="phoneNumberInput"
+                    onclick="validatePhoneNumberInput('phoneNumberInput');"
                     autocomplete="off"
                     required
                   />
@@ -339,7 +385,9 @@
               maxlength="11"
               class="input-field"
               name="emergencyContactNumber"
+              id="emergencyContactNumber"
               autocomplete="off"
+              onclick="validatePhoneNumberInput('emergencyContactNumber')"
               required
             />
         <label>Phone Number<indicator>*</indicator></label>
@@ -358,14 +406,17 @@
         <label>Relationship<indicator>*</indicator></label>
       </div>
 
-
+    <!--Services section-->
         <h3>Appointment Detail</h3>
-        <div class="input-wrap">
-          <select class="input-field" id="services" name="services">
-            <option value="" disabled selected>Select a Service</option>
-            <?php include "service_list.php";?>
-          </select>
+        <div class="dropdown-checkbox">
+          <button class="dropdown-toggle">Select Services <span class="arrow">▼</span></button>
+          <div class="dropdown-content">
+            <?php include "service_list.php"; ?>
+          </div>
         </div>
+
+
+        <!--Appointments section-->
         <div class="appointment-container">
           <!-- Calendar Section -->
           <div class="calendar-container">
@@ -378,7 +429,7 @@
               </span>
             </div>
 
-            <div class="calendar-month" style="text-align: center;">
+            <div class="dropdown-checkbox" style="text-align: center;">
               <select id="month" name="month">
                 <option value="01">January</option>
                 <option value="02">February</option>
@@ -431,13 +482,13 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <input type="hidden" id="cal-day" name="cal-day">
+
+            <input type="hidden" id="cal-day" name="cal-day">
           <!-- Recommendation Section -->
           <div class="recommendation-container">
             <h3>Recommended Dates & Times</h3>
           </div>
-          
+          </div>         
       </div>
 
         <div class="select-time-container">
@@ -508,25 +559,25 @@
       <div class="form-section">
         <div class="validation-section">
           <h3>Personal Information</h3>
-          <div><span>Patient Name:</span></div>
+          <div><span>Patient Name:</span> Dimaculangan, Chorlyn L.</div>
           <div><span>Age:</span> xx</div>
-          <div><span>Sex:</span></div>
-          <div><span>Address:</span> </div>
-          <div><span>Phone Number:</span></div>
-          <div><span>Birth Date:</span></div>
+          <div><span>Sex:</span> Female</div>
+          <div><span>Address:</span> Brgy. Sinalhan, Purok 7, Santa Rosa, Laguna</div>
+          <div><span>Phone Number:</span> 0912345678</div>
+          <div><span>Birth Date:</span> 01/03/2024</div>
     </div>
       <div class="validation-section">
           <h3>Emergency Contact</h3>
-          <div><span>In case of emergency, please contact:</span></div>
-          <div><span>Phone Number:</span></div>
-          <div><span>Relationship:</span></div>
+          <div><span>In case of emergency, please contact:</span> Valera, Arwen Grace C.</div>
+          <div><span>Phone Number:</span> 0912345678</div>
+          <div><span>Relationship:</span> Grandmother</div>
     </div>
     <div class="validation-section">
           <h3>Appointment Details</h3>
-          <div><span>Appointment Date:</span></div>
-          <div><span>Procedure/s:</span></div>
+          <div><span>Appointment Date:</span> 01/03/2024</div>
+          <div><span>Procedure/s:</span> Prothodontics</div>
           <div><span>Dentist:</span> Dr. Oli</div>
-          <div><span>Amount Charge:</span></div>
+          <div><span>Amount Charge:</span> 3000</div>
     </div>
 
 
@@ -546,6 +597,9 @@
     <p>&copy; 2024 iMee Dental Clinic. All rights reserved.</p>
   </footer>
 
-<script src="js/appointment_form.js"></script>
+
+  <script src="js/modify_alert.js"></script>
+  <script src="js/validations.js"></script> 
+  <script src="js/form.js"></script>  
 </body>
 </html>

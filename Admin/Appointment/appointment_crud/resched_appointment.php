@@ -49,7 +49,7 @@ $appointmentDateTime = $appointmentDate . " " . $appointmentTime;
     $stmt->bind_param("sssii", $status, $reason,$appointmentDateTime,$adminID, $appointmentId);
 
     if ($stmt->execute()) {
-        echo json_encode(['success' => true]);
+        echo "success";
     } else {
         echo json_encode(['success' => false, 'message' => $stmt->error]);
     }

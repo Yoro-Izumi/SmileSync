@@ -2,10 +2,14 @@ import json
 import sys
 import numpy as np
 from sklearn.linear_model import LinearRegression
-from multiprocessing import Pool, cpu_count
 
-def predict_duration(service_durations):
+def predict_durations(data):
     try:
+        # Extract and validate service_durations
+        service_durations = data.get('service_durations')
+        if not isinstance(service_durations, list) or not service_durations:
+            raise ValueError("Invalid or empty service_durations")
+
         # Check if we have enough data for linear regression
         if len(service_durations) < 2:
             # Use the last duration if there's not enough data for a trend
@@ -23,23 +27,9 @@ def predict_duration(service_durations):
             prediction = model.predict([[len(service_durations)]])  # Predict the next value
             predicted_duration = int(round(prediction[0]))  # Convert to scalar and round
 
-        return {"predicted_duration": predicted_duration}
-    except Exception as e:
-        return {"error": f"An error occurred: {str(e)}"}
-
-def predict_durations(data):
-    try:
-        # Extract and validate service_durations
-        service_durations = data.get('service_durations')
-        if not isinstance(service_durations, list) or not service_durations:
-            raise ValueError("Invalid or empty service_durations")
-
-        # Use multiprocessing to handle predictions
-        with Pool(cpu_count()) as pool:
-            results = pool.map(predict_duration, [service_durations])
-
         # Output predictions as structured JSON
-        print(json.dumps(results[0]))
+        result = {"predicted_duration": predicted_duration}
+        print(json.dumps(result))
 
     except Exception as e:
         # Handle errors and print error message

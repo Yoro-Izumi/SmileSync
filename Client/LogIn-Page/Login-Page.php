@@ -188,7 +188,7 @@ cancelRegisterBtn.addEventListener('click', () => {
 
 // Redirect on Proceed Button Click
 proceedRegisterBtn.addEventListener('click', () => {
-    window.location.href = 'https://smilesync.site/SmileSync/Client/Register/Register-Page.php';
+    window.location.href = '../Register/Register-Page.php';
 });
 
 // Close Modal When Clicking Outside
@@ -229,7 +229,7 @@ document.getElementById('closeSuccessModalBtn').addEventListener('click', () => 
       
       // Redirect to a URL when "Proceed" is clicked
       document.querySelector('.btn.proceed').addEventListener('click', () => {
-        const targetUrl = 'https://smilesync.site/SmileSync/Client/Register/Register-Page.php'; // Replace with your desired URL
+        const targetUrl = '../Register/Register-Page.php'; // Replace with your desired URL
         window.location.href = targetUrl;
       });
       

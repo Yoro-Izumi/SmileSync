@@ -1,131 +1,134 @@
+// Declare isLoading as a global variable
+let isLoading = false;
+
 document.addEventListener('DOMContentLoaded', function () {
- // Multi-step form navigation
-const formSections = document.querySelectorAll('.form-section');
-const nextButton = document.querySelector('.next-btn');
-const prevButton = document.querySelector('.prev-btn');
-const steps = document.querySelectorAll('.steps .step');
-const submitButton = document.getElementById('submitButton');
-let currentStep = 0;
+  // Multi-step form navigation
+  const formSections = document.querySelectorAll('.form-section');
+  const nextButton = document.querySelector('.next-btn');
+  const prevButton = document.querySelector('.prev-btn');
+  const steps = document.querySelectorAll('.steps .step');
+  const submitButton = document.getElementById('submitButton');
+  let currentStep = 0;
 
-submitButton.style.display = 'none';
-prevButton.style.display = 'none'; // Initially hide the previous button
+  submitButton.style.display = 'none';
+  prevButton.style.display = 'none'; // Initially hide the previous button
 
-nextButton.addEventListener('click', (e) => {
-  if (currentStep < formSections.length - 1) {
-    formSections[currentStep].classList.remove('active');
-    steps[currentStep].classList.remove('active');
-    currentStep++;
-    formSections[currentStep].classList.add('active');
-    steps[currentStep].classList.add('active');
+  // Function to check if all required inputs in the current section are filled
+  const isCurrentSectionValid = () => {
+    const inputs = formSections[currentStep].querySelectorAll('input[required]');
+    return Array.from(inputs).every(input => input.value.trim() !== '');
+  };
 
-    // Show the previous button when advancing
-    prevButton.style.display = 'block';
-    submitButton.style.display = 'none';
+  // Update the state of the "Next" button based on input validation
+  const updateNextButtonState = () => {
+    nextButton.disabled = !isCurrentSectionValid();
+  };
 
-    // Update button visibility for the final step
-    if (currentStep === formSections.length - 1) {
-      nextButton.style.display = 'none';
-      submitButton.style.display = 'block';
-    } else {
+  // Attach input event listeners to validate on the fly
+  formSections.forEach((section, index) => {
+    const inputs = section.querySelectorAll('input[required]');
+    inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        if (index === currentStep) updateNextButtonState();
+      });
+    });
+  });
+
+  nextButton.addEventListener('click', () => {
+    if (currentStep < formSections.length - 1 && isCurrentSectionValid()) {
+      formSections[currentStep].classList.remove('active');
+      steps[currentStep].classList.remove('active');
+      currentStep++;
+      formSections[currentStep].classList.add('active');
+      steps[currentStep].classList.add('active');
+
+      prevButton.style.display = 'block';
+      submitButton.style.display = 'none';
+
+      if (currentStep === formSections.length - 1) {
+        nextButton.style.display = 'none';
+        submitButton.style.display = 'block';
+      } else {
+        nextButton.textContent = 'Next';
+        nextButton.type = 'button';
+      }
+      updateNextButtonState();
+    }
+  });
+
+  prevButton.addEventListener('click', () => {
+    if (currentStep > 0) {
+      formSections[currentStep].classList.remove('active');
+      steps[currentStep].classList.remove('active');
+      currentStep--;
+      formSections[currentStep].classList.add('active');
+      steps[currentStep].classList.add('active');
+
+      if (currentStep === 0) {
+        prevButton.style.display = 'none';
+      }
+
+      nextButton.style.display = 'block';
+      submitButton.style.display = 'none';
       nextButton.textContent = 'Next';
       nextButton.type = 'button';
+
+      updateNextButtonState();
     }
-  }
-});
+  });
 
-prevButton.addEventListener('click', () => {
-  if (currentStep > 0) {
-    formSections[currentStep].classList.remove('active');
-    steps[currentStep].classList.remove('active');
-    currentStep--;
-    formSections[currentStep].classList.add('active');
-    steps[currentStep].classList.add('active');
-
-    // Hide the previous button on the first step
-    if (currentStep === 0) {
-      prevButton.style.display = 'none';
-    }
-
-    // Show the next button when navigating back
-    nextButton.style.display = 'block';
-    submitButton.style.display = 'none';
-    nextButton.textContent = 'Next';
-    nextButton.type = 'button';
-  }
-});
-
+  updateNextButtonState();
 
   // Calendar logic
-  const recommendedDates = {
-    '2024-8-3': true,
-    '2024-8-14': true,
-    // Add more dates here as needed
-  };
-
-  const unavailableDates = {
-    '2024-8-7': true,
-    '2024-8-20': true,
-    // Add more dates here as needed
-  };
-
   const currentDate = new Date();
-  let currentMonth = currentDate.getMonth(); // 0-11
+  currentDate.setHours(0, 0, 0, 0);
+  const minSelectableDate = new Date();
+  minSelectableDate.setDate(currentDate.getDate() + 15); // 15 days from now
+
+  let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
 
   const monthSelect = document.getElementById('month');
   const calendarTableBody = document.querySelector('.calendar-table tbody');
-  const calDayInput = document.getElementById('cal-day'); // Input field to update
+  const calDayInput = document.getElementById('cal-day');
 
-  let isLoading = false; // Flag to track the loading state
-
-  // Function to generate the calendar
   function generateCalendar(month, year) {
-    // Clear the calendar table
     calendarTableBody.innerHTML = '';
 
-    // Days in the selected month
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    // First day of the month (0-6, Sunday-Saturday)
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
     let dayCounter = 1;
     let week = [];
 
-    // Fill empty cells for the first week
     for (let i = 0; i < firstDayOfMonth; i++) {
       week.push('');
     }
 
-    // Fill the calendar with days
     while (dayCounter <= daysInMonth) {
-      const dateKey = `${year}-${month + 1}-${dayCounter}`;
+      const dateKey = new Date(year, month, dayCounter);
+      dateKey.setHours(0, 0, 0, 0);
+
+      const isSelectable = dateKey >= minSelectableDate;
 
       const cellData = {
         day: dayCounter,
-        class:
-          recommendedDates[dateKey] ? 'recommended' : 
-          unavailableDates[dateKey] ? 'unavailable' : 
-          '',
+        class: isSelectable ? 'selectable' : 'unavailable',
       };
 
       week.push(cellData);
 
       if (week.length === 7 || dayCounter === daysInMonth) {
-        // Fill the remaining cells for the last week
         while (week.length < 7) {
           week.push('');
         }
 
-        // Add the week to the table
         const row = document.createElement('tr');
         week.forEach((cell) => {
           const cellElement = document.createElement('td');
           if (cell) {
             cellElement.textContent = cell.day;
-            if (cell.class) {
-              cellElement.classList.add(cell.class);
-            }
+            cellElement.classList.add(cell.class);
           }
           row.appendChild(cellElement);
         });
@@ -137,63 +140,38 @@ prevButton.addEventListener('click', () => {
       dayCounter++;
     }
 
-    // Attach click event for date selection after table is generated
     document.querySelectorAll('.calendar-table td').forEach((cell) => {
-      // Disable clicking while loading
-      if (isLoading) {
-        cell.style.pointerEvents = 'none'; // Disable clicks
-      } else {
-        cell.style.pointerEvents = 'auto'; // Enable clicks
-      }
-
       cell.addEventListener('click', () => {
         if (!isLoading && !cell.classList.contains('unavailable') && cell.textContent) {
           document.querySelectorAll('.calendar-table td').forEach((td) =>
             td.classList.remove('selected-date')
           );
           cell.classList.add('selected-date');
-          // Update the input field with the selected date
           const selected_date = `${year}-${(month + 1).toString().padStart(2, '0')}-${cell.textContent.padStart(2, '0')}`;
           calDayInput.value = selected_date;
 
-          // Set the date as a PHP session value via AJAX
+          isLoading = true; // Set isLoading to true while the request is in progress
           $.ajax({
-            url: 'save_session_date.php', // PHP file to handle the session
+            url: 'save_session_date.php',
             type: 'POST',
             data: { selected_date: selected_date },
             success: function (response) {
               console.log('Session updated:', response);
-
-              // Fetch recommended schedule and available times after selecting the date
-              isLoading = true; // Set loading state to true
-              fetch('pick_schedule_algo/get_appointment.php')
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                  }
-                  return response.json();
-                })
+              fetch('pick_schedule_algo/get_appointment2.php')
+                .then(response => response.json())
                 .then(data => {
-                  if (data.status !== 'success') {
-                    throw new Error('Failed to retrieve schedule data: ' + (data.message || 'Unknown error'));
+                  if (data.status === 'success') {
+                    updateRecommendationsAndDropdown(data);
                   }
-
-                  // Update the UI with the fetched data
-                  updateRecommendationsAndDropdown(data);
                 })
-                .catch(error => {
-                  console.error('Error fetching schedule:', error);
-                })
+                .catch(error => console.error('Error fetching schedule:', error))
                 .finally(() => {
-                  isLoading = false; // Reset loading state after data is loaded
-                  // Re-enable date click events
-                  document.querySelectorAll('.calendar-table td').forEach((cell) => {
-                    cell.style.pointerEvents = 'auto'; // Re-enable clicks
-                  });
+                  isLoading = false; // Reset isLoading after the request is complete
                 });
             },
-            error: function (xhr, status, error) {
+            error: function (error) {
               console.error('Error setting session:', error);
+              isLoading = false; // Reset isLoading if there's an error
             },
           });
         }
@@ -201,14 +179,152 @@ prevButton.addEventListener('click', () => {
     });
   }
 
-  // Event listener for the month selector
   monthSelect.addEventListener('change', function () {
     currentMonth = parseInt(this.value, 10) - 1;
     generateCalendar(currentMonth, currentYear);
+
+    // Clear recommendations and selected date when month changes
+    clearRecommendations();
+    clearSelectedDate();
   });
 
-  // Initial calendar generation
   generateCalendar(currentMonth, currentYear);
+
+  // Service Checkbox Logic
+  const serviceDropdownToggle = document.querySelector('.dropdown-toggle');
+  const serviceDropdownCheckbox = document.querySelector('.dropdown-checkbox');
+
+  serviceDropdownToggle.addEventListener('click', function (event) {
+    serviceDropdownCheckbox.classList.toggle('active');
+  });
+
+  // Close the dropdown if the user clicks outside of it
+  document.addEventListener('click', function (event) {
+    if (!serviceDropdownCheckbox.contains(event.target)) {
+      serviceDropdownCheckbox.classList.remove('active');
+    }
+  });
+
+  // jQuery to handle checkbox clicks and send data to PHP
+  $(document).ready(function () {
+    $('input[name="service[]"]').on('click', function () {
+      const selectedServices = [];
+      $('input[name="service[]"]:checked').each(function () {
+        selectedServices.push($(this).val());
+      });
+
+      // Clear recommendations and selected date when services change
+      clearRecommendations();
+      clearSelectedDate();
+
+      // Send selected services to PHP using AJAX
+      $.ajax({
+        url: 'set_session.php', // PHP script to handle saving
+        type: 'POST',
+        data: { services: selectedServices },
+        success: function (response) {
+          console.log('Services saved:', response);
+        },
+        error: function (error) {
+          console.error('Error saving services:', error);
+        }
+      });
+    });
+  });
+
+  // Function to clear recommendations
+  function clearRecommendations() {
+    const recommendationContainer = document.querySelector('.recommendation-container');
+    recommendationContainer.innerHTML = ''; // Clear recommendations
+    const timeDropdown = document.getElementById('time');
+    timeDropdown.innerHTML = ''; // Clear available times dropdown
+  }
+
+  // Function to clear selected date
+  function clearSelectedDate() {
+    document.querySelectorAll('.calendar-table td').forEach((td) =>
+      td.classList.remove('selected-date')
+    );
+    calDayInput.value = ''; // Clear the selected date input
+  }
+
+  // Confirmation Section Logic
+  const form = document.getElementById('multiStepForm');
+  const confirmationSection = document.querySelector('.form-section:last-child');
+
+  form.addEventListener('input', function (event) {
+    updateConfirmationSection();
+  });
+
+  function updateConfirmationSection() {
+    const formData = new FormData(form);
+
+    // Personal Information
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
+    const middleName = formData.get('middleName');
+    const suffix = formData.get('suffix');
+    const birthday = formData.get('birthday');
+    const sex = formData.get('sex');
+    const province = formData.get('province');
+    const city = formData.get('city');
+    const barangay = formData.get('barangay');
+    const streetAddress = formData.get('street_address');
+    const phoneNumber = formData.get('phoneNumber');
+
+    // Emergency Contact
+    const emergencyContact = formData.get('emergencyContact');
+    const emergencyContactNumber = formData.get('emergencyContactNumber');
+    const emergencyContactRelationship = formData.get('emergencyContactRelationship');
+
+    // Appointment Details
+    const appointmentDate = formData.get('cal-day');
+    const services = Array.from(formData.getAll('service[]')).join(', ');
+
+    // Update Personal Information in Confirmation Section
+    confirmationSection.querySelector('.validation-section:nth-child(1)').innerHTML = `
+      <h3>Personal Information</h3>
+      <div><span>Patient Name:</span> ${lastName}, ${firstName} ${middleName} ${suffix}</div>
+      <div><span>Age:</span> ${calculateAge(birthday)}</div>
+      <div><span>Sex:</span> ${sex}</div>
+      <div><span>Address:</span> ${streetAddress}, ${barangay}, ${city}, ${province}</div>
+      <div><span>Phone Number:</span> ${phoneNumber}</div>
+      <div><span>Birth Date:</span> ${formatDate(birthday)}</div>
+    `;
+
+    // Update Emergency Contact in Confirmation Section
+    confirmationSection.querySelector('.validation-section:nth-child(2)').innerHTML = `
+      <h3>Emergency Contact</h3>
+      <div><span>In case of emergency, please contact:</span> ${emergencyContact}</div>
+      <div><span>Phone Number:</span> ${emergencyContactNumber}</div>
+      <div><span>Relationship:</span> ${emergencyContactRelationship}</div>
+    `;
+
+    // Update Appointment Details in Confirmation Section
+    confirmationSection.querySelector('.validation-section:nth-child(3)').innerHTML = `
+      <h3>Appointment Details</h3>
+      <div><span>Appointment Date:</span> ${formatDate(appointmentDate)}</div>
+      <div><span>Procedure/s:</span> ${services}</div>
+      <div><span>Dentist:</span>  </div>
+      <div><span>Amount Charge:</span> </div>
+    `;
+  }
+
+  function calculateAge(birthday) {
+    const birthDate = new Date(birthday);
+    const difference = Date.now() - birthDate.getTime();
+    const ageDate = new Date(difference);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+
+  function formatDate(date) {
+    const d = new Date(date);
+    const month = '' + (d.getMonth() + 1);
+    const day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    return [month, day, year].join('/');
+  }
 });
 
 // Function to update the recommended schedule and available times
@@ -256,33 +372,3 @@ function formatTime(timeStr) {
   const formattedHour = hour % 12 || 12;
   return `${formattedHour}:${minute.toString().padStart(2, '0')} ${amPm}`;
 }
-
-$(document).ready(function () {
-  // Trigger form submission when the Submit button is clicked
-  $("#submitButton").on("click", function (e) {
-    e.preventDefault(); // Prevent the default button behavior
-
-    const form = $("#multiStepForm"); // Target the form
-    const formData = form.serialize(); // Serialize all form data
-
-    $.ajax({
-      url: "register_code.php", // PHP file to handle insertion
-      type: "POST",
-      data: formData,
-      success: function (response) {
-        // Handle success response
-        //alert("Appointment successfully added: " + response);
-        if(response.trim == "Registration successful!"){
-          alert("Appointment successfully added: " + response);
-          form[0].reset(); // Reset the form
-          location.href = "https://smilesync.site/SmileSync"; // Redirect to the desired page
-        }
-      },
-      error: function (xhr, status, error) {
-        // Handle error response
-        //console.error("Error: " + error);
-        //alert("An error occurred while adding the appointment.");
-      },
-    });
-  });
-});
