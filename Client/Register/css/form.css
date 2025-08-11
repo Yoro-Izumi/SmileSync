@@ -1,0 +1,509 @@
+/* General Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.return-link a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+/* Form Container */
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.form-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+/* Steps Indicator */
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.steps::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ddd;
+  z-index: 1;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.step-icon {
+  background: #ddd;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.step-label {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.step.active .step-icon {
+  background: #3498db;
+  color: white;
+}
+
+.step.active .step-label {
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* Form Sections */
+.form-section {
+  display: none;
+}
+
+.form-section.active {
+  display: block;
+}
+
+/* Input Fields */
+.input-wrap {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.input-field:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 5px rgba(52,152,219,0.5);
+}
+
+.input-wrap label {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: #777;
+  transition: all 0.3s;
+  pointer-events: none;
+  background: white;
+  padding: 0 5px;
+}
+
+.input-field:focus + label,
+.input-field:not(:placeholder-shown) + label {
+  top: -10px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #3498db;
+}
+
+indicator, .required {
+  color: #e74c3c;
+}
+
+/* Layout Helpers */
+.wrap-2rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.wrap-3rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Question Form */
+.question-form {
+  margin: 2rem 0;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.question-form .titles {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.question-row {
+  margin-bottom: 1rem;
+}
+
+.question-row label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.answer-options {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Dropdown Checkbox */
+.dropdown-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.dropdown-toggle {
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #bbb;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-content {
+  display: none;
+  margin-top: 2px;
+  position: relative;
+  border: 1px solid #bbb;
+  border-top: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 1;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-checkbox.active .dropdown-content {
+  display: block;
+}
+
+.arrow {
+  font-size: 12px;
+}
+
+/* Calendar Styles */
+.calendar-container {
+  margin: 2rem 0;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 1rem;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.legend::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+.legend.unavailable::before {
+  background-color: #e74c3c;
+}
+
+.legend.choice::before {
+  background-color: #3498db;
+}
+
+.legend.recommended::before {
+  background-color: #2ecc71;
+}
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.calendar-table th {
+  text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+}
+
+.calendar-table td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.calendar-table td:hover:not(.unavailable) {
+  background: #f8f9fa;
+}
+
+.unavailable {
+  color: #ccc;
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.choice {
+  background-color: #e3f2fd;
+}
+
+.recommended {
+  background-color: #e8f5e9;
+  font-weight: bold;
+}
+
+.selected-date {
+  background-color: #bbdefb !important;
+  font-weight: bold;
+}
+
+/* Recommendation Container */
+.recommendation-container {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+
+/* Time Selection */
+.select-time-container {
+  margin: 1rem 0;
+}
+
+.time-selection select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Validation Section */
+.validation-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.validation-section h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.validation-section div {
+  margin: 0.5rem 0;
+}
+
+.validation-section span {
+  font-weight: bold;
+  display: inline-block;
+  width: 180px;
+}
+
+/* Form Navigation - Centered Buttons */
+.form-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.prev-btn, 
+.next-btn, 
+#submitButton {
+  min-width: 120px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.prev-btn {
+  background: #95a5a6;
+  color: white;
+}
+
+.prev-btn:hover {
+  background: #7f8c8d;
+}
+
+.next-btn, #submitButton {
+  background: #3498db;
+  color: white;
+}
+
+.next-btn:hover, #submitButton:hover {
+  background: #2980b9;
+}
+
+.next-btn:disabled, #submitButton:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* Password Strength Indicator */
+#password-strength-indicator {
+  height: 5px;
+  margin: 5px 0;
+  display: flex;
+}
+
+#password-strength-indicator span {
+  flex: 1;
+  margin: 0 2px;
+  background: #eee;
+  border-radius: 2px;
+}
+
+.password-requirements {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 5px;
+}
+
+.password-requirements ul {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.5rem;
+}
+
+.password-requirements li {
+  list-style-type: none;
+  position: relative;
+}
+
+.password-requirements li::before {
+  content: '✖';
+  position: absolute;
+  left: -1.5rem;
+  color: #e74c3c;
+}
+
+.password-requirements li.valid::before {
+  content: '✓';
+  color: #2ecc71;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #2c3e50;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .wrap-2rows, .wrap-3rows {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    flex-wrap: wrap;
+  }
+
+  .step {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .prev-btn,
+  .next-btn,
+  #submitButton {
+    width: 100%;
+    max-width: 200px;
+  }
+}

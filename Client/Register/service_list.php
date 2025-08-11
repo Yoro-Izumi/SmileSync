@@ -14,4 +14,4 @@ foreach($arrayService as $services){
     echo '<input type="checkbox" name="service[]" value="' . $service_id . '"> ' . $service_name;
     echo '</label><br>';
 
-}
+}?>

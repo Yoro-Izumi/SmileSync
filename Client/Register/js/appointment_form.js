@@ -10,73 +10,108 @@ document.addEventListener('DOMContentLoaded', function () {
   const submitButton = document.getElementById('submitButton');
   let currentStep = 0;
 
+  // Initialize buttons
   submitButton.style.display = 'none';
-  prevButton.style.display = 'none'; // Initially hide the previous button
+  prevButton.style.display = 'none';
 
   // Function to check if all required inputs in the current section are filled
   const isCurrentSectionValid = () => {
-    const inputs = formSections[currentStep].querySelectorAll('input[required]');
-    return Array.from(inputs).every(input => input.value.trim() !== '');
+    const currentSection = formSections[currentStep];
+    const requiredInputs = currentSection.querySelectorAll('input[required], select[required]');
+    
+    let isValid = true;
+    
+    requiredInputs.forEach(input => {
+      if (input.type === 'radio' || input.type === 'checkbox') {
+        // For radio buttons, check if at least one in the group is checked
+        const name = input.name;
+        const checked = currentSection.querySelector(`input[name="${name}"]:checked`);
+        if (!checked) isValid = false;
+      } else {
+        // For other inputs, check if they have a value
+        if (!input.value.trim()) isValid = false;
+      }
+    });
+    
+    return isValid;
   };
 
-  // Update the state of the "Next" button based on input validation
+  // Update the state of the "Next" button
   const updateNextButtonState = () => {
     nextButton.disabled = !isCurrentSectionValid();
   };
 
   // Attach input event listeners to validate on the fly
-  formSections.forEach((section, index) => {
-    const inputs = section.querySelectorAll('input[required]');
+  formSections.forEach(section => {
+    const inputs = section.querySelectorAll('input, select');
     inputs.forEach(input => {
-      input.addEventListener('input', () => {
-        if (index === currentStep) updateNextButtonState();
-      });
+      input.addEventListener('input', updateNextButtonState);
+      input.addEventListener('change', updateNextButtonState);
     });
   });
 
-  nextButton.addEventListener('click', () => {
-    if (currentStep < formSections.length - 1 && isCurrentSectionValid()) {
+  // Next button click handler
+  nextButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    if (!isCurrentSectionValid()) {
+      alert('Please fill out all required fields before proceeding.');
+      return;
+    }
+
+    if (currentStep < formSections.length - 1) {
+      // Hide current section
       formSections[currentStep].classList.remove('active');
       steps[currentStep].classList.remove('active');
+      
+      // Show next section
       currentStep++;
       formSections[currentStep].classList.add('active');
       steps[currentStep].classList.add('active');
 
+      // Update button visibility
       prevButton.style.display = 'block';
-      submitButton.style.display = 'none';
-
+      
       if (currentStep === formSections.length - 1) {
         nextButton.style.display = 'none';
         submitButton.style.display = 'block';
+        updateConfirmationSection(); // Update confirmation data
       } else {
-        nextButton.textContent = 'Next';
-        nextButton.type = 'button';
+        nextButton.style.display = 'block';
+        submitButton.style.display = 'none';
       }
+      
       updateNextButtonState();
     }
   });
 
-  prevButton.addEventListener('click', () => {
+  // Previous button click handler
+  prevButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    
     if (currentStep > 0) {
+      // Hide current section
       formSections[currentStep].classList.remove('active');
       steps[currentStep].classList.remove('active');
+      
+      // Show previous section
       currentStep--;
       formSections[currentStep].classList.add('active');
       steps[currentStep].classList.add('active');
 
+      // Update button visibility
+      nextButton.style.display = 'block';
+      submitButton.style.display = 'none';
+      
       if (currentStep === 0) {
         prevButton.style.display = 'none';
       }
-
-      nextButton.style.display = 'block';
-      submitButton.style.display = 'none';
-      nextButton.textContent = 'Next';
-      nextButton.type = 'button';
-
+      
       updateNextButtonState();
     }
   });
 
+  // Initialize
   updateNextButtonState();
 
   // Calendar logic
@@ -194,16 +229,20 @@ document.addEventListener('DOMContentLoaded', function () {
   const serviceDropdownToggle = document.querySelector('.dropdown-toggle');
   const serviceDropdownCheckbox = document.querySelector('.dropdown-checkbox');
 
-  serviceDropdownToggle.addEventListener('click', function (event) {
-    serviceDropdownCheckbox.classList.toggle('active');
-  });
+  if (serviceDropdownToggle && serviceDropdownCheckbox) {
+    serviceDropdownToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      serviceDropdownCheckbox.classList.toggle('active');
+    });
 
-  // Close the dropdown if the user clicks outside of it
-  document.addEventListener('click', function (event) {
-    if (!serviceDropdownCheckbox.contains(event.target)) {
-      serviceDropdownCheckbox.classList.remove('active');
-    }
-  });
+    // Close the dropdown if the user clicks outside of it
+    document.addEventListener('click', function (event) {
+      if (!serviceDropdownCheckbox.contains(event.target) && 
+          event.target !== serviceDropdownToggle) {
+        serviceDropdownCheckbox.classList.remove('active');
+      }
+    });
+  }
 
   // jQuery to handle checkbox clicks and send data to PHP
   $(document).ready(function () {
@@ -235,9 +274,13 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to clear recommendations
   function clearRecommendations() {
     const recommendationContainer = document.querySelector('.recommendation-container');
-    recommendationContainer.innerHTML = ''; // Clear recommendations
+    if (recommendationContainer) {
+      recommendationContainer.innerHTML = ''; // Clear recommendations
+    }
     const timeDropdown = document.getElementById('time');
-    timeDropdown.innerHTML = ''; // Clear available times dropdown
+    if (timeDropdown) {
+      timeDropdown.innerHTML = ''; // Clear available times dropdown
+    }
   }
 
   // Function to clear selected date
@@ -245,7 +288,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.calendar-table td').forEach((td) =>
       td.classList.remove('selected-date')
     );
-    calDayInput.value = ''; // Clear the selected date input
+    if (calDayInput) {
+      calDayInput.value = ''; // Clear the selected date input
+    }
   }
 
   // Confirmation Section Logic
@@ -253,64 +298,78 @@ document.addEventListener('DOMContentLoaded', function () {
   const confirmationSection = document.querySelector('.form-section:last-child');
 
   form.addEventListener('input', function (event) {
-    updateConfirmationSection();
+    if (currentStep === formSections.length - 1) {
+      updateConfirmationSection();
+    }
   });
 
   function updateConfirmationSection() {
+    if (!confirmationSection) return;
+
     const formData = new FormData(form);
 
     // Personal Information
-    const firstName = formData.get('firstName');
-    const lastName = formData.get('lastName');
-    const middleName = formData.get('middleName');
-    const suffix = formData.get('suffix');
-    const birthday = formData.get('birthday');
-    const sex = formData.get('sex');
-    const province = formData.get('province');
-    const city = formData.get('city');
-    const barangay = formData.get('barangay');
-    const streetAddress = formData.get('street_address');
-    const phoneNumber = formData.get('phoneNumber');
+    const firstName = formData.get('firstName') || '';
+    const lastName = formData.get('lastName') || '';
+    const middleName = formData.get('middleName') || '';
+    const suffix = formData.get('suffix') || '';
+    const birthday = formData.get('birthday') || '';
+    const sex = formData.get('sex') || '';
+    const province = formData.get('province') || '';
+    const city = formData.get('city') || '';
+    const barangay = formData.get('barangay') || '';
+    const streetAddress = formData.get('street_address') || '';
+    const phoneNumber = formData.get('phoneNumber') || '';
 
     // Emergency Contact
-    const emergencyContact = formData.get('emergencyContact');
-    const emergencyContactNumber = formData.get('emergencyContactNumber');
-    const emergencyContactRelationship = formData.get('emergencyContactRelationship');
+    const emergencyContact = formData.get('emergencyContact') || '';
+    const emergencyContactNumber = formData.get('emergencyContactNumber') || '';
+    const emergencyContactRelationship = formData.get('emergencyContactRelationship') || '';
 
     // Appointment Details
-    const appointmentDate = formData.get('cal-day');
-    const services = Array.from(formData.getAll('service[]')).join(', ');
+    const appointmentDate = formData.get('cal-day') || '';
+    const services = Array.from(formData.getAll('service[]')).join(', ') || '';
 
     // Update Personal Information in Confirmation Section
-    confirmationSection.querySelector('.validation-section:nth-child(1)').innerHTML = `
-      <h3>Personal Information</h3>
-      <div><span>Patient Name:</span> ${lastName}, ${firstName} ${middleName} ${suffix}</div>
-      <div><span>Age:</span> ${calculateAge(birthday)}</div>
-      <div><span>Sex:</span> ${sex}</div>
-      <div><span>Address:</span> ${streetAddress}, ${barangay}, ${city}, ${province}</div>
-      <div><span>Phone Number:</span> ${phoneNumber}</div>
-      <div><span>Birth Date:</span> ${formatDate(birthday)}</div>
-    `;
+    const personalInfoSection = confirmationSection.querySelector('.validation-section:nth-child(1)');
+    if (personalInfoSection) {
+      personalInfoSection.innerHTML = `
+        <h3>Personal Information</h3>
+        <div><span>Patient Name:</span> ${lastName}, ${firstName} ${middleName} ${suffix}</div>
+        <div><span>Age:</span> ${calculateAge(birthday)}</div>
+        <div><span>Sex:</span> ${sex}</div>
+        <div><span>Address:</span> ${streetAddress}, ${barangay}, ${city}, ${province}</div>
+        <div><span>Phone Number:</span> ${phoneNumber}</div>
+        <div><span>Birth Date:</span> ${formatDate(birthday)}</div>
+      `;
+    }
 
     // Update Emergency Contact in Confirmation Section
-    confirmationSection.querySelector('.validation-section:nth-child(2)').innerHTML = `
-      <h3>Emergency Contact</h3>
-      <div><span>In case of emergency, please contact:</span> ${emergencyContact}</div>
-      <div><span>Phone Number:</span> ${emergencyContactNumber}</div>
-      <div><span>Relationship:</span> ${emergencyContactRelationship}</div>
-    `;
+    const emergencySection = confirmationSection.querySelector('.validation-section:nth-child(2)');
+    if (emergencySection) {
+      emergencySection.innerHTML = `
+        <h3>Emergency Contact</h3>
+        <div><span>In case of emergency, please contact:</span> ${emergencyContact}</div>
+        <div><span>Phone Number:</span> ${emergencyContactNumber}</div>
+        <div><span>Relationship:</span> ${emergencyContactRelationship}</div>
+      `;
+    }
 
     // Update Appointment Details in Confirmation Section
-    confirmationSection.querySelector('.validation-section:nth-child(3)').innerHTML = `
-      <h3>Appointment Details</h3>
-      <div><span>Appointment Date:</span> ${formatDate(appointmentDate)}</div>
-      <div><span>Procedure/s:</span> ${services}</div>
-      <div><span>Dentist:</span>  </div>
-      <div><span>Amount Charge:</span> </div>
-    `;
+    const appointmentSection = confirmationSection.querySelector('.validation-section:nth-child(3)');
+    if (appointmentSection) {
+      appointmentSection.innerHTML = `
+        <h3>Appointment Details</h3>
+        <div><span>Appointment Date:</span> ${formatDate(appointmentDate)}</div>
+        <div><span>Procedure/s:</span> ${services}</div>
+        <div><span>Dentist:</span> </div>
+        <div><span>Amount Charge:</span> </div>
+      `;
+    }
   }
 
   function calculateAge(birthday) {
+    if (!birthday) return '';
     const birthDate = new Date(birthday);
     const difference = Date.now() - birthDate.getTime();
     const ageDate = new Date(difference);
@@ -318,6 +377,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function formatDate(date) {
+    if (!date) return '';
     const d = new Date(date);
     const month = '' + (d.getMonth() + 1);
     const day = '' + d.getDate();
@@ -325,50 +385,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
     return [month, day, year].join('/');
   }
-});
 
-// Function to update the recommended schedule and available times
-function updateRecommendationsAndDropdown(response) {
-  // Check for success status
-  if (response.status !== "success") {
-    console.error("Error: " + (response.message || "Unknown error"));
-    return;
+  // Function to update the recommended schedule and available times
+  function updateRecommendationsAndDropdown(response) {
+    // Check for success status
+    if (response.status !== "success") {
+      console.error("Error: " + (response.message || "Unknown error"));
+      return;
+    }
+
+    // Parse the recommended schedule and available times
+    const recommendations = response.recommended_schedule || [];
+    const availableTimes = response.available_times || [];
+    const predictedDurations = response.predicted_durations || 0;
+
+    // Update the recommendation container
+    const recommendationContainer = document.querySelector('.recommendation-container');
+    if (recommendationContainer) {
+      let recommendationHTML = `<h3>Recommended Dates & Times (Predicted Duration: ${predictedDurations} minutes)</h3>`;
+      recommendations.forEach((dateTime) => {
+        const [date, time] = dateTime.split(' ');
+        recommendationHTML += `<p>Date: ${formatDate(date)}<br>Time: ${formatTime(time)}</p>`;
+      });
+      recommendationContainer.innerHTML = recommendationHTML;
+    }
+
+    // Update the dropdown options for available times
+    const timeDropdown = document.getElementById('time');
+    if (timeDropdown) {
+      timeDropdown.innerHTML = ''; // Clear existing options
+      availableTimes.forEach((dateTime) => {
+        const [, time] = dateTime.split(' ');
+        timeDropdown.innerHTML += `<option value="${time}">${formatTime(time)}</option>`;
+      });
+    }
   }
 
-  // Parse the recommended schedule and available times
-  const recommendations = response.recommended_schedule;
-  const availableTimes = response.available_times;
-  const predictedDurations = response.predicted_durations;
-
-  // Update the recommendation container
-  const recommendationContainer = document.querySelector('.recommendation-container');
-  let recommendationHTML = `<h3>Recommended Dates & Times (Predicted Duration: ${predictedDurations} minutes)</h3>`;
-  recommendations.forEach((dateTime) => {
-    const [date, time] = dateTime.split(' ');
-    recommendationHTML += `<p>Date: ${formatDate(date)}<br>Time: ${formatTime(time)}</p>`;
-  });
-  recommendationContainer.innerHTML = recommendationHTML;
-
-  // Update the dropdown options for available times
-  const timeDropdown = document.getElementById('time');
-  timeDropdown.innerHTML = ''; // Clear existing options
-  availableTimes.forEach((dateTime) => {
-    const [, time] = dateTime.split(' ');
-    timeDropdown.innerHTML += `<option value="${time}">${formatTime(time)}</option>`;
-  });
-}
-
-// Utility function to format the date
-function formatDate(dateStr) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(undefined, options);
-}
-
-// Utility function to format the time
-function formatTime(timeStr) {
-  const [hour, minute] = timeStr.split(':').map(Number);
-  const amPm = hour >= 12 ? 'PM' : 'AM';
-  const formattedHour = hour % 12 || 12;
-  return `${formattedHour}:${minute.toString().padStart(2, '0')} ${amPm}`;
-}
+  // Utility function to format the time
+  function formatTime(timeStr) {
+    if (!timeStr) return '';
+    const [hour, minute] = timeStr.split(':').map(Number);
+    const amPm = hour >= 12 ? 'PM' : 'AM';
+    const formattedHour = hour % 12 || 12;
+    return `${formattedHour}:${minute.toString().padStart(2, '0')} ${amPm}`;
+  }
+});
