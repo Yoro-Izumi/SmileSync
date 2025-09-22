@@ -11,7 +11,7 @@ $start_of_day = "$selected_date 09:00:00";
 $end_of_day = "$selected_date 17:00:00";
 $leeway = 30;
 $default_value = 30;
-$python_path = "C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe"; 
+$python_path = "C:/Users/yoroi/AppData/Local/Programs/Python/Python313/python.exe"; 
 
 if ($service_id < 0) {
     die(json_encode(["error" => "Invalid service_id provided."]));

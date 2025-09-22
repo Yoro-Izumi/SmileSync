@@ -5,6 +5,15 @@ session_start();
 // Include database connection
 include "../../client_global_files/connect_database.php";
 
+require_once $root_dir . '/vendor/autoload.php';
+
+// Load the .env file
+if (!file_exists($root_dir . '/.env')) {
+    die("Environment configuration file is missing!");
+}
+$dotenv = Dotenv\Dotenv::createImmutable($root_dir);
+$dotenv->load();
+
 $selectedServicesTest = [1, 2]; 
 $selected_date = $_SESSION['selected_date'] ?? "2024-12-04";
 $service_id = $_SESSION['service_id'] ?? $selectedServicesTest;
@@ -14,7 +23,7 @@ $end_of_day = "$selected_date 17:00:00";
 $leeway = 30;
 $default_value = 30;
 
-$python_path = "C:/Users/YORO/AppData/Local/Programs/Python/Python312/python.exe"; // Replace python pathway on deployment
+$python_path = $_ENV['PYTHON_PATH'];
 $durations = [];
 $reservations = [];
 

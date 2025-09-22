@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\xampp\\htdocs\\SmileSync\\",
+  "WorkspaceRootPath": "A:\\Applications\\xampp\\htdocs\\SmileSync\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\xampp\\htdocs\\SmileSync\\Admin\\Dashboard\\Dashboard.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\Applications\\xampp\\htdocs\\SmileSync\\Admin\\admin_global_files\\connect_database.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Admin\\admin_global_files\\connect_database.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|A:\\Applications\\xampp\\htdocs\\SmileSync\\Admin\\Dashboard\\Dashboard.php||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Admin\\Dashboard\\Dashboard.php||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
@@ -19,12 +23,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "connect_database.php",
+              "DocumentMoniker": "A:\\Applications\\xampp\\htdocs\\SmileSync\\Admin\\admin_global_files\\connect_database.php",
+              "RelativeDocumentMoniker": "Admin\\admin_global_files\\connect_database.php",
+              "ToolTip": "A:\\Applications\\xampp\\htdocs\\SmileSync\\Admin\\admin_global_files\\connect_database.php",
+              "RelativeToolTip": "Admin\\admin_global_files\\connect_database.php",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
+              "WhenOpened": "2025-08-18T05:28:44.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Dashboard.php",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\SmileSync\\Admin\\Dashboard\\Dashboard.php",
+              "DocumentMoniker": "A:\\Applications\\xampp\\htdocs\\SmileSync\\Admin\\Dashboard\\Dashboard.php",
               "RelativeDocumentMoniker": "Admin\\Dashboard\\Dashboard.php",
-              "ToolTip": "C:\\xampp\\htdocs\\SmileSync\\Admin\\Dashboard\\Dashboard.php",
+              "ToolTip": "A:\\Applications\\xampp\\htdocs\\SmileSync\\Admin\\Dashboard\\Dashboard.php",
               "RelativeToolTip": "Admin\\Dashboard\\Dashboard.php",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002338|",
               "WhenOpened": "2024-10-16T06:23:53.143Z",
               "EditorCaption": ""

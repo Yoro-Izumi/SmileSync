@@ -3,7 +3,7 @@
 //initialize servername username and password first for database connection
 
 //$root_dir = $root_dir = $_SERVER['DOCUMENT_ROOT'].'/SmileSync';
-$root_dir = (PHP_OS === 'WINNT') ? 'D:/xampp/htdocs/SmileSync' : '/var/www/html/SmileSync';
+$root_dir = (PHP_OS === 'WINNT') ? "{$_ENV['WINDOW_PATH']}" : "{$_ENV['DEPLOY_PATH']}";
 require_once $root_dir . '/vendor/autoload.php';
 
 // Load the .env file
