@@ -1,0 +1,35 @@
+.modify-alert {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: fadeIn 0.5s;
+}
+
+.modify-alert-icon {
+    margin-right: 10px;
+}
+
+.modify-alert-success { background-color: #4CAF50; } /* Green */
+.modify-alert-error { background-color: #F44336; } /* Red */
+.modify-alert-info { background-color: #2196F3; } /* Blue */
+.modify-alert-warning { background-color: #FF9800; } /* Orange */
+
+.modify-closebtn {
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideOut {
+    to { opacity: 0; transform: translateX(100%); }
+}

@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmileSync - New Appointment</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../client_global_files/js/jquery-3.6.0.min.js"></script>
+  <link href='css/form.css' rel='stylesheet'/>
 </head>
 <body>
   <header>
     <div class="topbar">
       <div class="logo"><img src="img/logo.png" alt="Logo">SmileSync</div>
-      <div class="return-link"><a href="https://smilesync.site/SmileSync/Client/LogIn-Page/Login-Page.php">Go to login</a></div>
+      <div class="return-link"><a href="../LogIn-Page/Login-Page.php">Go to login</a></div>
     </div>
   </header>
 
@@ -40,188 +41,163 @@
       <!-- Step 1: Personal Information -->
       <div class="form-section active">
         <div class="wrap-2rows">
-                <div class="input-wrap">
-                  <input
-                    type="text"
-                    maxlength="24"
-                    class="input-field"
-                    autocomplete="off"
-                    name="firstName"
-                    required
-                  />
-                  <label>First Name<indicator>*</indicator></label>
-                </div>
+          <div class="input-wrap">
+            <input
+              type="text"
+              maxlength="24"
+              class="input-field"
+              autocomplete="off"
+              name="firstName"
+              required
+            />
+            <label>First Name<indicator>*</indicator></label>
+          </div>
 
-                <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="1"
-                    maxlength="24"
-                    class="input-field"
-                    autocomplete="off"
-                    name="lastName"
-                    required
-                  />
-                  <label>Last Name<indicator>*</indicator></label>
-                </div>
-              </div>
+          <div class="input-wrap">
+            <input
+              type="text"
+              minlength="1"
+              maxlength="24"
+              class="input-field"
+              autocomplete="off"
+              name="lastName"
+              required
+            />
+            <label>Last Name<indicator>*</indicator></label>
+          </div>
+        </div>
 
-              <div class="wrap-3rows">
+        <div class="wrap-3rows">
+          <div class="input-wrap">
+            <input
+              type="text"
+              minlength="1"
+              maxlength="24"
+              class="input-field"
+              autocomplete="off"
+              name="middleName"
+            />
+            <label>Middle Name</label>
+          </div>
 
-              <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="1"
-                    maxlength="24"
-                    class="input-field"
-                    autocomplete="off"
-                    name="middleName"
-                  />
-                  <label>Middle Name</label>
-              </div>
+          <div class="input-wrap">
+            <input
+              type="text"
+              minlength="1"
+              maxlength="5"
+              class="input-field"
+              name="suffix"
+              autocomplete="off"
+            />
+            <label>Suffix</label>
+          </div>
 
-              <div class="input-wrap">
-                <input
-                  type="text"
-                  minlength="1"
-                  maxlength="5"
-                  class="input-field"
-                  name="suffix"
-                  autocomplete="off"
-                />
-                <label>Suffix</label>
-              </div>
+          <div class="input-wrap">
+            <input
+              type="date"
+              id="birthdate-picker"
+              class="input-field"
+              name="birthday"
+              autocomplete="off"
+              required
+            />
+            <label>Select Birthdate<indicator>*</indicator></label>
+          </div>
+        </div>
 
-              <div class="input-wrap">
-              <input
-                  type="date"
-                  id="birthdate-picker"
-                  class="input-field"
-                  name="birthday"
-                  autocomplete="off"
-                  required
-                />
-                <label>Select Birthdate<indicator>*</indicator></label>
-              </div>
+        <div class="input-wrap">
+          <select class="input-field" id="sex" name="sex" required>
+            <option value="" disabled selected>-- Select --</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Prefer not to say</option>
+          </select>
+          <label>Sex<indicator>*</indicator></label>
+        </div>
 
-            </div>
+        <div class="wrap-3rows">
+          <div class="input-wrap">
+            <select class="input-field" name="province" id="province" required>
+              <option value="" selected disabled>Select Province</option>
+              <!-- Options will be populated by JavaScript -->
+            </select>
+            <label>Province<indicator>*</indicator></label>
+          </div>
 
-                <div class="input-wrap">
-                <select class="input-field" id="sex" name="sex">
-                  <option value="" disabled selected>-- Select --</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Prefer not to say</option>
-              </select>
-                </div>
+          <div class="input-wrap">
+            <select class="input-field" name="city" id="city" disabled required>
+              <option value="" selected disabled>Select City/Municipality</option>
+              <!-- Options will be populated by JavaScript -->
+            </select>
+            <label>City/Municipality<indicator>*</indicator></label>
+          </div>
 
-              <div class="wrap-3rows">
-              <div class="input-wrap">
-    <input
-        type="text"
-        minlength="1"
-        maxlength="100"
-        class="input-field"
-        name="province"
-        autocomplete="off"
-        required
-    />
-    <label>Province<indicator>*</indicator></label>
-</div>
+          <div class="input-wrap">
+            <select class="input-field" name="barangay" id="barangay" disabled required>
+              <option value="" selected disabled>Select Barangay</option>
+              <!-- Options will be populated by JavaScript -->
+            </select>
+            <label>Barangay<indicator>*</indicator></label>
+          </div>
+        </div>
 
-<div class="input-wrap">
-    <input
-        type="text"
-        minlength="1"
-        maxlength="100"
-        class="input-field"
-        name="city"
-        autocomplete="off"
-        required
-    />
-    <label>City<indicator>*</indicator></label>
-</div>
-
-<div class="input-wrap">
-    <input
-        type="text"
-        minlength="1"
-        maxlength="100"
-        class="input-field"
-        name="barangay"
-        autocomplete="off"
-        required
-    />
-    <label>Barangay<indicator>*</indicator></label>
-</div>
-
-              </div>
-   <div class="input-wrap">
-    <input
-        type="text"
-        minlength="1"
-        maxlength="200"
-        class="input-field"
-        name="street_address"
-        autocomplete="off"
-        required
-    />
-    <label>Street Address<indicator>*</indicator></label>
-</div>
+        <div class="input-wrap">
+          <input
+            type="text"
+            minlength="1"
+            maxlength="200"
+            class="input-field"
+            name="street_address"
+            autocomplete="off"
+            required
+          />
+          <label>Street Address<indicator>*</indicator></label>
+        </div>
 
 
-            <div class="input-wrap">
-                  <input
-                    type="text"
-                    minlength="11"
-                    maxlength="13"
-                    class="input-field"
-                    name="phoneNumber"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Phone Number<indicator>*</indicator></label>
-                </div>
-                <div class="valid-feedback">
-                  <!-- Looks good! -->
-                </div>
+        <div class="input-wrap">
+          <input
+            type="text"
+            minlength="11"
+            maxlength="13"
+            class="input-field"
+            name="phoneNumber"
+            id="phoneNumberInput"
+            value="63"
+            oninput="validatePhoneNumberInput('phoneNumberInput')"
+            autocomplete="off"
+            required
+          />
+          <label>Phone Number<indicator>*</indicator></label>
+        </div>
 
-                <div class="question-form">
+        <div class="question-form">
           <div class="titles">
             <span>Health Form</span>
           </div>
           <div class="question-row">
-  <label for="questionInput">Have you visited any infected areas within the last 30 days prior to your scheduled appointments?</label>
-  <div class="answer-options">
-    <input type="radio" id="visited-yes" name="visited" value="yes" onclick="toggleAddressField()">
-    <label for="visited-yes">Yes</label>
-    <input type="radio" id="visited-no" name="visited" value="no" onclick="toggleAddressField()">
-    <label for="visited-no">No</label>
-  </div>
-</div>
+            <label for="questionInput">Have you visited any infected areas within the last 30 days prior to your scheduled appointments?</label>
+            <div class="answer-options">
+              <input type="radio" id="visited-yes" name="visited" value="yes" onclick="toggleAddressField()">
+              <label for="visited-yes">Yes</label>
+              <input type="radio" id="visited-no" name="visited" value="no" onclick="toggleAddressField()">
+              <label for="visited-no">No</label>
+            </div>
+          </div>
 
-<div id="address-field" style="display: none;">
-  <div class="input-wrap">
-    <input type="text" minlength="10" maxlength="50" class="input-field" id="infectedAddress" name="infectedAddress" autocomplete="off" />
-    <label for="infectedAddress">Please enter the address of the infected area:</label>
-  </div>
-</div>
-
-<script>
-  function toggleAddressField() {
-    const addressField = document.getElementById("address-field");
-    const isYesSelected = document.getElementById("visited-yes").checked;
-    addressField.style.display = isYesSelected ? "block" : "none";
-  }
-</script>
-
+          <div id="address-field" style="display: none;">
+            <div class="input-wrap">
+              <input type="text" minlength="10" maxlength="50" class="input-field" id="infectedAddress" name="infectedAddress" autocomplete="off" />
+              <label for="infectedAddress">Please enter the address of the infected area:</label>
+            </div>
+          </div>
 
           <div class="question-row">
             <label for="questionInput">Have you attended a mass gathering reunion with relatives/friends or parties within a month prior to visit?</label>
             <div class="answer-options">
-              <input type="radio" id="attended-yes" name="gathering" value="yes">
+              <input type="radio" id="attended-yes" name="gathering" value="yes" required>
               <label for="attended-yes">Yes</label>
-              <input type="radio" id="attended-no" name="gathering" value="no">
+              <input type="radio" id="attended-no" name="gathering" value="no" required>
               <label for="attended-no">No</label>
             </div>
           </div>
@@ -229,9 +205,9 @@
           <div class="question-row">
             <label for="questionInput">Have you been in close contact with a COVID-19 positive patient?</label>
             <div class="answer-options">
-              <input type="radio" id="contact-yes" name="contact" value="yes">
+              <input type="radio" id="contact-yes" name="contact" value="yes" required>
               <label for="contact-yes">Yes</label>
-              <input type="radio" id="contact-no" name="contact" value="no">
+              <input type="radio" id="contact-no" name="contact" value="no" required>
               <label for="contact-no">No</label>
             </div>
           </div>
@@ -239,9 +215,9 @@
           <div class="question-row">
             <label for="questionInput">Have you been in close contact with a person under monitor (PUI)?</label>
             <div class="answer-options">
-              <input type="radio" id="pui-yes" name="pui" value="yes">
+              <input type="radio" id="pui-yes" name="pui" value="yes" required>
               <label for="pui-yes">Yes</label>
-              <input type="radio" id="pui-no" name="pui" value="no">
+              <input type="radio" id="pui-no" name="pui" value="no" required>
               <label for="pui-no">No</label>
             </div>
           </div>
@@ -249,9 +225,9 @@
           <div class="question-row">
             <label for="questionInput">Have you been in close contact with a person under monitoring (PUM)?</label>
             <div class="answer-options">
-              <input type="radio" id="pum-yes" name="pum" value="yes">
+              <input type="radio" id="pum-yes" name="pum" value="yes" required>
               <label for="pum-yes">Yes</label>
-              <input type="radio" id="pum-no" name="pum" value="no">
+              <input type="radio" id="pum-no" name="pum" value="no" required>
               <label for="pum-no">No</label>
             </div>
           </div>
@@ -259,9 +235,9 @@
           <div class="question-row">
             <label for="questionInput">Have you had any flu-like respiratory symptoms in the last 14 days such as: fever, cough, runny nose, sore throat, headache, short of breath, chills, diarrhea, loss of taste, body ache, loss of smell?</label>
             <div class="answer-options">
-              <input type="radio" id="symptoms-yes" name="symptoms" value="yes">
+              <input type="radio" id="symptoms-yes" name="symptoms" value="yes" required>
               <label for="symptoms-yes">Yes</label>
-              <input type="radio" id="symptoms-no" name="symptoms" value="no">
+              <input type="radio" id="symptoms-no" name="symptoms" value="no" required>
               <label for="symptoms-no">No</label>
             </div>
           </div>
@@ -269,9 +245,9 @@
           <div class="question-row">
             <label for="questionInput">Is there any medical health problem?</label>
             <div class="answer-options">
-              <input type="radio" id="medical-yes" name="medical" value="yes">
+              <input type="radio" id="medical-yes" name="medical" value="yes" required>
               <label for="medical-yes">Yes</label>
-              <input type="radio" id="medical-no" name="medical" value="no">
+              <input type="radio" id="medical-no" name="medical" value="no" required>
               <label for="medical-no">No</label>
             </div>
           </div>
@@ -279,93 +255,85 @@
           <div class="question-row">
             <label for="questionInput">Are you currently experiencing a DENTAL EMERGENCY?</label>
             <div class="answer-options">
-              <input type="radio" id="emergency-yes" name="emergency" value="yes">
+              <input type="radio" id="emergency-yes" name="emergency" value="yes" required>
               <label for="emergency-yes">Yes</label>
-              <input type="radio" id="emergency-no" name="emergency" value="no">
+              <input type="radio" id="emergency-no" name="emergency" value="no" required>
               <label for="emergency-no">No</label>
             </div>
           </div>
 
           <div class="question-row">
-  <label for="questionInput">Will you be using an HMO Card?</label>
-  <div class="answer-options">
-    <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleHMOField()">
-    <label for="hmo-yes">Yes</label>
-    <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleHMOField()">
-    <label for="hmo-no">No</label>
-  </div>
-</div>
+            <label for="questionInput">Will you be using an HMO Card?</label>
+            <div class="answer-options">
+              <input type="radio" id="hmo-yes" name="hmo" value="yes" onclick="toggleHMOField()" required>
+              <label for="hmo-yes">Yes</label>
+              <input type="radio" id="hmo-no" name="hmo" value="no" onclick="toggleHMOField()" required>
+              <label for="hmo-no">No</label>
+            </div>
+          </div>
 
-<div id="hmo-field" style="display: none;">
-  <div class="input-wrap">
-    <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
-    <label for="hmoID">Please provide the HMO ID No.</label>
-  </div>
-</div>
-
-<script>
-  function toggleHMOField() {
-    const hmoField = document.getElementById("hmo-field");
-    const isYesSelected = document.getElementById("hmo-yes").checked;
-    hmoField.style.display = isYesSelected ? "block" : "none";
-  }
-</script>
-
-
-           
+          <div id="hmo-field" style="display: none;">
+            <div class="input-wrap">
+              <input type="text" minlength="10" maxlength="50" class="input-field" id="hmoID" name="hmoID" autocomplete="off" />
+              <label for="hmoID">Please provide the HMO ID No.</label>
+            </div>
+          </div>
         </div>
-
       </div>
+
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
-      <h3>Emergency Contacts</h3>
+        <h3>Emergency Contacts</h3>
         <div class="input-wrap">
           <input
-              type="text"
-              minlength="1"
-              maxlength="100"
-              class="input-field"
-              name="emergencyContact"
-              autocomplete="off"
-              required
-            />
-        <label>In Case of Emergency<indicator>*</indicator></label>
-      </div>
-
-      <div class="input-wrap">
-          <input
-              type="text"
-              minlength="11"
-              maxlength="11"
-              class="input-field"
-              name="emergencyContactNumber"
-              autocomplete="off"
-              required
-            />
-        <label>Phone Number<indicator>*</indicator></label>
-      </div>
-
-      <div class="input-wrap">
-          <input
-              type="text"
-              minlength="1"
-              maxlength="100"
-              class="input-field"
-              name="emergencyContactRelationship"
-              autocomplete="off"
-              required
-            />
-        <label>Relationship<indicator>*</indicator></label>
-      </div>
-
-
-        <h3>Appointment Detail</h3>
-        <div class="input-wrap">
-          <select class="input-field" id="services" name="services">
-            <option value="" disabled selected>Select a Service</option>
-            <?php include "service_list.php";?>
-          </select>
+            type="text"
+            minlength="1"
+            maxlength="100"
+            class="input-field"
+            name="emergencyContact"
+            autocomplete="off"
+            required
+          />
+          <label>In Case of Emergency<indicator>*</indicator></label>
         </div>
+
+        <div class="input-wrap">
+          <input
+            type="text"
+            minlength="11"
+            maxlength="11"
+            class="input-field"
+            name="emergencyContactNumber"
+            id="emergencyContactNumber"
+            autocomplete="off"
+            value="63"
+            oninput="validatePhoneNumberInput('emergencyContactNumber')"
+            required
+          />
+          <label>Phone Number<indicator>*</indicator></label>
+        </div>
+
+        <div class="input-wrap">
+          <input
+            type="text"
+            minlength="1"
+            maxlength="100"
+            class="input-field"
+            name="emergencyContactRelationship"
+            autocomplete="off"
+            required
+          />
+          <label>Relationship<indicator>*</indicator></label>
+        </div>
+
+        <!--Services section-->
+        <h3>Appointment Detail</h3>
+        <div class="dropdown-checkbox">
+          <div class="dropdown-toggle">Select Services <span class="arrow">▼</span></div>
+
+        </div>
+
+        <!--Appointments section-->
         <div class="appointment-container">
           <!-- Calendar Section -->
           <div class="calendar-container">
@@ -378,7 +346,7 @@
               </span>
             </div>
 
-            <div class="calendar-month" style="text-align: center;">
+            <div class="dropdown-checkbox" style="text-align: center;">
               <select id="month" name="month">
                 <option value="01">January</option>
                 <option value="02">February</option>
@@ -431,107 +399,107 @@
                 </tr>
               </tbody>
             </table>
+
+            <input type="hidden" id="cal-day" name="cal-day">
           </div>
-          <input type="hidden" id="cal-day" name="cal-day">
+          
           <!-- Recommendation Section -->
           <div class="recommendation-container">
             <h3>Recommended Dates & Times</h3>
           </div>
-          
-      </div>
+        </div>
 
         <div class="select-time-container">
-             <label for="time">Select a Time:</label>
-              <div class="time-selection"> 
-                <select id="time" name="time">
-                </select>
-          </div>         
+          <label for="time">Select a Time:</label>
+          <div class="time-selection"> 
+            <select id="time" name="time" required>
+              <option value="" disabled selected>Select a time</option>
+            </select>
+          </div>
         </div>
- 
       </div>
+
       <!-- Step 3: Account -->
       <div class="form-section">
-        <!-- Add account setup fields here -->
         <div class="input-wrap">
-                  <input
-                    type="email"
-                    minlength="1"
-                    maxlength="24"
-                    class="input-field"
-                    name="email"
-                    autocomplete="off"
-                    required
-                  />
-                  <label>Email Address<indicator>*</indicator></label>
-                </div>
-         <div class="input-wrap">
-                  <input
-                    type="password"
-                    minlength="1"
-                    maxlength="24"
-                    class="input-field"
-                    name="password"
-                    id="password"
-                    autocomplete="off"
-                    required
-                    oninput="checkPasswordStrength(this)"
-                  />
-                  <label>Password<indicator>*</indicator></label>
-                
-                </div>
-                <div id="password-strength-indicator"></div>
-                  <div class="password-requirements" id="password-requirements" style="display: none;">
-                    <p>Password must contain:</p>
-                    <ul>
-                      <li id="uppercase" class="invalid">1 uppercase letter</li>
-                      <li id="number" class="invalid">1 number</li>
-                      <li id="special" class="invalid">1 special character</li>
-                      <li id="length" class="invalid">At least 8 characters</li>
-                    </ul>
-                  </div>
-                  <!--div class="invalid-feedback">Password strength is weak. Please enter a stronger password.</div-->
+          <input
+            type="email"
+            minlength="1"
+            maxlength="24"
+            class="input-field"
+            name="email"
+            autocomplete="off"
+            required
+          />
+          <label>Email Address<indicator>*</indicator></label>
+        </div>
+        
+        <div class="input-wrap">
+          <input
+            type="password"
+            minlength="1"
+            maxlength="24"
+            class="input-field"
+            name="password"
+            id="password"
+            autocomplete="off"
+            required
+            oninput="checkPasswordStrength(this)"
+          />
+          <label>Password<indicator>*</indicator></label>
+        </div>
+        
+        <div id="password-strength-indicator"></div>
+        <div class="password-requirements" id="password-requirements" style="display: none;">
+          <p>Password must contain:</p>
+          <ul>
+            <li id="uppercase" class="invalid">1 uppercase letter</li>
+            <li id="number" class="invalid">1 number</li>
+            <li id="special" class="invalid">1 special character</li>
+            <li id="length" class="invalid">At least 8 characters</li>
+          </ul>
+        </div>
 
-
-                <div class="input-wrap">
-                <input type="password" 
-                  class="input-field"
-                  name="confirmPassword"
-                  id="confirmPassword"
-                  autocomplete="off"
-                required>
-              <label>Confirm Password<indicator>*</indicator></label>
-          
-              </div>
+        <div class="input-wrap">
+          <input 
+            type="password" 
+            class="input-field"
+            name="confirmPassword"
+            id="confirmPassword"
+            autocomplete="off"
+            required
+          />
+          <label>Confirm Password<indicator>*</indicator></label>
+        </div>
       </div>
 
       <!-- Step 4: Confirmation -->
       <div class="form-section">
         <div class="validation-section">
           <h3>Personal Information</h3>
-          <div><span>Patient Name:</span></div>
-          <div><span>Age:</span> xx</div>
-          <div><span>Sex:</span></div>
-          <div><span>Address:</span> </div>
-          <div><span>Phone Number:</span></div>
-          <div><span>Birth Date:</span></div>
-    </div>
-      <div class="validation-section">
+          <div><span>Patient Name:</span> <span id="confirm-name"></span></div>
+          <div><span>Age:</span> <span id="confirm-age"></span></div>
+          <div><span>Sex:</span> <span id="confirm-sex"></span></div>
+          <div><span>Address:</span> <span id="confirm-address"></span></div>
+          <div><span>Phone Number:</span> <span id="confirm-phone"></span></div>
+          <div><span>Birth Date:</span> <span id="confirm-birthday"></span></div>
+        </div>
+        
+        <div class="validation-section">
           <h3>Emergency Contact</h3>
-          <div><span>In case of emergency, please contact:</span></div>
-          <div><span>Phone Number:</span></div>
-          <div><span>Relationship:</span></div>
-    </div>
-    <div class="validation-section">
+          <div><span>In case of emergency, please contact:</span> <span id="confirm-emergency-contact"></span></div>
+          <div><span>Phone Number:</span> <span id="confirm-emergency-phone"></span></div>
+          <div><span>Relationship:</span> <span id="confirm-emergency-relationship"></span></div>
+        </div>
+        
+        <div class="validation-section">
           <h3>Appointment Details</h3>
-          <div><span>Appointment Date:</span></div>
-          <div><span>Procedure/s:</span></div>
-          <div><span>Dentist:</span> Dr. Oli</div>
-          <div><span>Amount Charge:</span></div>
-    </div>
-
-
+          <div><span>Appointment Date:</span> <span id="confirm-appointment-date"></span></div>
+          <div><span>Procedure/s:</span> <span id="confirm-services"></span></div>
+          <div><span>Dentist:</span> <span id="confirm-dentist"></span></div>
+          <div><span>Amount Charge:</span> <span id="confirm-amount"></span></div>
+        </div>
       </div>
-
 
       <!-- Form Navigation -->
       <div class="form-navigation">
@@ -539,13 +507,17 @@
         <button type="button" class="next-btn">Next</button> 
         <button type="submit" class="next-btn" id="submitButton" name="submitButton">Submit</button>
       </div>
-   </form>
+    </form>
   </div>
 
   <footer>
     <p>&copy; 2024 iMee Dental Clinic. All rights reserved.</p>
   </footer>
 
-<script src="js/appointment_form.js"></script>
+  <script src="js/modify_alert.js"></script>
+  <script src="js/validations.js"></script> 
+  <script src="js/form.js"></script>  
+  <script src="js/address.js"></script>
+
 </body>
 </html>

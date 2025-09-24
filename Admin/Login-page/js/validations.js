@@ -1,79 +1,57 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  // Function to handle form validation
-  function validateForm(form) {
-    let isValid = true;
+  // ---------------- Bootstrap validation ----------------
+  (() => {
+    'use strict';
 
-(() => {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
+    const forms = document.querySelectorAll('.needs-validation');
     Array.from(forms).forEach(form => {
       form.addEventListener('submit', event => {
         if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+          event.preventDefault();
+          event.stopPropagation();
         }
-  
-        form.classList.add('was-validated')
-      }, false)
-    })
-  })()
-  
-  
-  //   For trimming whitespaces
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+
+
+  // ---------------- Helper Functions ----------------
+
+  // Trim whitespace on input
   function handleInput(event) {
-    const inputValue = event.target.value;
-    event.target.value = inputValue.trim(); // Remove leading and trailing whitespaces
+    event.target.value = event.target.value.trim();
   }
-  
-  
-  // For first names that it wont accept any numeric and special characters
+
+  // Allow only letters and spaces
   function validateName(event) {
-    const regex = /^[A-Za-z\s]*$/; // Allow only alphabetic characters and spaces
-    if (!regex.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^A-Za-z\s]/g, '');
-    }
+    event.target.value = event.target.value.replace(/[^A-Za-z\s]/g, '');
   }
-  
-  // For username
+
+  // Allow letters, numbers, and ._%+-
   function validateUsername(event) {
-    const regex = /^[a-zA-Z0-9._%+-]*$/; // Allow only alphabetic characters and spaces
-    if (!regex.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^a-zA-Z0-9._%+-]/g, '');
-    }
+    event.target.value = event.target.value.replace(/[^a-zA-Z0-9._%+-]/g, '');
   }
-  
-  
-  //For Contact Number
+
+  // Contact number (must be 11 digits and start with 09)
   function validateContactNumber(event) {
     const input = event.target;
-    const value = input.value;
-  
-    // Allow only numeric characters
-    input.value = value.replace(/[^0-9]/g, '');
-  
-    // Check if the length is exactly 11 and starts with '09'
+    input.value = input.value.replace(/[^0-9]/g, '');
     if (input.value.length === 11 && input.value.startsWith('09')) {
-      input.setCustomValidity(''); // Valid input
+      input.setCustomValidity('');
     } else {
       input.setCustomValidity('Please provide a valid contact number (11 digits, starts with 09).');
     }
   }
-  
-  //For Email 
+
+  // Email validation
   function validateEmail(event) {
-    var emailInput = event.target.value;
-  
-    event.target.value = emailInput.replace(/\s+/g, '');
-  
-    emailInput = event.target.value.trim();
-  
-    var isValid = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput);
-  
+    let emailInput = event.target.value.replace(/\s+/g, '').trim();
+    event.target.value = emailInput;
+
+    const isValid = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(emailInput);
+
     if (!isValid) {
       document.getElementById("emailError").style.display = "block";
       event.target.setCustomValidity("Please enter a valid email address.");
@@ -82,32 +60,16 @@ document.addEventListener('DOMContentLoaded', function () {
       event.target.setCustomValidity("");
     }
   }
-  
-  
-  document.getElementById("email").addEventListener("input", validateEmail);
-  document.getElementById("emailRegister").addEventListener("input", validateEmail);
-  
-  
-    //   Updated script for password toggle
-    document.addEventListener("DOMContentLoaded", function() {
-      const togglePassword1 = document.querySelector("#password-toggle-1");
-      const passwordInput1 = document.querySelector("#password");
-      const eyeIcon1 = togglePassword1.querySelector("i");
-    
-      togglePassword1.addEventListener("click", function() {
-        const type =
-          passwordInput1.getAttribute("type") === "password" ?
-          "text" :
-          "password";
-        passwordInput1.setAttribute("type", type);
-    
-        // Toggle eye icon classes
-        eyeIcon1.classList.toggle("fa-eye-slash");
-        eyeIcon1.classList.toggle("fa-eye");
-      });
 
-    
-    // Input fields and their validation rules
+  function isValidEmail(email) {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(email);
+  }
+
+  // ---------------- Form Validation ----------------
+  function validateForm(form) {
+    let isValid = true;
+
     const fields = [
       { name: "firstName", label: "First Name", min: 1, max: 24, required: true },
       { name: "lastName", label: "Last Name", min: 1, max: 24, required: true },
@@ -120,34 +82,27 @@ document.addEventListener('DOMContentLoaded', function () {
       { name: "confirmPasswordRegister", label: "Confirm Password", required: true }
     ];
 
-    // Clear previous error messages
-    const errorMessages = document.querySelectorAll('.error-message');
-    errorMessages.forEach(function (error) {
+    // Clear old errors
+    document.querySelectorAll('.error-message').forEach(error => {
       error.textContent = '';
     });
 
-    // Loop through each field and validate
-    fields.forEach(function (field) {
+    fields.forEach(field => {
       const input = form.querySelector(`[name=${field.name}]`);
       const error = document.getElementById(`${field.name}Error`);
       const value = input.value.trim();
 
-      // Check if value is empty and required
       if (field.required && !value) {
         error.textContent = `${field.label} is required.`;
         isValid = false;
-      }
-      // Check input length limits if specified
-      else if (field.min && value.length < field.min) {
+      } else if (field.min && value.length < field.min) {
         error.textContent = `${field.label} must be at least ${field.min} characters long.`;
         isValid = false;
-      } 
-      else if (field.max && value.length > field.max) {
+      } else if (field.max && value.length > field.max) {
         error.textContent = `${field.label} cannot exceed ${field.max} characters.`;
         isValid = false;
       }
 
-      // Additional checks for email and password fields
       if (field.name === "emailRegister" && value && !isValidEmail(value)) {
         error.textContent = "Please enter a valid email address.";
         isValid = false;
@@ -162,45 +117,52 @@ document.addEventListener('DOMContentLoaded', function () {
     return isValid;
   }
 
-  // Function to check if email is valid
-  function isValidEmail(email) {
-    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return re.test(email);
+  // ---------------- Password Toggle ----------------
+  const togglePassword1 = document.querySelector("#password-toggle-1");
+  const passwordInput1 = document.querySelector("#password");
+  if (togglePassword1 && passwordInput1) {
+    const eyeIcon1 = togglePassword1.querySelector("i");
+    togglePassword1.addEventListener("click", function () {
+      const type = passwordInput1.type === "password" ? "text" : "password";
+      passwordInput1.type = type;
+      eyeIcon1.classList.toggle("fa-eye-slash");
+      eyeIcon1.classList.toggle("fa-eye");
+    });
   }
 
-  // Handle form submission for registration
+  // ---------------- Registration Form ----------------
   const registerForm = document.getElementById('register_form');
-  registerForm.addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent default form submission
+  if (registerForm) {
+    registerForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      if (validateForm(registerForm)) {
+        registerForm.submit();
+      }
+    });
+  }
 
-    if (validateForm(registerForm)) {
-      // If the form is valid, submit it (you can use AJAX or simple form submit)
-      registerForm.submit();
-    }
-  });
-
-  // Handle the show/hide password functionality for login
+  // ---------------- Show/Hide Password for Signup ----------------
   const showPasswordButton = document.getElementById('signup-show-password');
   const passwordField = document.getElementById('signup-password');
-  
-  if (showPasswordButton) {
+  if (showPasswordButton && passwordField) {
     showPasswordButton.addEventListener('click', function () {
-      // Toggle password visibility
       const type = passwordField.type === 'password' ? 'text' : 'password';
       passwordField.type = type;
       showPasswordButton.classList.toggle('fa-eye-slash');
     });
   }
 
-  // Handle the form switch between sign up and sign in
+  // ---------------- Toggle Forms ----------------
   const toggleLinks = document.querySelectorAll('.toggle');
-  toggleLinks.forEach(function (link) {
+  toggleLinks.forEach(link => {
     link.addEventListener('click', function () {
-      const signUpForm = document.querySelector('.sign-up-form');
-      const signInForm = document.querySelector('.sign-in-form');
-      signUpForm.classList.toggle('active');
-      signInForm.classList.toggle('active');
+      document.querySelector('.sign-up-form').classList.toggle('active');
+      document.querySelector('.sign-in-form').classList.toggle('active');
     });
   });
+
+  // ---------------- Attach input listeners ----------------
+  document.getElementById("email")?.addEventListener("input", validateEmail);
+  document.getElementById("emailRegister")?.addEventListener("input", validateEmail);
 
 });

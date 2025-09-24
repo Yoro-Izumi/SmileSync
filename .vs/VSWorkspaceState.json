@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Admin",
-    "\\Admin\\Dashboard"
+    "\\Admin\\admin_global_files",
+    "\\Admin\\Dashboard",
+    "\\Client",
+    "\\Client\\Register"
   ],
-  "SelectedNode": "\\Admin\\Dashboard\\Dashboard.php",
+  "SelectedNode": "\\Client\\Register\\modal.php",
   "PreviewInSolutionExplorer": false
 }

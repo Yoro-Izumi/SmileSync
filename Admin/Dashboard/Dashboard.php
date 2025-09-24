@@ -126,7 +126,7 @@ if (isset($_SESSION['userAdminID']) && !empty($_SESSION['csrf_token'])) {
     <script>
     function redirectToUpcoming() {
         // Redirect to page2.html with a query parameter to show only "Upcoming" rows
-        window.location.href = 'http://localhost/SmileSync/Admin/Appointment/Appointment-page.php?status=upcoming';
+        window.location.href = '../Appointment/Appointment-page.php?status=upcoming';
     }
     </script>
 

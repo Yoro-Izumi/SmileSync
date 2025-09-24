@@ -7,9 +7,11 @@ mysqli_stmt_execute($servicePrepare);
 $arrayService = mysqli_stmt_get_result($servicePrepare);
 
 foreach($arrayService as $services){
-$service_id = $services['service_id'] ?? " ";
-$service_name = $services['service_name'] ?? " ";
-?> 
-    <option value="<?php echo $service_id;?>"><?php echo $service_name;?></option>
+    $service_id = $services['service_id'] ?? " ";
+    $service_name = $services['service_name'] ?? " ";
 
-<?php }?>
+    echo '<label>';
+    echo '<input type="checkbox" name="service[]" value="' . $service_id . '"> ' . $service_name;
+    echo '</label><br>';
+
+}?>

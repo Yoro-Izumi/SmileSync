@@ -17,14 +17,18 @@ include "../client_global_files/input_sanitizing.php";
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <!--Modified alert CSS-->
+    <link rel="stylesheet" href="css/modify_alert.css" />
   </head>
 <body>
+<div id="alertContainer"></div>
 <?php include "loader.php"; ?>
 <?php include "register-form.php"; ?>
-  
-<script src="js/form.js"></script>
+
+<!--===== MAIN JS =====-->
 <script src="js/app.js"></script>
 <script src="js/notif.js"></script>
+<script src="js/appointment_form.js"></script>
+
 </body>
 </html>

@@ -151,12 +151,12 @@
     
       <!-- Step 2: Appointment Details -->
       <div class="form-section">
-        <div class="input-wrap">
-  <select class="input-field" id="services" name="services">
-    <option value="" disabled selected>Select a Service</option>
-    <?php include "service_list.php";?>
-  </select>
-</div>
+      <div class="dropdown-checkbox">
+          <button class="dropdown-toggle">Select Services <span class="arrow">▼</span></button>
+          <div class="dropdown-content">
+            <?php include "service_list.php"; ?>
+          </div>
+    </div>  
 
         <div class="appointment-container">
           <!-- Calendar Section -->
@@ -239,61 +239,33 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Multi-step form navigation
   const formSections = document.querySelectorAll('.form-section');
-const nextButton = document.querySelector('.next-btn');
-const prevButton = document.querySelector('.prev-btn');
-const steps = document.querySelectorAll('.steps .step');
-const submitButton = document.getElementById('submitButton');
-let currentStep = 0;
+  const nextButton = document.querySelector('.next-btn');
+  const prevButton = document.querySelector('.prev-btn');
+  const steps = document.querySelectorAll('.steps .step');
+  const submitButton = document.getElementById('submitButton');
+  let currentStep = 0;
 
-submitButton.style.display = 'none';
+  submitButton.style.display = 'none';
 
-nextButton.addEventListener('click', (e) => {
-  // Prevent form submission on intermediate steps
-  if (currentStep < formSections.length - 1) {
-    //e.preventDefault();
-    
-    formSections[currentStep].classList.remove('active');
-    steps[currentStep].classList.remove('active');
-    currentStep++;
-    formSections[currentStep].classList.add('active');
-    steps[currentStep].classList.add('active');
-    prevButton.style.display = 'block';
-    submitButton.style.display = 'none';
+  nextButton.addEventListener('click', (e) => {
+    if (currentStep < formSections.length - 1) {
+      formSections[currentStep].classList.remove('active');
+      steps[currentStep].classList.remove('active');
+      currentStep++;
+      formSections[currentStep].classList.add('active');
+      steps[currentStep].classList.add('active');
+      prevButton.style.display = 'block';
+      submitButton.style.display = 'none';
 
-    // Update the button for the final step
-    if (currentStep === formSections.length - 1) {
-      //nextButton.textContent = 'Submit';
-      //nextButton.id = 'Submit';
-      //nextButton.name = 'Submit';
-      //nextButton.type = 'submit';
-      nextButton.style.display = 'none';
-      submitButton.style.display = 'block';
-      
+      if (currentStep === formSections.length - 1) {
+        nextButton.style.display = 'none';
+        submitButton.style.display = 'block';
+      } else {
+        nextButton.textContent = 'Next';
+        nextButton.type = 'button';
+      }
     }
-    else {
-      nextButton.textContent = 'Next';
-      nextButton.type = 'button'; // Reset type to button for non-final steps
-    }
-  }
-});
-
-prevButton.addEventListener('click', () => {
-  if (currentStep > 0) {
-    formSections[currentStep].classList.remove('active');
-    steps[currentStep].classList.remove('active');
-    currentStep--;
-    formSections[currentStep].classList.add('active');
-    steps[currentStep].classList.add('active');
-
-    if (currentStep === 0) {
-      prevButton.style.display = 'none';
-    }
-
-    nextButton.textContent = 'Next';
-    nextButton.type = 'button'; // Reset type to button for non-final steps
-  }
-});
-
+  });
 
   prevButton.addEventListener('click', () => {
     if (currentStep > 0) {
@@ -302,76 +274,65 @@ prevButton.addEventListener('click', () => {
       currentStep--;
       formSections[currentStep].classList.add('active');
       steps[currentStep].classList.add('active');
+
       if (currentStep === 0) {
         prevButton.style.display = 'none';
       }
+
+      nextButton.textContent = 'Next';
+      nextButton.type = 'button';
     }
-    nextButton.textContent = 'Next';
   });
 
   // Calendar logic
   const recommendedDates = {
     '2024-8-3': true,
     '2024-8-14': true,
-    // Add more dates here as needed
   };
 
   const unavailableDates = {
     '2024-8-7': true,
     '2024-8-20': true,
-    // Add more dates here as needed
   };
 
   const currentDate = new Date();
-  let currentMonth = currentDate.getMonth(); // 0-11
+  let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
 
   const monthSelect = document.getElementById('month');
   const calendarTableBody = document.querySelector('.calendar-table tbody');
-  const calDayInput = document.getElementById('cal-day'); // Input field to update
+  const calDayInput = document.getElementById('cal-day');
+  let isLoading = false;
 
-  let isLoading = false; // Flag to track the loading state
-
-  // Function to generate the calendar
   function generateCalendar(month, year) {
-    // Clear the calendar table
     calendarTableBody.innerHTML = '';
 
-    // Days in the selected month
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    // First day of the month (0-6, Sunday-Saturday)
     const firstDayOfMonth = new Date(year, month, 1).getDay();
-
     let dayCounter = 1;
     let week = [];
 
-    // Fill empty cells for the first week
     for (let i = 0; i < firstDayOfMonth; i++) {
       week.push('');
     }
 
-    // Fill the calendar with days
     while (dayCounter <= daysInMonth) {
       const dateKey = `${year}-${month + 1}-${dayCounter}`;
 
       const cellData = {
         day: dayCounter,
         class:
-          recommendedDates[dateKey] ? 'recommended' : 
-          unavailableDates[dateKey] ? 'unavailable' : 
-          '',
+          recommendedDates[dateKey] ? 'recommended' :
+          unavailableDates[dateKey] ? 'unavailable' : '',
       };
 
       week.push(cellData);
 
       if (week.length === 7 || dayCounter === daysInMonth) {
-        // Fill the remaining cells for the last week
         while (week.length < 7) {
           week.push('');
         }
 
-        // Add the week to the table
         const row = document.createElement('tr');
         week.forEach((cell) => {
           const cellElement = document.createElement('td');
@@ -391,14 +352,8 @@ prevButton.addEventListener('click', () => {
       dayCounter++;
     }
 
-    // Attach click event for date selection after table is generated
     document.querySelectorAll('.calendar-table td').forEach((cell) => {
-      // Disable clicking while loading
-      if (isLoading) {
-        cell.style.pointerEvents = 'none'; // Disable clicks
-      } else {
-        cell.style.pointerEvents = 'auto'; // Enable clicks
-      }
+      cell.style.pointerEvents = isLoading ? 'none' : 'auto';
 
       cell.addEventListener('click', () => {
         if (!isLoading && !cell.classList.contains('unavailable') && cell.textContent) {
@@ -406,21 +361,18 @@ prevButton.addEventListener('click', () => {
             td.classList.remove('selected-date')
           );
           cell.classList.add('selected-date');
-          // Update the input field with the selected date
           const selected_date = `${year}-${(month + 1).toString().padStart(2, '0')}-${cell.textContent.padStart(2, '0')}`;
           calDayInput.value = selected_date;
 
-          // Set the date as a PHP session value via AJAX
           $.ajax({
-            url: 'save_session_date.php', // PHP file to handle the session
+            url: 'save_session_date.php',
             type: 'POST',
             data: { selected_date: selected_date },
             success: function (response) {
               console.log('Session updated:', response);
 
-              // Fetch recommended schedule and available times after selecting the date
-              isLoading = true; // Set loading state to true
-              fetch('pick_schedule_algo/get_appointment.php')
+              isLoading = true;
+              fetch('pick_schedule_algo/get_appointment2.php')
                 .then(response => {
                   if (!response.ok) {
                     throw new Error('Network response was not ok: ' + response.statusText);
@@ -431,18 +383,15 @@ prevButton.addEventListener('click', () => {
                   if (data.status !== 'success') {
                     throw new Error('Failed to retrieve schedule data: ' + (data.message || 'Unknown error'));
                   }
-
-                  // Update the UI with the fetched data
                   updateRecommendationsAndDropdown(data);
                 })
                 .catch(error => {
                   console.error('Error fetching schedule:', error);
                 })
                 .finally(() => {
-                  isLoading = false; // Reset loading state after data is loaded
-                  // Re-enable date click events
+                  isLoading = false;
                   document.querySelectorAll('.calendar-table td').forEach((cell) => {
-                    cell.style.pointerEvents = 'auto'; // Re-enable clicks
+                    cell.style.pointerEvents = 'auto';
                   });
                 });
             },
@@ -455,118 +404,154 @@ prevButton.addEventListener('click', () => {
     });
   }
 
-  // Event listener for the month selector
   monthSelect.addEventListener('change', function () {
     currentMonth = parseInt(this.value, 10) - 1;
     generateCalendar(currentMonth, currentYear);
+
+    // Clear recommendations and selected date when month changes
+    clearRecommendations();
+    clearSelectedDate();
   });
 
-  // Initial calendar generation
   generateCalendar(currentMonth, currentYear);
-});
 
-// Function to update the recommended schedule and available times
-function updateRecommendationsAndDropdown(response) {
-  // Check for success status
-  if (response.status !== "success") {
-    console.error("Error: " + (response.message || "Unknown error"));
-    return;
+  // Service Checkbox Logic
+  $(document).ready(function () {
+    $('input[name="service[]"]').on('click', function () {
+      const selectedServices = [];
+      $('input[name="service[]"]:checked').each(function () {
+        selectedServices.push($(this).val());
+      });
+
+      // Clear recommendations and selected date when services change
+      clearRecommendations();
+      clearSelectedDate();
+
+      // Send selected services to PHP using AJAX
+      $.ajax({
+        url: 'set_session.php', // PHP script to handle saving
+        type: 'POST',
+        data: { services: selectedServices },
+        success: function (response) {
+          console.log('Services saved:', response);
+        },
+        error: function (error) {
+          console.error('Error saving services:', error);
+        }
+      });
+    });
+  });
+
+  // Function to clear recommendations
+  function clearRecommendations() {
+    const recommendationContainer = document.querySelector('.recommendation-container');
+    recommendationContainer.innerHTML = ''; // Clear recommendations
+    const timeDropdown = document.getElementById('time');
+    timeDropdown.innerHTML = ''; // Clear available times dropdown
   }
 
-  // Parse the recommended schedule and available times
-  const recommendations = response.recommended_schedule;
-  const availableTimes = response.available_times;
-  const predictedDurations = response.predicted_durations;
+  // Function to clear selected date
+  function clearSelectedDate() {
+    document.querySelectorAll('.calendar-table td').forEach((td) =>
+      td.classList.remove('selected-date')
+    );
+    calDayInput.value = ''; // Clear the selected date input
+  }
 
-  // Update the recommendation container
-  const recommendationContainer = document.querySelector('.recommendation-container');
-  let recommendationHTML = `<h3>Recommended Dates & Times (Predicted Duration: ${predictedDurations} minutes)</h3>`;
-  recommendations.forEach((dateTime) => {
-    const [date, time] = dateTime.split(' ');
-    recommendationHTML += `<p>Date: ${formatDate(date)}<br>Time: ${formatTime(time)}</p>`;
-  });
-  recommendationContainer.innerHTML = recommendationHTML;
+  // Function to update the recommended schedule and available times
+  function updateRecommendationsAndDropdown(response) {
+    if (response.status !== "success") {
+      console.error("Error: " + (response.message || "Unknown error"));
+      return;
+    }
 
-  // Update the dropdown options for available times
-  const timeDropdown = document.getElementById('time');
-  timeDropdown.innerHTML = ''; // Clear existing options
-  availableTimes.forEach((dateTime) => {
-    const [, time] = dateTime.split(' ');
-    timeDropdown.innerHTML += `<option value="${time}">${formatTime(time)}</option>`;
-  });
-}
+    const recommendations = response.recommended_schedule;
+    const availableTimes = response.available_times;
+    const predictedDurations = response.predicted_durations;
 
-// Utility function to format the date
-function formatDate(dateStr) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(undefined, options);
-}
-
-// Utility function to format the time
-function formatTime(timeStr) {
-  const [hour, minute] = timeStr.split(':').map(Number);
-  const amPm = hour >= 12 ? 'PM' : 'AM';
-  const formattedHour = hour % 12 || 12;
-  return `${formattedHour}:${minute.toString().padStart(2, '0')} ${amPm}`;
-}
-
-    $(document).ready(function() {
-        $('#multiStepForm').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            const formData = $(this).serialize(); // Serialize form data
-
-            $.ajax({
-                url: 'appointment_crud/appointment_add.php',
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                        $('#multiStepForm')[0].reset(); // Clear the form
-                    } else {
-                        alert('Error: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                }
-            });
-        });
+    const recommendationContainer = document.querySelector('.recommendation-container');
+    let recommendationHTML = `<h3>Recommended Dates & Times (Predicted Duration: ${predictedDurations} minutes)</h3>`;
+    recommendations.forEach((dateTime) => {
+      const [date, time] = dateTime.split(' ');
+      recommendationHTML += `<p>Date: ${formatDate(date)}<br>Time: ${formatTime(time)}</p>`;
     });
+    recommendationContainer.innerHTML = recommendationHTML;
 
-  
+    const timeDropdown = document.getElementById('time');
+    timeDropdown.innerHTML = '';
+    availableTimes.forEach((dateTime) => {
+      const [, time] = dateTime.split(' ');
+      timeDropdown.innerHTML += `<option value="${time}">${formatTime(time)}</option>`;
+    });
+  }
 
+  // Utility function to format the date
+  function formatDate(dateStr) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateStr);
+    return date.toLocaleDateString(undefined, options);
+  }
 
+  // Utility function to format the time
+  function formatTime(timeStr) {
+    const [hour, minute] = timeStr.split(':').map(Number);
+    const amPm = hour >= 12 ? 'PM' : 'AM';
+    const formattedHour = hour % 12 || 12;
+    return `${formattedHour}:${minute.toString().padStart(2, '0')} ${amPm}`;
+  }
 
-    $(document).ready(function () {
-  // Define the endpoint URL for retrieving patient names
-  const apiUrl = "appointment_crud/get_patient_info.php"; // Replace this with your actual API endpoint
+  // Form submission logic
+  $(document).ready(function () {
+    $('#multiStepForm').on('submit', function (event) {
+      event.preventDefault(); // Prevent default form submission
 
-  // Fetch options on form load
-  $.ajax({
-    url: apiUrl,
-    method: "GET",
-    dataType: "json",
-    success: function (data) {
-      if (data && Array.isArray(data)) {
-        const selectElement = $("#patientNameList");
-        // Append options dynamically
-        data.forEach((patient) => {
-          selectElement.append(
-            $("<option>", {
-              value: patient.id, // Assuming the patient object has an `id` property
-              text: patient.name, // Assuming the patient object has a `name` property
-            })
-          );
-        });
-      }
-    },
-    error: function (xhr, status, error) {
-      console.error("Error fetching patient names:", error);
-    },
+      const formData = $(this).serialize(); // Serialize form data
+
+      $.ajax({
+        url: 'appointment_crud/appointment_add.php',
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+        success: function (response) {
+          if (response.success) {
+            alert(response.message);
+            $('#multiStepForm')[0].reset(); // Clear the form
+          } else {
+            alert('Error: ' + response.message);
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error('AJAX Error:', status, error);
+        }
+      });
+    });
+  });
+
+  // Fetch patient names for dropdown
+  $(document).ready(function () {
+    const apiUrl = "appointment_crud/get_patient_info.php"; // Replace this with your actual API endpoint
+
+    $.ajax({
+      url: apiUrl,
+      method: "GET",
+      dataType: "json",
+      success: function (data) {
+        if (data && Array.isArray(data)) {
+          const selectElement = $("#patientNameList");
+          data.forEach((patient) => {
+            selectElement.append(
+              $("<option>", {
+                value: patient.id, // Assuming the patient object has an `id` property
+                text: patient.name, // Assuming the patient object has a `name` property
+              })
+            );
+          });
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error("Error fetching patient names:", error);
+      },
+    });
   });
 });
   </script>

@@ -64,7 +64,7 @@ $relationship = isset($_POST['emergencyContactRelationship']) ? sanitize_input($
 
     // Password confirmation validation
     if ($password !== $confirmPassword) {
-        echo '<script>alert("Passwords do not match!")</script>';
+        echo 'Error:  "Passwords do not match!"';
         exit();
     }
 

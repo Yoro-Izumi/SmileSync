@@ -107,12 +107,12 @@
             <div class="form-group">
                 <label for="new-password">New Password</label>
                 <input type="hidden" name="email" id="email">
-                <input type="password" id="new-password" name="new-password" placeholder="Enter your new password" required>
+                <input type="password" max="20" id="new-password" name="new-password" placeholder="Enter your new password" required>
                 <div id="new-password-error" class="error"></div>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your new password" required>
+                <input type="password" max="20" id="confirm-password" name="confirm-password" placeholder="Confirm your new password" required>
                 <div id="confirm-password-error" class="error"></div>
             </div>
             <button type="submit" class="submit-btn" id="submitButton">Reset Password</button>

@@ -240,12 +240,13 @@
       <!-- Step 2: Appointment Details -->
       <div class="new-form-section">
         <h2>Appointment Detail</h2>
-        <div class="input-wrap">
-          <select class="input-field" id="new-services" name="services">
-            <option value="" disabled selected>Select a Service</option>
-            <?php include "service_list.php";?>
-          </select>
-        </div>
+        <div class="dropdown-checkbox">
+          <button class="dropdown-toggle">Select Services <span class="arrow">▼</span></button>
+          <div class="dropdown-content">
+            <?php include "service_list.php"; ?>
+          </div>
+    </div>
+
         <div class="appointment-container">
           <!-- Calendar Section -->
           <div class="calendar-container">
@@ -521,7 +522,7 @@ document.addEventListener('DOMContentLoaded', function () {
               console.log('Session updated:', newResponse);
 
               newIsLoading = true;
-              fetch('pick_schedule_algo/get_appointment.php')
+              fetch('pick_schedule_algo/get_appointment2.php')
                 .then(newResponse => {
                   if (!newResponse.ok) {
                     throw new Error('Network response was not ok: ' + newResponse.statusText);
@@ -558,11 +559,59 @@ document.addEventListener('DOMContentLoaded', function () {
     newMonthSelect.addEventListener('change', function () {
       newCurrentMonth = parseInt(this.value, 10) - 1;
       newGenerateCalendar(newCurrentMonth, newCurrentYear);
+
+      // Clear recommendations and selected date when month changes
+      clearRecommendations();
+      clearSelectedDate();
     });
   }
 
   newGenerateCalendar(newCurrentMonth, newCurrentYear);
 
+  // Service Checkbox Logic
+  $(document).ready(function () {
+    $('input[name="service[]"]').on('click', function () {
+      const selectedServices = [];
+      $('input[name="service[]"]:checked').each(function () {
+        selectedServices.push($(this).val());
+      });
+
+      // Clear recommendations and selected date when services change
+      clearRecommendations();
+      clearSelectedDate();
+
+      // Send selected services to PHP using AJAX
+      $.ajax({
+        url: 'set_session.php', // PHP script to handle saving
+        type: 'POST',
+        data: { services: selectedServices },
+        success: function (response) {
+          console.log('Services saved:', response);
+        },
+        error: function (error) {
+          console.error('Error saving services:', error);
+        }
+      });
+    });
+  });
+
+  // Function to clear recommendations
+  function clearRecommendations() {
+    const newRecommendationContainer = document.querySelector('.new-recommendation-container');
+    newRecommendationContainer.innerHTML = ''; // Clear recommendations
+    const newTimeDropdown = document.getElementById('new-time');
+    newTimeDropdown.innerHTML = ''; // Clear available times dropdown
+  }
+
+  // Function to clear selected date
+  function clearSelectedDate() {
+    document.querySelectorAll('.new-calendar-table td').forEach((newTd) =>
+      newTd.classList.remove('selected-date')
+    );
+    newCalDayInput.value = ''; // Clear the selected date input
+  }
+
+  // Function to update the recommended schedule and available times
   function newUpdateRecommendationsAndDropdown(response) {
     if (response.status !== "success") {
       console.error("Error: " + (response.message || "Unknown error"));
@@ -589,12 +638,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Utility function to format the date
   function formatDate(dateStr) {
     const newOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     const newDate = new Date(dateStr);
     return newDate.toLocaleDateString(undefined, newOptions);
   }
 
+  // Utility function to format the time
   function formatTime(timeStr) {
     const [hour, minute] = timeStr.split(':').map(Number);
     const newAmPm = hour >= 12 ? 'PM' : 'AM';
@@ -602,6 +653,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return `${newFormattedHour}:${minute.toString().padStart(2, '0')} ${newAmPm}`;
   }
 
+  // Form submission logic
   $(document).ready(function () {
     $("#newSubmitButton").on("click", function (e) {
       e.preventDefault();

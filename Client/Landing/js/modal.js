@@ -1,27 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const setAppointmentBtn = document.getElementById('setAppointmentBtn');
+  const registerModal = document.getElementById('registerModal');
+  const cancelBtn = document.querySelector('.btn.cancel');
+  const proceedBtn = document.querySelector('.btn.proceed');
 
-  // Open the modal when "Set Appointment" is clicked
-  document.getElementById('setAppointmentBtn').addEventListener('click', () => {
-      document.getElementById('registerModal').style.display = 'flex';
+  // Check if elements exist before adding event listeners
+  if (setAppointmentBtn && registerModal && cancelBtn && proceedBtn) {
+    // Open the modal when "Set Appointment" is clicked
+    setAppointmentBtn.addEventListener('click', () => {
+      registerModal.style.display = 'flex';
     });
-    
+
     // Close the modal when "Cancel" is clicked
-    document.querySelector('.btn.cancel').addEventListener('click', () => {
-      document.getElementById('registerModal').style.display = 'none';
+    cancelBtn.addEventListener('click', () => {
+      registerModal.style.display = 'none';
     });
-    
+
     // Redirect to a URL when "Proceed" is clicked
-    document.querySelector('.btn.proceed').addEventListener('click', () => {
-      const targetUrl = 'https://smilesync.site/SmileSync/Client/Register/Register-Page.php'; // Replace with your desired URL
+    proceedBtn.addEventListener('click', () => {
+      const targetUrl = '../Register/Register-Page.php'; // Replace with your desired URL
       window.location.href = targetUrl;
     });
-    
+
     // Optional: Close the modal if clicked outside the modal content
     window.addEventListener('click', (e) => {
-      const modal = document.getElementById('registerModal');
-      if (e.target === modal) {
-        modal.style.display = 'none';
+      if (e.target === registerModal) {
+        registerModal.style.display = 'none';
       }
     });
-    
-  });
+  } else {
+    console.error('One or more elements not found!');
+  }
+});

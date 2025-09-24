@@ -1,51 +1,46 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const formSections = document.querySelectorAll('.resched-form-section');
-    const steps = document.querySelectorAll('.resched-steps .resched-step');
-    const nextButton = document.querySelector('.resched-next-btn');
-    const prevButton = document.querySelector('.resched-prev-btn');
-    const submitButton = document.getElementById('resched-submitButton');
-    let currentStep = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const formSections = document.querySelectorAll('.resched-form-section');
+  const steps = document.querySelectorAll('.resched-steps .resched-step');
+  const nextButton = document.querySelector('.resched-next-btn');
+  const prevButton = document.querySelector('.resched-prev-btn');
+  const submitButton = document.getElementById('resched-submitButton');
+  let currentStep = 0;
 
-    function showStep(step) {
-        if (formSections[step]) {
-            formSections.forEach(section => section.classList.remove('active'));
-            formSections[step].classList.add('active');
-        }
-
-        if (steps[step]) {
-            steps.forEach(s => s.classList.remove('active'));
-            steps[step].classList.add('active');
-        }
-
-        if (prevButton) prevButton.style.display = step === 0 ? 'none' : 'inline-block';
-        if (nextButton) nextButton.style.display = step === formSections.length - 1 ? 'none' : 'inline-block';
-        if (submitButton) submitButton.style.display = step === formSections.length - 1 ? 'inline-block' : 'none';
+  function showStep(step) {
+    if (formSections[step]) {
+      formSections.forEach(section => section.classList.remove('active'));
+      formSections[step].classList.add('active');
     }
 
-    if (nextButton) {
-        nextButton.addEventListener("click", function() {
-            console.log("Next button clicked");
-            console.log("Current Step:", currentStep);
-            if (currentStep < formSections.length - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        });
+    if (steps[step]) {
+      steps.forEach(s => s.classList.remove('active'));
+      steps[step].classList.add('active');
     }
 
-    if (prevButton) {
-        prevButton.addEventListener("click", function() {
-            if (currentStep > 0) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        });
-    }
+    if (prevButton) prevButton.style.display = step === 0 ? 'none' : 'inline-block';
+    if (nextButton) nextButton.style.display = step === formSections.length - 1 ? 'none' : 'inline-block';
+    if (submitButton) submitButton.style.display = step === formSections.length - 1 ? 'inline-block' : 'none';
+  }
 
-    showStep(currentStep);
+  if (nextButton) {
+    nextButton.addEventListener("click", function () {
+      if (currentStep < formSections.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+  }
 
+  if (prevButton) {
+    prevButton.addEventListener("click", function () {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+  }
 
-
+  showStep(currentStep);
 
   // Calendar Logic
   const newRecommendedDates = {
@@ -135,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
               console.log('Session updated:', newResponse);
 
               newIsLoading = true;
-              fetch('pick_schedule_algo/get_appointment.php')
+              fetch('pick_schedule_algo/get_appointment2.php')
                 .then(newResponse => {
                   if (!newResponse.ok) {
                     throw new Error('Network response was not ok: ' + newResponse.statusText);
@@ -172,10 +167,57 @@ document.addEventListener("DOMContentLoaded", function() {
     newMonthSelect.addEventListener('change', function () {
       newCurrentMonth = parseInt(this.value, 10) - 1;
       newGenerateCalendar(newCurrentMonth, newCurrentYear);
+
+      // Clear recommendations and selected date when month changes
+      clearRecommendations();
+      clearSelectedDate();
     });
   }
 
   newGenerateCalendar(newCurrentMonth, newCurrentYear);
+
+  // Service Checkbox Logic
+  $(document).ready(function () {
+    $('input[name="service[]"]').on('click', function () {
+      const selectedServices = [];
+      $('input[name="service[]"]:checked').each(function () {
+        selectedServices.push($(this).val());
+      });
+
+      // Clear recommendations and selected date when services change
+      clearRecommendations();
+      clearSelectedDate();
+
+      // Send selected services to PHP using AJAX
+      $.ajax({
+        url: 'set_session.php', // PHP script to handle saving
+        type: 'POST',
+        data: { services: selectedServices },
+        success: function (response) {
+          console.log('Services saved:', response);
+        },
+        error: function (error) {
+          console.error('Error saving services:', error);
+        }
+      });
+    });
+  });
+
+  // Function to clear recommendations
+  function clearRecommendations() {
+    const newRecommendationContainer = document.querySelector('.resched-recommendation-container');
+    newRecommendationContainer.innerHTML = ''; // Clear recommendations
+    const newTimeDropdown = document.getElementById('resched-time');
+    newTimeDropdown.innerHTML = ''; // Clear available times dropdown
+  }
+
+  // Function to clear selected date
+  function clearSelectedDate() {
+    document.querySelectorAll('.resched-calendar-table td').forEach((newTd) =>
+      newTd.classList.remove('resched-selected-date')
+    );
+    newCalDayInput.value = ''; // Clear the selected date input
+  }
 
   function newUpdateRecommendationsAndDropdown(response) {
     if (response.status !== "success") {
@@ -215,9 +257,45 @@ document.addEventListener("DOMContentLoaded", function() {
     const newFormattedHour = hour % 12 || 12;
     return `${newFormattedHour}:${minute.toString().padStart(2, '0')} ${newAmPm}`;
   }
+});
 
+$(document).ready(function() {
+  // Prevent the default form submission
+  $('#resched-newMultiStepFormResched').on('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
 
+      // Disable the submit button to prevent multiple clicks
+      $('#resched-submitButton').prop('disabled', true);
 
+      // Serialize the form data
+      var formData = $(this).serialize();
 
+      // Send the form data using AJAX
+      $.ajax({
+          url: 'appointment_crud/resched_appointment.php', // The URL to the PHP file that processes the form
+          type: 'POST',
+          data: formData,
+          success: function(response) {
+              // Handle the response from the server
+              if (response == "success!") {
+                  // Show success alert
+                  modifyCreateAlert("Successfully updated appointment", "modify-alert-success", 5000);
 
+              } else {
+                  // Show error alert
+                  modifyCreateAlert(response, "modify-alert-error", 5000);
+
+                  // Re-enable the submit button if there's an error
+                  $('#resched-submitButton').prop('disabled', false);
+              }
+          },
+          error: function(xhr, status, error) {
+              // Show error alert for AJAX errors
+              modifyCreateAlert(error, "modify-alert-error", 5000);
+
+              // Re-enable the submit button if there's an error
+              $('#resched-submitButton').prop('disabled', false);
+          }
+      });
+  });
 });
